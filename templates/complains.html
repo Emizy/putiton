@@ -1,0 +1,128 @@
+{% extends 'ipage.html' %}
+{% load static %}
+{% block head %}
+    <title>Supplier :: Complains</title>
+{% endblock %}
+
+{% block content %}
+    <br>
+    <br><br>
+    <style>
+        .form {
+            background-color: white;
+            margin-bottom: 5%;
+            overflow-x: hidden !important;
+        }
+    </style>
+    <div class="container">
+        <div class="w3-row">
+            <a href="javascript:void(0)" onclick="openCity(event, 'View');">
+                <div class="w3-third tablink w3-bottombar w3-hover-pink w3-padding">Complains</div>
+            </a>
+            <a href="javascript:void(0)" onclick="openCity(event, 'Send');">
+                <div class="w3-third tablink w3-bottombar w3-hover-pink w3-padding">Send Complain</div>
+            </a>
+
+        </div>
+        <style>
+            .p {
+                border: 2px solid;
+                background-color: #f1f1f1;
+                border-radius: 5px;
+                padding: 10px;
+                margin: 10px 0;
+            }
+
+            .p img {
+                float: left;
+                max-width: 60px;
+                width: 100%;
+                margin-right: 20px;
+                border-radius: 50%;
+            }
+
+            .time-right {
+                float: left;
+                color: #999;
+            }
+
+            @media (min-width: 1200px) {
+                .p {
+                    width: 950px !important;
+                }
+                .h {
+                    width: 95s0px !important;
+                }
+            }
+
+        </style>
+    {% if twp %}
+            <div class="w3-panel w3-pink w3-card-4">
+                <p class=" w3-text-white">{{ twp }}</p>
+            </div>
+        {% endif %}
+    {% if twps %}
+            <div class="w3-panel w3-pink w3-card-4">
+                <p class=" w3-text-white">{{ twps }}</p>
+            </div>
+        {% endif %}
+        <div id="View" class="container city" style="display:none;margin-right: 10px;">
+            {% if msg %}
+                {% for i in msg %}
+            <div class="container p w3-white w3-border-white">
+                <img src="{% static 'images/avatar.png' %}" alt="Avatar">
+                <p style="margin-right: auto">{{ i.descrip }}</p>
+                <span class="time-right">{{ i.date }}</span>
+            </div>
+                {% endfor %}
+            {% endif %}
+        {% if msgs %}
+            <div class="w3-panel w3-pink w3-card-4">
+                <p class=" w3-text-white">{{ msgs }}</p>
+            </div>
+        {% endif %}
+        </div>
+        <div id="Send" class="container h city" style="display:none">
+            <div class="panel panel-default" style="margin: 0 auto;">
+                <div class="panel-body">
+                    <form class="form" method="post" action="#">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="product_name">Subject of Complain</label>
+                            <input type="text" id="sub_me" class="form-control" name="sub_me"
+                                   placeholder="Subect of Complains" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="comment">Message:</label>
+                            <textarea class="form-control" rows="4" id="descrip" name="sub_desp"
+                                      placeholder="Kindly enter the full details of your complain" required></textarea>
+                        </div>
+                        <input type="submit" name="submit" class="btn w3-pink w3-btn" value="Submit"
+                               style="background-color: orange;margin-left: 70%;">
+                    </form>
+                </div>
+            </div>
+        </div>
+        <br>
+        <script>
+            function openCity(evt, cityName) {
+                var i, x, tablinks;
+                x = document.getElementsByClassName("city");
+                for (i = 0; i < x.length; i++) {
+                    x[i].style.display = "none";
+                }
+                tablinks = document.getElementsByClassName("tablink");
+                for (i = 0; i < x.length; i++) {
+                    tablinks[i].className = tablinks[i].className.replace(" w3-border-pink", "");
+                }
+                document.getElementById(cityName).style.display = "block";
+                evt.currentTarget.firstElementChild.className += " w3-border-pink";
+            }
+        </script>
+    </div>
+
+
+
+
+{% endblock %}

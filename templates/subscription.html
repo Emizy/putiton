@@ -1,0 +1,288 @@
+{% extends 'ipage.html' %}
+{% load static %}
+{% block head %}
+    <title>Supplier || Subscription</title>
+{% endblock %}
+{% block content %}
+
+    <script>
+        function myFunction() {
+            var x = document.getElementById("myDIV");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
+        }
+
+        function silver() {
+            var x = document.getElementById("sil");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
+        }
+
+        function gold() {
+            var x = document.getElementById("gol");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
+        }
+
+        function platinum() {
+            var x = document.getElementById("plat");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
+        }
+    </script>
+    <!-- Header -->
+    <header class="w3-container" style="padding-top:22px">
+        <h5><b><i class="fa fa-dashboard"></i> Subscription </b></h5>
+    </header>
+
+    <div class="w3-row-padding w3-margin-bottom">
+        <div class="w3-quarter">
+            <div class="w3-container w3-orange w3-text-white w3-padding-16">
+                <div class="w3-left"><i class="fa fa-money w3-xxxlarge"></i></div>
+                <div class="w3-right">
+                    <h3>FREE</h3>
+                </div>
+                <div class="w3-clear"></div>
+                <h4>FREE</h4>
+            </div>
+            <div class="w3-center">
+                <div class="w3-bar">
+                    <a href="#" onclick="myFunction()"
+                       class="w3-button w3-hover-orange w3-hover-text-white w3-text-orange w3-border w3-border-orange"
+                       style="margin-right: 2px;">Read More </a>
+                </div>
+                <div class="w3-container w3-orange" id="myDIV" style="display:none;">
+                     <h6 class="w3-text-white"> Benefit of Free </h6>
+                    <p class="w3-text-white">Products review will be on grade level of 1</p>
+                </div>
+
+            </div>
+        </div>
+        <div class="w3-quarter">
+            <div class="w3-container w3-red w3-padding-16">
+                <div class="w3-left"><i class="fa fa-money w3-xxxlarge"></i></div>
+                <div class="w3-right">
+                    <h3>500</h3>
+                </div>
+                <div class="w3-clear"></div>
+                <h4>SILVER</h4>
+            </div>
+            <div class="w3-center">
+                <div class="w3-bar">
+                    <a href="#" onclick="silver()"
+                       class="w3-button w3-hover-red w3-text-red w3-border w3-border-red"
+                       style="margin-right: 2px;">Read More </a>
+                </div>
+                <div class="w3-container w3-red" id="sil" style="display:none;">
+                    <h6 class="w3-text-white"> Benefit of Silver </h6>
+                    <p>Twice in a week online marketing on our platform</p>
+                    <p>Products review will be on grade level of 2</p>
+                </div>
+            </div>
+        </div>
+        <div class="w3-quarter">
+            <div class="w3-container w3-blue w3-padding-16">
+                <div class="w3-left"><i class="fa fa-money w3-xxxlarge"></i></div>
+                <div class="w3-right">
+                    <h3>1000</h3>
+                </div>
+                <div class="w3-clear"></div>
+                <h4>GOLD</h4>
+            </div>
+            <div class="w3-center">
+                <div class="w3-bar">
+                    <a href="#" onclick="gold()"
+                       class="w3-button w3-hover-blue w3-text-blue w3-border w3-border-blue"
+                       style="margin-right: 2px;">Read More </a>
+                </div>
+                <div class="w3-container w3-blue" id="gol" style="display:none;">
+                    <h6 class="w3-text-white"> Benefit of Gold </h6>
+                    <p>Three times in a week online marketing on our social-platform</p>
+                    <p>Products review will be on grade level of 3</p>
+                </div>
+            </div>
+        </div>
+        <div class="w3-quarter">
+            <div class="w3-container w3-teal w3-padding-16">
+                <div class="w3-left"><i class="fa fa-money w3-xxxlarge"></i></div>
+                <div class="w3-right">
+                    <h3>1500</h3>
+                </div>
+                <div class="w3-clear"></div>
+                <h4>PLATINUM</h4>
+            </div>
+            <div class="w3-center">
+                <div class="w3-bar">
+                    <a href="#" onclick="platinum()"
+                       class="w3-button w3-hover-teal w3-text-teal w3-border w3-border-teal"
+                       style="margin-right: 2px;">Read More </a>
+                </div>
+                <div class="w3-container w3-teal" id="plat" style="display:none;">
+                     <h6 class="w3-text-white"> Benefit of Silver </h6>
+                    <p>Four times in a week online marketing on our platform</p>
+                    <p>Products review will be on grade level of 5</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="w3-container">
+        {% if msg %}
+            <div class="w3-panel w3-pink w3-card-4">
+                <p class=" w3-text-white">{{ msg }}</p>
+            </div>
+        {% endif %}
+    </div>
+    <div class="panel panel-default" style=" display: block;margin: 0 auto;">
+        <div class="panel-body">
+            <h5 class="w3-center w3-text-green"
+                style="font-style: normal;font-size: medium; text-align: justify;display: block">
+                <strong>Packages Subscription </strong></h5>
+            <div class="form-group">
+                <select class="form-control" name="pack" id="pack" required>
+                    <option value="#">--- Select Packages -----</option>
+                    <option value="Free">Free</option>
+                    <option value="Silver">Silver</option>
+                    <option value="Gold">Gold</option>
+                    <option value="Platinum">Platinum</option>
+                </select>
+            </div>
+            <script>
+                $(function () {
+                    $('#pack').change(function () {
+                        $('.stat').hide();
+                        $('#' + $(this).val()).show();
+                    });
+                });
+            </script>
+
+            <div class="stat" id="Free" style="display: none">
+                <form action="/subscription/" method="post">
+                    {% csrf_token %}
+                    <div class="w3-center">
+                        <h4 class="w3-orange w3-text-white">Free Package Subscription</h4>
+                    </div>
+                    <input type="hidden" id="pay_mode" name="pack" value="Free">
+                    <input type="hidden" name="free1" value="0">
+                    <input type="hidden" name="free2" value="System">
+                    <div class="w3-center">
+                        <input type="submit" value="Opt-In" class="w3-btn w3-button w3-pink w3-hover-pink">
+                    </div>
+                </form>
+            </div>
+
+            <div class="stat" id="Silver" style="display: none">
+                <div class="w3-center">
+                    <h4 class="w3-red w3-text-white">Silver Package Subscription #500 </h4>
+                </div>
+                <div class="w3-container w3-border w3-border-red">
+                    <h5 class="w3-text-black">Account Name : Adenitire Ayomikun </h5>
+                    <h5 class="w3-text-black">Bank Name : Zenith Bank </h5>
+                    <h5 class="w3-text-black">Account No : 2110517542 </h5>
+                </div>
+                <form action="/subscription/" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <input type="hidden" id="pay_mode" name="pack" value="Silver">
+                    <div class="form-group">
+                        <input type="text" name="silver1" placeholder="Enter the amount" required class="form-control">
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="silver2" placeholder="Enter Bank Name" required class="form-control">
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="image">Transaction Screenshot</label>
+                        <input type="file" name="image1" id="image">
+                        <p class="help-block">Please upload original and real transaction details,Fake upload will lead
+                            to automatic account suspensions.</p>
+                    </div>
+                    <div class="w3-center">
+                        <input type="submit" value="Opt-In" class="w3-btn w3-button w3-pink w3-hover-pink">
+                    </div>
+                </form>
+            </div>
+
+
+            <div class="stat" id="Gold" style="display: none">
+                <div class="w3-center">
+                    <h4 class="w3-blue w3-text-white">Gold Package Subscription #1000 </h4>
+                </div>
+                <div class="w3-container w3-border w3-border-blue">
+                    <h5 class="w3-text-black">Account Name : Adenitire Ayomikun </h5>
+                    <h5 class="w3-text-black">Bank Name : Zenith Bank </h5>
+                    <h5 class="w3-text-black">Account No : 2110517542 </h5>
+                </div>
+                <form action="/subscription/" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <input type="hidden" id="" name="pack" value="Gold">
+                    <div class="form-group">
+                        <input type="text" name="gold1" placeholder="Enter the amount" required class="form-control">
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="gold2" placeholder="Enter Bank Name" required class="form-control">
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="image">Transaction Screenshot</label>
+                        <input type="file" name="image2" id="image">
+                        <p class="help-block">Please upload original and real transaction details,Fake upload will lead
+                            to automatic account suspensions.</p>
+                    </div>
+                    <div class="w3-center">
+                        <input type="submit" value="Opt-In" class="w3-btn w3-button w3-pink w3-hover-pink">
+                    </div>
+                </form>
+            </div>
+
+
+            <div class="stat" id="Platinum" style="display: none">
+                <div class="w3-center">
+                    <h4 class="w3-teal w3-text-white">Platinum Package Subscription #1500 </h4>
+                </div>
+                <div class="w3-container w3-border w3-border-teal">
+                    <h5 class="w3-text-black">Account Name : Adenitire Ayomikun </h5>
+                    <h5 class="w3-text-black">Bank Name : Zenith Bank </h5>
+                    <h5 class="w3-text-black">Account No : 2110517542 </h5>
+                </div>
+                <form action="/subscription/" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <input type="hidden" id="pay_mode" name="pack" value="Platinum">
+                    <div class="form-group">
+                        <input type="text" name="plat1" placeholder="Enter the amount" required class="form-control">
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="plat2" placeholder="Enter Bank Name" required class="form-control">
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="image">Transaction Screenshot</label>
+                        <input type="file" name="image3" id="image">
+                        <p class="help-block">Please upload original and real transaction details,Fake upload will lead
+                            to automatic account suspensions.</p>
+                    </div>
+                    <div class="w3-center">
+                        <input type="submit" value="Opt-In" class="w3-btn w3-button w3-pink w3-hover-pink">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <br>
+
+
+{% endblock %}

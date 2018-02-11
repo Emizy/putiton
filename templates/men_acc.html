@@ -1,0 +1,186 @@
+{% extends 'masterpage.html' %}
+{% load  static %}
+{% block head %}
+    <title>PutItOn :: Men Accessories</title>
+{% endblock %}
+{% block content %}
+    <div class="banner">
+        <div class="matter-banner">
+            <div class="slider">
+                <div class="callbacks_container">
+                    <ul class="rslides" id="slider">
+                        <li>
+                            <img src="{% static 'images/1.jpg' %}" alt="">
+                            <div class="tes animated wow fadeInUp animated" data-wow-delay=".5s"
+                                 style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInUp;">
+                                <h2>MEN & WOMEN</h2>
+                                <h3>Trousers & Chinos</h3>
+                                <h4>UPTO 50%</h4>
+                                <p>OFFER</p>
+                            </div>
+                        </li>
+                        <li>
+                            <img src="{% static 'images/3.jpg' %}" alt="">
+                            <div class="tes animated wow fadeInUp animated" data-wow-delay=".5s"
+                                 style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInUp;">
+                                <h2>MEN & WOMEN</h2>
+                                <h3>Trousers & Chinos</h3>
+                                <h4>UPTO 50%</h4>
+                                <p>OFFER</p>
+                            </div>
+                        </li>
+                        <li>
+                            <img src="{% static 'images/2.jpg' %}" alt="">
+                            <div class="tes animated wow fadeInUp animated" data-wow-delay=".5s"
+                                 style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInUp;">
+                                <h2>MEN & WOMEN</h2>
+                                <h3>Trousers & Chinos</h3>
+                                <h4>UPTO 50%</h4>
+                                <p>OFFER</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <!--//banner-->
+    <!--content-->
+    <!--Men wears-->
+    {% if msg %}
+        <script>
+            alert('No stock available');
+            window.location.href = "/"
+        </script>
+    {% endif %}
+    <br>
+    <br>
+
+    <div class="=container w3-center">
+        <div class="w3-bar">
+            <a href="#" class="w3-button w3-hover-pink w3-pink  w3-border w3-border-pink"
+               style="margin-right: 2px;" disabled>
+                Mens' Accessories <i
+                    class="fa fa-cart-arrow-down" aria-hidden="true"></i> </a>
+        </div>
+    </div>
+
+    <style>
+        .plat {
+            position: absolute;
+            right: 15%;
+            border: 2px solid teal;
+            padding: 1px;
+            top: 0%;
+            margin-top: 5px;
+            z-index: 498;
+        }
+
+        .plat > p {
+            background: teal;
+            text-align: center;
+            line-height: 0em !important;
+            font-size: 1em !important;
+            padding: 7px;
+            color: white;
+        }
+
+        .gold {
+            position: absolute;
+            right: 15%;
+            border: 2px solid blue;
+            padding: 1px;
+            top: 0%;
+            margin-top: 5px;
+            z-index: 498;
+        }
+
+        .gold > p {
+            background: blue;
+            text-align: center;
+            line-height: 0em !important;
+            font-size: 1em !important;
+            padding: 7px;
+            color: white;
+        }
+
+        .silver {
+            position: absolute;
+            right: 15%;
+            border: 2px solid red;
+            padding: 1px;
+            top: 0%;
+            margin-top: 5px;
+            z-index: 498;
+        }
+
+        .silver > p {
+            background: red;
+            text-align: center;
+            line-height: 0em !important;
+            font-size: 1em !important;
+            padding: 7px;
+            color: white;
+        }
+
+        .free {
+            position: absolute;
+            right: 15%;
+            border: 2px solid orange;
+            padding: 1px;
+            top: 0%;
+            margin-top: 5px;
+            z-index: 498;
+        }
+
+        .free > p {
+            background: orange;
+            text-align: center;
+            line-height: 0em !important;
+            font-size: 1em !important;
+            padding: 7px;
+            color: white;
+        }
+    </style>
+    <!--men acce platinum-->
+    {% if mcp %}
+        <div class="c-btm">
+            <div class="content-top1">
+                <div class="container">
+                    {% for i in mcp %}
+                        <div class="col-md-3 col-md2 animated wow fadeInLeft" data-wow-delay=".5s">
+                            <div class="col-md1 simpleCart_shelfItem">
+                                {% if i.status == "Platinum" %}
+                                    <div class="plat"><p><span>{{ i.status }}</span></p></div>
+                                {% endif %}
+                                {% if i.status == "Gold" %}
+                                    <div class="gold"><p><span>{{ i.status }}</span></p></div>
+                                {% endif %}
+                                {% if i.status == "Silver" %}
+                                    <div class="silver"><p><span>{{ i.status }}</span></p></div>
+                                {% endif %}
+                                {% if i.status == "Free" %}
+                                    <div class="free"><p><span>{{ i.status }}</span></p></div>
+                                {% endif %}
+                                <img class="img-responsive" src="{{ i.image1.url }}" alt=""/>
+                                <h3>{{ i.product_name }}
+                                </h3>
+                                <div class="price">
+                                    <h5 class="item_price">{{ i.price }}</h5>
+                                    <a href="{% url 'm_details' i.id %}" class="item_add">View</a>
+                                    <div class="clearfix"></div>
+                                </div>
+
+                            </div>
+                        </div>
+                    {% endfor %}
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+    <!--end of menacc-->
+
+{% endblock %}
+

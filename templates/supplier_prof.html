@@ -1,0 +1,70 @@
+{% extends 'ipage.html' %}
+{% load static %}
+{% block head %}
+    <title> Supplier || Profile </title>
+{% endblock %}
+{% block content %}
+
+
+    <!-- Header -->
+    <header class="w3-container" style="padding-top:22px">
+        <h5><b><i class="fa fa-dashboard"></i> My Profile</b></h5>
+    </header>
+
+    <div class="w3-container">
+        <div class="row">
+            <div class="col-md-3 offset-3">
+                <div class="w3-white">
+                    <div class="w3-container w3-center">
+                        <div class="w3-panel w3-image">
+                            <img src="{% static 'images/avatar.png' %}" alt="Avatar" style="width: 40%">
+                        </div>
+                        <hr>
+                        <h5 class="w3-text-pink" style="font-size: 15px;">{{ profile.name }}</h5>
+                        <hr>
+                        {#                    <div class="w3-section w3-center">#}
+                        {#                        <a href="#edit" data-toggle="modal"#}
+                        {#                           class="w3-button w3-btn w3-pink w3-hover-pink">EDIT#}
+                        {#                            PROFILE</a>#}
+                        {#                    </div>#}
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6">
+                <div class="panel panel-default" style=" display: block;margin: 0 auto;">
+                    <div class="panel-body">
+                        <div class="modal-w3lstext">
+                            <p>
+                                <span class="w3-text-pink">Email </span> : {{ profile.Email }}
+                            </p>
+                            <hr>
+                            <p>
+                                <span class="w3-text-pink">Phone </span> : {{ profile.Phone }}
+                            </p>
+                            <hr>
+                            <p>
+                                <span class="w3-text-pink">Company </span> : {{ profile.company }}
+                            </p>
+                            <hr>
+                            <p>
+                                <span class="w3-text-pink">State </span> : {{ profile.state }}
+                            </p>
+                            <hr>
+                            <p>
+                                <span class="w3-text-pink">Location </span> : {{ profile.location }}
+                            </p>
+                            <hr>
+                            <p>
+                                <span class="w3-text-pink">Address </span> : {{ profile.address }}
+                            </p>
+                            <hr>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}

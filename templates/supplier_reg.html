@@ -1,0 +1,264 @@
+{% extends 'ms_supp.html' %}
+{% load static %}
+{% block head %}
+    <title> Supplier || Register </title>
+{% endblock %}
+<!--//header-->
+{% block content %}
+    <div class="login">
+
+        <div class="main-agileits">
+            <div class="form-w3agile">
+                <h3> Supplier Registration </h3>
+                {% if successmsg %}
+                    <div class="well">{{ successmsg }} <a href="{% url 'supplier_log' %}">{{ user }}</a></div>
+                {% endif %}
+                {% if errmsg %}
+                    <div class="well w3-red  w3-text-white">{{ errmsg }}</div>
+                {% endif %}
+                <form action="#" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <input type="text" name="name" placeholder="Enter your full name" required
+                               class="form-control">
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="email" placeholder="Email" required class="form-control">
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="phone" placeholder="Enter your phone number" required
+                               class="form-control">
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" name="password" placeholder="password" required class="form-control">
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" rows="4" id="address" name="address"
+                                  placeholder="Enter your Address"></textarea>
+                    </div>
+                    <hr>
+                    <div class="w3-center">
+                        <h4 class="w3-text-black">Company Information </h4>
+                    </div>
+                    <div class="form-group" style="margin-top: 7px;">
+                        <input type="text" name="company" placeholder="Enter your company name" required
+                               class="form-control">
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="form-group">
+                        <select class="form-control" name="state" id="state" required>
+                            <option value="#">--- Select state -----</option>
+                            <option value="Abuja">Federal Capital Territory</option>
+                            <option value="Abia">Abia</option>
+                            <option value="Adamawa">Adamawa</option>
+                            <option value="Akwa Ibom">Akwa Ibom</option>
+                            <option value="Anambra">Anambra</option>
+                            <option value="Bauchi">Bauchi</option>
+                            <option value="Bayelsa">Bayelsa</option>
+                            <option value="Benue">Benue</option>
+                            <option value="Bornu">Bornu</option>
+                            <option value="Bornu">Bornu</option>
+                            <option value="Delta">Delta</option>
+                            <option value="Ebonyi">Ebonyi</option>
+                            <option value="Edo">Edo</option>
+                            <option value="Ekiti">Ekiti</option>
+                            <option value="Enugu">Enugu</option>
+                            <option value="Gombe">Gombe</option>
+                            <option value="Imo">Imo</option>
+                            <option value="Jigawa">Jigawa</option>
+                            <option value="Kaduna">Kaduna</option>
+                            <option value="Kano">Kano</option>
+                            <option value="Katsina">Katsina</option>
+                            <option value="Kebbi">Kebbi</option>
+                            <option value="Kogi">Kogi</option>
+                            <option value="Kwara">Kwara</option>
+                            <option value="Lagos">Lagos</option>
+                            <option value="Niger">Niger</option>
+                            <option value="Ogun">Ogun</option>
+                            <option value="Ondo">Ondo</option>
+                            <option value="Osun">Osun</option>
+                            <option value="Oyo">Oyo</option>
+                            <option value="Plateau">Plateau</option>
+                            <option value="Rivers">Rivers</option>
+                            <option value="Sokoto">Sokoto</option>
+                            <option value="Taraba">Taraba</option>
+                            <option value="Yobe">Yobe</option>
+                            <option value="Zamfara">Zamfara</option>
+                        </select>
+                    </div>
+                    <div class="form-group locs" id="Abuja" style="display:none">
+                        <select class="form-control" name="a" id="a" required>
+                            <option value="#">--- Select local Government -----</option>
+                            <option value="Gwagwalada">Gwagwalada</option>
+                            <option value="Kuje">Kuje</option>
+                            <option value="Abaji">Abaji</option>
+                            <option value="Abuja Municipal">Abuja Municipal</option>
+                            <option value="Bwari">Bwari</option>
+                            <option value="Kwali">Kwali</option>
+                        </select>
+                    </div>
+                    <div class="form-group locs" id="Abia" style="display:none">
+                        <select class="form-control" name="b" id="b" required>
+                            <option value="#">--- Select local Government -----</option>
+                            <option value="Aba North">Aba North</option>
+                            <option value="Aba South">Aba South</option>
+                            <option value="Arochukwu">Arochukwu</option>
+                            <option value="Bende">Bende</option>
+                            <option value="Ikwuano">Ikwuano</option>
+                            <option value="Isiala-Ngwa North">Isiala-Ngwa North</option>
+                            <option value="Isiala-Ngwa South">Isiala-Ngwa South</option>
+                            <option value="Isuikwato">Isuikwato</option>
+                            <option value="Obi Nwa">Obi Nwa</option>
+                            <option value="Ohafia">Ohafia</option>
+                            <option value="Osisioma">Osisioma</option>
+                            <option value="Ngwa">Ngwa</option>
+                            <option value="Ugwunagbo">Ugwunagbo</option>
+                            <option value="Umuahia North">Umuahia North</option>
+                            <option value="Ukwa West">Ukwa West</option>
+                            <option value="Umuahia South">Umuahia South</option>
+                            <option value="Umu-Neochi">Umu-Neochi</option>
+                        </select>
+                    </div>
+                    <div class="form-group locs" id="Adamawa" style="display:none">
+                        <select class="form-control" name="c" id="c" required>
+                            <option value="#">--- Select local Government -----</option>
+                            <option value="Demsa">Demsa</option>
+                            <option value="Fufore">Fufore</option>
+                            <option value="Ganaye">Ganaye</option>
+                            <option value="Gireri">Gireri</option>
+                            <option value="Gombi">Gombi</option>
+                            <option value="Guyuk">Guyuk</option>
+                            <option value="Hong">Hong</option>
+                            <option value="Jada">Jada</option>
+                            <option value="Lamurde">Lamurde</option>
+                            <option value="Madagali">Madagali</option>
+                            <option value="Maiha">Maiha</option>
+                            <option value="Mayo-Belwa">Mayo-Belwa</option>
+                            <option value="Mubi North ">Mubi North</option>
+                            <option value="Mubi South">Mubi South</option>
+                            <option value="Numan">Numan</option>
+                            <option value="Shelleng">Shelleng</option>
+                            <option value="Song">Song</option>
+                            <option value="Toungo">Toungo</option>
+                            <option value="Yola North">Yola North</option>
+                            <option value="Yola South">Yola South</option>
+                        </select>
+                    </div>
+                    <div class="form-group locs" id="Akwa Ibom" style="display:none">
+                        <select class="form-control" name="d" id="d" required>
+                            <option value="#">--- Select local Government -----</option>
+                            <option value="Abak">Abak</option>
+                            <option value="Eastern Obolo">Eastern Obolo</option>
+                            <option value="Eket">Eket</option>
+                            <option value="Esit Eket">Esit Eket</option>
+                            <option value="Essien Udim">Essien Udim</option>
+                            <option value="Etim Ekpo">Etim Ekpo</option>
+                            <option value="Etinan">Etinan</option>
+                            <option value="Ibeno">Ibeno</option>
+                            <option value="Ibesikpo Asutan">Ibesikpo Asutan</option>
+                            <option value="Ibiono Ibom">Ibiono Ibom</option>
+                            <option value="Ika">Ika</option>
+                            <option value="Ikono">Ikono</option>
+                            <option value="Ikot Abasi">Ikot Abasi</option>
+                            <option value="Ikot Ekpene">Ikot Ekpene</option>
+                            <option value="Ini">Ini</option>
+                            <option value="Itu">Itu</option>
+                            <option value="Mbo">Mbo</option>
+                            <option value="Mkpat Enin">Mkpat Enin</option>
+                            <option value="Nsit Ibom">Nsit Ibom</option>
+                            <option value="Nsit Ubium">Nsit Ubium</option>
+                            <option value="Obot Akara">Obot Akara</option>
+                            <option value="Okobo">Okobo</option>
+                            <option value="Onna">Onna</option>
+                            <option value="Oron">Oron</option>
+                            <option value="Oruk Anam">Oruk Anam</option>
+                            <option value="Udung Uko">Udung Uko</option>
+                            <option value="Ukanafun">Ukanafun</option>
+                            <option value="Uruan">Uruan</option>
+                            <option value="Urue-Offong/Oruko">Urue-Offong/Oruko</option>
+                            <option value="Uyo">Uyo</option>
+                        </select>
+                    </div>
+                    <div class="form-group locs" id="Anambra" style="display:none">
+                        <select class="form-control" name="e" id="d" required>
+                            <option value="#">--- Select local Government -----</option>
+                            <option value="Aguata">Aguata</option>
+                            <option value="Anambra East">Anambra East</option>
+                            <option value="Anambra West">Anambra West</option>
+                            <option value="Anaocha">Anaocha</option>
+                            <option value="Awka North">Awka North</option>
+                            <option value="Awka South">Awka South</option>
+                            <option value="Ayamelum">Ayamelum</option>
+                            <option value="Dunukofia">Dunukofia</option>
+                            <option value="Ekwusigo">Ekwusigo</option>
+                            <option value="Idemili North">Idemili North</option>
+                            <option value="Idemili south">Idemili south</option>
+                            <option value="Ikono">Ikono</option>
+                            <option value="Ikot Abasi">Ikot Abasi</option>
+                            <option value="Ikot Ekpene">Ikot Ekpene</option>
+                            <option value="hiala">hiala</option>
+                            <option value="Njikoka">Njikoka</option>
+                            <option value="Nnewi North">Nnewi North</option>
+                            <option value="Nnewi South">Nnewi South</option>
+                            <option value="Ogbaru">Ogbaru</option>
+                            <option value="Onitsha North">Onitsha North</option>
+                            <option value="Onitsha South">Onitsha South</option>
+                            <option value="Orumba North">Orumba North</option>
+                            <option value="Orumba South">Orumba South</option>
+                            <option value="Oyi">Oyi</option>
+                        </select>
+                    </div>
+                    <div class="form-group locs" id="Bauchi" style="display:none">
+                        <select class="form-control" name="f" id="d" required>
+                            <option value="#">--- Select local Government -----</option>
+                            <option value="Alkaleri">Alkaleri</option>
+                            <option value="Bauchi">Bauchi</option>
+                            <option value="Bogoro">Bogoro</option>
+                            <option value="Damban">Damban</option>
+                            <option value="Darazo">Darazo</option>
+                            <option value="Dass">Dass</option>
+                            <option value="Ganjuwa">Ganjuwa</option>
+                            <option value="Giade">Giade</option>
+                            <option value="Itas/Gadau">Itas/Gadau</option>
+                            <option value="Jama'are">Jama'are</option>
+                            <option value="Katagum">Katagum</option>
+                            <option value="Kirfi">Kirfi</option>
+                            <option value="Misau">Misau</option>
+                            <option value="Ikot Ekpene">Ikot Ekpene</option>
+                            <option value="hiala">hiala</option>
+                            <option value="Njikoka">Njikoka</option>
+                            <option value="Nnewi North">Nnewi North</option>
+                            <option value="Nnewi South">Nnewi South</option>
+                            <option value="Ogbaru">Ogbaru</option>
+                            <option value="Onitsha North">Onitsha North</option>
+                            <option value="Onitsha South">Onitsha South</option>
+                            <option value="Orumba North">Orumba North</option>
+                            <option value="Orumba South">Orumba South</option>
+                            <option value="Oyi">Oyi</option>
+                        </select>
+                    </div>
+                    <script>
+                        $(function () {
+                            $('#state').change(function () {
+                                $('.locs').hide();
+                                $('#' + $(this).val()).show();
+                            });
+                        });
+                    </script>
+                    <div class="w3-center" style="margin-top: 10px;">
+                        <input type="submit" value="Register" class="w3-btn w3-button w3-pink w3-hover-pink">
+                    </div>
+                </form>
+            </div>
+            <div class="forg">
+                <a href="{% url 'forget_pass' %}" class="forg-left" class="w3-text-pink w3-hover-text-pink">Forgot Password</a>
+                <a href="{% url 'supplier_log' %}" class="forg-right" class="w3-text-pink w3-hover-text-pink">Login</a>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

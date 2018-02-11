@@ -1,0 +1,51 @@
+{% extends 'BABS.html' %}
+{% load static %}
+<!--//header-->
+{% block content %}
+    <hr>
+    <div class="login">
+
+        <div class="main-agileits">
+            <div class="form-w3agile">
+                <h3>Register</h3>
+                {% if successmsg %}
+                    <div class="well">{{ successmsg }} <a href="{% url 'login' %}">{{ user }}</a></div>
+                {% endif %}
+                <form action="#" method="post">
+                    {% csrf_token %}
+                    <div class="key">
+                        <i class="fa fa-users" aria-hidden="true"></i>
+                        <input type="text" name="fname" placeholder="Enter your full name" required
+                               class="form-control">
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="key">
+                        <i class="fa fa-envelrope" aria-hidden="true" style="color: black;"></i>
+                        <input type="text" name="email" placeholder="Email" required class="form-control">
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="key">
+                        <i class="fa fa-mobile" aria-hidden="true"></i>
+                        <input type="text" name="phone" placeholder="Enter your phone number" required
+                               class="form-control">
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="key">
+                        <i class="fa fa-lock" aria-hidden="true"></i>
+                        <input type="password" name="password" placeholder="password" required class="form-control">
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="w3-center">
+                        <input type="submit" value="Register" class="w3-btn w3-button w3-pink w3-hover-pink">
+                    </div>
+                </form>
+            </div>
+            <div class="forg">
+                <a href="#" class="forg-left" class="w3-text-pink w3-hover-text-pink">Forgot Password</a>
+                <a href="{% url 'login' %}" class="forg-right" class="w3-text-pink w3-hover-text-pink">Login</a>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

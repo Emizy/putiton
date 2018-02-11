@@ -1,0 +1,91 @@
+{% extends 'ipage.html' %}
+{% load static %}
+
+
+{% block content %}
+    <style>
+        .con {
+            background-color: white;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            overflow-x: hidden !important;
+        }
+
+    </style>
+    <br>
+    <br>
+    <div class="w3-container">
+        <div class="w3-bar w3-pink w3-border w3-border-white w3-round">
+            <div class="w3-bar-item" style="text-align: center;color:white;">EDIT | DELETE</div>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table con">
+                <thead>
+                <tr>
+                    <th>S/N</th>
+                    <th>Product name</th>
+                    <th>supplier</th>
+                    <th>price</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for o in showprod %}
+                    <tr>
+                        <td>{{ o.id }}</td>
+                        <td>{{ o.product_name }}</td>
+                        <td>{{ o.supplier }}</td>
+                        <td>{{ o.price }}</td>
+                        <td>
+                            <a type="button" class="w3-btn w3-pink" href="{% url 'edit' o.id %}"
+                               name="#"
+                            >
+                                EDIT
+                            </a>
+                        </td>
+                        <td>
+                            <a type="button" class="w3-btn w3-pink" href="#del" data-toggle="modal"
+                               name="#"
+                            >
+                                DELETE
+                            </a>
+                        </td>
+                    </tr>
+                    <!-- //modal-faqx-->
+                    <div>
+                    </div>
+                    <div class="modal bnr-modal fade" id="del" tabindex="-1" role="dialog">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                            aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body modal-spa">
+                                    <!--<img src="images/g2.jpg" class="img-responsive" alt=""/>-->
+                                    <div class="modal-w3lstext">
+                                        <h4 class="w3-text-pink">Are You Sure You want to delete this product!! </h4>
+                                        <hr>
+                                        <div class="w3-bar w3-center">
+                                            <a href="{% url 'prod_del' o.id %}" class="w3-pink w3-btn"
+                                               style="background-color: orange;margin-left: 70%;">Yes</a>
+                                            <a href="{% url 'edit_delete' %}" class="w3-pink w3-btn"
+                                               style="background-color: orange;margin-left: 70%;">No</a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+{% endblock %}

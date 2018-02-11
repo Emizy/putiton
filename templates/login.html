@@ -1,0 +1,53 @@
+{% extends 'BABS.html' %}
+{% load static %}
+{% block head %}
+    <title>Login</title>
+{% endblock %}
+<!--//header-->
+{% block content %}
+    <hr>
+    <div class="login">
+
+        <div class="main-agileits">
+            <div class="form-w3agile">
+                <h3>Login</h3>
+                <form action="#" method="post">
+                    {% csrf_token %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div id="alertBox" class="w3-{{ message.tags }}">
+                                <button id="bannerClose" class="w3-right w3-text-white w3-large"
+                                        onclick="closeModal('alertBox')"
+                                        style="background-color: transparent; border: none;">&times;
+                                </button>
+                                <div class="w3-center">
+                                    <label id="alert" class="w3-text-green w3-large"
+                                           style="font-size: 5px;">{{ message }}</label>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                    <div class="key">
+                        <i class="fa fa-envelrope" aria-hidden="true"></i>
+                        <input type="text" name="email" placeholder="Email" required class="form-control">
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="key">
+                        <i class="fa fa-lock" aria-hidden="true"></i>
+                        <input type="password" name="password" placeholder="password" required class="form-control">
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="w3-center">
+                        <input type="submit" value="Login" class="w3-btn w3-button w3-pink w3-hover-pink">
+                    </div>
+                </form>
+            </div>
+            <div class="forg">
+                <a href="{% url 'forget_pass' %}" class="forg-left w3-text-pink w3-hover-text-pink">Forgot Password</a>
+                <a href="{% url 'register' %}" class="forg-right w3-text-pink w3-hover-text-pink">Register</a>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'ms_supp.html' %}
+{% load static %}
+{% block head %}
+    <title> Supplier || Login </title>
+{% endblock %}
+<!--//header-->
+{% block content %}
+    <div class="login">
+
+        <div class="main-agileits">
+            <div class="form-w3agile">
+                <h3>Supplier Login</h3>
+                {% if messages %}
+                        {% for message in messages %}
+                            <div id="alertBox" class="w3-{{ message.tags }}">
+                                <button id="bannerClose" class="w3-right w3-text-white w3-large"
+                                        onclick="closeModal('alertBox')"
+                                        style="background-color: transparent; border: none;">&times;
+                                </button>
+                                <div class="w3-center">
+                                    <label id="alert" class="w3-text-green w3-large"
+                                           style="font-size: 5px;">{{ message }}</label>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                <form action="#" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <input type="text" name="email" placeholder="Enter your Email" required class="form-control">
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" name="password" placeholder="password" required class="form-control">
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="w3-center">
+                        <input type="submit" value="Login" class="w3-btn w3-button w3-pink w3-hover-pink">
+                    </div>
+                </form>
+            </div>
+            <div class="forg">
+                <a href="{% url 'forget_pass' %}" class="forg-left" class="w3-text-pink w3-hover-text-pink">Forgot Password</a>
+                <a href="{% url 'supplier_reg' %}" class="forg-right" class="w3-text-pink w3-hover-text-pink">Register</a>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
