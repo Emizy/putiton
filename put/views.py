@@ -1472,8 +1472,10 @@ def complains(request):
             except:
                 rst = None
             if rst:
+                em = request.session['email']
                 context = {
                     'msg': rst,
+                    'email': em,
                 }
                 templates = 'complains.html'
                 return render(request, templates, context)
@@ -1492,6 +1494,7 @@ def complains(request):
                 em = Supplier.objects.get(Email=request.session['email'])
             except:
                 em = None
+            ep = request.session['email']
             if em:
                 com.supp_user = em
                 com.full_com = com_full
@@ -1499,11 +1502,14 @@ def complains(request):
                 com.save()
                 context = {
                     'twp': "Complains / Feedback submitted successfully!! Hope to get back to you Soon.",
+                    'email': ep,
                 }
                 templates = 'complains.html'
                 return render(request, templates, context)
             else:
+                ep = request.session['email']
                 context = {
+                    'email': ep,
                     'twps': "Error in sending Complains / Feedback submitted,Try Again!!!",
                 }
                 templates = 'complains.html'
