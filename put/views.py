@@ -63,21 +63,6 @@ def index(request):
                 return render(request, templates, context)
 
 
-# def on(request):
-#     assert isinstance(request, HttpRequest)
-#     if request.method == 'GET':
-#         sql = Product.objects.filter(category="men").order_by('-date')[:8]
-#         sql1 = Product.objects.filter(category="women").order_by('-date')[:8]
-#         email = request.session['Email']
-#         context = {
-#             'men': sql,
-#             'women': sql1,
-#             'mail': email,
-#         }
-#         templates = 'on.html'
-#         return render(request, templates, context)
-#
-
 def f_details(request, women_id):
     assert isinstance(request, HttpRequest)
     if request.method == 'GET':
@@ -462,9 +447,6 @@ def p_makeup(request, make_id):
     assert isinstance(request, HttpRequest)
     if request.method == 'GET':
         if 'Email' in request.session:
-            if 'cart' not in request.session.keys():
-                request.session['cart'] = {}
-            print(request.session['cart'])
             sql = Product.objects.get(id=make_id)
             email = request.session['Email']
             sql2 = Product.objects.filter(category="makeup", status="Platinum").order_by('-date')[:4]
@@ -483,9 +465,6 @@ def p_makeup(request, make_id):
                 template = 'p_makeup.html'
                 return render(request, template, context)
         else:
-            if 'cart' not in request.session.keys():
-                request.session['cart'] = {}
-            print(request.session['cart'])
             sql = Product.objects.get(id=make_id)
             sql2 = Product.objects.filter(category="makeup", status="Platinum").order_by('-date')[:4]
             email = None
@@ -673,14 +652,47 @@ def profile(request):
 def search(request):
     if request.method == 'POST':
         query = request.POST.get('search')
-        result = Product.objects.filter(product_name__icontains=query)
+        result1 = Product.objects.filter(product_name__icontains=query)
+        result2 = Product.objects.filter(state__icontains=query)
+        result3 = Product.objects.filter(color__icontains=query)
+        result5 = Product.objects.filter(location__icontains=query)
+        result6 = Product.objects.filter(price__icontains=query)
         rel = Product.objects.all().order_by('-date')[:20]
-        if result:
+        if result1:
             context = {
-                'sch': result,
+                'sch': result1,
             }
             templates = 'search.html'
             return render(request, templates, context)
+
+        elif result2:
+            context = {
+                'sch': result2,
+            }
+            templates = 'search.html'
+            return render(request, templates, context)
+
+        elif result3:
+            context = {
+                'sch': result3,
+            }
+            templates = 'search.html'
+            return render(request, templates, context)
+
+        elif result5:
+            context = {
+                'sch': result5,
+            }
+            templates = 'search.html'
+            return render(request, templates, context)
+
+        elif result6:
+            context = {
+                'sch': result6,
+            }
+            templates = 'search.html'
+            return render(request, templates, context)
+
         elif rel:
             context = {
                 'sch': rel,
@@ -689,72 +701,260 @@ def search(request):
             return render(request, templates, context)
 
 
-def show_order(request):
-    assert isinstance(request, HttpRequest)
-    if request.method == 'GET':
-        holder = []
-        for order in Order.objects.all():
-            details = OrderingDetails.objects.filter(order=order)
-            holder.append((order, details))
-        context = {'orders': holder}
-        template = 'show_order.html'
-        return render(request, template, context)
-    elif request.method == 'POST':
-        form = json.loads(request.body.decode(encoding='UTF-8'))
-        if form:
-            try:
-                order = Order.objects.get(id=form['id'])
-            except:
-                order = None
+def men_search(request):
+    if request.method == 'POST':
+        query = request.POST.get('search')
+        result1 = Product.objects.filter(product_name__icontains=query, category="men")
+        result2 = Product.objects.filter(state__icontains=query, category="men")
+        result3 = Product.objects.filter(color__icontains=query, category="men")
+        result5 = Product.objects.filter(location__icontains=query, category="men")
+        result6 = Product.objects.filter(price__icontains=query, category="men")
+        rel = Product.objects.filter(category="men").order_by('-date')[:20]
+        if result1:
+            context = {
+                'sch': result1,
+            }
+            templates = 'search.html'
+            return render(request, templates, context)
 
-            if order:
-                print(form['confirm'])
-                order.confirm = bool(form['confirm'])
-                order.save()
-                response = {"response": "Success",
-                            "details": "Order Confirmed"}
-                return JsonResponse(response, safe=False)
-            else:
-                response = {"response": "Error",
-                            "details": "Order not found"}
-                return JsonResponse(response, safe=False)
-        else:
-            response = {"response": "Error",
-                        "details": "No Form"}
-            return JsonResponse(response, safe=False)
+        elif result2:
+            context = {
+                'sch': result2,
+            }
+            templates = 'search.html'
+            return render(request, templates, context)
 
+        elif result3:
+            context = {
+                'sch': result3,
+            }
+            templates = 'search.html'
+            return render(request, templates, context)
 
-def add_product(request):
-    assert isinstance(request, HttpRequest)
-    if request.method == 'GET':
-        context = locals()
-        template = 'add_product.html'
-        return render(request, template)
-    elif request.method == 'POST':
-        product = Product()
-        product.price = request.POST.get('price')
-        product.product_name = request.POST.get('product_name')
-        product.category = request.POST.get('category')
-        product.sup = request.POST.get('sup')
-        product.color = request.POST.get('color')
-        product.size = request.POST.get('size')
-        product.descrip = request.POST.get('descrip')
-        product.image1 = request.FILES['image1']
-        product.image2 = request.FILES['image2']
-        product.image3 = request.FILES['image3']
-        product.save()
-    template = 'add_product.html'
-    context = {'msg': "New Product Added Successfully", }
-    return render(request, template, context)
+        elif result5:
+            context = {
+                'sch': result5,
+            }
+            templates = 'search.html'
+            return render(request, templates, context)
 
+        elif result6:
+            context = {
+                'sch': result6,
+            }
+            templates = 'search.html'
+            return render(request, templates, context)
 
-def change(request):
-    assert isinstance(request, HttpRequest)
-    if request.method == 'GET':
-        edit = Gas.objects.all()
-        context = {'edits': edit}
-        templates = "change.html"
-        return render(request, templates, context)
+        elif rel:
+            context = {
+                'sch': rel,
+            }
+            templates = 'search.html'
+            return render(request, templates, context)
+
+def women_search(request):
+    if request.method == 'POST':
+        query = request.POST.get('search')
+        result1 = Product.objects.filter(product_name__icontains=query, category="women")
+        result2 = Product.objects.filter(state__icontains=query, category="women")
+        result3 = Product.objects.filter(color__icontains=query, category="women")
+        result5 = Product.objects.filter(location__icontains=query, category="women")
+        result6 = Product.objects.filter(price__icontains=query, category="women")
+        rel = Product.objects.filter(category="women").order_by('-date')[:20]
+        if result1:
+            context = {
+                'sch': result1,
+            }
+            templates = 'search.html'
+            return render(request, templates, context)
+
+        elif result2:
+            context = {
+                'sch': result2,
+            }
+            templates = 'search.html'
+            return render(request, templates, context)
+
+        elif result3:
+            context = {
+                'sch': result3,
+            }
+            templates = 'search.html'
+            return render(request, templates, context)
+
+        elif result5:
+            context = {
+                'sch': result5,
+            }
+            templates = 'search.html'
+            return render(request, templates, context)
+
+        elif result6:
+            context = {
+                'sch': result6,
+            }
+            templates = 'search.html'
+            return render(request, templates, context)
+
+        elif rel:
+            context = {
+                'sch': rel,
+            }
+            templates = 'search.html'
+            return render(request, templates, context)
+
+def menacc_search(request):
+    if request.method == 'POST':
+        query = request.POST.get('search')
+        result1 = Product.objects.filter(product_name__icontains=query, category="women")
+        result2 = Product.objects.filter(state__icontains=query, category="women")
+        result3 = Product.objects.filter(color__icontains=query, category="women")
+        result5 = Product.objects.filter(location__icontains=query, category="women")
+        result6 = Product.objects.filter(price__icontains=query, category="women")
+        rel = Product.objects.filter(category="women").order_by('-date')[:20]
+        if result1:
+            context = {
+                'sch': result1,
+            }
+            templates = 'search.html'
+            return render(request, templates, context)
+
+        elif result2:
+            context = {
+                'sch': result2,
+            }
+            templates = 'search.html'
+            return render(request, templates, context)
+
+        elif result3:
+            context = {
+                'sch': result3,
+            }
+            templates = 'search.html'
+            return render(request, templates, context)
+
+        elif result5:
+            context = {
+                'sch': result5,
+            }
+            templates = 'search.html'
+            return render(request, templates, context)
+
+        elif result6:
+            context = {
+                'sch': result6,
+            }
+            templates = 'search.html'
+            return render(request, templates, context)
+
+        elif rel:
+            context = {
+                'sch': rel,
+            }
+            templates = 'search.html'
+            return render(request, templates, context)
+
+def makeup_search(request):
+    if request.method == 'POST':
+        query = request.POST.get('search')
+        result1 = Product.objects.filter(product_name__icontains=query, category="women")
+        result2 = Product.objects.filter(state__icontains=query, category="women")
+        result3 = Product.objects.filter(color__icontains=query, category="women")
+        result5 = Product.objects.filter(location__icontains=query, category="women")
+        result6 = Product.objects.filter(price__icontains=query, category="women")
+        rel = Product.objects.filter(category="women").order_by('-date')[:20]
+        if result1:
+            context = {
+                'sch': result1,
+            }
+            templates = 'search.html'
+            return render(request, templates, context)
+
+        elif result2:
+            context = {
+                'sch': result2,
+            }
+            templates = 'search.html'
+            return render(request, templates, context)
+
+        elif result3:
+            context = {
+                'sch': result3,
+            }
+            templates = 'search.html'
+            return render(request, templates, context)
+
+        elif result5:
+            context = {
+                'sch': result5,
+            }
+            templates = 'search.html'
+            return render(request, templates, context)
+
+        elif result6:
+            context = {
+                'sch': result6,
+            }
+            templates = 'search.html'
+            return render(request, templates, context)
+
+        elif rel:
+            context = {
+                'sch': rel,
+            }
+            templates = 'search.html'
+            return render(request, templates, context)
+
+def bead_search(request):
+    if request.method == 'POST':
+        query = request.POST.get('search')
+        result1 = Product.objects.filter(product_name__icontains=query, category="women")
+        result2 = Product.objects.filter(state__icontains=query, category="women")
+        result3 = Product.objects.filter(color__icontains=query, category="women")
+        result5 = Product.objects.filter(location__icontains=query, category="women")
+        result6 = Product.objects.filter(price__icontains=query, category="women")
+        rel = Product.objects.filter(category="women").order_by('-date')[:20]
+        if result1:
+            context = {
+                'sch': result1,
+            }
+            templates = 'search.html'
+            return render(request, templates, context)
+
+        elif result2:
+            context = {
+                'sch': result2,
+            }
+            templates = 'search.html'
+            return render(request, templates, context)
+
+        elif result3:
+            context = {
+                'sch': result3,
+            }
+            templates = 'search.html'
+            return render(request, templates, context)
+
+        elif result5:
+            context = {
+                'sch': result5,
+            }
+            templates = 'search.html'
+            return render(request, templates, context)
+
+        elif result6:
+            context = {
+                'sch': result6,
+            }
+            templates = 'search.html'
+            return render(request, templates, context)
+
+        elif rel:
+            context = {
+                'sch': rel,
+            }
+            templates = 'search.html'
+            return render(request, templates, context)
 
 
 def edit_delete(request):
@@ -972,7 +1172,7 @@ def subscription(request):
                     em = request.session['email']
                     context = {
                         'email': em,
-                        'msg': "You have successfully subscribe for free package",
+                        'msg': "You have successfully subscribe for free package,Your next subscription is in the next 6months",
                     }
                     template = 'subscription.html'
                     return render(request, template, context)
@@ -1000,7 +1200,7 @@ def subscription(request):
                         pack.save()
                         context = {
                             'email': em,
-                            'msg': "You have successfully subscribe for Silver package,You will Recieved an email of Confirmation.Thank",
+                            'msg': "You have successfully subscribe for Silver package,You will Recieved an email of Confirmation.Your next subscription is in the next 6months.Thank",
                         }
                         template = 'subscription.html'
                         return render(request, template, context)
@@ -1036,7 +1236,7 @@ def subscription(request):
                         pack.save()
                         context = {
                             'email': em,
-                            'msg': "You have successfully subscribe for Gold package,You will Recieved an email of Confirmation.Thank",
+                            'msg': "You have successfully subscribe for Gold package,You will Recieved an email of Confirmation,Your next subscription is in the next 6months.Thank",
                         }
                         template = 'subscription.html'
                         return render(request, template, context)
@@ -1072,7 +1272,7 @@ def subscription(request):
                         pack.save()
                         context = {
                             'email': em,
-                            'msg': "You have successfully subscribe for Platinum package,You will Recieved an email of Confirmation.Thank",
+                            'msg': "You have successfully subscribe for Platinum package,You will Recieved an email of Confirmation,Your next subscription is in the next 6months.Thank",
                         }
                         template = 'subscription.html'
                         return render(request, template, context)
@@ -1121,9 +1321,12 @@ def supplier_log(request):
                 request.session['email'] = sql.Email
                 print(sql.password)
                 return render(request, templates, context)
+            else:
+                messages.error(request, 'Sorry! invalid password')
+                return redirect('/supplier_log/')
         else:
             print('am here')
-            messages.error(request, 'Sorry! invalid password')
+            messages.error(request, 'Sorry! Invalid Email')
             return redirect('/supplier_log/')
 
 
@@ -1140,22 +1343,50 @@ def Ads(request):
         if 'email' in request.session:
             supp_id = request.session['userid']
             mail = request.session['email']
-            stat = packages.objects.filter(supp_user__id=request.session['userid'])
-            if stat == None:
+            stat = packages.objects.filter(supp_user__Email=mail)
+            if stat:
                 context = {
                     'email': mail,
-                    'msg': "Yet to subscribe to any packages ,Click to subscribe",
+                    'val': "Valid",
                 }
                 templates = "Ads.html"
                 return render(request, templates, context)
             else:
                 context = {
                     'email': mail,
+                    'msg': "Yet to subscribe to any packages ,Click to subscribe",
                 }
                 templates = "Ads.html"
                 return render(request, templates, context)
         else:
             return redirect('/supplier_log/')
+
+    elif request.method == 'POST':
+        if 'email' in request.session:
+            mail = request.session['email']
+            stat = Supplier.objects.get(Email=request.session['email'])
+            pack = packages.objects.get(supp_user__Email=request.session['email'])
+            packss = pack.status
+            rst = Supp_Ads()
+            rst.supp_user = stat
+            rst.stats = packss
+            rst.price = request.POST.get('price')
+            rst.product_name = request.POST.get('product_name')
+            rst.category = request.POST.get('category')
+            rst.color = request.POST.get('color')
+            rst.size = request.POST.get('size')
+            rst.descrip = request.POST.get('descrip')
+            rst.image1 = request.FILES['image1']
+            rst.image2 = request.FILES['image2']
+            rst.image3 = request.FILES['image3']
+            rst.save()
+            context = {
+                'succes': "You have successfully submitted an Ads ,Kindly wait for the next three working day for verification and publication on our website.Thanks",
+            }
+            templates = "Ads.html"
+            return render(request, templates, context)
+        else:
+            return redirect('/Ads/')
 
 
 def supplier_prof(request):
@@ -1170,6 +1401,8 @@ def supplier_prof(request):
             }
             templates = 'supplier_prof.html'
             return render(request, templates, context)
+        else:
+            return redirect('/supplier_log/')
 
 
 def forget_pass(request):
@@ -1178,7 +1411,7 @@ def forget_pass(request):
         context = locals()
         templates = 'forget_pass.html'
         return render(request, templates, context)
-    if request.method == 'POST':
+    elif request.method == 'POST':
         user_email = request.POST.get('Email')
         try:
             user = Supplier.objects.get(Email=user_email)
@@ -1199,7 +1432,7 @@ def change_pass(request):
         context = locals()
         templates = 'change_pass.html'
         return render(request, templates, context)
-    if request.method == 'POST':
+    elif request.method == 'POST':
         rest_pass = request.POST.get('pass')
         user = request.session['Email']
         userid = request.session['userid']
@@ -1265,13 +1498,13 @@ def complains(request):
                 com.sub_com = com_sub
                 com.save()
                 context = {
-                    'twp': "Complains / Feedback submitted successfully!! Hope to get back to you.",
+                    'twp': "Complains / Feedback submitted successfully!! Hope to get back to you Soon.",
                 }
                 templates = 'complains.html'
                 return render(request, templates, context)
             else:
                 context = {
-                    'twps': "Error.",
+                    'twps': "Error in sending Complains / Feedback submitted,Try Again!!!",
                 }
                 templates = 'complains.html'
                 return render(request, templates, context)

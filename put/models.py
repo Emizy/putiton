@@ -146,7 +146,7 @@ class packages(models.Model):
         return "%s - %s" % (self.supp_user.name, self.status)
 
 
-class Ads(models.Model):
+class Supp_Ads(models.Model):
     supp_user = models.ForeignKey(Supplier, on_delete=models.DO_NOTHING, blank=True, null=True)
     price = models.IntegerField()
     product_name = models.CharField(max_length=300)
@@ -162,6 +162,7 @@ class Ads(models.Model):
     image2 = models.FileField(null=True, blank=True)
     image3 = models.FileField(null=True, blank=True)
     color = models.CharField(max_length=200, blank=True)
+    stats = models.CharField(max_length=200, blank=True)
     descrip = models.TextField(blank=True, null=True)
     size = models.CharField(max_length=200, blank=True)
     date = models.DateTimeField(auto_now_add=True)

@@ -78,19 +78,19 @@ WSGI_APPLICATION = 'putiton.wsgi.application'
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'putiton',
-        'USER': 'NevoGold',
-        'PASSWORD': 'ayo2012',
-    }
     # 'default': {
     #     'ENGINE': 'django.db.backends.mysql',
-    #     'NAME': 'putiton$shop',
-    #     'USER': 'putiton',
-    #     'PASSWORD': 'ayomikun2012',
-    #     'HOST': 'PutItOn.mysql.pythonanywhere-services.com'
+    #     'NAME': 'putiton',
+    #     'USER': 'NevoGold',
+    #     'PASSWORD': 'ayo2012',
     # }
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'putiton$on',
+        'USER': 'putiton',
+        'PASSWORD': 'ayomikun2012',
+        'HOST': 'PutItOn.mysql.pythonanywhere-services.com'
+    }
 }
 
 
@@ -131,19 +131,19 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 # # #offline setting
-STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'), ]
-TEMPLATE_DIRS = (os.path.join(BASE_DIR, 'templates'),)
-
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-MEDIA_URL = '/media/'
-
-# online setting
 # STATIC_URL = '/static/'
-# # STATICFILES_DIRS = [os.path.join(BASE_DIR,  'static')
+# STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'), ]
+# TEMPLATE_DIRS = (os.path.join(BASE_DIR, 'templates'),)
 #
-# MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 #
 # MEDIA_URL = '/media/'
-# STATIC_ROOT = os.path.join(BASE_DIR, "static")
+
+# online setting
+STATIC_URL = '/static/'
+# STATICFILES_DIRS = [os.path.join(BASE_DIR,  'static')
+
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+
+MEDIA_URL = '/media/'
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
