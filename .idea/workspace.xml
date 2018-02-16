@@ -2,14 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0cff984e-d09c-4ba5-ba4b-5119033fc8cd" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/put/migrations/0002_auto_20180215_2018.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/put/migrations/0003_auto_20180215_2031.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/put/migrations/0004_auto_20180216_0920.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/put/models.py" afterPath="$PROJECT_DIR$/put/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/putiton/settings.py" afterPath="$PROJECT_DIR$/putiton/settings.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/acc_details.html" afterPath="$PROJECT_DIR$/templates/acc_details.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/f_details.html" afterPath="$PROJECT_DIR$/templates/f_details.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/m_details.html" afterPath="$PROJECT_DIR$/templates/m_details.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/p_makeup.html" afterPath="$PROJECT_DIR$/templates/p_makeup.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/r_beads.html" afterPath="$PROJECT_DIR$/templates/r_beads.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.idea/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -27,8 +23,8 @@
       <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/put/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="11" column="42" lean-forward="false" selection-start-line="11" selection-start-column="42" selection-end-line="11" selection-end-column="42" />
+            <state relative-caret-position="170">
+              <caret line="28" column="33" lean-forward="true" selection-start-line="28" selection-start-column="33" selection-end-line="28" selection-end-column="33" />
               <folding>
                 <element signature="e#0#14#0" expanded="true" />
                 <element signature="e#6701#7006#0" expanded="false" />
@@ -326,6 +322,12 @@
             <path>
               <item name="putiton" type="b2602c69:ProjectViewProjectNode" />
               <item name="putiton" type="462c0819:PsiDirectoryNode" />
+              <item name="put" type="462c0819:PsiDirectoryNode" />
+              <item name="migrations" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="putiton" type="b2602c69:ProjectViewProjectNode" />
+              <item name="putiton" type="462c0819:PsiDirectoryNode" />
               <item name="putiton" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -443,7 +445,14 @@
       <option name="project" value="LOCAL" />
       <updated>1518764361349</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="first cmment">
+      <created>1518769323310</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1518769323310</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -813,19 +822,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/put/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="11" column="42" lean-forward="false" selection-start-line="11" selection-start-column="42" selection-end-line="11" selection-end-column="42" />
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-            <element signature="e#6701#7006#0" expanded="false" />
-            <element signature="e#7038#7257#0" expanded="false" />
-            <element signature="e#7298#7652#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/acc_details.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="146">
@@ -873,6 +869,19 @@
           <caret line="95" column="29" lean-forward="false" selection-start-line="95" selection-start-column="29" selection-end-line="95" selection-end-column="29" />
           <folding>
             <element signature="e#4910#4937#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/put/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="28" column="33" lean-forward="true" selection-start-line="28" selection-start-column="33" selection-end-line="28" selection-end-column="33" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+            <element signature="e#6701#7006#0" expanded="false" />
+            <element signature="e#7038#7257#0" expanded="false" />
+            <element signature="e#7298#7652#0" expanded="false" />
           </folding>
         </state>
       </provider>
