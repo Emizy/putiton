@@ -9,7 +9,7 @@ class Product(models.Model):
     text = models.CharField(max_length=100, blank=True, null=True)
     price = models.IntegerField()
     Email = models.EmailField(null=True, blank=True, max_length=254)
-    Phone = models.CharField(max_length=11, blank=True, null=True)
+    Phone = models.CharField(max_length=20, blank=True, null=True)
     product_name = models.CharField(max_length=300)
     types = {
         ('men', 'men'),

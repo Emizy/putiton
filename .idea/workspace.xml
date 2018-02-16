@@ -2,21 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0cff984e-d09c-4ba5-ba4b-5119033fc8cd" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/preferred-vcs.xml" afterPath="$PROJECT_DIR$/.idea/preferred-vcs.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/put/admin.py" afterPath="$PROJECT_DIR$/put/admin.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/put/models.py" afterPath="$PROJECT_DIR$/put/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/put/views.py" afterPath="$PROJECT_DIR$/put/views.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/putiton/settings.py" afterPath="$PROJECT_DIR$/putiton/settings.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/putiton/urls.py" afterPath="$PROJECT_DIR$/putiton/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/Ads.html" afterPath="$PROJECT_DIR$/templates/Ads.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/beads.html" afterPath="$PROJECT_DIR$/templates/beads.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/index.html" afterPath="$PROJECT_DIR$/templates/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/makeup.html" afterPath="$PROJECT_DIR$/templates/makeup.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/masterpage.html" afterPath="$PROJECT_DIR$/templates/masterpage.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/men.html" afterPath="$PROJECT_DIR$/templates/men.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/men_acc.html" afterPath="$PROJECT_DIR$/templates/men_acc.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/women.html" afterPath="$PROJECT_DIR$/templates/women.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/acc_details.html" afterPath="$PROJECT_DIR$/templates/acc_details.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/f_details.html" afterPath="$PROJECT_DIR$/templates/f_details.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/m_details.html" afterPath="$PROJECT_DIR$/templates/m_details.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/p_makeup.html" afterPath="$PROJECT_DIR$/templates/p_makeup.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/r_beads.html" afterPath="$PROJECT_DIR$/templates/r_beads.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.idea/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -34,8 +27,8 @@
       <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/put/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="9" column="9" lean-forward="false" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="9" />
+            <state relative-caret-position="136">
+              <caret line="11" column="42" lean-forward="false" selection-start-line="11" selection-start-column="42" selection-end-line="11" selection-end-column="42" />
               <folding>
                 <element signature="e#0#14#0" expanded="true" />
                 <element signature="e#6701#7006#0" expanded="false" />
@@ -50,7 +43,7 @@
         <entry file="file://$PROJECT_DIR$/put/views.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="251">
-              <caret line="1517" column="0" lean-forward="true" selection-start-line="1517" selection-start-column="0" selection-end-line="1517" selection-end-column="0" />
+              <caret line="1517" column="0" lean-forward="false" selection-start-line="1517" selection-start-column="0" selection-end-line="1517" selection-end-column="0" />
               <folding>
                 <element signature="e#0#34#0" expanded="true" />
                 <element signature="e#278#2439#0" expanded="false" />
@@ -101,9 +94,70 @@
       <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/putiton/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="183">
-              <caret line="84" column="32" lean-forward="true" selection-start-line="84" selection-start-column="32" selection-end-line="84" selection-end-column="32" />
+            <state relative-caret-position="98">
+              <caret line="85" column="7" lean-forward="true" selection-start-line="85" selection-start-column="7" selection-end-line="85" selection-end-column="7" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="r_beads.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/r_beads.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="185">
+              <caret line="95" column="29" lean-forward="false" selection-start-line="95" selection-start-column="29" selection-end-line="95" selection-end-column="29" />
+              <folding>
+                <element signature="e#4910#4937#0#HTML" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="p_makeup.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/p_makeup.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-115">
+              <caret line="94" column="29" lean-forward="false" selection-start-line="94" selection-start-column="29" selection-end-line="94" selection-end-column="29" />
+              <folding>
+                <element signature="e#4908#4935#0#HTML" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="m_details.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/m_details.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="213">
+              <caret line="95" column="29" lean-forward="false" selection-start-line="95" selection-start-column="29" selection-end-line="95" selection-end-column="29" />
+              <folding>
+                <element signature="e#4913#4940#0#HTML" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="f_details.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/f_details.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="88" column="29" lean-forward="true" selection-start-line="88" selection-start-column="29" selection-end-line="88" selection-end-column="29" />
+              <folding>
+                <element signature="e#4910#4937#0#HTML" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="acc_details.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/acc_details.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="146">
+              <caret line="93" column="27" lean-forward="false" selection-start-line="93" selection-start-column="27" selection-end-line="93" selection-end-column="27" />
+              <folding>
+                <element signature="e#4917#4944#0#HTML" expanded="true" />
+                <marker date="1518769198845" expanded="true" signature="4944:5063" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -200,15 +254,9 @@
         <option value="$PROJECT_DIR$/templates/details.html" />
         <option value="$PROJECT_DIR$/templates/ms_supp.html" />
         <option value="$PROJECT_DIR$/PutItOn/settings.py" />
-        <option value="$PROJECT_DIR$/templates/f_details.html" />
-        <option value="$PROJECT_DIR$/templates/acc_details.html" />
-        <option value="$PROJECT_DIR$/templates/m_details.html" />
-        <option value="$PROJECT_DIR$/templates/p_makeup.html" />
-        <option value="$PROJECT_DIR$/templates/r_beads.html" />
         <option value="$PROJECT_DIR$/templates/supplier_reg.html" />
         <option value="$PROJECT_DIR$/templates/Ads.html" />
         <option value="$PROJECT_DIR$/put/admin.py" />
-        <option value="$PROJECT_DIR$/put/models.py" />
         <option value="$PROJECT_DIR$/templates/masterpage.html" />
         <option value="$PROJECT_DIR$/templates/index.html" />
         <option value="$PROJECT_DIR$/templates/men.html" />
@@ -218,6 +266,12 @@
         <option value="$PROJECT_DIR$/templates/beads.html" />
         <option value="$PROJECT_DIR$/put/views.py" />
         <option value="$PROJECT_DIR$/putiton/urls.py" />
+        <option value="$PROJECT_DIR$/put/models.py" />
+        <option value="$PROJECT_DIR$/templates/f_details.html" />
+        <option value="$PROJECT_DIR$/templates/acc_details.html" />
+        <option value="$PROJECT_DIR$/templates/m_details.html" />
+        <option value="$PROJECT_DIR$/templates/p_makeup.html" />
+        <option value="$PROJECT_DIR$/templates/r_beads.html" />
         <option value="$PROJECT_DIR$/putiton/settings.py" />
       </list>
     </option>
@@ -382,7 +436,14 @@
       <option name="project" value="LOCAL" />
       <updated>1518051607361</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="first cmment">
+      <created>1518764361349</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1518764361349</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -524,42 +585,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/r_beads.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="27" column="65" lean-forward="false" selection-start-line="27" selection-start-column="65" selection-end-line="27" selection-end-column="65" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/p_makeup.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="157">
-          <caret line="26" column="33" lean-forward="true" selection-start-line="26" selection-start-column="33" selection-end-line="26" selection-end-column="65" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/m_details.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="128">
-          <caret line="27" column="33" lean-forward="true" selection-start-line="27" selection-start-column="33" selection-end-line="27" selection-end-column="65" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/acc_details.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="146">
-          <caret line="27" column="34" lean-forward="false" selection-start-line="27" selection-start-column="34" selection-end-line="27" selection-end-column="66" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/f_details.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="105" lean-forward="false" selection-start-line="10" selection-start-column="70" selection-end-line="10" selection-end-column="105" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/Desktop/PutItOn/shop/admin.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
@@ -601,19 +626,6 @@
         <state relative-caret-position="153">
           <caret line="10" column="28" lean-forward="false" selection-start-line="10" selection-start-column="28" selection-end-line="10" selection-end-column="28" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/put/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="9" column="9" lean-forward="false" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="9" />
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-            <element signature="e#6701#7006#0" expanded="false" />
-            <element signature="e#7038#7257#0" expanded="false" />
-            <element signature="e#7298#7652#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -754,7 +766,7 @@
     <entry file="file://$PROJECT_DIR$/put/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="251">
-          <caret line="1517" column="0" lean-forward="true" selection-start-line="1517" selection-start-column="0" selection-end-line="1517" selection-end-column="0" />
+          <caret line="1517" column="0" lean-forward="false" selection-start-line="1517" selection-start-column="0" selection-end-line="1517" selection-end-column="0" />
           <folding>
             <element signature="e#0#34#0" expanded="true" />
             <element signature="e#278#2439#0" expanded="false" />
@@ -801,10 +813,74 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/put/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="11" column="42" lean-forward="false" selection-start-line="11" selection-start-column="42" selection-end-line="11" selection-end-column="42" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+            <element signature="e#6701#7006#0" expanded="false" />
+            <element signature="e#7038#7257#0" expanded="false" />
+            <element signature="e#7298#7652#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/acc_details.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="146">
+          <caret line="93" column="27" lean-forward="false" selection-start-line="93" selection-start-column="27" selection-end-line="93" selection-end-column="27" />
+          <folding>
+            <element signature="e#4917#4944#0#HTML" expanded="true" />
+            <marker date="1518769198845" expanded="true" signature="4944:5063" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/f_details.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="88" column="29" lean-forward="true" selection-start-line="88" selection-start-column="29" selection-end-line="88" selection-end-column="29" />
+          <folding>
+            <element signature="e#4910#4937#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/m_details.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="213">
+          <caret line="95" column="29" lean-forward="false" selection-start-line="95" selection-start-column="29" selection-end-line="95" selection-end-column="29" />
+          <folding>
+            <element signature="e#4913#4940#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/p_makeup.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-115">
+          <caret line="94" column="29" lean-forward="false" selection-start-line="94" selection-start-column="29" selection-end-line="94" selection-end-column="29" />
+          <folding>
+            <element signature="e#4908#4935#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/r_beads.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="185">
+          <caret line="95" column="29" lean-forward="false" selection-start-line="95" selection-start-column="29" selection-end-line="95" selection-end-column="29" />
+          <folding>
+            <element signature="e#4910#4937#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/putiton/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="183">
-          <caret line="84" column="32" lean-forward="true" selection-start-line="84" selection-start-column="32" selection-end-line="84" selection-end-column="32" />
+        <state relative-caret-position="98">
+          <caret line="85" column="7" lean-forward="true" selection-start-line="85" selection-start-column="7" selection-end-line="85" selection-end-column="7" />
           <folding />
         </state>
       </provider>
