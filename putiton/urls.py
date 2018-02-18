@@ -34,6 +34,7 @@ urlpatterns = [
                   url(r'^beads/', views.beads, name="beads"),
                   url(r'^makeup/', views.makeup, name="makeup"),
                   url(r'^search/', views.search, name="search"),
+                  url(r'^MeetTeam/', views.MeetTeam, name="MeetTeam"),
                   url(r'^men_search/', views.men_search, name="men_search"),
                   url(r'^women_search/', views.women_search, name="women_search"),
                   url(r'^menacc_search/', views.menacc_search, name="menacc_search"),

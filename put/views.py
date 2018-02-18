@@ -1087,14 +1087,85 @@ def supplier_reg(request):
         sup_address = request.POST.get('address')
         sup_state = request.POST.get('state')
         sup_pack = request.POST.get('package')
+
         if sup_state == "Abuja":
             sup_location = request.POST.get('a')
         elif sup_state == "Abia":
             sup_location = request.POST.get('b')
         elif sup_state == "Adamawa":
             sup_location = request.POST.get('c')
-        elif sup_state == "Akwa Ibom":
+        elif sup_state == "AkwaIbom":
             sup_location = request.POST.get('d')
+        elif sup_state == "Anambra":
+            sup_location = request.POST.get('e')
+        elif sup_state == "Bauchi":
+            sup_location = request.POST.get('f')
+        elif sup_state == "Bayelsa":
+            sup_location = request.POST.get('g')
+        elif sup_state == "Benue":
+            sup_location = request.POST.get('h')
+        elif sup_state == "Bornu":
+            sup_location = request.POST.get('i')
+        elif sup_state == "CrossRiver":
+            sup_location = request.POST.get('j')
+        elif sup_state == "Delta":
+            sup_location = request.POST.get('k')
+        elif sup_state == "Ebonyi":
+            sup_location = request.POST.get('l')
+        elif sup_state == "Edo":
+            sup_location = request.POST.get('m')
+        elif sup_state == "Ekiti":
+            sup_location = request.POST.get('n')
+        elif sup_state == "Enugu":
+            sup_location = request.POST.get('o')
+        elif sup_state == "Gombe":
+            sup_location = request.POST.get('p')
+
+        elif sup_state == "Imo":
+            sup_location = request.POST.get('q')
+        elif sup_state == "Jigawa":
+            sup_location = request.POST.get('r')
+        elif sup_state == "Kaduna":
+            sup_location = request.POST.get('s')
+        elif sup_state == "Kano":
+            sup_location = request.POST.get('t')
+        elif sup_state == "Katsina":
+            sup_location = request.POST.get('u')
+        elif sup_state == "Kebbi":
+            sup_location = request.POST.get('v')
+        elif sup_state == "Kogi":
+            sup_location = request.POST.get('w')
+        elif sup_state == "Kwara":
+            sup_location = request.POST.get('x')
+
+        elif sup_state == "Lagos":
+            sup_location = request.POST.get('y')
+        elif sup_state == "Nasarawa":
+            sup_location = request.POST.get('z')
+        elif sup_state == "Niger":
+            sup_location = request.POST.get('ab')
+        elif sup_state == "Ogun":
+            sup_location = request.POST.get('ac')
+        elif sup_state == "Ondo":
+            sup_location = request.POST.get('ad')
+        elif sup_state == "Osun":
+            sup_location = request.POST.get('ae')
+        elif sup_state == "Oyo":
+            sup_location = request.POST.get('af')
+        elif sup_state == "Plateau":
+            sup_location = request.POST.get('ag')
+
+        elif sup_state == "Rivers":
+            sup_location = request.POST.get('ah')
+        elif sup_state == "Sokoto":
+            sup_location = request.POST.get('ai')
+        elif sup_state == "Taraba":
+            sup_location = request.POST.get('aj')
+        elif sup_state == "Yobe":
+            sup_location = request.POST.get('ak')
+        elif sup_state == "Zamfara":
+            sup_location = request.POST.get('al')
+
         sup_password = request.POST.get('password')
         try:
             rst = Supplier.objects.get(sup_email)
@@ -1521,3 +1592,38 @@ def t(request):
         templates = 't.html'
         context = locals()
         return render(request, templates, context)
+
+
+def MeetTeam(request):
+    assert isinstance(request, HttpRequest)
+    if request.method == 'GET':
+        context = locals()
+        templates = 'MeetTeam.html'
+        return  render(request,templates,context)
+    elif request.method == 'POST':
+        xpres = XpresSoft()
+        x_name = request.POST.get('name')
+        x_email = request.POST.get('email')
+        x_phone = request.POST.get('phone')
+        x_message = request.POST.get('message')
+
+        match = re.match("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                         + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$", x_email)
+        if match:
+            xpres.name = x_name
+            xpres.email = x_email
+            xpres.phone = x_phone
+            xpres.message = x_message
+            xpres.save()
+
+            context = {
+                'msg':"Message Successfully Submitted",
+            }
+            templates = 'MeetTeam.html'
+            return render(request,templates,context)
+        else:
+            context = {
+                'msg':"Invalid Email",
+            }
+            templates = 'MeetTeam.html'
+            return render(request, templates, context)

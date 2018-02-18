@@ -3637,7 +3637,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </button>
             </div>
             <div class="modal-body modal-spa">
-                <img src="{% static 'images/favico.png' %}" class="img-responsive" alt=""
+                <img src="{% static 'faviconit/favicon-114.png' %}" class="img-responsive" alt=""
                      style="width: 200px;height: 200px;display: block;margin: 0 auto;"/>
                 <div class="modal-w3lstext">
                     <h4 class="w3-text-pink w3-text-bold">PutItOn</h4>
@@ -3744,7 +3744,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </div>
 <!--footer-->
 
-<div class="footer">
+<div class="footer" style="overflow-x: hidden;">
 {% block fill %}
 
 {% endblock %}
@@ -3784,8 +3784,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div class="col-md-3 footer-bottom-cate cate-bottom animated wow fadeInRight" data-wow-delay=".5s">
                 <h6>Our Address</h6>
                 <ul>
-                    <li><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>Address : 12th Avenue, 5th
-                        block, <span>Sydney.</span></li>
+{#                    <li><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>Address : 12th Avenue, 5th#}
+{#                        block, <span>Sydney.</span></li>#}
                     <li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i>Email : <a
                             href="mailto:putitoninfo@yahoo.com"><span
                             style="font-size: 10px;">putitoninfo@yahoo.com</span> </a></li>
@@ -3795,7 +3795,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div class="clearfix"></div>
             <p class="footer-class animated wow fadeInUp animated" data-wow-delay=".5s"
                style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInUp;"> © 2018 PutItOn . All
-                Rights Reserved | Design by <a href="#" target="">XpresSoft_Ng</a></p>
+                Rights Reserved | Design by <a href="{% url 'MeetTeam' %}" target="">XpresSoft_Ng</a></p>
         </div>
     </div>
 </div>

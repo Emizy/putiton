@@ -197,3 +197,12 @@ class sup_complains(models.Model):
 
     def __str__(self):
         return "%s - %s" % (self.supp_user.name, self.sub_com)
+
+class XpresSoft(models.Model):
+    name = models.CharField(max_length=200, blank=True)
+    phone = models.CharField(max_length=200, blank=True)
+    email = models.EmailField(max_length=200, blank=True)
+    message = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+        return "%s - %s" % (self.name, self.phone)
