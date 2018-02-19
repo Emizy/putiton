@@ -2,14 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0cff984e-d09c-4ba5-ba4b-5119033fc8cd" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/put/migrations/0007_auto_20180219_0700.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/put/admin.py" afterPath="$PROJECT_DIR$/put/admin.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/put/models.py" afterPath="$PROJECT_DIR$/put/models.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/put/views.py" afterPath="$PROJECT_DIR$/put/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/MeetTeam.html" afterPath="$PROJECT_DIR$/templates/MeetTeam.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/dashboard.html" afterPath="$PROJECT_DIR$/templates/dashboard.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/ipage.html" afterPath="$PROJECT_DIR$/templates/ipage.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/supplier_reg.html" afterPath="$PROJECT_DIR$/templates/supplier_reg.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.idea/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -24,7 +19,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/putiton/settings.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="98">
@@ -34,59 +29,61 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="dashboard.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/dashboard.html">
+      <file leaf-file-name="supplier_reg.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/supplier_reg.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="132">
-              <caret line="62" column="35" lean-forward="true" selection-start-line="62" selection-start-column="35" selection-end-line="62" selection-end-column="35" />
+            <state relative-caret-position="69">
+              <caret line="873" column="78" lean-forward="false" selection-start-line="873" selection-start-column="78" selection-end-line="873" selection-end-column="78" />
               <folding>
-                <element signature="e#2637#4172#0#HTML" expanded="false" />
+                <element signature="e#2025#2151#0#HTML" expanded="false" />
+                <element signature="e#2172#2459#0#HTML" expanded="false" />
+                <element signature="e#2480#5120#0#HTML" expanded="false" />
+                <element signature="e#5141#5849#0#HTML" expanded="false" />
+                <element signature="e#5870#7416#0#HTML" expanded="false" />
+                <element signature="e#7437#9098#0#HTML" expanded="false" />
+                <element signature="e#9119#11518#0#HTML" expanded="false" />
+                <element signature="e#11539#13605#0#HTML" expanded="false" />
+                <element signature="e#13626#15611#0#HTML" expanded="false" />
+                <element signature="e#15632#16562#0#HTML" expanded="false" />
+                <element signature="e#16583#18437#0#HTML" expanded="false" />
+                <element signature="e#18458#20677#0#HTML" expanded="false" />
+                <element signature="e#20698#22265#0#HTML" expanded="false" />
+                <element signature="e#22286#24452#0#HTML" expanded="false" />
+                <element signature="e#24473#25706#0#HTML" expanded="false" />
+                <element signature="e#25727#27157#0#HTML" expanded="false" />
+                <element signature="e#27178#28598#0#HTML" expanded="false" />
+                <element signature="e#28619#30078#0#HTML" expanded="false" />
+                <element signature="e#30099#31158#0#HTML" expanded="false" />
+                <element signature="e#31179#33447#0#HTML" expanded="false" />
+                <element signature="e#33468#35566#0#HTML" expanded="false" />
+                <element signature="e#35587#37443#0#HTML" expanded="false" />
+                <element signature="e#37464#40721#0#HTML" expanded="false" />
+                <element signature="e#40742#43362#0#HTML" expanded="false" />
+                <element signature="e#43383#45106#0#HTML" expanded="false" />
+                <element signature="e#45127#46873#0#HTML" expanded="false" />
+                <element signature="e#46894#48203#0#HTML" expanded="false" />
+                <element signature="e#48224#49955#0#HTML" expanded="false" />
+                <element signature="e#49976#51135#0#HTML" expanded="false" />
+                <element signature="e#51156#53121#0#HTML" expanded="false" />
+                <element signature="e#53142#54937#0#HTML" expanded="false" />
+                <element signature="e#54958#56597#0#HTML" expanded="false" />
+                <element signature="e#56618#59053#0#HTML" expanded="false" />
+                <element signature="e#59074#61754#0#HTML" expanded="false" />
+                <element signature="e#61775#63808#0#HTML" expanded="false" />
+                <element signature="e#63829#65764#0#HTML" expanded="false" />
+                <element signature="e#65785#67661#0#HTML" expanded="false" />
+                <element signature="e#67682#69051#0#HTML" expanded="false" />
+                <element signature="e#69072#70538#0#HTML" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="complains.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/complains.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-408">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding>
-                <element signature="e#796#1552#0#HTML" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="admin.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/put/admin.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="14" column="28" lean-forward="true" selection-start-line="14" selection-start-column="28" selection-end-line="14" selection-end-column="28" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/put/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
-              <caret line="212" column="50" lean-forward="true" selection-start-line="212" selection-start-column="50" selection-end-line="212" selection-end-column="50" />
-              <folding>
-                <element signature="e#6701#7006#0" expanded="false" />
-                <element signature="e#7038#7257#0" expanded="false" />
-                <element signature="e#7298#7652#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/put/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="1061" column="37" lean-forward="false" selection-start-line="1061" selection-start-column="37" selection-end-line="1061" selection-end-column="37" />
+            <state relative-caret-position="151">
+              <caret line="1171" column="0" lean-forward="true" selection-start-line="1171" selection-start-column="0" selection-end-line="1171" selection-end-column="0" />
               <folding>
                 <element signature="e#278#2439#0" expanded="false" />
                 <element signature="e#2480#4026#0" expanded="false" />
@@ -116,6 +113,7 @@
                 <element signature="e#35352#35547#0" expanded="false" />
                 <element signature="e#35576#35760#0" expanded="false" />
                 <element signature="e#35789#36783#0" expanded="false" />
+                <element signature="e#36814#38449#0" expanded="false" />
                 <element signature="e#43878#50974#0" expanded="false" />
                 <element signature="e#51008#52293#0" expanded="false" />
                 <element signature="e#52330#52518#0" expanded="false" />
@@ -219,7 +217,6 @@
         <option value="$PROJECT_DIR$/templates/m_details.html" />
         <option value="$PROJECT_DIR$/templates/p_makeup.html" />
         <option value="$PROJECT_DIR$/templates/r_beads.html" />
-        <option value="$PROJECT_DIR$/templates/supplier_reg.html" />
         <option value="$PROJECT_DIR$/templates/MT.html" />
         <option value="$PROJECT_DIR$/putiton/urls.py" />
         <option value="$PROJECT_DIR$/templates/masterpage.html" />
@@ -227,10 +224,11 @@
         <option value="$PROJECT_DIR$/templates/ipage.html" />
         <option value="$PROJECT_DIR$/templates/MeetTeam.html" />
         <option value="$PROJECT_DIR$/put/models.py" />
-        <option value="$PROJECT_DIR$/put/views.py" />
         <option value="$PROJECT_DIR$/put/admin.py" />
         <option value="$PROJECT_DIR$/templates/dashboard.html" />
         <option value="$PROJECT_DIR$/putiton/settings.py" />
+        <option value="$PROJECT_DIR$/put/views.py" />
+        <option value="$PROJECT_DIR$/templates/supplier_reg.html" />
       </list>
     </option>
   </component>
@@ -444,7 +442,14 @@
       <option name="project" value="LOCAL" />
       <updated>1518980620366</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="first cmment">
+      <created>1519021445889</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1519021445889</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -725,14 +730,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/supplier_reg.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="110" lean-forward="true" selection-start-line="13" selection-start-column="20" selection-end-line="13" selection-end-column="110" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/details.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="702">
@@ -779,54 +776,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/put/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="1061" column="37" lean-forward="false" selection-start-line="1061" selection-start-column="37" selection-end-line="1061" selection-end-column="37" />
-          <folding>
-            <element signature="e#278#2439#0" expanded="false" />
-            <element signature="e#2480#4026#0" expanded="false" />
-            <element signature="e#4053#5339#0" expanded="false" />
-            <element signature="e#5366#6652#0" expanded="false" />
-            <element signature="e#6680#7982#0" expanded="false" />
-            <element signature="e#8007#9281#0" expanded="false" />
-            <element signature="e#9310#10618#0" expanded="false" />
-            <element signature="e#10659#12342#0" expanded="false" />
-            <element signature="e#12381#14044#0" expanded="false" />
-            <element signature="e#14082#15819#0" expanded="false" />
-            <element signature="e#15858#17317#0" expanded="false" />
-            <element signature="e#17344#18402#0" expanded="false" />
-            <element signature="e#18432#19113#0" expanded="false" />
-            <element signature="e#19143#21687#0" expanded="false" />
-            <element signature="e#21716#22407#0" expanded="false" />
-            <element signature="e#22435#22610#0" expanded="false" />
-            <element signature="e#22639#23928#0" expanded="false" />
-            <element signature="e#23956#25526#0" expanded="false" />
-            <element signature="e#25558#27225#0" expanded="false" />
-            <element signature="e#27258#28937#0" expanded="false" />
-            <element signature="e#28971#30650#0" expanded="false" />
-            <element signature="e#30684#32363#0" expanded="false" />
-            <element signature="e#32395#34074#0" expanded="false" />
-            <element signature="e#34107#34369#0" expanded="false" />
-            <element signature="e#34404#35314#0" expanded="false" />
-            <element signature="e#35352#35547#0" expanded="false" />
-            <element signature="e#35576#35760#0" expanded="false" />
-            <element signature="e#35789#36783#0" expanded="false" />
-            <element signature="e#43878#50974#0" expanded="false" />
-            <element signature="e#51008#52293#0" expanded="false" />
-            <element signature="e#52330#52518#0" expanded="false" />
-            <element signature="e#52543#54581#0" expanded="false" />
-            <element signature="e#54616#55105#0" expanded="false" />
-            <element signature="e#55138#55945#0" expanded="false" />
-            <element signature="e#55978#56889#0" expanded="false" />
-            <element signature="e#56918#57058#0" expanded="false" />
-            <element signature="e#57089#59015#0" expanded="false" />
-            <element signature="e#59038#59172#0" expanded="false" />
-            <element signature="e#59202#60339#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/put/admin.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
@@ -867,11 +816,108 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/templates/supplier_reg.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="69">
+          <caret line="873" column="78" lean-forward="false" selection-start-line="873" selection-start-column="78" selection-end-line="873" selection-end-column="78" />
+          <folding>
+            <element signature="e#2025#2151#0#HTML" expanded="false" />
+            <element signature="e#2172#2459#0#HTML" expanded="false" />
+            <element signature="e#2480#5120#0#HTML" expanded="false" />
+            <element signature="e#5141#5849#0#HTML" expanded="false" />
+            <element signature="e#5870#7416#0#HTML" expanded="false" />
+            <element signature="e#7437#9098#0#HTML" expanded="false" />
+            <element signature="e#9119#11518#0#HTML" expanded="false" />
+            <element signature="e#11539#13605#0#HTML" expanded="false" />
+            <element signature="e#13626#15611#0#HTML" expanded="false" />
+            <element signature="e#15632#16562#0#HTML" expanded="false" />
+            <element signature="e#16583#18437#0#HTML" expanded="false" />
+            <element signature="e#18458#20677#0#HTML" expanded="false" />
+            <element signature="e#20698#22265#0#HTML" expanded="false" />
+            <element signature="e#22286#24452#0#HTML" expanded="false" />
+            <element signature="e#24473#25706#0#HTML" expanded="false" />
+            <element signature="e#25727#27157#0#HTML" expanded="false" />
+            <element signature="e#27178#28598#0#HTML" expanded="false" />
+            <element signature="e#28619#30078#0#HTML" expanded="false" />
+            <element signature="e#30099#31158#0#HTML" expanded="false" />
+            <element signature="e#31179#33447#0#HTML" expanded="false" />
+            <element signature="e#33468#35566#0#HTML" expanded="false" />
+            <element signature="e#35587#37443#0#HTML" expanded="false" />
+            <element signature="e#37464#40721#0#HTML" expanded="false" />
+            <element signature="e#40742#43362#0#HTML" expanded="false" />
+            <element signature="e#43383#45106#0#HTML" expanded="false" />
+            <element signature="e#45127#46873#0#HTML" expanded="false" />
+            <element signature="e#46894#48203#0#HTML" expanded="false" />
+            <element signature="e#48224#49955#0#HTML" expanded="false" />
+            <element signature="e#49976#51135#0#HTML" expanded="false" />
+            <element signature="e#51156#53121#0#HTML" expanded="false" />
+            <element signature="e#53142#54937#0#HTML" expanded="false" />
+            <element signature="e#54958#56597#0#HTML" expanded="false" />
+            <element signature="e#56618#59053#0#HTML" expanded="false" />
+            <element signature="e#59074#61754#0#HTML" expanded="false" />
+            <element signature="e#61775#63808#0#HTML" expanded="false" />
+            <element signature="e#63829#65764#0#HTML" expanded="false" />
+            <element signature="e#65785#67661#0#HTML" expanded="false" />
+            <element signature="e#67682#69051#0#HTML" expanded="false" />
+            <element signature="e#69072#70538#0#HTML" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/putiton/settings.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="98">
           <caret line="139" column="23" lean-forward="true" selection-start-line="139" selection-start-column="23" selection-end-line="139" selection-end-column="23" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/put/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="151">
+          <caret line="1171" column="0" lean-forward="true" selection-start-line="1171" selection-start-column="0" selection-end-line="1171" selection-end-column="0" />
+          <folding>
+            <element signature="e#278#2439#0" expanded="false" />
+            <element signature="e#2480#4026#0" expanded="false" />
+            <element signature="e#4053#5339#0" expanded="false" />
+            <element signature="e#5366#6652#0" expanded="false" />
+            <element signature="e#6680#7982#0" expanded="false" />
+            <element signature="e#8007#9281#0" expanded="false" />
+            <element signature="e#9310#10618#0" expanded="false" />
+            <element signature="e#10659#12342#0" expanded="false" />
+            <element signature="e#12381#14044#0" expanded="false" />
+            <element signature="e#14082#15819#0" expanded="false" />
+            <element signature="e#15858#17317#0" expanded="false" />
+            <element signature="e#17344#18402#0" expanded="false" />
+            <element signature="e#18432#19113#0" expanded="false" />
+            <element signature="e#19143#21687#0" expanded="false" />
+            <element signature="e#21716#22407#0" expanded="false" />
+            <element signature="e#22435#22610#0" expanded="false" />
+            <element signature="e#22639#23928#0" expanded="false" />
+            <element signature="e#23956#25526#0" expanded="false" />
+            <element signature="e#25558#27225#0" expanded="false" />
+            <element signature="e#27258#28937#0" expanded="false" />
+            <element signature="e#28971#30650#0" expanded="false" />
+            <element signature="e#30684#32363#0" expanded="false" />
+            <element signature="e#32395#34074#0" expanded="false" />
+            <element signature="e#34107#34369#0" expanded="false" />
+            <element signature="e#34404#35314#0" expanded="false" />
+            <element signature="e#35352#35547#0" expanded="false" />
+            <element signature="e#35576#35760#0" expanded="false" />
+            <element signature="e#35789#36783#0" expanded="false" />
+            <element signature="e#36814#38449#0" expanded="false" />
+            <element signature="e#43878#50974#0" expanded="false" />
+            <element signature="e#51008#52293#0" expanded="false" />
+            <element signature="e#52330#52518#0" expanded="false" />
+            <element signature="e#52543#54581#0" expanded="false" />
+            <element signature="e#54616#55105#0" expanded="false" />
+            <element signature="e#55138#55945#0" expanded="false" />
+            <element signature="e#55978#56889#0" expanded="false" />
+            <element signature="e#56918#57058#0" expanded="false" />
+            <element signature="e#57089#59015#0" expanded="false" />
+            <element signature="e#59038#59172#0" expanded="false" />
+            <element signature="e#59202#60339#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
