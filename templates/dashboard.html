@@ -11,49 +11,91 @@
         <h5><b><i class="fa fa-dashboard"></i> My Dashboard</b></h5>
     </header>
 
-    <div class="w3-row-padding w3-margin-bottom">
-        <div class="w3-quarter">
-            <div class="w3-container w3-orange w3-text-white w3-padding-16">
-                <div class="w3-left"><i class="fa fa-users w3-xxxlarge"></i></div>
-                <div class="w3-right">
-                    <h3></h3>
-                </div>
-                <div class="w3-clear"></div>
-                <h4></h4>
-            </div>
-        </div>
-        <div class="w3-quarter">
-            <div class="w3-container w3-red w3-padding-16">
-                <div class="w3-left"><i class="fa fa-comment w3-xxxlarge"></i></div>
-                <div class="w3-right">
-                    <h3></h3>
-                </div>
-                <div class="w3-clear"></div>
-                <h4></h4>
-            </div>
-        </div>
-        <div class="w3-quarter">
-            <div class="w3-container w3-blue w3-padding-16">
-                <div class="w3-left"><i class="fa fa-eye w3-xxxlarge"></i></div>
-                <div class="w3-right">
-                    <h3></h3>
-                </div>
-                <div class="w3-clear"></div>
-                <h4></h4>
-            </div>
-        </div>
-        <div class="w3-quarter">
-            <div class="w3-container w3-teal w3-padding-16">
-                <div class="w3-left"><i class="fa fa-share-alt w3-xxxlarge"></i></div>
-                <div class="w3-right">
-                    <h3></h3>
-                </div>
-                <div class="w3-clear"></div>
-                <h4></h4>
-            </div>
-        </div>
+    {#    <div class="w3-row-padding w3-margin-bottom">#}
+    {#        <div class="w3-quarter">#}
+    {#            <div class="w3-container w3-orange w3-text-white w3-padding-16">#}
+    {#                <div class="w3-left"><i class="fa fa-users w3-xxxlarge"></i></div>#}
+    {#                <div class="w3-right">#}
+    {#                    <h3></h3>#}
+    {#                </div>#}
+    {#                <div class="w3-clear"></div>#}
+    {#                <h4></h4>#}
+    {#            </div>#}
+    {#        </div>#}
+    {#        <div class="w3-quarter">#}
+    {#            <div class="w3-container w3-red w3-padding-16">#}
+    {#                <div class="w3-left"><i class="fa fa-comment w3-xxxlarge"></i></div>#}
+    {#                <div class="w3-right">#}
+    {#                    <h3></h3>#}
+    {#                </div>#}
+    {#                <div class="w3-clear"></div>#}
+    {#                <h4></h4>#}
+    {#            </div>#}
+    {#        </div>#}
+    {#        <div class="w3-quarter">#}
+    {#            <div class="w3-container w3-blue w3-padding-16">#}
+    {#                <div class="w3-left"><i class="fa fa-eye w3-xxxlarge"></i></div>#}
+    {#                <div class="w3-right">#}
+    {#                    <h3></h3>#}
+    {#                </div>#}
+    {#                <div class="w3-clear"></div>#}
+    {#                <h4></h4>#}
+    {#            </div>#}
+    {#        </div>#}
+    {#        <div class="w3-quarter">#}
+    {#            <div class="w3-container w3-teal w3-padding-16">#}
+    {#                <div class="w3-left"><i class="fa fa-share-alt w3-xxxlarge"></i></div>#}
+    {#                <div class="w3-right">#}
+    {#                    <h3></h3>#}
+    {#                </div>#}
+    {#                <div class="w3-clear"></div>#}
+    {#                <h4></h4>#}
+    {#            </div>#}
+    {#        </div>#}
+    {##}
+    {#    </div>#}
+    {% if read %}
 
+    <div class="w3-container">
+        <div class="row">
+            <div class="col-md-10 col-lg-10 col-sm-10 w3-border w3-border-blue">
+                <h3 class="w3-text-blue">News - Update </h3>
+                {% for i in read %}
+                <p> {{ i.broadcast }} </p>
+                {% endfor %}
+            </div>
+        </div>
     </div>
+    {% endif %}
+    {% if not read %}
+    <div class="w3-container">
+        <div class="row">
+            <div class="col-md-10 col-lg-10 col-sm-10">
+                <p>Welcome to your personal Putiton Supplier Dashboard,On this dashboard you will be able to perform the
+                    following duties/tasks</p>
+                <br>
+                <h3 class="w3-text-pink">Duties / Tasks </h3>
+                <p><span class="badge badge-success w3-pink">1</span> You will be able to submit Ads for proper reviewing and
+                    verifications. </p>
+                <p><span class="badge badge-success w3-pink">2</span> You will be able to subscribe to a any particular package
+                    of your choice. </p>
+                <p><span class="badge badge-success w3-pink">3</span> You will be able to send us a complains and feedback on
+                    any of your products. </p>
+                <p><span class="badge badge-success w3-pink">4</span> You will be able to recieve feedback on
+                    any of your products on your dashboard. </p>
+                <p><span class="badge badge-success  w3-pink">5</span> You will be able to check your profile for proper
+                    verification. </p>
+                <p><span class="badge badge-success w3-pink">6</span> All our official news update / info to the supplier will
+                    be communicated through this dashboard </p>
+
+                <br>
+                <p> From all the Team,We wish you all the best.Thanks </p>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+
     <div class="w3-container">
         {% if msg %}
             <div class="w3-panel w3-pink w3-card-4">

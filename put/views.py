@@ -1041,13 +1041,16 @@ def dashboard(request):
             prod = Product.objects.all().count()
             try:
                 stat = packages.objects.get(supp_user__Email=request.session['email'])
+                info = message.objects.all()
             except:
                 stat = None
+                info = None
             if stat:
                 if stat.status is not None:
                     kit = stat.status
                     em = request.session['email']
                     context = {
+                        'read':info,
                         'email': em,
                         'yil': kit,
                     }
@@ -1056,6 +1059,7 @@ def dashboard(request):
                 else:
                     em = request.session['email']
                     context = {
+                        'read': info,
                         'email': em,
                         'msg': "Kindly Update Your package to either free or Paid in order to Submit Ads"
                     }
@@ -1543,10 +1547,10 @@ def complains(request):
             except:
                 rst = None
             if rst:
-                em = request.session['email']
+                mail = request.session['email']
                 context = {
                     'msg': rst,
-                    'email': em,
+                    'email': mail,
                 }
                 templates = 'complains.html'
                 return render(request, templates, context)
@@ -1565,7 +1569,7 @@ def complains(request):
                 em = Supplier.objects.get(Email=request.session['email'])
             except:
                 em = None
-            ep = request.session['email']
+            mail = request.session['email']
             if em:
                 com.supp_user = em
                 com.full_com = com_full
@@ -1573,14 +1577,14 @@ def complains(request):
                 com.save()
                 context = {
                     'twp': "Complains / Feedback submitted successfully!! Hope to get back to you Soon.",
-                    'email': ep,
+                    'email': mail,
                 }
                 templates = 'complains.html'
                 return render(request, templates, context)
             else:
-                ep = request.session['email']
+                mail = request.session['email']
                 context = {
-                    'email': ep,
+                    'email': mail,
                     'twps': "Error in sending Complains / Feedback submitted,Try Again!!!",
                 }
                 templates = 'complains.html'

@@ -203,6 +203,14 @@ class XpresSoft(models.Model):
     phone = models.CharField(max_length=200, blank=True)
     email = models.EmailField(max_length=200, blank=True)
     message = models.TextField(blank=True, null=True)
-
+    date = models.DateTimeField(auto_now_add=True)
     def __str__(self):
         return "%s - %s" % (self.name, self.phone)
+
+
+class message(models.Model):
+    broadcast = models.TextField(blank=True, null=True)
+    date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return "%s - %s" % (self.broadcast, self.date)

@@ -58,9 +58,9 @@
                 {{ email }}
             {% endif %}
             </strong></span><br>
-            <a href="#" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i></a>
-            <a href="#" class="w3-bar-item w3-button"><i class="fa fa-user"></i></a>
-            <a href="#" class="w3-bar-item w3-button"><i class="fa fa-cog"></i></a>
+            <a href="{% url 'complains' %}" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i></a>
+            <a href="{% url 'supplier_prof' %}" class="w3-bar-item w3-button"><i class="fa fa-user"></i></a>
+            <a href="{% url 'subscription' %}" class="w3-bar-item w3-button"><i class="fa fa-cog"></i></a>
         </div>
     </div>
     <hr>
@@ -73,11 +73,12 @@
         <a href="{% url 'supplier_prof' %}"
            class="w3-bar-item w3-button w3-padding w3-hover-pink w3-hover-text-white"><i
                 class="fa fa-diamond fa-fw"></i> Profile</a>
-        <a href="{% url 'Ads' %}" class="w3-bar-item w3-button w3-padding w3-hover-pink w3-hover-text-white"><i
-                class="fa fa-eye fa-fw"></i> Submit Ads </a>
         <a href="{% url 'subscription' %}" class="w3-bar-item w3-button w3-padding w3-hover-pink w3-hover-text-white"><i
                 class="fa fa-cog"></i>
             Packages </a>
+        <a href="{% url 'Ads' %}" class="w3-bar-item w3-button w3-padding w3-hover-pink w3-hover-text-white"><i
+                class="fa fa-eye fa-fw"></i> Submit Ads </a>
+
         <a href="{% url 'complains' %}" class="w3-bar-item w3-button w3-padding w3-hover-pink w3-hover-text-white"><i
                 class="fa fa-history fa-fw"></i> Complains </a>
         <a href="{% url 'supplier_logout' %}"
@@ -108,7 +109,7 @@
     <!-- Footer -->
     <footer class="w3-container w3-padding-16">
         <h4 class="w3-center w3-text-black">PutItOn</h4>
-        <p class="w3-center">Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">XpresSoft_Ng</a>
+        <p class="w3-center">Powered by <a href="{% url 'MeetTeam' %}" target="_blank">XpresSoft_Ng</a>
         </p>
     </footer>
 
