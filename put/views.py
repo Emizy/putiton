@@ -752,6 +752,7 @@ def men_search(request):
             templates = 'search.html'
             return render(request, templates, context)
 
+
 def women_search(request):
     if request.method == 'POST':
         query = request.POST.get('search')
@@ -802,6 +803,7 @@ def women_search(request):
             }
             templates = 'search.html'
             return render(request, templates, context)
+
 
 def menacc_search(request):
     if request.method == 'POST':
@@ -854,6 +856,7 @@ def menacc_search(request):
             templates = 'search.html'
             return render(request, templates, context)
 
+
 def makeup_search(request):
     if request.method == 'POST':
         query = request.POST.get('search')
@@ -904,6 +907,7 @@ def makeup_search(request):
             }
             templates = 'search.html'
             return render(request, templates, context)
+
 
 def bead_search(request):
     if request.method == 'POST':
@@ -1038,41 +1042,81 @@ def dashboard(request):
     assert isinstance(request, HttpRequest)
     if request.method == 'GET':
         if 'email' in request.session:
-            prod = Product.objects.all().count()
             try:
                 stat = packages.objects.get(supp_user__Email=request.session['email'])
-                info = message.objects.all()
             except:
                 stat = None
-                info = None
+
             if stat:
                 if stat.status is not None:
-                    kit = stat.status
-                    em = request.session['email']
-                    context = {
-                        'read':info,
-                        'email': em,
-                        'yil': kit,
-                    }
-                    template = 'dashboard.html'
-                    return render(request, template, context)
+                    try:
+                        info = message.objects.all()
+                    except:
+                        info = None
+                    if info:
+                        kit = stat.status
+                        em = request.session['email']
+                        context = {
+                            'read': info,
+                            'email': em,
+                            'yil': kit,
+                        }
+                        template = 'dashboard.html'
+                        return render(request, template, context)
+                    else:
+                        kit = stat.status
+                        em = request.session['email']
+                        context = {
+                            'kit': "lobe",
+                            'email': em,
+                            'yil': kit,
+                        }
+                        template = 'dashboard.html'
+                        return render(request, template, context)
                 else:
                     em = request.session['email']
+                    if info:
+                        context = {
+                            'read': info,
+                            'email': em,
+                            'msg': "Kindly Update Your package to either free or Paid in order to Submit Ads"
+                        }
+                        print('hre')
+                        template = 'dashboard.html'
+                        return render(request, template, context)
+                    else:
+                        context = {
+                            'kit': "lobe",
+                            'email': em,
+                            'msg': "Kindly Update ackage to either free or Paid in order to Submit Ads",
+                        }
+                        print('here')
+                        template = 'dashboard.html'
+                        return render(request, template, context)
+            else:
+                try:
+                    info = message.objects.all()
+                except:
+                    info = None
+                em = request.session['email']
+                if info:
                     context = {
                         'read': info,
                         'email': em,
                         'msg': "Kindly Update Your package to either free or Paid in order to Submit Ads"
                     }
+                    print('hre')
                     template = 'dashboard.html'
                     return render(request, template, context)
-            else:
-                em = request.session['email']
-                context = {
-                    'email': em,
-                    'msg': "Kindly Update Your package to either free or Paid in order to Submit Ads"
-                }
-                template = 'dashboard.html'
-                return render(request, template, context)
+                else:
+                    context = {
+                        'kit': "lobe",
+                        'email': em,
+                        'msg': "Kindly Update Your package to either free or Paid in order to Submit Ads",
+                    }
+                    print('here')
+                    template = 'dashboard.html'
+                    return render(request, template, context)
         else:
             return redirect('/supplier_log/')
 
@@ -1439,27 +1483,36 @@ def Ads(request):
     elif request.method == 'POST':
         if 'email' in request.session:
             mail = request.session['email']
-            stat = Supplier.objects.get(Email=request.session['email'])
-            pack = packages.objects.get(supp_user__Email=request.session['email'])
-            packss = pack.status
-            rst = Supp_Ads()
-            rst.supp_user = stat
-            rst.stats = packss
-            rst.price = request.POST.get('price')
-            rst.product_name = request.POST.get('product_name')
-            rst.category = request.POST.get('category')
-            rst.color = request.POST.get('color')
-            rst.size = request.POST.get('size')
-            rst.descrip = request.POST.get('descrip')
-            rst.image1 = request.FILES['image1']
-            rst.image2 = request.FILES['image2']
-            rst.image3 = request.FILES['image3']
-            rst.save()
-            context = {
-                'succes': "You have successfully submitted an Ads ,Kindly wait for the next three working day for verification and publication on our website.Thanks",
-            }
-            templates = "Ads.html"
-            return render(request, templates, context)
+            if request.FILES['image1'] or request.FILES['image2'] or request.FILES['image3']:
+                stat = Supplier.objects.get(Email=request.session['email'])
+                pack = packages.objects.get(supp_user__Email=request.session['email'])
+                packss = pack.status
+                rst = Supp_Ads()
+                rst.supp_user = stat
+                rst.stats = packss
+                rst.price = request.POST.get('price')
+                rst.product_name = request.POST.get('product_name')
+                rst.category = request.POST.get('category')
+                rst.color = request.POST.get('color')
+                rst.size = request.POST.get('size')
+                rst.descrip = request.POST.get('descrip')
+                rst.image1 = request.FILES['image1']
+                rst.image2 = request.FILES['image2']
+                rst.image3 = request.FILES['image3']
+                rst.save()
+                context = {
+                    'email': mail,
+                    'succes': "You have successfully submitted an Ads ,Kindly wait for the next three working day for verification and publication on our website.Thanks",
+                }
+                templates = "Ads.html"
+                return render(request, templates, context)
+            else:
+                context = {
+                    'email': mail,
+                    'succes': "Images can't be empty,Kindly upload an image",
+                }
+                templates = "Ads.html"
+                return render(request, templates, context)
         else:
             return redirect('/Ads/')
 
@@ -1603,7 +1656,7 @@ def MeetTeam(request):
     if request.method == 'GET':
         context = locals()
         templates = 'MeetTeam.html'
-        return  render(request,templates,context)
+        return render(request, templates, context)
     elif request.method == 'POST':
         xpres = XpresSoft()
         x_name = request.POST.get('name')
@@ -1621,13 +1674,13 @@ def MeetTeam(request):
             xpres.save()
 
             context = {
-                'msg':"Message Successfully Submitted",
+                'msg': "Message Successfully Submitted",
             }
             templates = 'MeetTeam.html'
-            return render(request,templates,context)
+            return render(request, templates, context)
         else:
             context = {
-                'msg':"Invalid Email",
+                'msg': "Invalid Email",
             }
             templates = 'MeetTeam.html'
             return render(request, templates, context)
