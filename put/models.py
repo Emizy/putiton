@@ -17,6 +17,8 @@ class Product(models.Model):
         ('men_acc', 'men_acc'),
         ('beads', 'beads'),
         ('makeup', 'makeup'),
+        ('makeupArtist', 'makeupArtist'),
+        ('hairstyle', 'hairstyle'),
     }
     category = models.CharField(choices=types, max_length=20, blank=True, null=True)
     image1 = models.FileField(null=True, blank=True)
@@ -42,7 +44,7 @@ class Product(models.Model):
     #     verbose_name_plural = "Products"
 
     def __str__(self):
-        return "%s - %s - %s" % (self.category, self.product_name,self.supplier)
+        return "%s - %s - %s" % (self.category, self.product_name, self.supplier)
 
 
 class reg(models.Model):
@@ -111,6 +113,7 @@ class Supplier(models.Model):
     company = models.CharField(max_length=200, blank=True, null=True)
     address = models.TextField(blank=True, null=True)
     state = models.CharField(blank=True, null=True, max_length=200)
+    occupation = models.CharField(blank=True, null=True, max_length=200)
     location = models.CharField(blank=True, null=True, max_length=200)
     password = models.TextField(blank=True, null=True)
 
@@ -130,6 +133,53 @@ class supplier_image(models.Model):
     def __str__(self):
         return "%s - %s" % (self.supp_user.name, self.supp_user.Email)
 
+
+# class free(models.Model):
+#     types = {
+#         ('Free', 'Free'),
+#     }
+#     status = models.CharField(choices=types, max_length=20, blank=True, null=True)
+#     prices = models.CharField(max_length=11, blank=True, null=True)
+#     supp_user = models.ForeignKey(Supplier, on_delete=models.DO_NOTHING, blank=True, null=True)
+#
+#     def __str__(self):
+#         return "%s - %s" % (self.supp_user.name, self.status)
+#
+#
+# class silv(models.Model):
+#     types = {
+#         ('Silver', 'Silver'),
+#     }
+#     status = models.CharField(choices=types, max_length=20, blank=True, null=True)
+#     prices = models.CharField(max_length=11, blank=True, null=True)
+#     supp_user = models.ForeignKey(Supplier, on_delete=models.DO_NOTHING, blank=True, null=True)
+#
+#     def __str__(self):
+#         return "%s - %s" % (self.supp_user.name, self.status)
+#
+#
+# class gold(models.Model):
+#     types = {
+#         ('gold', 'gold'),
+#     }
+#     status = models.CharField(choices=types, max_length=20, blank=True, null=True)
+#     prices = models.CharField(max_length=11, blank=True, null=True)
+#     supp_user = models.ForeignKey(Supplier, on_delete=models.DO_NOTHING, blank=True, null=True)
+#
+#     def __str__(self):
+#         return "%s - %s" % (self.supp_user.name, self.status)
+#
+#
+# class platinum(models.Model):
+#     types = {
+#         ('Platinum', 'Platinum'),
+#     }
+#     status = models.CharField(choices=types, max_length=20, blank=True, null=True)
+#     prices = models.CharField(max_length=11, blank=True, null=True)
+#     supp_user = models.ForeignKey(Supplier, on_delete=models.DO_NOTHING, blank=True, null=True)
+#
+#     def __str__(self):
+#         return "%s - %s" % (self.supp_user.name, self.status)
 
 class packages(models.Model):
     types = {
@@ -173,6 +223,7 @@ class Supp_Ads(models.Model):
     def __str__(self):
         return "%s - %s" % (self.supp_user.name, self.product_name)
 
+
 class transaction(models.Model):
     supp_user = models.ForeignKey(Supplier, on_delete=models.DO_NOTHING, blank=True, null=True)
     bank = models.CharField(max_length=200, blank=True, null=True)
@@ -181,6 +232,7 @@ class transaction(models.Model):
     def __str__(self):
         return "%s - %s" % (self.supp_user.name, self.supp_user.Email)
 
+
 class chat(models.Model):
     Email = models.EmailField(null=True, blank=True, max_length=254)
     descrip = models.TextField(blank=True, null=True)
@@ -188,6 +240,7 @@ class chat(models.Model):
 
     def __str__(self):
         return self.Email
+
 
 class sup_complains(models.Model):
     sub_com = models.CharField(null=True, blank=True, max_length=254)
@@ -198,12 +251,14 @@ class sup_complains(models.Model):
     def __str__(self):
         return "%s - %s" % (self.supp_user.name, self.sub_com)
 
+
 class XpresSoft(models.Model):
     name = models.CharField(max_length=200, blank=True)
     phone = models.CharField(max_length=200, blank=True)
     email = models.EmailField(max_length=200, blank=True)
     message = models.TextField(blank=True, null=True)
     date = models.DateTimeField(auto_now_add=True)
+
     def __str__(self):
         return "%s - %s" % (self.name, self.phone)
 

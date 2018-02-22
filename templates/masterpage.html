@@ -3416,20 +3416,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div class="col-sm-4 logo animated wow fadeInLeft" data-wow-delay=".5s">
                 <h1><a href="{% url 'index' %}"><span>PutItOn</span></a></h1>
             </div>
-            {#            <div class="col-sm-4 world animated wow fadeInRight" data-wow-delay=".5s" href="#shop" data-toggle="modal">#}
-            {#                <div class="cart box_1">#}
-            {#                    <h3>#}
-            {#                        <div class="total">#}
-            {#                            <span#}
-            {#                                    class="badge badge-warning tiny w3-pink" style="font-size: 15px;width: 10px !important;#}
-            {#min-width: 20px;#}
-            {#top: 0; left: 4;">{{ request.session.cart|length }}</span></div>#}
-            {#                        <img src="{% static 'images/cart.png' %}" alt=""/></h3>#}
-            {#                    </a>#}
-            {#                </div>#}
-            {#            </div>#}
             <div class="col-sm-2 number animated wow fadeInRight" data-wow-delay=".5s">
-                <span><i class="glyphicon glyphicon-phone"></i>081 395 72244 </span>
+                <span><i class="glyphicon glyphicon-phone"></i> 081 395 72244, </span>
                 <p>Hot-Line</p>
             </div>
             <div class="clearfix"></div>
@@ -3463,6 +3451,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     <li><a href="{% url 'women' %}"> Ladies Wears </a></li>
                                     <li><a href="{% url 'beads' %}"> Beads </a></li>
                                     <li><a href="{% url 'makeup' %}"> Make-Over Kits </a></li>
+                                    <li><a href="{% url 'makeup_artist' %}"> Make-Over Artist </a></li>
+                                    <li><a href="{% url 'stylist' %}"> Hair-Stylist </a></li>
                                 </ul>
                             </li>
                             <script>
@@ -3759,6 +3749,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <li><a href="{% url 'women' %}">Ladies Wear</a></li>
                         <li><a href="{% url 'beads' %}"> Beads </a></li>
                         <li><a href="{% url 'makeup' %}"> Make-Up Skits </a></li>
+                        <li><a href="{% url 'makeup_artist' %}"> Make-Up Artist </a></li>
                     {% endif %}
                     {% if not mail %}
                         <li><a href="{% url 'men' %}">Men Wears</a></li>
@@ -3766,6 +3757,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <li><a href="{% url 'women' %}">Ladies Wear</a></li>
                         <li><a href="{% url 'beads' %}"> Beads </a></li>
                         <li><a href="{% url 'makeup' %}"> Make-Up Skits </a></li>
+                        <li><a href="{% url 'makeup_artist' %}"> Make-Up Artist </a></li>
+                        <li><a href="{% url 'stylist' %}"> Hair-Stylist </a></li>
                     {% endif %}
                 </ul>
             </div>

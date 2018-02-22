@@ -52,7 +52,7 @@
             <div class="w3-container w3-orange w3-text-white w3-padding-16">
                 <div class="w3-left"><i class="fa fa-money w3-xxxlarge"></i></div>
                 <div class="w3-right">
-                    <h3>FREE</h3>
+                    <h3>Trial</h3>
                 </div>
                 <div class="w3-clear"></div>
                 <h4>FREE</h4>
@@ -64,7 +64,8 @@
                        style="margin-right: 2px;">Read More </a>
                 </div>
                 <div class="w3-container w3-orange" id="myDIV" style="display:none;">
-                     <h6 class="w3-text-white"> Benefit of Free </h6>
+                     <h6 class="w3-text-white"> Benefit of Trial </h6>
+                    <p class="w3-text-white">You are eligible to upload a maximun number of 5 products,In which after exhaustion you will write a request for upgrade of Packages</p>
                     <p class="w3-text-white">Products review will be on grade level of 1</p>
                 </div>
 
@@ -88,6 +89,7 @@
                 <div class="w3-container w3-red" id="sil" style="display:none;">
                     <h6 class="w3-text-white"> Benefit of Silver </h6>
                     <p>Twice in a week online marketing on our platform</p>
+                    <p>You are eligible to upload a maximun number of 15 products,In which after exhaustion you will write a request for upgrade of Packages</p>
                     <p>Products review will be on grade level of 2</p>
                 </div>
             </div>
@@ -110,6 +112,7 @@
                 <div class="w3-container w3-blue" id="gol" style="display:none;">
                     <h6 class="w3-text-white"> Benefit of Gold </h6>
                     <p>Three times in a week online marketing on our social-platform</p>
+                    <p>You are eligible to upload a maximun number of 25 products,In which after exhaustion you will write a request for upgrade of Packages</p>
                     <p>Products review will be on grade level of 3</p>
                 </div>
             </div>
@@ -130,13 +133,19 @@
                        style="margin-right: 2px;">Read More </a>
                 </div>
                 <div class="w3-container w3-teal" id="plat" style="display:none;">
-                     <h6 class="w3-text-white"> Benefit of Silver </h6>
+                     <h6 class="w3-text-white"> Benefit of Platinum </h6>
                     <p>Four times in a week online marketing on our platform</p>
+                    <p>You are eligible to upload a maximun number of 35 products,In which after exhaustion you will write a request for upgrade of Packages</p>
                     <p>Products review will be on grade level of 5</p>
                 </div>
             </div>
         </div>
     </div>
+    {% if lo %}
+            <div class="w3-panel w3-pink w3-card-4">
+                <p class=" w3-text-white">You are currently on {{ lo }} package</p>
+            </div>
+        {% endif %}
 
     <div class="w3-container">
         {% if msg %}
@@ -145,6 +154,7 @@
             </div>
         {% endif %}
     </div>
+    {% if not lo %}
     <div class="panel panel-default" style=" display: block;margin: 0 auto;">
         <div class="panel-body">
             <h5 class="w3-center w3-text-green"
@@ -153,7 +163,7 @@
             <div class="form-group">
                 <select class="form-control" name="pack" id="pack" required>
                     <option value="#">--- Select Packages -----</option>
-                    <option value="Free">Free</option>
+                    <option value="Free">Trial</option>
                     <option value="Silver">Silver</option>
                     <option value="Gold">Gold</option>
                     <option value="Platinum">Platinum</option>
@@ -282,6 +292,7 @@
             </div>
         </div>
     </div>
+    {% endif %}
     <br>
 
 

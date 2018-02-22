@@ -102,11 +102,13 @@
                 <p class=" w3-text-white">{{ msg }}</p>
             </div>
         {% endif %}
-        {% if yil %}
-            <div class="w3-panel w3-pink w3-card-4">
-                <p class=" w3-text-white">You are currently on {{ yil }} package</p>
-            </div>
-        {% endif %}
+{#        {% if yil %}#}
+{#            <div class="w3-panel w3-pink w3-card-4">#}
+{#            {% for i in yil %}#}
+{#                <p class=" w3-text-white">You are currently on {{ i.status }} package</p>#}
+{#            {% endfor %}#}
+{#            </div>#}
+{#        {% endif %}#}
     </div>
 
 {% endblock %}
