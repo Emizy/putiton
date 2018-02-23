@@ -1939,12 +1939,14 @@ def Ads(request):
             if stat is not None:
                 if stat.status == "Free":
                     if cout.count() != 5:
+                        remainder = cout.count()
+                        print(remainder)
                         context = {
                             'email': mail,
                             'val': "Valid",
+                            'rem':remainder,
                         }
                         templates = "Ads.html"
-                        print('here')
                         return render(request, templates, context)
                     else:
                         context = {
@@ -1955,9 +1957,11 @@ def Ads(request):
                         return render(request, templates, context)
                 elif stat.status == "Silver":
                     if cout.count() != 15:
+                        remainder = cout.count()
                         context = {
                             'email': mail,
                             'val': "Valid",
+                            'srem':remainder,
                         }
                         templates = "Ads.html"
                         return render(request, templates, context)
@@ -1970,9 +1974,11 @@ def Ads(request):
                         return render(request, templates, context)
                 elif stat.status == "Gold":
                     if cout.count() != 25:
+                        remainder = cout.count()
                         context = {
                             'email': mail,
                             'val': "Valid",
+                            'grem':remainder,
                         }
                         templates = "Ads.html"
                         return render(request, templates, context)
@@ -1985,9 +1991,11 @@ def Ads(request):
                         return render(request, templates, context)
                 elif stat.status == "Platinum":
                     if cout.count() != 35:
+                        remainder = cout.count()
                         context = {
                             'email': mail,
                             'val': "Valid",
+                            'prem':remainder,
                         }
                         templates = "Ads.html"
                         return render(request, templates, context)
