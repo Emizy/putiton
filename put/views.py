@@ -1186,132 +1186,6 @@ def comment(request):
         return render(request, template, context)
 
 
-# def dashboard(request):
-#     assert isinstance(request, HttpRequest)
-#     if request.method == 'GET':
-#         if 'email' in request.session:
-#             try:
-#                 f_stat = free.objects.get(supp_user__Email=request.session['email'])
-#                 s_stat = silv.objects.get(supp_user__Email=request.session['email'])
-#                 g_stat = gold.objects.get(supp_user__Email=request.session['email'])
-#                 p_stat = platinum.objects.get(supp_user__Email=request.session['email'])
-#                 info = message.objects.all()
-#             except:
-#                 f_stat = None
-#                 s_stat = None
-#                 g_stat = None
-#                 p_stat = None
-#                 info = None
-#
-#             if f_stat:
-#                 if info:
-#                     kit = f_stat
-#                     em = request.session['email']
-#                     context = {
-#                         'read': info,
-#                         'email': em,
-#                         'yil': kit,
-#                     }
-#                     print('fku')
-#                     template = 'dashboard.html'
-#                     return render(request, template, context)
-#                 else:
-#                     kit = f_stat
-#                     em = request.session['email']
-#                     context = {
-#                         'kit': "lobe",
-#                         'email': em,
-#                         'yil': kit,
-#                     }
-#                     template = 'dashboard.html'
-#                     return render(request, template, context)
-#             elif s_stat:
-#                 if info:
-#                     kit = s_stat
-#                     em = request.session['email']
-#                     context = {
-#                         'read': info,
-#                         'email': em,
-#                         'yil': kit,
-#                     }
-#                     template = 'dashboard.html'
-#                     return render(request, template, context)
-#                 else:
-#                     kit = s_stat
-#                     em = request.session['email']
-#                     context = {
-#                         'kit': "lobe",
-#                         'email': em,
-#                         'yil': kit,
-#                     }
-#                     template = 'dashboard.html'
-#                     return render(request, template, context)
-#             elif g_stat:
-#                 if info:
-#                     kit = g_stat
-#                     em = request.session['email']
-#                     context = {
-#                         'read': info,
-#                         'email': em,
-#                         'yil': kit,
-#                     }
-#                     template = 'dashboard.html'
-#                     return render(request, template, context)
-#                 else:
-#                     kit = g_stat
-#                     em = request.session['email']
-#                     context = {
-#                         'kit': "lobe",
-#                         'email': em,
-#                         'yil': kit,
-#                     }
-#                     template = 'dashboard.html'
-#                     return render(request, template, context)
-#             elif p_stat:
-#                 if info:
-#                     kit = p_stat
-#                     em = request.session['email']
-#                     context = {
-#                         'read': info,
-#                         'email': em,
-#                         'yil': kit,
-#                     }
-#                     template = 'dashboard.html'
-#                     return render(request, template, context)
-#                 else:
-#                     kit = p_stat
-#                     em = request.session['email']
-#                     context = {
-#                         'kit': "lobe",
-#                         'email': em,
-#                         'yil': kit,
-#                     }
-#                     template = 'dashboard.html'
-#                     return render(request, template, context)
-#             else:
-#                 em = request.session['email']
-#                 if info:
-#                     context = {
-#                         'read': info,
-#                         'email': em,
-#                         'msg': "Kindly Update Your package to either free or Paid in order to Submit Ads"
-#                     }
-#                     print('2')
-#                     template = 'dashboard.html'
-#                     return render(request, template, context)
-#                 else:
-#                     context = {
-#                         'kit': "lobe",
-#                         'email': em,
-#                         'msg': "Kindly Update Your package to either free or Paid in order to Submit Ads",
-#                     }
-#                     print('1')
-#                     template = 'dashboard.html'
-#                     return render(request, template, context)
-#         else:
-#             return redirect('/supplier_log/')
-
-
 def supplier_reg(request):
     assert isinstance(request, HttpRequest)
     if request.method == 'GET':
@@ -1408,8 +1282,8 @@ def supplier_reg(request):
 
         sup_password = request.POST.get('password')
         try:
-            rst = Supplier.objects.get(sup_email)
-            rstp = Supplier.objects.get(sup_phone)
+            rst = Supplier.objects.filter(Email=sup_email)
+            rstp = Supplier.objects.filter(Phone=sup_phone)
         except:
             rst = None
             rstp = None
@@ -1455,264 +1329,81 @@ def dashboard(request):
     if request.method == 'GET':
         if 'email' in request.session:
             try:
-                stat = packages.objects.get(supp_user__Email=request.session['email'])
+                info = message.objects.all()
             except:
-                stat = None
-
-            if stat:
-                if stat.status is not None:
-                    try:
-                        info = message.objects.all()
-                    except:
-                        info = None
-                    if info:
-                        kit = stat.status
-                        em = request.session['email']
-                        context = {
-                            'read': info,
-                            'email': em,
-                            'yil': kit,
-                        }
-                        template = 'dashboard.html'
-                        return render(request, template, context)
-                    else:
-                        kit = stat.status
-                        em = request.session['email']
-                        context = {
-                            'kit': "lobe",
-                            'email': em,
-                            'yil': kit,
-                        }
-                        template = 'dashboard.html'
-                        return render(request, template, context)
-                else:
-                    em = request.session['email']
-                    try:
-                        info = message.objects.all()
-                    except:
-                        info = None
-                    if info:
-                        context = {
-                            'read': info,
-                            'email': em,
-                            'msg': "Kindly Update Your package to either free or Paid in order to Submit Ads"
-                        }
-                        print('hre')
-                        template = 'dashboard.html'
-                        return render(request, template, context)
-                    else:
-                        context = {
-                            'kit': "lobe",
-                            'email': em,
-                            'msg': "Kindly Update ackage to either free or Paid in order to Submit Ads",
-                        }
-                        print('here')
-                        template = 'dashboard.html'
-                        return render(request, template, context)
+                info = None
+                val = None
+                # if stat is not None:
+                #     if stat.status is not None:
+                #         try:
+                #             info = message.objects.all()
+                #         except:
+                #             info = None
+                #         if info:
+                #             kit = stat.status
+                #             em = request.session['email']
+                #             context = {
+                #                 'read': info,
+                #                 'email': em,
+                #                 'yil': kit,
+                #                 'fval':val.count()
+                #             }
+                #             template = 'dashboard.html'
+                #             return render(request, template, context)
+                #         else:
+                #             kit = stat.status
+                #             em = request.session['email']
+                #             context = {
+                #                 'kit': "lobe",
+                #                 'email': em,
+                #                 'yil': kit,
+                #             }
+                #             template = 'dashboard.html'
+                #             return render(request, template, context)
+                #     else:
+            em = request.session['email']
+            if info:
+                context = {
+                    'read': info,
+                    'email': em,
+                }
+                print('hre')
+                template = 'dashboard.html'
+                return render(request, template, context)
             else:
-                try:
-                    info = message.objects.all()
-                except:
-                    info = None
-                em = request.session['email']
-                if info:
-                    context = {
-                        'read': info,
-                        'email': em,
-                        'msg': "Kindly Update Your package to either free or Paid in order to Submit Ads"
-                    }
-                    print('hre')
-                    template = 'dashboard.html'
-                    return render(request, template, context)
-                else:
-                    context = {
-                        'kit': "lobe",
-                        'email': em,
-                        'msg': "Kindly Update Your package to either free or Paid in order to Submit Ads",
-                    }
-                    print('here')
-                    template = 'dashboard.html'
-                    return render(request, template, context)
+                context = {
+                    'kit': "lobe",
+                    'email': em,
+                }
+                template = 'dashboard.html'
+                return render(request, template, context)
+        # else:
+        #     try:
+        #         info = message.objects.all()
+        #     except:
+        #         info = None
+        #     em = request.session['email']
+        #     if info:
+        #         context = {
+        #             'read': info,
+        #             'email': em,
+        #             'msg': "Kindly Update Your package to either free or Paid in order to Submit Ads"
+        #         }
+        #         print('fuk')
+        #         template = 'dashboard.html'
+        #         return render(request, template, context)
+        #     else:
+        #         context = {
+        #             'kit': "lobe",
+        #             'email': em,
+        #             'msg': "Kindly Update Your package to either free or Paid in order to Submit Ads",
+        #         }
+        #         print('kd')
+        #         template = 'dashboard.html'
+        #         return render(request, template, context)
         else:
             return redirect('/supplier_log/')
 
-
-# def p_free(request):
-#     assert isinstance(request, HttpRequest)
-#     if request.method == 'POST':
-#         if 'email' in request.session:
-#             t_pack = request.POST.get('pack')
-#             trans = transaction()
-#             em = request.session['email']
-#             if t_pack == 'Free':
-#                 sub_price = 0
-#                 sub_stat = 'Free'
-#                 try:
-#                     stat = Supplier.objects.get(Email=em)
-#                 except:
-#                     stat = None
-#                 if stat:
-#                     pack = free()
-#                     pack.status = sub_stat
-#                     pack.prices = sub_price
-#                     pack.supp_user = stat
-#                     pack.save()
-#                     em = request.session['email']
-#                     context = {
-#                         'email': em,
-#                         'msg': "You have successfully subscribe for free package,Your next subscription is in the next 6months",
-#                     }
-#                     template = 'subscription.html'
-#                     return render(request, template, context)
-#                 else:
-#                     context = {
-#                         'msg': "Subscription not successful! Try Again Later",
-#                     }
-#                     template = 'subscription.html'
-#                     return render(request, template, context)
-#         else:
-#              return redirect('/supplier_log/')
-#
-#
-# def p_silver(request):
-#     assert isinstance(request, HttpRequest)
-#     if request.method == 'POST':
-#         if 'email' in request.session:
-#             t_pack = request.POST.get('pack')
-#             em = request.session['email']
-#             trans = transaction()
-#             if request.FILES['image1']:
-#                 sub_bank = request.POST.get('silver2')
-#                 sub_image = request.FILES['image1']
-#                 sub_price = request.POST.get('silver1')
-#                 sub_stat = t_pack
-#                 stat = Supplier.objects.get(Email=em)
-#                 pack = silv()
-#                 if sub_price == '500':
-#                     pack.supp_user = stat
-#                     pack.prices = sub_price
-#                     pack.status = sub_stat
-#                     trans.supp_user = stat
-#                     trans.bank = sub_bank
-#                     trans.image = sub_image
-#                     trans.save()
-#                     pack.save()
-#                     context = {
-#                         'email': em,
-#                         'msg': "You have successfully subscribe for Silver package,You will Recieved an email of Confirmation.Your next subscription is in the next 6months.Thank",
-#                     }
-#                     template = 'subscription.html'
-#                     return render(request, template, context)
-#                 else:
-#                     context = {
-#                         'email': em,
-#                         'msg': "Invalid amount,Kindly input the correct amount e.g 500",
-#                     }
-#                     template = 'subscription.html'
-#                     return render(request, template, context)
-#             else:
-#                 context = {
-#                     'email': em,
-#                     'msg': "Kindly Upload A Valid Image",
-#                 }
-#                 template = 'subscription.html'
-#                 return render(request, template, context)
-#         else:
-#              return redirect('/supplier_log/')
-#
-#
-# def p_gold(request):
-#     assert isinstance(request, HttpRequest)
-#     if request.method == 'POST':
-#         if 'email' in request.session:
-#             t_pack = request.POST.get('pack')
-#             em = request.session['email']
-#             trans = transaction()
-#             if request.FILES['image2']:
-#                 sub_bank = request.POST.get('gold2')
-#                 sub_image = request.FILES['image2']
-#                 sub_price = request.POST.get('gold1')
-#                 sub_stat = t_pack
-#                 stat = Supplier.objects.get(Email=em)
-#                 pack = gold()
-#                 if sub_price == '1000':
-#                     pack.supp_user = stat
-#                     pack.prices = sub_price
-#                     pack.status = sub_stat
-#                     trans.supp_user = stat
-#                     trans.bank = sub_bank
-#                     trans.image = sub_image
-#                     trans.save()
-#                     pack.save()
-#                     context = {
-#                         'email': em,
-#                         'msg': "You have successfully subscribe for Gold package,You will Recieved an email of Confirmation,Your next subscription is in the next 6months.Thank",
-#                     }
-#                     template = 'subscription.html'
-#                     return render(request, template, context)
-#                 else:
-#                     context = {
-#                         'email': em,
-#                         'msg': "Invalid amount,Kindly input the correct amount e.g 1000",
-#                     }
-#                     template = 'subscription.html'
-#                     return render(request, template, context)
-#             else:
-#                 context = {
-#                     'email': em,
-#                     'msg': "Kindly Upload A Valid Image",
-#                 }
-#                 template = 'subscription.html'
-#                 return render(request, template, context)
-#         else:
-#              return redirect('/supplier_log/')
-#
-#
-# def p_platinum(request):
-#     assert isinstance(request, HttpRequest)
-#     if request.method == 'POST':
-#         if 'email' in request.session:
-#             t_pack = request.POST.get('pack')
-#             em = request.session['email']
-#             trans = transaction()
-#             if request.FILES['image3']:
-#                 sub_bank = request.POST.get('plat2')
-#                 sub_image = request.FILES['image3']
-#                 sub_price = request.POST.get('plat1')
-#                 sub_stat = t_pack
-#                 stat = Supplier.objects.get(Email=em)
-#                 pack = platinum()
-#                 if sub_price == '1500':
-#                     pack.supp_user = stat
-#                     pack.prices = sub_price
-#                     pack.status = sub_stat
-#                     trans.supp_user = stat
-#                     trans.bank = sub_bank
-#                     trans.image = sub_image
-#                     trans.save()
-#                     pack.save()
-#                     context = {
-#                         'email': em,
-#                         'msg': "You have successfully subscribe for Platinum package,You will Recieved an email of Confirmation,Your next subscription is in the next 6months.Thank",
-#                     }
-#                     template = 'subscription.html'
-#                     return render(request, template, context)
-#                 else:
-#                     context = {
-#                         'email': em,
-#                         'msg': "Invalid amount,Kindly input the correct amount e.g 1500",
-#                     }
-#                     template = 'subscription.html'
-#                     return render(request, template, context)
-#             else:
-#                 context = {
-#                     'email': em,
-#                     'msg': "Kindly Upload A Valid Image",
-#                 }
-#                 template = 'subscription.html'
-#                 return render(request, template, context)
-#         else:
-#              return redirect('/supplier_log/')
 
 def supplier_log(request):
     assert isinstance(request, HttpRequest)
@@ -1944,7 +1635,7 @@ def Ads(request):
                         context = {
                             'email': mail,
                             'val': "Valid",
-                            'rem':remainder,
+                            'rem': remainder,
                         }
                         templates = "Ads.html"
                         return render(request, templates, context)
@@ -1961,7 +1652,7 @@ def Ads(request):
                         context = {
                             'email': mail,
                             'val': "Valid",
-                            'srem':remainder,
+                            'srem': remainder,
                         }
                         templates = "Ads.html"
                         return render(request, templates, context)
@@ -1978,7 +1669,7 @@ def Ads(request):
                         context = {
                             'email': mail,
                             'val': "Valid",
-                            'grem':remainder,
+                            'grem': remainder,
                         }
                         templates = "Ads.html"
                         return render(request, templates, context)
@@ -1995,7 +1686,7 @@ def Ads(request):
                         context = {
                             'email': mail,
                             'val': "Valid",
-                            'prem':remainder,
+                            'prem': remainder,
                         }
                         templates = "Ads.html"
                         return render(request, templates, context)
@@ -2053,122 +1744,6 @@ def Ads(request):
             return redirect('/Ads/')
 
 
-# def Ads(request):
-#     if request.method == 'GET':
-#         if 'email' in request.session:
-#             supp_id = request.session['userid']
-#             mail = request.session['email']
-#             try:
-#                 cout = Supp_Ads.objects.filter(supp_user__Email=mail)
-#                 f_stat = free.objects.filter(supp_user__Email=mail)
-#                 s_silver = silv.objects.filter(supp_user__Email=mail)
-#                 g_gold = gold.objects.filter(supp_user__Email=mail)
-#                 p_platinum = platinum.objects.filter(supp_user__Email=mail)
-#             except:
-#                 cout = None
-#                 f_stat = None
-#                 s_silver = None
-#                 g_gold = None
-#                 p_platinum = None
-#             if f_stat or s_silver or g_gold or p_platinum:
-#                 if cout.count() != 5:
-#                     context = {
-#                         'email': mail,
-#                         'val': "Valid",
-#                     }
-#                     templates = "Ads.html"
-#                     return render(request, templates, context)
-#
-#                 elif cout.count() != 10:
-#                     context = {
-#                         'email': mail,
-#                         'val': "Valid",
-#                     }
-#                     templates = "Ads.html"
-#                     return render(request, templates, context)
-#
-#                 elif cout.count() != 15:
-#                     context = {
-#                         'email': mail,
-#                         'val': "Valid",
-#                     }
-#                     templates = "Ads.html"
-#                     return render(request, templates, context)
-#
-#                 elif cout.count() != 20:
-#                     context = {
-#                         'email': mail,
-#                         'val': "Valid",
-#                     }
-#                     templates = "Ads.html"
-#                     return render(request, templates, context)
-#                 else:
-#                     context = {
-#                         'email': mail,
-#                         'msg': "You have exceeded the total number of Ads that can be submitted on the package you are already on,Is either you upgrade to another package or Order for Ads removal.Thnaks",
-#                     }
-#                     templates = "Ads.html"
-#                     return render(request, templates, context)
-#             else:
-#                 context = {
-#                     'email': mail,
-#                     'msg': "Yet to subscribe to any packages ,Click to subscribe",
-#                 }
-#                 templates = "Ads.html"
-#                 return render(request, templates, context)
-#         else:
-#             return redirect('/supplier_log/')
-#
-#     elif request.method == 'POST':
-#         if 'email' in request.session:
-#             mail = request.session['email']
-#             if request.FILES['image1'] or request.FILES['image2'] or request.FILES['image3']:
-#                 rst = Supp_Ads()
-#                 stat = Supplier.objects.get(Email=request.session['email'])
-#                 fpack = free.objects.get(supp_user__Email=request.session['email'])
-#                 # spack = silv.objects.get(supp_user__Email=request.session['email'])
-#                 gpack = gold.objects.get(supp_user__Email=request.session['email'])
-#                 ppack = platinum.objects.get(supp_user__Email=request.session['email'])
-#                 if fpack:
-#                     packss = fpack.status
-#                     rst.stats = packss
-#                 elif spack:
-#                     packss = spack.status
-#                     rst.stats = packss
-#                 elif gpack:
-#                     packss = gpack.status
-#                     rst.stats = packss
-#                 elif ppack:
-#                     packss = ppack.status
-#                     rst.stats = packss
-#                 rst.supp_user = stat
-#                 rst.price = request.POST.get('price')
-#                 rst.product_name = request.POST.get('product_name')
-#                 rst.category = request.POST.get('category')
-#                 rst.color = request.POST.get('color')
-#                 rst.size = request.POST.get('size')
-#                 rst.descrip = request.POST.get('descrip')
-#                 rst.image1 = request.FILES['image1']
-#                 rst.image2 = request.FILES['image2']
-#                 rst.image3 = request.FILES['image3']
-#                 rst.save()
-#                 context = {
-#                     'email': mail,
-#                     'succes': "You have successfully submitted an Ads ,Kindly wait for the next three working day for verification and publication on our website.Thanks",
-#                 }
-#                 templates = "Ads.html"
-#                 return render(request, templates, context)
-#             else:
-#                 context = {
-#                     'email': mail,
-#                     'succes': "Images can't be empty,Kindly upload an image",
-#                 }
-#                 templates = "Ads.html"
-#                 return render(request, templates, context)
-#         else:
-#             return redirect('/Ads/')
-
-
 def supplier_prof(request):
     assert isinstance(request, HttpRequest)
     if request.method == 'GET':
@@ -2197,14 +1772,17 @@ def forget_pass(request):
             user = Supplier.objects.get(Email=user_email)
         except:
             user = None
-        request.session['Email'] = user.Email
-        request.session['userid'] = user.id
-        if user:
+        if user is not None:
+            print(user.Email)
+            request.session['email'] = user.Email
+            request.session['userid'] = user.id
             messages.error(request, 'Email Verified ,Kindly Enter Your New Password')
-            return redirect('/change_pass/', request.session['Email'], request.session['userid'])
+            return redirect('/change_pass/', request.session['email'], request.session['userid'])
         else:
-            messages.error(request, 'Email Not Verified')
-            return redirect(request.META.get('HTTP_REFERRER'))
+            context = {
+                'msg': "Email not verified",
+            }
+            return redirect('/forget_pass/', context)
 
 
 def change_pass(request):
@@ -2214,7 +1792,7 @@ def change_pass(request):
         return render(request, templates, context)
     elif request.method == 'POST':
         rest_pass = request.POST.get('pass')
-        user = request.session['Email']
+        user = request.session['email']
         userid = request.session['userid']
         try:
             u_pass = Supplier.objects.get(Email=user)

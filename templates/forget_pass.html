@@ -26,6 +26,11 @@
                         <p class=" w3-text-white">{{ errmsg }}</p>
                     </div>
                 {% endif %}
+                {% if msg %}
+                    <div class="w3-panel w3-red w3-card-4">
+                        <p class=" w3-text-white">{{ msg }}</p>
+                    </div>
+                {% endif %}
                 <div class="w3-panel w3-pink w3-card-4">
                     <p class=" w3-text-white">Enter your Email for Authentication</p>
                 </div>
