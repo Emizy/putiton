@@ -73,6 +73,7 @@ def index(request):
                     'mcp': sqlmcp,
                     'bp': sqlbp,
                     'mkp': sqlmkp,
+                    'mka': sqlmka,
                     'mkh': sqlmkh,
                     'ct': cout,
                 }
