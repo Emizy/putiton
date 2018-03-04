@@ -65,7 +65,7 @@ def index(request):
                 sqlmkh = None
                 sup = None
             cout = sup.count()
-            cout = 100 + cout
+            cout = 20 + cout
             if sqlmp or sqlbp or sqlmcp or sqlmkp or sqlwp or sqlmka or sqlmkh:
                 context = {
                     'mp': sqlmp,
@@ -88,43 +88,22 @@ def index(request):
 def f_details(request, women_id):
     assert isinstance(request, HttpRequest)
     if request.method == 'GET':
-        if 'Email' in request.session:
-            sql = Product.objects.get(id=women_id)
-            sqlwp = Product.objects.filter(category="women", status="Platinum").order_by(
-                '-date')[:4]
-            email = request.session['Email']
-            if sql:
-                context = {
-                    'sql1': sql,
-                    'rel': sqlwp,
-                    'mail': email,
-                }
-                template = 'f_details.html'
-                return render(request, template, context)
-            else:
-                context = {
-                    'msg': "No stock available",
-                }
-                template = 'f_details.html'
-                return render(request, template, context)
+        sql = Product.objects.get(id=women_id)
+        name = sql.supplier
+        sqlwp = Product.objects.filter(supplier=name).order_by('-date')
+        if sql:
+            context = {
+                'sql1': sql,
+                'rel': sqlwp,
+            }
+            template = 'f_details.html'
+            return render(request, template, context)
         else:
-            sql = Product.objects.get(id=women_id)
-            sql2 = Product.objects.filter(category="women").order_by('-date')[:4]
-            sqlwp = Product.objects.filter(category="women", status="Platinum").order_by(
-                '-date')[:4]
-            email = None
-            if sql:
-                context = {
-                    'sql1': sql,
-                    'rel': sqlwp,
-                    'e': email,
-                }
-                template = 'f_details.html'
-                return render(request, template, context)
-            else:
-                context = {'msg': "No stock available", }
-                template = 'f_details.html'
-                return render(request, template, context)
+            context = {
+                'msg': "No stock available",
+            }
+            template = 'f_details.html'
+            return render(request, template, context)
 
 
 def women(request):
@@ -417,175 +396,80 @@ def men_acc(request):
 def acc_details(request, acc_id):
     assert isinstance(request, HttpRequest)
     if request.method == 'GET':
-        if 'Email' in request.session:
-            if 'cart' not in request.session.keys():
-                request.session['cart'] = {}
-            print(request.session['cart'])
-            sql = Product.objects.get(id=acc_id)
-            sql2 = Product.objects.filter(category="men_acc", status="Platinum").order_by('-date')[:4]
-            email = request.session['Email']
-            if sql:
-                context = {
-                    'sql1': sql,
-                    'menacc': sql2,
-                    'mail': email,
-                }
-                template = 'acc_details.html'
-                return render(request, template, context)
-            else:
-                context = {'msg': "No stock available", }
-                template = 'acc_details.html'
-                return render(request, template, context)
+        sql = Product.objects.get(id=acc_id)
+        name = sql.supplier
+        sql2 = Product.objects.filter(supplier=name).order_by('-date')
+        if sql:
+            context = {
+                'sql1': sql,
+                'menacc': sql2,
+            }
+            template = 'acc_details.html'
+            return render(request, template, context)
         else:
-            if 'cart' not in request.session.keys():
-                request.session['cart'] = {}
-            print(request.session['cart'])
-            sql = Product.objects.get(id=acc_id)
-            sql2 = Product.objects.filter(category="men_acc", status="Platinum").order_by('-date')[:4]
-            email = None
-            if sql:
-                context = {
-                    'sql1': sql,
-                    'menacc': sql2,
-                    'e': email,
-                }
-                template = 'acc_details.html'
-                return render(request, template, context)
-            else:
-                context = {'msg': "No stock available", }
-                template = 'm_details.html'
-                return render(request, template, context)
+            context = {'msg': "No stock available", }
+            template = 'm_details.html'
+            return render(request, template, context)
 
 
 def m_details(request, men_id):
     assert isinstance(request, HttpRequest)
     if request.method == 'GET':
-        if 'Email' in request.session:
-            if 'cart' not in request.session.keys():
-                request.session['cart'] = {}
-            print(request.session['cart'])
-            sql = Product.objects.get(id=men_id)
-            sql2 = Product.objects.filter(category="men", status="Platinum").order_by('-date')[:4]
-            email = request.session['Email']
-            if sql:
-                context = {
-                    'sql1': sql,
-                    'rel': sql2,
-                    'mail': email,
-                }
-                template = 'm_details.html'
-                return render(request, template, context)
-            else:
-                context = {'msg': "No stock available", }
-                template = 'm_details.html'
-                return render(request, template, context)
+        sql = Product.objects.get(id=men_id)
+        name = sql.supplier
+        sql2 = Product.objects.filter(supplier=name).order_by('-date')
+        if sql:
+            context = {
+                'sql1': sql,
+                'rel': sql2,
+            }
+            template = 'm_details.html'
+            return render(request, template, context)
         else:
-            if 'cart' not in request.session.keys():
-                request.session['cart'] = {}
-            print(request.session['cart'])
-            sql = Product.objects.get(id=men_id)
-            sql2 = Product.objects.filter(category="men", status="Platinum").order_by('-date')[:4]
-            email = None
-            if sql:
-                context = {
-                    'sql1': sql,
-                    'rel': sql2,
-                    'e': email,
-                }
-                template = 'm_details.html'
-                return render(request, template, context)
-            else:
-                context = {'msg': "No stock available", }
-                template = 'm_details.html'
-                return render(request, template, context)
+            context = {'msg': "No stock available", }
+            template = 'm_details.html'
+            return render(request, template, context)
 
 
 def r_beads(request, bead_id):
     assert isinstance(request, HttpRequest)
     if request.method == 'GET':
-        if 'Email' in request.session:
-            if 'cart' not in request.session.keys():
-                request.session['cart'] = {}
-            print(request.session['cart'])
-            sql = Product.objects.get(id=bead_id)
-            sql3 = Product.objects.filter(category="beads", status="Platinum").order_by('-date')[:4]
-            email = request.session['Email']
-            if sql:
-                context = {
-                    'sql1': sql,
-                    'bead': sql3,
-                    'mail': email,
-                }
-                template = 'r_beads.html'
-                return render(request, template, context)
-            else:
-                context = {
-                    'msg': "No stock available",
-                }
-                template = 'r_beads.html'
-                return render(request, template, context)
+        sql = Product.objects.get(id=bead_id)
+        name = sql.supplier
+        sql3 = Product.objects.filter(supplier=name).order_by('-date')
+        if sql:
+            context = {
+                'sql1': sql,
+                'bead': sql3,
+            }
+            template = 'r_beads.html'
+            return render(request, template, context)
         else:
-            if 'cart' not in request.session.keys():
-                request.session['cart'] = {}
-            print(request.session['cart'])
-            sql = Product.objects.get(id=bead_id)
-            sql3 = Product.objects.filter(category="beads", status="Platinum").order_by('-date')[:4]
-            email = None
-            if sql:
-                context = {
-                    'sql1': sql,
-                    'bead': sql3,
-                    'e': email,
-                }
-                template = 'r_beads.html'
-                return render(request, template, context)
-            else:
-                context = {
-                    'msg': "No stock available",
-                }
-                template = 'r_beads.html'
-                return render(request, template, context)
+            context = {
+                'msg': "No stock available",
+            }
+            template = 'r_beads.html'
+            return render(request, template, context)
 
 
 def p_makeup(request, make_id):
-    assert isinstance(request, HttpRequest)
-    if request.method == 'GET':
-        if 'Email' in request.session:
-            sql = Product.objects.get(id=make_id)
-            email = request.session['Email']
-            sql2 = Product.objects.filter(category="makeup", status="Platinum").order_by('-date')[:4]
-            if sql:
-                context = {
-                    'sql1': sql,
-                    'rel': sql2,
-                    'mail': email,
-                }
-                template = 'p_makeup.html'
-                return render(request, template, context)
-            else:
-                context = {
-                    'msg': "No stock available",
-                }
-                template = 'p_makeup.html'
-                return render(request, template, context)
-        else:
-            sql = Product.objects.get(id=make_id)
-            sql2 = Product.objects.filter(category="makeup", status="Platinum").order_by('-date')[:4]
-            email = None
-            if sql:
-                context = {
-                    'sql1': sql,
-                    'rel': sql2,
-                    'e': email,
-                }
-                template = 'p_makeup.html'
-                return render(request, template, context)
-            else:
-                context = {
-                    'msg': "No stock available",
-                }
-                template = 'p_makeup.html'
-                return render(request, template, context)
+    sql = Product.objects.get(id=make_id)
+    sql2 = Product.objects.filter(category="makeup", status="Platinum").order_by('-date')[:4]
+    email = None
+    if sql:
+        context = {
+            'sql1': sql,
+            'rel': sql2,
+            'e': email,
+        }
+        template = 'p_makeup.html'
+        return render(request, template, context)
+    else:
+        context = {
+            'msg': "No stock available",
+        }
+        template = 'p_makeup.html'
+        return render(request, template, context)
 
 
 def a_makeup(request, art_id):
