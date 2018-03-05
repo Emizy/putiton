@@ -32,6 +32,7 @@ class Product(models.Model):
     }
     status = models.CharField(choices=ch_types, max_length=20, blank=True, null=True)
     supplier = models.CharField(max_length=200, blank=True)
+    username = models.CharField(max_length=200, blank=True)
     color = models.CharField(max_length=200, blank=True)
     address = models.TextField(blank=True, null=True)
     state = models.CharField(blank=True, null=True, max_length=200)
@@ -112,6 +113,7 @@ class Supplier(models.Model):
     Phone = models.CharField(max_length=11, blank=True, null=True)
     company = models.CharField(max_length=200, blank=True, null=True)
     address = models.TextField(blank=True, null=True)
+    username = models.CharField(max_length=200,blank=True, null=True)
     state = models.CharField(blank=True, null=True, max_length=200)
     occupation = models.CharField(blank=True, null=True, max_length=200)
     location = models.CharField(blank=True, null=True, max_length=200)

@@ -133,9 +133,9 @@
 
    <hr>
     <div class="w3-center">
-        <div class="w3-bar w3-border w3-btn w3-white">
-            <h3 class=" w3-text-pink "
-                style="margin-right: 2px;"><strong style="border-right: 6px solid black;padding-right: 2px;">{{ sql1.supplier }}</strong>Related Products </h3>
+        <div class="w3-bar w3-border w3-hover-white w3-hover-text-pink w3-white">
+            <a href="{% url 'store' ses %}" class=" "><h3 class=" w3-text-pink "
+                style="margin-right: 2px;">View<strong style="padding-right: 2px;"> {{ sql1.supplier }}</strong> Store </h3></a>
         </div>
     </div>
     <br>
