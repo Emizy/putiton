@@ -69,7 +69,6 @@ def index(request):
                     'wp': sqlwp,
                     'mcp': sqlmcp,
                     'bp': sqlbp,
-                    'mkp': sqlmkp,
                     'mka': sqlmka,
                     'mkh': sqlmkh,
                     'ct': cout,
