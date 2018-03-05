@@ -186,45 +186,45 @@
         </div>
     {% endif %}
     <!--end ladies-->
-
-    <!--makeup platinum-->
-    {% if mkp %}
-        <div class="c-btm">
-            <div class="content-top1">
-                <div class="container">
-                    {% for i in mkp %}
-                        <div class="col-md-3 col-md2 animated wow fadeInLeft" data-wow-delay=".5s">
-                            <div class="col-md1 simpleCart_shelfItem">
-                                {% if i.status == "Platinum" %}
-                                    <div class="plat"><p><span>{{ i.status }}</span></p></div>
-                                {% endif %}
-                                {% if i.status == "Gold" %}
-                                    <div class="gold"><p><span>{{ i.status }}</span></p></div>
-                                {% endif %}
-                                {% if i.status == "Silver" %}
-                                    <div class="silver"><p><span>{{ i.status }}</span></p></div>
-                                {% endif %}
-                                {% if i.status == "Free" %}
-                                    <div class="free"><p><span>{{ i.status }}</span></p></div>
-                                {% endif %}
-                                <img class="img-responsive" src="{{ i.image1.url }}" alt=""/>
-                                <h3>{{ i.product_name }}
-                                </h3>
-                                <div class="price">
-                                    <h5 class="item_price">{{ i.price }}</h5>
-                                    <a href="{% url 'p_makeup' i.id %}" class="item_add">Views</a>
-                                    <div class="clearfix"></div>
-                                </div>
-
-                            </div>
-                        </div>
-                    {% endfor %}
-                    <div class="clearfix"></div>
-                </div>
-            </div>
-        </div>
-    {% endif %}
-    <!--end makeup-->
+{##}
+{#    <!--makeup platinum-->#}
+{#    {% if mkp %}#}
+{#        <div class="c-btm">#}
+{#            <div class="content-top1">#}
+{#                <div class="container">#}
+{#                    {% for i in mkp %}#}
+{#                        <div class="col-md-3 col-md2 animated wow fadeInLeft" data-wow-delay=".5s">#}
+{#                            <div class="col-md1 simpleCart_shelfItem">#}
+{#                                {% if i.status == "Platinum" %}#}
+{#                                    <div class="plat"><p><span>{{ i.status }}</span></p></div>#}
+{#                                {% endif %}#}
+{#                                {% if i.status == "Gold" %}#}
+{#                                    <div class="gold"><p><span>{{ i.status }}</span></p></div>#}
+{#                                {% endif %}#}
+{#                                {% if i.status == "Silver" %}#}
+{#                                    <div class="silver"><p><span>{{ i.status }}</span></p></div>#}
+{#                                {% endif %}#}
+{#                                {% if i.status == "Free" %}#}
+{#                                    <div class="free"><p><span>{{ i.status }}</span></p></div>#}
+{#                                {% endif %}#}
+{#                                <img class="img-responsive" src="{{ i.image1.url }}" alt=""/>#}
+{#                                <h3>{{ i.product_name }}#}
+{#                                </h3>#}
+{#                                <div class="price">#}
+{#                                    <h5 class="item_price">{{ i.price }}</h5>#}
+{#                                    <a href="{% url 'p_makeup' i.id %}" class="item_add">Views</a>#}
+{#                                    <div class="clearfix"></div>#}
+{#                                </div>#}
+{##}
+{#                            </div>#}
+{#                        </div>#}
+{#                    {% endfor %}#}
+{#                    <div class="clearfix"></div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    {% endif %}#}
+{#    <!--end makeup-->#}
 
     <!--men platinum-->
     {% if mp %}
@@ -290,7 +290,7 @@
                                 </h3>
                                 <div class="price">
                                     <h5 class="item_price">{{ i.price }}</h5>
-                                    <a href="{% url 'm_details' i.id %}" class="item_add">Views</a>
+                                    <a href="{% url 'acc_details' i.id %}" class="item_add">Views</a>
                                     <div class="clearfix"></div>
                                 </div>
 
@@ -379,7 +379,7 @@
             </div>
         </div>
     {% endif %}
-    <!--end bead-->
+    <!--end artist-->
 
     <!--hairstylist platinum-->
     {% if mkh %}
@@ -406,7 +406,7 @@
                                 </h3>
                                 <div class="price">
                                     <h5 class="item_price">{{ i.price }}</h5>
-                                    <a href="{% url 'r_beads' i.id %}" class="item_add">View</a>
+                                    <a href="{% url 'd_stylist' i.id %}" class="item_add">View</a>
                                     <div class="clearfix"></div>
                                 </div>
 

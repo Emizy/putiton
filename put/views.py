@@ -47,8 +47,6 @@ def index(request):
                     '-date')[:4]
                 sqlbp = Product.objects.filter(category="beads").order_by(
                     '-date')[:4]
-                sqlmkp = Product.objects.filter(category="makeup").order_by(
-                    '-date')[:4]
                 sqlmka = Product.objects.filter(category="makeupArtist").order_by(
                     '-date')[:4]
                 sqlmkh = Product.objects.filter(category="hairstyle").order_by(
@@ -60,13 +58,12 @@ def index(request):
                 sqlwp = None
                 sqlmcp = None
                 sqlbp = None
-                sqlmkp = None
                 sqlmka = None
                 sqlmkh = None
                 sup = None
             cout = sup.count()
             cout = 20 + cout
-            if sqlmp or sqlbp or sqlmcp or sqlmkp or sqlwp or sqlmka or sqlmkh:
+            if sqlmp or sqlbp or sqlmcp  or sqlwp or sqlmka or sqlmkh:
                 context = {
                     'mp': sqlmp,
                     'wp': sqlwp,
@@ -511,13 +508,13 @@ def d_stylist(request, sty_id):
                 'rel': sql2,
                 'ses': name,
             }
-            template = 'p_makeup.html'
+            template = 'd_stylist.html'
             return render(request, template, context)
         else:
             context = {
                 'msg': "No stock available",
             }
-            template = 'p_makeup.html'
+            template = 'd_stylist.html'
             return render(request, template, context)
 
 
