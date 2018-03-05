@@ -89,8 +89,8 @@ def f_details(request, women_id):
     assert isinstance(request, HttpRequest)
     if request.method == 'GET':
         sql = Product.objects.get(id=women_id)
-        name = sql.supplier
-        sqlwp = Product.objects.filter(supplier=name).order_by('-date')
+        name = sql.username
+        sqlwp = Product.objects.filter(username=name).order_by('-date')
         if sql:
             context = {
                 'sql1': sql,
@@ -398,8 +398,8 @@ def acc_details(request, acc_id):
     assert isinstance(request, HttpRequest)
     if request.method == 'GET':
         sql = Product.objects.get(id=acc_id)
-        name = sql.supplier
-        sql2 = Product.objects.filter(supplier=name).order_by('-date')[:4]
+        name = sql.username
+        sql2 = Product.objects.filter(username=name).order_by('-date')[:4]
         if sql:
             context = {
                 'sql1': sql,
@@ -481,8 +481,8 @@ def a_makeup(request, art_id):
     assert isinstance(request, HttpRequest)
     if request.method == 'GET':
         sql = Product.objects.get(id=art_id)
-        name = sql.supplier
-        sql3 = Product.objects.filter(supplier=name).order_by('-date')[:4]
+        name = sql.username
+        sql3 = Product.objects.filter(username=name).order_by('-date')[:4]
         if sql:
             context = {
                 'sql1': sql,
@@ -502,42 +502,23 @@ def a_makeup(request, art_id):
 def d_stylist(request, sty_id):
     assert isinstance(request, HttpRequest)
     if request.method == 'GET':
-        if 'Email' in request.session:
-            sql = Product.objects.get(id=sty_id)
-            email = request.session['Email']
-            sql2 = Product.objects.filter(category="makeupArtist", status="Platinum").order_by('-date')[:4]
-            if sql:
-                context = {
-                    'sql1': sql,
-                    'rel': sql2,
-                    'mail': email,
-                }
-                template = 'p_makeup.html'
-                return render(request, template, context)
-            else:
-                context = {
-                    'msg': "No stock available",
-                }
-                template = 'p_makeup.html'
-                return render(request, template, context)
+        sql = Product.objects.get(id=sty_id)
+        name = sql.username
+        sql2 = Product.objects.filter(username=name).order_by('-date')[:4]
+        if sql:
+            context = {
+                'sql1': sql,
+                'rel': sql2,
+                'ses': name,
+            }
+            template = 'p_makeup.html'
+            return render(request, template, context)
         else:
-            sql = Product.objects.get(id=sty_id)
-            sql2 = Product.objects.filter(category="makeupArtist", status="Platinum").order_by('-date')[:4]
-            email = None
-            if sql:
-                context = {
-                    'sql1': sql,
-                    'rel': sql2,
-                    'e': email,
-                }
-                template = 'p_makeup.html'
-                return render(request, template, context)
-            else:
-                context = {
-                    'msg': "No stock available",
-                }
-                template = 'p_makeup.html'
-                return render(request, template, context)
+            context = {
+                'msg': "No stock available",
+            }
+            template = 'p_makeup.html'
+            return render(request, template, context)
 
 
 def store(request, user):
