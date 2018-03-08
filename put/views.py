@@ -1371,8 +1371,12 @@ def Ads(request):
             supp_id = request.session['userid']
             mail = request.session['email']
             user = request.session['user']
-            stat = Supplier.objects.get(username=user)
-            cout = Product.objects.filter(supp_user__Email=mail)
+            try:
+                stat = Supplier.objects.get(username=user)
+                cout = Product.objects.filter(supp_user__Email=mail)
+            except:
+                stat = None
+                cout = None
             if stat is not None:
                 if stat.status == "Free":
                     if cout.count() != 5:
