@@ -1372,7 +1372,7 @@ def Ads(request):
             mail = request.session['email']
             user = request.session['user']
             try:
-                stat = Supplier.objects.get(email=mail)
+                stat = Supplier.objects.get(Email=request.session['email'])
                 cout = Product.objects.filter(supp_user__Email=mail)
             except:
                 stat = None
