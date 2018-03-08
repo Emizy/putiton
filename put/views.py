@@ -1377,7 +1377,7 @@ def Ads(request):
             except:
                 stat = None
                 cout = None
-            if stat is not None:
+            if stat:
                 if stat.status == "Free":
                     if cout.count() != 5:
                         remainder = cout.count()
