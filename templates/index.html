@@ -1,503 +1,187 @@
-{% extends 'masterpage.html' %}
-{% load  static %}
+{% extends 'inew.html' %}
+{% load static %}
 {% block head %}
-    <title>Putiton :: Home</title>
+    Putiton :: Home
 {% endblock %}
 {% block content %}
-    {% if cmsg %}
-        <script>
-            alert('Thanks for contacting us hope to get back to you soon');
-        </script>
-    {% endif %}
-    <div class="banner">
-        <div class="matter-banner">
-            <div class="slider">
-                <div class="callbacks_container">
-                    <ul class="rslides" id="slider">
-                        <li>
-                            <img src="{% static 'images/1.jpg' %}" alt="">
-                            <div class="tes animated wow fadeInUp animated" data-wow-delay=".5s"
-                                 style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInUp;">
-                                <h2 class="w3-text-white">JOIN OVER</h2>
-                                <h2 class="w3-ce">{{ ct }}<i class="w3-text-white">suppliers</i>  </h2>
-                                <p>Enroll As a Supplier Today</p>
-                            </div>
-                        </li>
-                        <li>
-                            <img src="{% static 'images/3.jpg' %}" alt="">
-                            <div class="tes animated wow fadeInUp animated" data-wow-delay=".5s"
-                                 style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInUp;">
-                                <h2>MEN & WOMEN</h2>
-                                <h3>Trousers & Chinos</h3>
-                                <h4>UPTO 50%</h4>
-                                <p>OFFER</p>
-                            </div>
-                        </li>
-                        <li>
-                            <img src="{% static 'images/2.jpg' %}" alt="">
-                            <div class="tes animated wow fadeInUp animated" data-wow-delay=".5s"
-                                 style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInUp;">
-                                <h2>MEN & WOMEN</h2>
-                                <h3>Trousers & Chinos</h3>
-                                <h4>UPTO 50%</h4>
-                                <p>OFFER</p>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="clearfix"></div>
+    {#<div id="loader"></div>#}
+    <!-- Navigation bar with social media icons -->
+    <div class="w3-bar w3-pink w3-text-white w3-hover-text-pink w3-hide-small">
+        <a href="#" class="w3-bar-item w3-btn w3-text-white w3-hover-text-white"><i class="fa fa-facebook-official"></i></a>
+        <a href="#" class="w3-bar-item w3-btn w3-text-white w3-hover-text-white"><i class="fa fa-instagram"></i></a>
+        <a href="#" class="w3-bar-item w3-btn w3-text-white w3-hover-text-white"><i class="fa fa-snapchat"></i></a>
+        <a href="#" class="w3-bar-item w3-btn w3-text-white w3-hover-text-white"><i class="fa fa-flickr"></i></a>
+        <a href="#" class="w3-bar-item w3-btn w3-text-white w3-hover-text-white"><i class="fa fa-twitter"></i></a>
+        <a href="#" class="w3-bar-item w3-btn w3-text-white w3-hover-text-white"><i class="fa fa-linkedin"></i></a>
     </div>
-    <!--//banner-->
-    <!--content-->
-    <!--Men wears-->
 
-    <br>
-    <br>
-    {% if messages %}
-        {% for message in messages %}
-            <div id="alertBox" class="w3-{{ message.tags }}">
-                <button id="bannerClose" class="w3-right w3-text-pink w3-large"
-                        onclick="closeModal('alertBox')"
-                        style="background-color: transparent; border: none;">&times;
-                </button>
-                <div class="w3-center w3-pink container">
-                    <label id="alert" class="w3-text-white w3-large"
-                           style="font-size: 5px;">{{ message }}</label>
-                </div>
+    <div class="w3-content myDiv" style="max-width:1600px">
+
+        <!-- Header -->
+        <header class="w3-container w3-center w3-padding-48 w3-white">
+            <h1 class="w3-xxxlarge"><b><a href="{% url 'index' %}" class="w3-hover-text-pink"> Putiton<span
+                    class="w3-tag w3-white w3-text-pink w3-round-xlarge w3-border w3-border-pink">.com.ng</span></a></b>
+            </h1>
+            <h6>Welcome to the first Virtual <span
+                    class="w3-tag w3-pink w3-border w3-round w3-border-pink">Personal Shop</span></h6>
+        </header>
+
+        <!-- Image header -->
+        <header class="w3-display-container w3-wide" id="home">
+            <img class="w3-image" src="{% static 'images/jane.jpg' %}" alt="Fashion Blog" width="1600" height="1060">
+            <div class="w3-display-left w3-padding-large">
+                <h1 class="w3-text-white">Enroll as a Supplier</h1>
+                <h1 class="w3-jumbo w3-text-white w3-hide-small"><b>FASHION BLOG</b></h1>
+                <h6>
+                    <a href="{% url 'supplier_reg' %}"
+                       class="w3-btn w3-pink w3-padding-large w3-large w3-border w3-border-pink w3-text-white w3-hover-text-white w3-opacity"
+                    >Enroll
+                    </a>
+                </h6>
             </div>
-        {% endfor %}
-    {% endif %}
+        </header>
 
-    <style>
-        .plat {
-            position: absolute;
-            right: 15%;
-            border: 2px solid teal;
-            padding: 1px;
-            top: 0%;
-            margin-top: 5px;
-            z-index: 498;
-        }
+        <!-- category and hot products -->
+        <div class="w3-row w3-padding w3-border">
 
-        .plat > p {
-            background: teal;
-            text-align: center;
-            line-height: 0em !important;
-            font-size: 1em !important;
-            padding: 7px;
-            color: white;
-        }
+            <!-- Blog entries -->
+            <div class="w3-col l12 s12">
 
-        .gold {
-            position: absolute;
-            right: 15%;
-            border: 2px solid blue;
-            padding: 1px;
-            top: 0%;
-            margin-top: 5px;
-            z-index: 498;
-        }
-
-        .gold > p {
-            background: blue;
-            text-align: center;
-            line-height: 0em !important;
-            font-size: 1em !important;
-            padding: 7px;
-            color: white;
-        }
-
-        .silver {
-            position: absolute;
-            right: 15%;
-            border: 2px solid red;
-            padding: 1px;
-            top: 0%;
-            margin-top: 5px;
-            z-index: 498;
-        }
-
-        .silver > p {
-            background: red;
-            text-align: center;
-            line-height: 0em !important;
-            font-size: 1em !important;
-            padding: 7px;
-            color: white;
-        }
-
-        .free {
-            position: absolute;
-            right: 15%;
-            border: 2px solid orange;
-            padding: 1px;
-            top: 0%;
-            margin-top: 5px;
-            z-index: 498;
-        }
-
-        .free > p {
-            background: orange;
-            text-align: center;
-            line-height: 0em !important;
-            font-size: 1em !important;
-            padding: 7px;
-            color: white;
-        }
-    </style>
-
-    <!--ladies platinum-->
-    {% if wp %}
-        <div class="c-btm">
-            <div class="content-top1">
                 <div class="container">
-                    {% for i in wp %}
-                        <div class="col-md-3 col-md2 animated wow fadeInLeft" data-wow-delay=".5s">
-                            <div class="col-md1 simpleCart_shelfItem">
-                                {% if i.status == "Platinum" %}
-                                    <div class="plat"><p><span>{{ i.status }}</span></p></div>
-                                {% endif %}
-                                {% if i.status == "Gold" %}
-                                    <div class="gold"><p><span>{{ i.status }}</span></p></div>
-                                {% endif %}
-                                {% if i.status == "Silver" %}
-                                    <div class="silver"><p><span>{{ i.status }}</span></p></div>
-                                {% endif %}
-                                {% if i.status == "Free" %}
-                                    <div class="free"><p><span>{{ i.status }}</span></p></div>
-                                {% endif %}
-                                <img class="img-responsive" src="{{ i.image1.url }}" alt=""/>
-                                <h3>{{ i.product_name }}
-                                </h3>
-                                <div class="price">
-                                    <h5 class="item_price">{{ i.price }}</h5>
-                                    <a href="{% url 'f_details' i.id %}" class="item_add">View</a>
-                                    <div class="clearfix"></div>
+                    <div class="w3-row">
+                        <div class="w3-col l6 m6 s6">
+                            <a href="javascript:void(0)" onclick="openCity(event, 'hot');">
+                                <div class="w3-third tablink w3-bottombar w3-hover-pink w3-text-pink w3-padding" style="text-transform: uppercase">Trending
                                 </div>
+                            </a>
+                        </div>
+                        <div class="w3-col l6 m6 s6">
+                            <a href="javascript:void(0)" onclick="openCity(event, 'cat');">
+                                <div class="w3-third tablink w3-bottombar w3-hover-pink w3-text-pink w3-padding">
+                                    CATEGORIES
+                                </div>
+                            </a>
+                        </div>
+                    </div>
 
+                    <div id="cat" class="container city" style="display:none;margin-right: 10px;">
+                        <div class="container p w3-white w3-border-white">
+                            <div class="w3-white w3-margin">
+                                <ul class="w3-ul w3-hoverable w3-white">
+                                    <li class="w3-padding-16 w3-hover-pink w3-text-pink w3-hover-text-white">
+                                        <a href="{% url 'bags' %}">Bags</a>
+                                    </li>
+                                    <li class="w3-padding-16 w3-hover-pink w3-text-pink w3-hover-text-white">
+                                        <a href="{% url 'beads' %}">Beads</a>
+                                    </li>
+                                    <li class="w3-padding-16 w3-hover-pink w3-text-pink w3-hover-text-white">
+                                        <a href="{% url 'clothing' %}">Clothing</a>
+                                    </li>
+                                    <li class="w3-padding-16 w3-hover-pink w3-text-pink w3-hover-text-white">
+                                        <a href="{% url 'hairstylist' %}">Hairstylist</a>
+                                    </li>
+                                    <li class="w3-padding-16 w3-hover-pink w3-text-pink w3-hover-text-white">
+                                        <a href="{% url 'jewelry' %}">Jewelry</a>
+                                    </li>
+                                    <li class="w3-padding-16 w3-hover-pink w3-text-pink w3-hover-text-white">
+                                        <a href="{% url 'makeupArtist' %}">Makeup Artist</a>
+                                    </li>
+                                    <li class="w3-padding-16 w3-hover-pink w3-text-pink w3-hover-text-white">
+                                        <a href="{% url 'shoes' %}">Shoes</a>
+                                    </li>
+                                    <li class="w3-padding-16 w3-hover-pink w3-text-pink w3-hover-text-white">
+                                        <a href="{% url 'watches' %}">Watches</a>
+                                    </li>
+                                    <li class="w3-padding-16 w3-hover-pink w3-text-pink w3-hover-text-white">
+                                        <a href="{% url 'weddingwears' %}">Wedding Wears</a>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
-                    {% endfor %}
-                    <div class="clearfix"></div>
-                </div>
-            </div>
-        </div>
-    {% endif %}
-    <!--end ladies-->
-{##}
-{#    <!--makeup platinum-->#}
-{#    {% if mkp %}#}
-{#        <div class="c-btm">#}
-{#            <div class="content-top1">#}
-{#                <div class="container">#}
-{#                    {% for i in mkp %}#}
-{#                        <div class="col-md-3 col-md2 animated wow fadeInLeft" data-wow-delay=".5s">#}
-{#                            <div class="col-md1 simpleCart_shelfItem">#}
-{#                                {% if i.status == "Platinum" %}#}
-{#                                    <div class="plat"><p><span>{{ i.status }}</span></p></div>#}
-{#                                {% endif %}#}
-{#                                {% if i.status == "Gold" %}#}
-{#                                    <div class="gold"><p><span>{{ i.status }}</span></p></div>#}
-{#                                {% endif %}#}
-{#                                {% if i.status == "Silver" %}#}
-{#                                    <div class="silver"><p><span>{{ i.status }}</span></p></div>#}
-{#                                {% endif %}#}
-{#                                {% if i.status == "Free" %}#}
-{#                                    <div class="free"><p><span>{{ i.status }}</span></p></div>#}
-{#                                {% endif %}#}
-{#                                <img class="img-responsive" src="{{ i.image1.url }}" alt=""/>#}
-{#                                <h3>{{ i.product_name }}#}
-{#                                </h3>#}
-{#                                <div class="price">#}
-{#                                    <h5 class="item_price">{{ i.price }}</h5>#}
-{#                                    <a href="{% url 'p_makeup' i.id %}" class="item_add">Views</a>#}
-{#                                    <div class="clearfix"></div>#}
-{#                                </div>#}
-{##}
-{#                            </div>#}
-{#                        </div>#}
-{#                    {% endfor %}#}
-{#                    <div class="clearfix"></div>#}
-{#                </div>#}
-{#            </div>#}
-{#        </div>#}
-{#    {% endif %}#}
-{#    <!--end makeup-->#}
+                    </div>
 
-    <!--men platinum-->
-    {% if mp %}
-        <div class="c-btm">
-            <div class="content-top1">
-                <div class="container">
-                    {% for i in mp %}
-                        <div class="col-md-3 col-md2 animated wow fadeInLeft" data-wow-delay=".5s">
-                            <div class="col-md1 simpleCart_shelfItem">
-                                {% if i.status == "Platinum" %}
-                                    <div class="plat"><p><span>{{ i.status }}</span></p></div>
-                                {% endif %}
-                                {% if i.status == "Gold" %}
-                                    <div class="gold"><p><span>{{ i.status }}</span></p></div>
-                                {% endif %}
-                                {% if i.status == "Silver" %}
-                                    <div class="silver"><p><span>{{ i.status }}</span></p></div>
-                                {% endif %}
-                                {% if i.status == "Free" %}
-                                    <div class="free"><p><span>{{ i.status }}</span></p></div>
-                                {% endif %}
-                                <img class="img-responsive" src="{{ i.image1.url }}" alt=""/>
-                                <h3>{{ i.product_name }}
-                                </h3>
-                                <div class="price">
-                                    <h5 class="item_price">{{ i.price }}</h5>
-                                    <a href="{% url 'm_details' i.id %}" class="item_add">Views</a>
-                                    <div class="clearfix"></div>
-                                </div>
-
-                            </div>
+                    <div id="hot" class="container h city" style="margin-bottom: 2%;margin-top: 2%;display: block">
+                        <div class="row">
+                            {% if dis %}
+                                {% for i in dis %}
+                                    <div class="col-md-3 ">
+                                        <div class="panel panel-default w3-card">
+                                            <div class="panel-body">
+                                                <div class="thumbnail">
+                                                    <img src="{{ i.image1.url }}" alt="pics"
+                                                         class="img-responsive img-hover"
+                                                         style="height: 150px;width: 200px;">
+                                                </div>
+                                                <div class="row w3-justify">
+                                                    <h5 id="t"
+                                                        style="width: 110px;margin-left: 20px;">{{ i.product_name }} </h5>
+                                                    <h6 id="t"
+                                                        style="width: 110px;margin-left: 20px;">{{ i.supp_user.company }}</h6>
+                                                    <h5 id="t" class="w3-green" style="width: 110px;margin-left: 20px;">
+                                                        #{{ i.price }}.00 </h5>
+                                                </div>
+                                                <div class="w3-center">
+                                                    <a href="{% url 'det' i.id %}"
+                                                       class="w3-btn  w3-border w3-border-pink w3-round w3-text-pink w3-hover-text-pink w3-white">
+                                                        View
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
                         </div>
-                    {% endfor %}
-                    <div class="clearfix"></div>
+                    </div>
+
                 </div>
+
+                <!-- END GRID -->
             </div>
+            <!-- END w3-content -->
         </div>
-    {% endif %}
-    <!--end of men-->
+        <!-- end category and hot products -->
+        <hr>
 
-    <!--men acce platinum-->
-    {% if mcp %}
-        <div class="c-btm">
-            <div class="content-top1">
-                <div class="container">
-                    {% for i in mcp %}
-                        <div class="col-md-3 col-md2 animated wow fadeInLeft" data-wow-delay=".5s">
-                            <div class="col-md1 simpleCart_shelfItem">
-                                {% if i.status == "Platinum" %}
-                                    <div class="plat"><p><span>{{ i.status }}</span></p></div>
-                                {% endif %}
-                                {% if i.status == "Gold" %}
-                                    <div class="gold"><p><span>{{ i.status }}</span></p></div>
-                                {% endif %}
-                                {% if i.status == "Silver" %}
-                                    <div class="silver"><p><span>{{ i.status }}</span></p></div>
-                                {% endif %}
-                                {% if i.status == "Free" %}
-                                    <div class="free"><p><span>{{ i.status }}</span></p></div>
-                                {% endif %}
-                                <img class="img-responsive" src="{{ i.image1.url }}" alt=""/>
-                                <h3>{{ i.product_name }}
-                                </h3>
-                                <div class="price">
-                                    <h5 class="item_price">{{ i.price }}</h5>
-                                    <a href="{% url 'acc_details' i.id %}" class="item_add">Views</a>
-                                    <div class="clearfix"></div>
-                                </div>
-
-                            </div>
-                        </div>
-                    {% endfor %}
-                    <div class="clearfix"></div>
+        <div class="w3-row">
+            {#        <div class="w3-col l6 s6">#}
+            {#            <div class="w3-white w3-margin">#}
+            {#                <div class="w3-container w3-padding w3-pink">#}
+            {#                    <h4>Follow Me</h4>#}
+            {#                </div>#}
+            {#                <div class="w3-container w3-xlarge w3-padding w3-text-pink w3-hover-text-pink">#}
+            {#                    <i class="fa fa-facebook-official w3-hover-opacity"></i>#}
+            {#                    <i class="fa fa-instagram w3-hover-opacity"></i>#}
+            {#                    <i class="fa fa-snapchat w3-hover-opacity"></i>#}
+            {#                    <i class="fa fa-pinterest-p w3-hover-opacity"></i>#}
+            {#                    <i class="fa fa-twitter w3-hover-opacity"></i>#}
+            {#                    <i class="fa fa-linkedin w3-hover-opacity"></i>#}
+            {#                </div>#}
+            {#            </div>#}
+            {#        </div>#}
+            <div class="w3-col l12 s12">
+                <div class="w3-white w3-margin">
+                    <div class="w3-container w3-padding w3-pink w3-text-white">
+                        <h4>Search</h4>
+                    </div>
+                    <div class="w3-container w3-white">
+                        <p>Search By Product name</p>
+                        <p><input class="w3-input w3-border" type="text" placeholder="Enter Keyword" style="width:100%">
+                        </p>
+                        <p>
+                            <input type="submit" value="SEARCH"
+                                   class="w3-btn w3-white w3-border w3-text-pink w3-hover-text-pink w3-border-pink w3-right"/>
+                        </p>
+                    </div>
                 </div>
+
             </div>
-        </div>
-    {% endif %}
-    <!--end of menacc-->
-
-    <!--bead platinum-->
-    {% if bp %}
-        <div class="c-btm">
-            <div class="content-top1">
-                <div class="container">
-                    {% for i in bp %}
-                        <div class="col-md-3 col-md2 animated wow fadeInLeft" data-wow-delay=".5s">
-                            <div class="col-md1 simpleCart_shelfItem">
-                                {% if i.status == "Platinum" %}
-                                    <div class="plat"><p><span>{{ i.status }}</span></p></div>
-                                {% endif %}
-                                {% if i.status == "Gold" %}
-                                    <div class="gold"><p><span>{{ i.status }}</span></p></div>
-                                {% endif %}
-                                {% if i.status == "Silver" %}
-                                    <div class="silver"><p><span>{{ i.status }}</span></p></div>
-                                {% endif %}
-                                {% if i.status == "Free" %}
-                                    <div class="free"><p><span>{{ i.status }}</span></p></div>
-                                {% endif %}
-                                <img class="img-responsive" src="{{ i.image1.url }}" alt=""/>
-                                <h3>{{ i.product_name }}
-                                </h3>
-                                <div class="price">
-                                    <h5 class="item_price">{{ i.price }}</h5>
-                                    <a href="{% url 'r_beads' i.id %}" class="item_add">View</a>
-                                    <div class="clearfix"></div>
-                                </div>
-
-                            </div>
-                        </div>
-                    {% endfor %}
-                    <div class="clearfix"></div>
-                </div>
-            </div>
-        </div>
-    {% endif %}
-    <!--end bead-->
- <!--makeartist platinum-->
-    {% if mka %}
-        <div class="c-btm">
-            <div class="content-top1">
-                <div class="container">
-                    {% for i in mka %}
-                        <div class="col-md-3 col-md2 animated wow fadeInLeft" data-wow-delay=".5s">
-                            <div class="col-md1 simpleCart_shelfItem">
-                                {% if i.status == "Platinum" %}
-                                    <div class="plat"><p><span>{{ i.status }}</span></p></div>
-                                {% endif %}
-                                {% if i.status == "Gold" %}
-                                    <div class="gold"><p><span>{{ i.status }}</span></p></div>
-                                {% endif %}
-                                {% if i.status == "Silver" %}
-                                    <div class="silver"><p><span>{{ i.status }}</span></p></div>
-                                {% endif %}
-                                {% if i.status == "Free" %}
-                                    <div class="free"><p><span>{{ i.status }}</span></p></div>
-                                {% endif %}
-                                <img class="img-responsive" src="{{ i.image1.url }}" alt=""/>
-                                <h3>{{ i.product_name }}
-                                </h3>
-                                <div class="price">
-                                    <h5 class="item_price">{{ i.price }}</h5>
-                                    <a href="{% url 'a_makeup' i.id %}" class="item_add">View</a>
-                                    <div class="clearfix"></div>
-                                </div>
-
-                            </div>
-                        </div>
-                    {% endfor %}
-                    <div class="clearfix"></div>
-                </div>
-            </div>
-        </div>
-    {% endif %}
-    <!--end artist-->
-
-    <!--hairstylist platinum-->
-    {% if mkh %}
-        <div class="c-btm">
-            <div class="content-top1">
-                <div class="container">
-                    {% for i in mkh %}
-                        <div class="col-md-3 col-md2 animated wow fadeInLeft" data-wow-delay=".5s">
-                            <div class="col-md1 simpleCart_shelfItem">
-                                {% if i.status == "Platinum" %}
-                                    <div class="plat"><p><span>{{ i.status }}</span></p></div>
-                                {% endif %}
-                                {% if i.status == "Gold" %}
-                                    <div class="gold"><p><span>{{ i.status }}</span></p></div>
-                                {% endif %}
-                                {% if i.status == "Silver" %}
-                                    <div class="silver"><p><span>{{ i.status }}</span></p></div>
-                                {% endif %}
-                                {% if i.status == "Free" %}
-                                    <div class="free"><p><span>{{ i.status }}</span></p></div>
-                                {% endif %}
-                                <img class="img-responsive" src="{{ i.image1.url }}" alt=""/>
-                                <h3>{{ i.product_name }}
-                                </h3>
-                                <div class="price">
-                                    <h5 class="item_price">{{ i.price }}</h5>
-                                    <a href="{% url 'd_stylist' i.id %}" class="item_add">View</a>
-                                    <div class="clearfix"></div>
-                                </div>
-
-                            </div>
-                        </div>
-                    {% endfor %}
-                    <div class="clearfix"></div>
-                </div>
-            </div>
-        </div>
-    {% endif %}
-    <!--end bead-->
-
-{% endblock %}
-
-{% block fill %}
-    <div class="container">
-        <div class="footer-top">
-            <style>
-                ul.social li i {
-                    display: inline-block;
-                    width: 47px;
-                    height: 47px;
-                    margin: 0 5px 0 0;
-                }
-
-                ul.social li i:hover {
-                    background-position: -8px -8px;
-                }
-
-                ul.social li i.facebook {
-                    background-position: -64px -64px;
-                }
-
-                ul.social li i.facebook:hover {
-                    background-position: -64px -8px;
-                }
-
-                ul.social li i.linked {
-                    background-position: -121px -64px;
-                }
-
-                ul.social li i.linked:hover {
-                    background-position: -121px -8px;
-                }
-
-                ul.social li i.google {
-                    background-position: -176px -64px;
-                }
-
-                ul.social li i.google:hover {
-                    background-position: -176px -8px;
-                }
-
-                ul.social li {
-                    display: inline-block;
-                }
-
-                ul.social {
-                    padding: 0;
-                }
-            </style>
-            <div class="col-md-6 top-footer animated wow fadeInLeft" data-wow-delay=".5s">
-                <h3>Follow Us On</h3>
-                <div class="social-icons">
-                    <ul class="social">
-                        <li><a href="#"><i class="facebook"><img src="{% static 'images/facebook-logo-1.png' %}"
-                                                                 class="img-responsive"
-                                                                 style="height: 30px;width:30px;"/></i></a></li>
-                        <li><a href="https://www.instagram.com/putitoninfo"><i class="google"><img
-                                src="{% static 'images/instagram-symbol.png' %}" class="img-responsive"
-                                style="height: 30px;width:30px;"/></i> </a></li>
-                        <li><a href=""><i class="linked"><img src="{% static 'images/twitter-sign.png' %}"
-                                                              class="img-responsive" style="height: 30px;width:30px;"/></i>
-                        </a></li>
-                        <li><a href="#"><i class="linked"><img src="{% static 'images/tumblr-logo-1.png' %}"
-                                                               class="img-responsive" style="height: 30px;width:30px;"/></i>
-                        </a></li>
-                    </ul>
-                    <div class="clearfix"></div>
-                </div>
-            </div>
-            <div class="col-md-6 top-footer1 animated wow fadeInRight" data-wow-delay=".5s">
-                <h3>Search</h3>
-                <form action="/search/" method="post">
-                    {% csrf_token %}
-                    <input type="text" name="search" value="" placeholder="Search by Product Name,Color,Size">
-                    <input type="submit" value="SEARCH" class="w3-btn"/>
-                </form>
-            </div>
-            <div class="clearfix"></div>
         </div>
     </div>
+
+    <!-- Subscribe Modal -->
+
+
+    <!-- Footer -->
+    <!-- Footer -->
 {% endblock %}

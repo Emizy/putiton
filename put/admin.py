@@ -5,7 +5,6 @@ from .models import *
 admin.site.register(Product)
 admin.site.register(reg)
 admin.site.register(Contact)
-admin.site.register(packages)
 admin.site.register(Supplier)
 admin.site.register(transaction)
 admin.site.register(Supp_Ads)

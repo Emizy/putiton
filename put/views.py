@@ -6,80 +6,119 @@ from put.models import *
 
 
 # Create your views here.
+# def index(request):
+#     assert isinstance(request, HttpRequest)
+#     if request.method == 'GET':
+#         if 'Email' in request.session:
+#             sqlmp = Product.objects.filter(category="men").order_by(
+#                 '-date')[:4]
+#             sqlwp = Product.objects.filter(category="women").order_by(
+#                 '-date')[:4]
+#             sqlmcp = Product.objects.filter(category="men_acc").order_by(
+#                 '-date')[:4]
+#             sqlbp = Product.objects.filter(category="beads").order_by(
+#                 '-date')[:4]
+#             sqlmkp = Product.objects.filter(category="makeup").order_by(
+#                 '-date')[:4]
+#             sqlmka = Product.objects.filter(category="makeupArtist").order_by(
+#                 '-date')[:4]
+#             sqlmkh = Product.objects.filter(category="hairstyle").order_by(
+#                 '-date')[:4]
+#             sup = Supplier.objects.all()
+#             count = sup.count()
+#             context = {
+#                 'mp': sqlmp,
+#                 'wp': sqlwp,
+#                 'mcp': sqlmcp,
+#                 'bp': sqlbp,
+#                 'mkp': sqlmkp,
+#                 'mka': sqlmka,
+#                 "mkh": sqlmkh,
+#             }
+#             templates = 'index.html'
+#             return render(request, templates, context)
+#         else:
+#             try:
+#                 sqlmp = Product.objects.filter(category="men").order_by(
+#                     '-date')[:4]
+#                 sqlwp = Product.objects.filter(category="women").order_by(
+#                     '-date')[:4]
+#                 sqlmcp = Product.objects.filter(category="men_acc").order_by(
+#                     '-date')[:4]
+#                 sqlbp = Product.objects.filter(category="beads").order_by(
+#                     '-date')[:4]
+#                 sqlmka = Product.objects.filter(category="makeupArtist").order_by(
+#                     '-date')[:4]
+#                 sqlmkh = Product.objects.filter(category="hairstyle").order_by(
+#                     '-date')[:4]
+#                 sup = Supplier.objects.all()
+#
+#             except:
+#                 sqlmp = None
+#                 sqlwp = None
+#                 sqlmcp = None
+#                 sqlbp = None
+#                 sqlmka = None
+#                 sqlmkh = None
+#                 sup = None
+#             cout = sup.count()
+#             cout = 20 + cout
+#             if sqlmp or sqlbp or sqlmcp or sqlwp or sqlmka or sqlmkh:
+#                 context = {
+#                     'mp': sqlmp,
+#                     'wp': sqlwp,
+#                     'mcp': sqlmcp,
+#                     'bp': sqlbp,
+#                     'mka': sqlmka,
+#                     'mkh': sqlmkh,
+#                     'ct': cout,
+#                 }
+#                 templates = 'index.html'
+#                 return render(request, templates, context)
+#             else:
+#                 context = locals()
+#                 templates = 'index.html'
+#                 return render(request, templates, context)
+
 def index(request):
     assert isinstance(request, HttpRequest)
     if request.method == 'GET':
-        if 'Email' in request.session:
-            sqlmp = Product.objects.filter(category="men").order_by(
-                '-date')[:4]
-            sqlwp = Product.objects.filter(category="women").order_by(
-                '-date')[:4]
-            sqlmcp = Product.objects.filter(category="men_acc").order_by(
-                '-date')[:4]
-            sqlbp = Product.objects.filter(category="beads").order_by(
-                '-date')[:4]
-            sqlmkp = Product.objects.filter(category="makeup").order_by(
-                '-date')[:4]
-            sqlmka = Product.objects.filter(category="makeupArtist").order_by(
-                '-date')[:4]
-            sqlmkh = Product.objects.filter(category="hairstyle").order_by(
-                '-date')[:4]
-            sup = Supplier.objects.all()
-            count = sup.count()
+        display = Product.objects.all().order_by(
+            '-date')[:20]
+        if display:
             context = {
-                'mp': sqlmp,
-                'wp': sqlwp,
-                'mcp': sqlmcp,
-                'bp': sqlbp,
-                'mkp': sqlmkp,
-                'mka': sqlmka,
-                "mkh": sqlmkh,
+                'dis': display,
             }
             templates = 'index.html'
             return render(request, templates, context)
         else:
-            try:
-                sqlmp = Product.objects.filter(category="men").order_by(
-                    '-date')[:4]
-                sqlwp = Product.objects.filter(category="women").order_by(
-                    '-date')[:4]
-                sqlmcp = Product.objects.filter(category="men_acc").order_by(
-                    '-date')[:4]
-                sqlbp = Product.objects.filter(category="beads").order_by(
-                    '-date')[:4]
-                sqlmka = Product.objects.filter(category="makeupArtist").order_by(
-                    '-date')[:4]
-                sqlmkh = Product.objects.filter(category="hairstyle").order_by(
-                    '-date')[:4]
-                sup = Supplier.objects.all()
+            context = {
+                'dat': "No availabe Product",
+            }
+            templates = 'index.html'
+            return render(request, templates, context)
 
-            except:
-                sqlmp = None
-                sqlwp = None
-                sqlmcp = None
-                sqlbp = None
-                sqlmka = None
-                sqlmkh = None
-                sup = None
-            cout = sup.count()
-            cout = 20 + cout
-            if sqlmp or sqlbp or sqlmcp  or sqlwp or sqlmka or sqlmkh:
-                context = {
-                    'mp': sqlmp,
-                    'wp': sqlwp,
-                    'mcp': sqlmcp,
-                    'bp': sqlbp,
-                    'mka': sqlmka,
-                    'mkh': sqlmkh,
-                    'ct': cout,
-                }
-                templates = 'index.html'
-                return render(request, templates, context)
-            else:
-                context = locals()
-                templates = 'index.html'
-                return render(request, templates, context)
 
+def det(request, d_id):
+    assert isinstance(request, HttpRequest)
+    if request.method == 'GET':
+        details = Product.objects.get(id=d_id)
+        name = details.supp_user.username
+        del_details = Product.objects.filter(supp_user__username=name).order_by('-date')[:2]
+        if details:
+            name = details.supp_user.username
+            context = {
+                'del': details,
+                'ses': name,
+                'del2': del_details,
+            }
+            templates = 'det.html'
+            return render(request, templates, context)
+        else:
+            context = {
+                'msg': "Error",
+            }
+            return redirect('/', context)
 
 def f_details(request, women_id):
     assert isinstance(request, HttpRequest)
@@ -101,7 +140,6 @@ def f_details(request, women_id):
             }
             template = 'f_details.html'
             return render(request, template, context)
-
 
 def women(request):
     assert isinstance(request, HttpRequest)
@@ -143,434 +181,237 @@ def women(request):
                 template = 'women.html'
                 return render(request, template, context)
 
-
 def beads(request):
     assert isinstance(request, HttpRequest)
     if request.method == 'GET':
-        if 'Email' in request.session:
-            email = request.session['Email']
-            try:
-                sqlbp = Product.objects.filter(category='beads')
-            except:
-                sqlbp = None
-            if sqlbp:
-                context = {
-                    'bp': sqlbp,
-                    'mail': email,
-                }
-                template = 'beads.html'
-                return render(request, template, context)
-            else:
-                context = {
-                    'msg': "No stock available",
-                }
-                template = 'beads.html'
-                return render(request, template, context)
-        else:
-            try:
-                sqlbp = Product.objects.filter(category='beads')
-            except:
-                sqlbp = None
-            if sqlbp:
-                context = {
-                    'bp': sqlbp,
-                }
-                template = 'beads.html'
-                return render(request, template, context)
-            else:
-                context = {
-                    'msg': "No stock available",
-                }
-                template = 'beads.html'
-                return render(request, template, context)
-
-
-def makeup(request):
-    assert isinstance(request, HttpRequest)
-    if request.method == 'GET':
-        if 'Email' in request.session:
-            email = request.session['Email']
-            try:
-                sqlmkp = Product.objects.filter(category='makeup')
-            except:
-                sqlmkp = None
-            if sqlmkp:
-                context = {
-                    'mkp': sqlmkp,
-                    'mail': email,
-                }
-                template = 'makeup.html'
-                return render(request, template, context)
-            else:
-                context = {
-                    'msg': "No stock available",
-                }
-                template = 'makeup.html'
-                return render(request, template, context)
-        else:
-            try:
-                sqlmkp = Product.objects.filter(category='makeup')
-            except:
-                sqlmkp = None
-            if sqlmkp:
-                context = {
-                    'mkp': sqlmkp,
-                }
-                template = 'makeup.html'
-                return render(request, template, context)
-            else:
-                context = {
-                    'msg': "No stock available",
-                }
-                template = 'makeup.html'
-                return render(request, template, context)
-
-
-def makeup_artist(request):
-    assert isinstance(request, HttpRequest)
-    if request.method == 'GET':
-        if 'Email' in request.session:
-            email = request.session['Email']
-            try:
-                sqlmkp = Product.objects.filter(category='makeupArtist')
-            except:
-                sqlmkp = None
-            if sqlmkp:
-                context = {
-                    'mka': sqlmkp,
-                    'mail': email,
-                }
-                template = 'makeup_artist.html'
-                return render(request, template, context)
-            else:
-                context = {
-                    'msg': "No stock available",
-                }
-                template = 'makeup_artist.html'
-                return render(request, template, context)
-        else:
-            try:
-                sqlmkp = Product.objects.filter(category='makeupArtist')
-            except:
-                sqlmkp = None
-            if sqlmkp:
-                context = {
-                    'mka': sqlmkp,
-                }
-                template = 'makeup_artist.html'
-                return render(request, template, context)
-            else:
-                context = {
-                    'msg': "No stock available",
-                }
-                template = 'makeup_artist.html'
-                return render(request, template, context)
-
-
-def stylist(request):
-    assert isinstance(request, HttpRequest)
-    if request.method == 'GET':
-        if 'Email' in request.session:
-            email = request.session['Email']
-            try:
-                sqlmkp = Product.objects.filter(category='hairstyle')
-            except:
-                sqlmkp = None
-            if sqlmkp:
-                context = {
-                    'mks': sqlmkp,
-                    'mail': email,
-                }
-                template = 'stylist.html'
-                return render(request, template, context)
-            else:
-                context = {
-                    'msg': "No stock available",
-                }
-                template = 'stylist.html'
-                return render(request, template, context)
-        else:
-            try:
-                sqlmkp = Product.objects.filter(category='hairstyle')
-            except:
-                sqlmkp = None
-            if sqlmkp:
-                context = {
-                    'mks': sqlmkp,
-                }
-                template = 'stylist.html'
-                return render(request, template, context)
-            else:
-                context = {
-                    'msg': "No stock available",
-                }
-                template = 'stylist.html'
-                return render(request, template, context)
-
-
-def men(request):
-    assert isinstance(request, HttpRequest)
-    if request.method == 'GET':
-        if 'Email' in request.session:
-            email = request.session['Email']
-            try:
-                sqlmp = Product.objects.filter(category="men")
-            except:
-                sqlmp = None
-            if sqlmp:
-                context = {
-                    'mp': sqlmp,
-                    'mail': email,
-                }
-                template = 'men.html'
-                return render(request, template, context)
-            else:
-                context = {
-                    'msg': "No stock available",
-                }
-                template = 'men.html'
-                return render(request, template, context)
-        else:
-            try:
-                sqlmp = Product.objects.filter(category="men")
-            except:
-                sqlmp = None
-            if sqlmp:
-                context = {
-                    'mp': sqlmp,
-                }
-                template = 'men.html'
-                return render(request, template, context)
-            else:
-                context = {
-                    'msg': "No stock available",
-                }
-                template = 'men.html'
-                return render(request, template, context)
-
-
-def men_acc(request):
-    assert isinstance(request, HttpRequest)
-    if request.method == 'GET':
-        if 'Email' in request.session:
-            email = request.session['Email']
-            try:
-                sqlmcp = Product.objects.filter(category='men_acc')
-            except:
-                sqlmcp = None
-            if sqlmcp:
-                context = {
-                    'mcp': sqlmcp,
-                    'mail': email,
-                }
-                template = 'men_acc.html'
-                return render(request, template, context)
-            else:
-                context = {
-                    'msg': "No stock available",
-                }
-                template = 'men_acc.html'
-                return render(request, template, context)
-        else:
-            try:
-                sqlmcp = Product.objects.filter(category='men_acc')
-            except:
-                sqlmcp = None
-            if sqlmcp:
-                context = {
-                    'mcp': sqlmcp,
-                }
-                template = 'men_acc.html'
-                return render(request, template, context)
-            else:
-                context = {
-                    'msg': "No stock available",
-                }
-                template = 'men_acc.html'
-                return render(request, template, context)
-
-
-def acc_details(request, acc_id):
-    assert isinstance(request, HttpRequest)
-    if request.method == 'GET':
-        sql = Product.objects.get(id=acc_id)
-        name = sql.username
-        sql2 = Product.objects.filter(username=name).order_by('-date')[:4]
-        if sql:
+        try:
+            sqlbp = Product.objects.filter(category='Beads')
+        except:
+            sqlbp = None
+        if sqlbp:
             context = {
-                'sql1': sql,
-                'menacc': sql2,
-                'ses': name,
+                'bp': sqlbp,
             }
-            template = 'acc_details.html'
-            return render(request, template, context)
-        else:
-            context = {'msg': "No stock available", }
-            template = 'm_details.html'
-            return render(request, template, context)
-
-
-def m_details(request, men_id):
-    assert isinstance(request, HttpRequest)
-    if request.method == 'GET':
-        sql = Product.objects.get(id=men_id)
-        name = sql.username
-        sql2 = Product.objects.filter(username=name).order_by('-date')[:4]
-        if sql:
-            context = {
-                'sql1': sql,
-                'rel': sql2,
-                'ses': name,
-            }
-            template = 'm_details.html'
-            return render(request, template, context)
-        else:
-            context = {'msg': "No stock available", }
-            template = 'm_details.html'
-            return render(request, template, context)
-
-
-def r_beads(request, bead_id):
-    assert isinstance(request, HttpRequest)
-    if request.method == 'GET':
-        sql = Product.objects.get(id=bead_id)
-        name = sql.username
-        request.session['supp'] = name
-        sql3 = Product.objects.filter(username=name).order_by('-date')[:2]
-        if sql:
-            context = {
-                'sql1': sql,
-                'bead': sql3,
-                'ses': name,
-            }
-            template = 'r_beads.html'
+            template = 'beads.html'
             return render(request, template, context)
         else:
             context = {
                 'msg': "No stock available",
             }
-            template = 'r_beads.html'
+            template = 'beads.html'
             return render(request, template, context)
 
-
-# def p_makeup(request, make_id):
-#     sql = Product.objects.get(id=make_id)
-#     sql2 = Product.objects.filter(category="makeup", status="Platinum").order_by('-date')[:4]
-#     email = None
-#     if sql:
-#         context = {
-#             'sql1': sql,
-#             'rel': sql2,
-#             'e': email,
-#         }
-#         template = 'p_makeup.html'
-#         return render(request, template, context)
-#     else:
-#         context = {
-#             'msg': "No stock available",
-#         }
-#         template = 'p_makeup.html'
-#         return render(request, template, context)
-
-
-def a_makeup(request, art_id):
+def bags(request):
     assert isinstance(request, HttpRequest)
     if request.method == 'GET':
-        sql = Product.objects.get(id=art_id)
-        name = sql.username
-        sql3 = Product.objects.filter(username=name).order_by('-date')[:4]
-        if sql:
+        try:
+            sqlbp = Product.objects.filter(category='Bags')
+        except:
+            sqlbp = None
+        if sqlbp:
             context = {
-                'sql1': sql,
-                'rel': sql3,
-                'ses': name,
+                'bp': sqlbp,
             }
-            template = 'a_makeup.html'
+            template = 'Bags.html'
             return render(request, template, context)
         else:
             context = {
                 'msg': "No stock available",
             }
-            template = 'a_makeup.html'
+            template = 'Bags.html'
             return render(request, template, context)
 
-
-def d_stylist(request, sty_id):
+def clothing(request):
     assert isinstance(request, HttpRequest)
     if request.method == 'GET':
-        sql = Product.objects.get(id=sty_id)
-        name = sql.username
-        sql2 = Product.objects.filter(username=name).order_by('-date')[:4]
-        if sql:
+        try:
+            sqlbp = Product.objects.filter(category='Clothing')
+        except:
+            sqlbp = None
+        if sqlbp:
             context = {
-                'sql1': sql,
-                'rel': sql2,
-                'ses': name,
+                'bp': sqlbp,
             }
-            template = 'd_stylist.html'
+            template = 'clothing.html'
             return render(request, template, context)
         else:
             context = {
                 'msg': "No stock available",
             }
-            template = 'd_stylist.html'
+            template = 'clothing.html'
             return render(request, template, context)
 
+def hairstylist(request):
+    assert isinstance(request, HttpRequest)
+    if request.method == 'GET':
+        try:
+            sqlbp = Product.objects.filter(category='Hairstylist')
+        except:
+            sqlbp = None
+        if sqlbp:
+            context = {
+                'bp': sqlbp,
+            }
+            template = 'Hairstylist.html'
+            return render(request, template, context)
+        else:
+            context = {
+                'msg': "No stock available",
+            }
+            template = 'Hairstylist.html'
+            return render(request, template, context)
+
+def jewelry(request):
+    assert isinstance(request, HttpRequest)
+    if request.method == 'GET':
+        try:
+            sqlbp = Product.objects.filter(category='Hairstylist')
+        except:
+            sqlbp = None
+        if sqlbp:
+            context = {
+                'bp': sqlbp,
+            }
+            template = 'Jewelry.html'
+            return render(request, template, context)
+        else:
+            context = {
+                'msg': "No stock available",
+            }
+            template = 'Jewelry.html'
+            return render(request, template, context)
+
+def makeupArtist(request):
+    assert isinstance(request, HttpRequest)
+    if request.method == 'GET':
+        try:
+            sqlbp = Product.objects.filter(category='MakeupArtist')
+        except:
+            sqlbp = None
+        if sqlbp:
+            context = {
+                'bp': sqlbp,
+            }
+            template = 'MakeupArtist.html'
+            return render(request, template, context)
+        else:
+            context = {
+                'msg': "No stock available",
+            }
+            template = 'MakeupArtist.html'
+            return render(request, template, context)
+
+def shoes(request):
+    assert isinstance(request, HttpRequest)
+    if request.method == 'GET':
+        try:
+            sqlbp = Product.objects.filter(category='Shoes')
+        except:
+            sqlbp = None
+        if sqlbp:
+            context = {
+                'bp': sqlbp,
+            }
+            template = 'Shoes.html'
+            return render(request, template, context)
+        else:
+            context = {
+                'msg': "No stock available",
+            }
+            template = 'Shoes.html'
+            return render(request, template, context)
+
+def watches(request):
+    assert isinstance(request, HttpRequest)
+    if request.method == 'GET':
+        try:
+            sqlbp = Product.objects.filter(category='Watches')
+        except:
+            sqlbp = None
+        if sqlbp:
+            context = {
+                'bp': sqlbp,
+            }
+            template = 'Watches.html'
+            return render(request, template, context)
+        else:
+            context = {
+                'msg': "No stock available",
+            }
+            template = 'Watches.html'
+            return render(request, template, context)
+
+def weddingwears(request):
+    assert isinstance(request, HttpRequest)
+    if request.method == 'GET':
+        try:
+            sqlbp = Product.objects.filter(category='WeddingWears')
+        except:
+            sqlbp = None
+        if sqlbp:
+            context = {
+                'bp': sqlbp,
+            }
+            template = 'WeddingWears.html'
+            return render(request, template, context)
+        else:
+            context = {
+                'msg': "No stock available",
+            }
+            template = 'WeddingWears.html'
+            return render(request, template, context)
 
 def store(request, user):
     assert isinstance(request, HttpRequest)
     if request.method == 'GET':
-        prof = Product.objects.filter(username=user)
-        supp_name = user
-        if prof:
+        try:
+            prof = Product.objects.filter(supp_user__username=user)
+            aseet = Supplier.objects.get(username=user)
+            supp_name = user
+        except:
+            prof = None
+            aseet = None
+            supp_name = None
+
+        if prof and aseet:
             context = {
                 'rst': prof,
                 'name': supp_name,
+                'hmm': aseet,
             }
             templates = 'store.html'
             return render(request, templates, context)
         else:
             context = {
-                'rst': "No Search Query",
+                'error': "Store doesn't Exist,Kindly check your username",
             }
             templates = 'store.html'
             return render(request, templates, context)
 
 
-# def shop(request, user , user_id):
-#     assert isinstance(request, HttpRequest)
-#     if request.method == 'GET':
-#         prof = Product.objects.filter(username=user)
-#         supp_name = user
-#         if prof:
-#             context = {
-#                 'rst': prof,
-#                 'name': supp_name,
-#             }
-#             templates = 'store.html'
-#             return render(request, templates, context)
-#         else:
-#             context = {
-#                 'rst': "No Search Query",
-#             }
-#             templates = 'store.html'
-#             return render(request, templates, context)
-
 def shop(request, user, user_id):
     assert isinstance(request, HttpRequest)
     if request.method == 'GET':
-        prof = Product.objects.get(id=user_id)
-        supp_name = user
-        if prof:
+        try:
+            prof = Product.objects.get(id=user_id)
+            supp_name = user
+            aseet = Supplier.objects.get(username=user)
+        except:
+            prof = None
+            aseet = None
+            supp_name = None
+
+        if prof and aseet:
             context = {
                 'sql1': prof,
                 'name': supp_name,
+                'hmm': aseet,
             }
             templates = 'shop.html'
             return render(request, templates, context)
         else:
             context = {
-                'sql1': "No Search Query",
+                'sql': "Oops Invalid Store name,Kindly Check your store name",
             }
             templates = 'shop.html'
             return render(request, templates, context)
@@ -1280,7 +1121,7 @@ def dashboard(request):
                 #             template = 'dashboard.html'
                 #             return render(request, template, context)
                 #     else:
-            em = request.session['email']
+            em = request.session['user']
             if info:
                 context = {
                     'read': info,
@@ -1349,6 +1190,7 @@ def supplier_log(request):
                 templates = 'dashboard.html'
                 request.session['userid'] = sql.id
                 request.session['email'] = sql.Email
+                request.session['user'] = sql.username
                 print(sql.password)
                 return render(request, templates, context)
             else:
@@ -1372,12 +1214,12 @@ def subscription(request):
     assert isinstance(request, HttpRequest)
     if request.method == 'GET':
         if 'email' in request.session:
-            em = request.session['email']
+            em = request.session['user']
             try:
-                stat = packages.objects.get(supp_user__Email=request.session['email'])
+                stat = Supplier.objects.get(Email=request.session['email'])
             except:
                 stat = None
-            if stat:
+            if stat.status is not None:
                 context = {
                     'email': em,
                     'lo': stat.status,
@@ -1395,34 +1237,23 @@ def subscription(request):
     elif request.method == 'POST':
         if 'email' in request.session:
             t_pack = request.POST.get('pack')
-            pack = packages()
+            pack = Supplier.objects.get(Email=request.session['email'])
             trans = transaction()
             em = request.session['email']
+            uem = request.session['user']
             if t_pack == 'Free':
                 sub_price = 0
                 sub_stat = 'Free'
-                try:
-                    stat = Supplier.objects.get(Email=em)
-                except:
-                    stat = None
-                if stat:
-                    pack.status = sub_stat
-                    pack.prices = sub_price
-                    pack.supp_user = stat
-                    pack.save()
-                    em = request.session['email']
-                    context = {
-                        'email': em,
-                        'msg': "You have successfully subscribe for free package,Your next subscription is in the next 6months",
-                    }
-                    template = 'subscription.html'
-                    return render(request, template, context)
-                else:
-                    context = {
-                        'msg': "Subscription not successful! Try Again Later",
-                    }
-                    template = 'subscription.html'
-                    return render(request, template, context)
+                pack.status = sub_stat
+                pack.prices = sub_price
+                pack.save()
+                em = request.session['user']
+                context = {
+                    'email': em,
+                    'msg': "You have successfully subscribe for free package,Your next subscription is in the next 6months",
+                }
+                template = 'subscription.html'
+                return render(request, template, context)
             elif t_pack == 'Silver':
                 if request.FILES['image1']:
                     sub_bank = request.POST.get('silver2')
@@ -1431,7 +1262,6 @@ def subscription(request):
                     sub_stat = t_pack
                     stat = Supplier.objects.get(Email=em)
                     if sub_price == '500':
-                        pack.supp_user = stat
                         pack.prices = sub_price
                         pack.status = sub_stat
                         trans.supp_user = stat
@@ -1440,21 +1270,21 @@ def subscription(request):
                         trans.save()
                         pack.save()
                         context = {
-                            'email': em,
+                            'email': uem,
                             'msg': "You have successfully subscribe for Silver package,You will Recieved an email of Confirmation.Your next subscription is in the next 6months.Thank",
                         }
                         template = 'subscription.html'
                         return render(request, template, context)
                     else:
                         context = {
-                            'email': em,
+                            'email': uem,
                             'msg': "Invalid amount,Kindly input the correct amount e.g 500",
                         }
                         template = 'subscription.html'
                         return render(request, template, context)
                 else:
                     context = {
-                        'email': em,
+                        'email': uem,
                         'msg': "Kindly Upload A Valid Image",
                     }
                     template = 'subscription.html'
@@ -1467,7 +1297,6 @@ def subscription(request):
                     sub_stat = t_pack
                     stat = Supplier.objects.get(Email=em)
                     if sub_price == '1000':
-                        pack.supp_user = stat
                         pack.prices = sub_price
                         pack.status = sub_stat
                         trans.supp_user = stat
@@ -1476,21 +1305,21 @@ def subscription(request):
                         trans.save()
                         pack.save()
                         context = {
-                            'email': em,
+                            'email': uem,
                             'msg': "You have successfully subscribe for Gold package,You will Recieved an email of Confirmation,Your next subscription is in the next 6months.Thank",
                         }
                         template = 'subscription.html'
                         return render(request, template, context)
                     else:
                         context = {
-                            'email': em,
+                            'email': uem,
                             'msg': "Invalid amount,Kindly input the correct amount e.g 1000",
                         }
                         template = 'subscription.html'
                         return render(request, template, context)
                 else:
                     context = {
-                        'email': em,
+                        'email': uem,
                         'msg': "Kindly Upload A Valid Image",
                     }
                     template = 'subscription.html'
@@ -1503,7 +1332,6 @@ def subscription(request):
                     sub_stat = t_pack
                     stat = Supplier.objects.get(Email=em)
                     if sub_price == '1500':
-                        pack.supp_user = stat
                         pack.prices = sub_price
                         pack.status = sub_stat
                         trans.supp_user = stat
@@ -1512,21 +1340,21 @@ def subscription(request):
                         trans.save()
                         pack.save()
                         context = {
-                            'email': em,
+                            'email': uem,
                             'msg': "You have successfully subscribe for Platinum package,You will Recieved an email of Confirmation,Your next subscription is in the next 6months.Thank",
                         }
                         template = 'subscription.html'
                         return render(request, template, context)
                     else:
                         context = {
-                            'email': em,
+                            'email': uem,
                             'msg': "Invalid amount,Kindly input the correct amount e.g 1500",
                         }
                         template = 'subscription.html'
                         return render(request, template, context)
                 else:
                     context = {
-                        'email': em,
+                        'email': uem,
                         'msg': "Kindly Upload A Valid Image",
                     }
                     template = 'subscription.html'
@@ -1540,19 +1368,15 @@ def Ads(request):
         if 'email' in request.session:
             supp_id = request.session['userid']
             mail = request.session['email']
-            try:
-                stat = packages.objects.get(supp_user__Email=mail)
-                cout = Supp_Ads.objects.filter(supp_user__Email=mail)
-            except:
-                stat = None
-                cout = None
+            user = request.session['user']
+            stat = Supplier.objects.get(username=user)
+            cout = Product.objects.filter(supp_user__Email=mail)
             if stat is not None:
                 if stat.status == "Free":
                     if cout.count() != 5:
                         remainder = cout.count()
-                        print(remainder)
                         context = {
-                            'email': mail,
+                            'email': user,
                             'val': "Valid",
                             'rem': remainder,
                         }
@@ -1560,7 +1384,7 @@ def Ads(request):
                         return render(request, templates, context)
                     else:
                         context = {
-                            'email': mail,
+                            'email': user,
                             'fail': "You have exceeded the maximun number to be submited on Free packages",
                         }
                         templates = "Ads.html"
@@ -1569,7 +1393,7 @@ def Ads(request):
                     if cout.count() != 15:
                         remainder = cout.count()
                         context = {
-                            'email': mail,
+                            'email': user,
                             'val': "Valid",
                             'srem': remainder,
                         }
@@ -1577,7 +1401,7 @@ def Ads(request):
                         return render(request, templates, context)
                     else:
                         context = {
-                            'email': mail,
+                            'email': user,
                             'fail': "You have exceeded the maximun number to be submited on Silver package,Kindly Upgrade",
                         }
                         templates = "Ads.html"
@@ -1586,7 +1410,7 @@ def Ads(request):
                     if cout.count() != 25:
                         remainder = cout.count()
                         context = {
-                            'email': mail,
+                            'email': user,
                             'val': "Valid",
                             'grem': remainder,
                         }
@@ -1594,7 +1418,7 @@ def Ads(request):
                         return render(request, templates, context)
                     else:
                         context = {
-                            'email': mail,
+                            'email': user,
                             'fail': "You have exceeded the maximun number to be submited on Gold package,Kindly Upgrade",
                         }
                         templates = "Ads.html"
@@ -1603,7 +1427,7 @@ def Ads(request):
                     if cout.count() != 35:
                         remainder = cout.count()
                         context = {
-                            'email': mail,
+                            'email': user,
                             'val': "Valid",
                             'prem': remainder,
                         }
@@ -1611,14 +1435,14 @@ def Ads(request):
                         return render(request, templates, context)
                     else:
                         context = {
-                            'email': mail,
+                            'email': user,
                             'fail': "You have exceeded the maximun number to be submited on Platinum package,Kindly Order for package renewal",
                         }
                         templates = "Ads.html"
                         return render(request, templates, context)
             else:
                 context = {
-                    'email': mail,
+                    'email': user,
                     'msg': "Yet to subscribe to any packages ,Click to subscribe",
                 }
                 templates = "Ads.html"
@@ -1631,15 +1455,13 @@ def Ads(request):
             mail = request.session['email']
             if request.FILES['image1'] or request.FILES['image2'] or request.FILES['image3']:
                 stat = Supplier.objects.get(Email=request.session['email'])
-                pack = packages.objects.get(supp_user__Email=request.session['email'])
-                packss = pack.status
-                rst = Supp_Ads()
+                rst = Product()
                 rst.supp_user = stat
-                rst.stats = packss
                 rst.price = request.POST.get('price')
                 rst.product_name = request.POST.get('product_name')
                 rst.category = request.POST.get('category')
                 rst.color = request.POST.get('color')
+                rst.text = request.POST.get('wtext')
                 rst.size = request.POST.get('size')
                 rst.descrip = request.POST.get('descrip')
                 rst.image1 = request.FILES['image1']
@@ -1663,20 +1485,153 @@ def Ads(request):
             return redirect('/Ads/')
 
 
+def views_ads(request):
+    if request.method == 'GET':
+        if 'user' in request.session:
+            view = Product.objects.filter(supp_user__username=request.session['user'])
+            em = request.session['user']
+            if view:
+                context = {
+                    'email': em,
+                    'v': view,
+                }
+                templates = 'views_ads.html'
+                return render(request, templates, context)
+            else:
+                context = {
+                    'email': em,
+                }
+                templates = 'views_ads.html'
+                return render(request, templates, context)
+
+
+def editads(request, edit_id):
+    if request.method == 'POST':
+        if 'user' in request.session:
+            em = request.session['user']
+            rst = Product.objects.get(id=edit_id)
+            rst.price = request.POST.get('price')
+            rst.product_name = request.POST.get('product_name')
+            rst.category = request.POST.get('category')
+            rst.color = request.POST.get('color')
+            rst.text = request.POST.get('wtext')
+            rst.size = request.POST.get('size')
+            rst.descrip = request.POST.get('descrip')
+            rst.save()
+            vi = Product.objects.filter(supp_user__username=request.session['user'])
+            context = {
+                'email': em,
+                'v': vi,
+                'succes': "Products Updated Successfully",
+            }
+            templates = "views_ads.html"
+            return render(request, templates, context)
+
+
+def prod(request, del_id):
+    if request.method == 'GET':
+        rst = Product.objects.get(id=del_id)
+        rst.delete()
+        em = request.session['user']
+        vi = Product.objects.filter(supp_user__username=request.session['user'])
+        context = {
+            'v': vi,
+            'email': em,
+            'succes': "Product Successfully deleted",
+        }
+        templates = 'views_ads.html'
+        return render(request, templates, context)
+
+
 def supplier_prof(request):
     assert isinstance(request, HttpRequest)
     if request.method == 'GET':
         if 'email' in request.session:
             prof = Supplier.objects.get(Email=request.session['email'])
-            email = request.session['email']
+            em = request.session['user']
             context = {
                 'profile': prof,
-                'mail': email,
+                'email': em,
             }
             templates = 'supplier_prof.html'
             return render(request, templates, context)
         else:
             return redirect('/supplier_log/')
+    if request.method == 'POST':
+        if 'email' in request.session:
+            doc_user = request.session['user']
+            prof = Supplier.objects.get(Email=request.session['email'])
+            doc_sel = request.POST.get('selector')
+            if doc_sel == "picture":
+                doc_image = request.FILES['image']
+                if doc_image:
+                    try:
+                        d = Supplier.objects.get(username=doc_user)
+                    except:
+                        d = None
+                    if d:
+                        d.image = doc_image
+                        d.save()
+                        print('am here')
+                        context = {
+                            'msg': "image uploaded successfully",
+                            'profile': prof,
+                            'email': doc_user,
+                        }
+                        return redirect('/supplier_prof/', context)
+                    else:
+                        context = {
+                            'msg': "image uploaded not successful",
+                            'profile': prof,
+                        }
+                        return redirect('/supplier_prof/', context)
+            elif doc_sel == "profile":
+                doc_fname = request.POST.get('name')
+                doc_email = request.POST.get('email')
+                doc_gender = request.POST.get('gender')
+                doc_phone = request.POST.get('phone')
+                doc_state = request.POST.get('state')
+                doc_local = request.POST.get('local')
+                doc_address = request.POST.get('address')
+                try:
+                    d = Supplier.objects.get(username=doc_user)
+                except:
+                    d = None
+                if d:
+                    d.name = doc_fname
+                    d.Email = doc_email
+                    d.Phone = doc_phone
+                    d.address = doc_address
+                    d.state = doc_state
+                    d.location = doc_local
+                    d.gender = doc_gender
+                    d.save()
+                    print('am here')
+                    context = {
+                        'msg': "Profile successfully Updated",
+                        'profile': prof,
+                        'email': doc_user,
+                    }
+                    templates = 'supplier_prof.html'
+                    return render(request, templates, context)
+                else:
+                    context = {
+                        'msg': "Profile Update not successful",
+                        'profile': prof,
+                        'email': doc_user,
+                    }
+                    templates = 'supplier_prof.html'
+                    return render(request, templates, context)
+        else:
+            prof = Supplier.objects.get(username=request.session['user'])
+            doc_user = request.session['user']
+            context = {
+                'msg': "Image can't be empty",
+                'profile': prof,
+                'email': doc_user,
+            }
+            templates = 'supplier_prof.html'
+            return render(request, templates, context)
 
 
 def forget_pass(request):
@@ -1748,16 +1703,18 @@ def complains(request):
                 rst = chat.objects.filter(Email=request.session['email'])
             except:
                 rst = None
+            em = request.session['user']
             if rst:
-                mail = request.session['email']
+
                 context = {
                     'msg': rst,
-                    'email': mail,
+                    'email': em,
                 }
                 templates = 'complains.html'
                 return render(request, templates, context)
             else:
                 context = {
+                    'email': em,
                     'msgs': "No Message",
                 }
                 templates = 'complains.html'
@@ -1771,7 +1728,7 @@ def complains(request):
                 em = Supplier.objects.get(Email=request.session['email'])
             except:
                 em = None
-            mail = request.session['email']
+            mail = request.session['user']
             if em:
                 com.supp_user = em
                 com.full_com = com_full
@@ -1784,7 +1741,7 @@ def complains(request):
                 templates = 'complains.html'
                 return render(request, templates, context)
             else:
-                mail = request.session['email']
+                mail = request.session['user']
                 context = {
                     'email': mail,
                     'twps': "Error in sending Complains / Feedback submitted,Try Again!!!",

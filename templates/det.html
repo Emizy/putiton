@@ -5,30 +5,29 @@
 {% endblock %}
 
 {% block content %}
-    {% if not sql %}
     <div class="container">
         <div class="row">
             <div class="col-md-6">
                 <br>
                 <br>
                 <div class="w3-content w3-card w3-round" style="max-width:250px;padding: 0em;background-color: white;">
-                    <img class="mySlides" src="{{ sql1.image1.url }}" style="width: 250px;height: 250px;">
-                    <img class="mySlides" src="{{ sql1.image2.url }}" style="width: 250px;height: 250px;">
-                    <img class="mySlides" src="{{ sql1.image3.url }}" style="width: 250px;height: 250px;">
+                    <img class="mySlides" src="{{ del.image1.url }}" style="width: 250px;height: 250px;">
+                    <img class="mySlides" src="{{ del.image2.url }}" style="width: 250px;height: 250px;">
+                    <img class="mySlides" src="{{ del.image3.url }}" style="width: 250px;height: 250px;">
 
                     <div class="w3-row-padding w3-section">
                         <div class="w3-col s4">
-                            <img class="demo w3-opacity w3-hover-opacity-off" src="{{ sql1.image1.url }}"
+                            <img class="demo w3-opacity w3-hover-opacity-off" src="{{ del.image1.url }}"
                                  style="width:120%;height: 120%;"
                                  onclick="currentDiv(1)">
                         </div>
                         <div class="w3-col s4">
-                            <img class="demo w3-opacity w3-hover-opacity-off" src="{{ sql1.image2.url }}"
+                            <img class="demo w3-opacity w3-hover-opacity-off" src="{{ del.image2.url }}"
                                  style="width:120%;height: 120%;"
                                  onclick="currentDiv(2)">
                         </div>
                         <div class="w3-col s4">
-                            <img class="demo w3-opacity w3-hover-opacity-off" src="{{ sql1.image3.url }}"
+                            <img class="demo w3-opacity w3-hover-opacity-off" src="{{ del.image3.url }}"
                                  style="width:120%;height: 120%;"
                                  onclick="currentDiv(3)">
                         </div>
@@ -71,27 +70,27 @@
             <div class="col-md-6 col-lg-6">
                 <br><br>
                 <div class="single-para simpleCart_shelfItem w3-white w3-padding w3-card w3-round w3-border">
-                    <h3>{{ sql1.product_name }}</h3>
+                    <h3>{{ del.product_name }}</h3>
                     <div class="star-on">
                         <div class="review">
                         </div>
                         <div class="clearfix"></div>
                     </div>
-                    <label class="add-to item_price w3-text-green">#{{ sql1.price }}.00</label>
+                    <label class="add-to item_price w3-text-green">#{{ del.price }}.00</label>
                     {#                    <button onclick="myFunction()" class="w3-button w3-pink w3-hover-pink w3-hover-text-white"#}
                     {#                            style="margin-bottom: 10px;">More details#}
                     {#                    </button>#}
                     <div id="myDIV" style="margin-top: 7px;margin-bottom: 7px;">
                         <h6 style="margin-bottom: 3px;">
-                            <span><strong>Supplier:</strong> {{ sql1.supp_user.company }}</span>
+                            <span><strong>Supplier:</strong> {{ del.supp_user.company }}</span>
                         </h6>
                         <h5 style="margin-bottom: 3px;">
-                            <span><strong>Phone number:</strong> {{ sql1.supp_user.Phone }}</span>
+                            <span><strong>Phone number:</strong> {{ del.supp_user.Phone }}</span>
                         </h5>
                         <h5>
-                            <span><strong>Location:</strong> {{ sql1.supp_user.location }},{{ sql1.supp_user.state }}</span>
+                            <span><strong>Location:</strong> {{ del.supp_user.location }},{{ del.supp_user.state }}</span>
                         </h5>
-                        <h5><span><strong>Description:</strong>{{ sql1.descrip }}</span></h5>
+                        <h5><span><strong>Description:</strong>{{ del.descrip }}</span></h5>
                     </div>
                 </div>
                 <script>
@@ -107,14 +106,14 @@
                 <br>
                 <div class="w3-center">
                     <div class="w3-bar">
-                        <a href="https://api.whatsapp.com/send?phone=234{{ sql1.supp_user.Phone }}&text={{ sql1.text }}"
+                        <a href="https://api.whatsapp.com/send?phone=234{{ del.supp_user.Phone }}&text={{ del.text }}"
                            target="_blank"
                            class="w3-button w3-hover-pink w3-text-pink w3-border w3-border-pink"
                            style="margin-right: 2px;">Contact Via <i
                                 class="fa fa-whatsapp w3-text-green w3-hover-text-green" aria-hidden="true"></i> </a>
                     </div>
                     <div class="w3-bar">
-                        <a href="mailto:{{ sql1.supp_user.Email }}" target="_blank"
+                        <a href="mailto:{{ del.supp_user.Email }}" target="_blank"
                            class="w3-button w3-hover-pink w3-text-pink w3-border w3-border-pink"
                            style="margin-right: 2px;">Contact Via Gmail<i
                                 class="fa fa-google-plus-official" aria-hidden="true"></i> </a>
@@ -129,18 +128,43 @@
     <hr>
     <div class="w3-center">
         <div class="w3-bar w3-border w3-round w3-hover-white w3-hover-text-pink w3-white">
-            <a href="{% url 'store' name %}" class=""><h3 class=" w3-text-pink "
-                                     style="margin-right: 2px;">Go Back To<strong
-                    style="padding-right: 2px;"> {{ sql1.supp_user.company }}</strong> Store </h3></a>
+            <a href="{% url 'store' ses %}" class=""><h3 class=" w3-text-pink "
+                                     style="margin-right: 2px;">View<strong
+                    style="padding-right: 2px;"> {{ del.supp_user.company }}</strong> Store </h3></a>
         </div>
     </div>
     <br>
-    
-<br>
-    {% endif %}
-    {% if sql %}
-        <div class="well w3-red">
-            {{ sql }}
+
+    <div id="hot" class="container h city" >
+        <div class="panel panel-default" style="margin: 0 auto;">
+            <div class="panel-body">
+                <!-- Posts -->
+                <div class="w3-white w3-margin">
+                    <ul class="w3-ul w3-hoverable w3-white">
+                        {% if del2 %}
+                            {% for i in del2 %}
+                                <li class="w3-padding-16">
+                                    <a href="{% url 'det' i.id %}" class="w3-hover-text-black">
+                                        <img src="{{ i.image1.url }}" alt="Image"
+                                             class="w3-left w3-margin-right w3-round img-responsive"
+                                             style="display: block;max-width: 75px;max-height: 60px;width: auto;height: auto;">
+                                        <span class="w3-large">{{ i.product_name }} || #<i
+                                                class="w3-text-green"> {{ i.price }}</i>  </span>
+                                        <br>
+                                        <span class="w3-justify">{{ i.supp_user.company }} || {{ i.date }}</span>
+                                    </a></li>
+                            {% endfor %}
+                        {% endif %}
+                        {% if dat %}
+                            <div class="well w3-pink">
+                                {{ dat }}
+                            </div>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
         </div>
-    {% endif %}
+    </div>
+<br>
+
 {% endblock %}

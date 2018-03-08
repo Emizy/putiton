@@ -7,25 +7,25 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="shortcut icon" href="{% static 'faviconit/favicon.ico' %}">
-    <link rel="icon" sizes="16x16 32x32 64x64" href="{% static 'faviconit/favicon.ico' %}">
-    <link rel="icon" type="image/png" sizes="196x196" href="{% static 'faviconit/favicon-192.png' %}">
-    <link rel="icon" type="image/png" sizes="160x160" href="{% static 'faviconit/favicon-160.png' %}">
-    <link rel="icon" type="image/png" sizes="96x96" href="{% static 'faviconit/favicon-96.png' %}">
-    <link rel="icon" type="image/png" sizes="64x64" href="{% static 'faviconit/favicon-64.png' %}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'faviconit/favicon-32.png' %}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'faviconit/favicon-16.png' %}">
-    <link rel="apple-touch-icon" href="{% static 'faviconit/favicon-57.png' %}">
-    <link rel="apple-touch-icon" sizes="114x114" href="{% static 'faviconit/favicon-114.png' %}">
-    <link rel="apple-touch-icon" sizes="72x72" href="{% static 'faviconit/favicon-72.png' %}">
-    <link rel="apple-touch-icon" sizes="144x144" href="{% static 'faviconit/favicon-144.png' %}">
-    <link rel="apple-touch-icon" sizes="60x60" href="{% static 'faviconit/favicon-60.png' %}">
-    <link rel="apple-touch-icon" sizes="120x120" href="{% static 'faviconit/favicon-120.png' %}">
-    <link rel="apple-touch-icon" sizes="76x76" href="{% static 'faviconit/favicon-76.png' %}">
-    <link rel="apple-touch-icon" sizes="152x152" href="{% static 'faviconit/favicon-152.png' %}">
-    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'faviconit/favicon-180.png' %}">
-    <meta name="msapplication-TileColor" content="#FFFFFF">
-    <meta name="msapplication-TileImage" content="/favicon-144.png">
-    <meta name="msapplication-config" content="/browserconfig.xml">
+<link rel="icon" sizes="16x16 32x32 64x64" href="{% static 'faviconit/favicon.ico' %}">
+<link rel="icon" type="image/png" sizes="196x196" href="{% static 'faviconit/favicon-192.png' %}">
+<link rel="icon" type="image/png" sizes="160x160" href="{% static 'faviconit/favicon-160.png' %}">
+<link rel="icon" type="image/png" sizes="96x96" href="{% static 'faviconit/favicon-96.png' %}">
+<link rel="icon" type="image/png" sizes="64x64" href="{% static 'faviconit/favicon-64.png' %}">
+<link rel="icon" type="image/png" sizes="32x32" href="{% static 'faviconit/favicon-32.png' %}">
+<link rel="icon" type="image/png" sizes="16x16" href="{% static 'faviconit/favicon-16.png' %}">
+<link rel="apple-touch-icon" href="{% static 'faviconit/favicon-57.png' %}">
+<link rel="apple-touch-icon" sizes="114x114" href="{% static 'faviconit/favicon-114.png' %}">
+<link rel="apple-touch-icon" sizes="72x72" href="{% static 'faviconit/favicon-72.png' %}">
+<link rel="apple-touch-icon" sizes="144x144" href="{% static 'faviconit/favicon-144.png' %}">
+<link rel="apple-touch-icon" sizes="60x60" href="{% static 'faviconit/favicon-60.png' %}">
+<link rel="apple-touch-icon" sizes="120x120" href="{% static 'faviconit/favicon-120.png' %}">
+<link rel="apple-touch-icon" sizes="76x76" href="{% static 'faviconit/favicon-76.png' %}">
+<link rel="apple-touch-icon" sizes="152x152" href="{% static 'faviconit/favicon-152.png' %}">
+<link rel="apple-touch-icon" sizes="180x180" href="{% static 'faviconit/favicon-180.png' %}">
+<meta name="msapplication-TileColor" content="#FFFFFF">
+<meta name="msapplication-TileImage" content="/favicon-144.png">
+<meta name="msapplication-config" content="/browserconfig.xml">
 <link href="{% static 'css/bootstrap-3.1.1.min.css' %}" type="text/css" rel="stylesheet" media="all">
 <link rel="stylesheet" href="{% static 'css/w3.css' %}">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
@@ -55,7 +55,7 @@
         </div>
         <div class="w3-col s8 w3-bar">
             <span>Welcome, <strong class="w3-text-pink">{% if email %}
-                {{ email }}
+                <strong style="text-transform: uppercase;">{{ email }}</strong>
             {% endif %}
             </strong></span><br>
             <a href="{% url 'complains' %}" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i></a>
@@ -77,13 +77,20 @@
                 class="fa fa-cog"></i>
             Packages </a>
         <a href="{% url 'Ads' %}" class="w3-bar-item w3-button w3-padding w3-hover-pink w3-hover-text-white"><i
-                class="fa fa-eye fa-fw"></i> Submit Ads </a>
+                class="fa fa-plus-square fa-fw"></i> Submit Ads </a>
+
+        <a href="{% url 'views_ads' %}" class="w3-bar-item w3-button w3-padding w3-hover-pink w3-hover-text-white"><i
+                class="fa fa-eye fa-fw"></i> Views Ads  </a>
+
+        <a href="" class="w3-bar-item w3-button w3-padding w3-hover-pink w3-hover-text-white"><i
+                class="fa fa-smile-o fa-fw"></i> Customize Store  </a>
 
         <a href="{% url 'complains' %}" class="w3-bar-item w3-button w3-padding w3-hover-pink w3-hover-text-white"><i
                 class="fa fa-history fa-fw"></i> Complains </a>
+
         <a href="{% url 'supplier_logout' %}"
            class="w3-bar-item w3-button w3-padding w3-hover-pink w3-hover-text-white"><i
-                class="fa fa-history fa-fw"></i> Log-Out </a>
+                class="fa fa-close fa-fw"></i> Log-Out </a>
     </div>
 </nav>
 

@@ -4,26 +4,66 @@ from django.db import models
 
 # Create your models here.
 
-class Product(models.Model):
-    reviews = models.CharField(max_length=11, blank=True, null=True)
-    text = models.CharField(max_length=100, blank=True, null=True)
-    price = models.IntegerField()
+# class Product(models.Model):
+#     reviews = models.CharField(max_length=11, blank=True, null=True)
+#     text = models.CharField(max_length=100, blank=True, null=True)
+#     price = models.IntegerField()
+#     Email = models.EmailField(null=True, blank=True, max_length=254)
+#     Phone = models.CharField(max_length=20, blank=True, null=True)
+#     product_name = models.CharField(max_length=300)
+#     types = {
+#         ('men', 'men'),
+#         ('women', 'women'),
+#         ('men_acc', 'men_acc'),
+#         ('beads', 'beads'),
+#         ('makeup', 'makeup'),
+#         ('makeupArtist', 'makeupArtist'),
+#         ('hairstyle', 'hairstyle'),
+#     }
+#     category = models.CharField(choices=types, max_length=20, blank=True, null=True)
+#     image1 = models.FileField(null=True, blank=True)
+#     image2 = models.FileField(null=True, blank=True)
+#     image3 = models.FileField(null=True, blank=True)
+#     ch_types = {
+#         ('Free', 'Free'),
+#         ('Silver', 'Silver'),
+#         ('Gold', 'Gold'),
+#         ('Platinum', 'Platinum'),
+#     }
+#     status = models.CharField(choices=ch_types, max_length=20, blank=True, null=True)
+#     supplier = models.CharField(max_length=200, blank=True)
+#     username = models.CharField(max_length=200, blank=True)
+#     color = models.CharField(max_length=200, blank=True)
+#     address = models.TextField(blank=True, null=True)
+#     state = models.CharField(blank=True, null=True, max_length=200)
+#     location = models.CharField(blank=True, null=True, max_length=200)
+#     descrip = models.TextField(blank=True, null=True)
+#     size = models.CharField(max_length=200, blank=True)
+#     date = models.DateTimeField(auto_now_add=True)
+#
+#     # class Meta:
+#     #     verbose_name_plural = "Products"
+#
+#     def __str__(self):
+#         return "%s - %s - %s" % (self.category, self.product_name, self.supplier)
+
+class Supplier(models.Model):
+    name = models.CharField(max_length=200, blank=True, null=True)
     Email = models.EmailField(null=True, blank=True, max_length=254)
-    Phone = models.CharField(max_length=20, blank=True, null=True)
-    product_name = models.CharField(max_length=300)
+    Phone = models.CharField(max_length=11, blank=True, null=True)
+    company = models.CharField(max_length=200, blank=True, null=True)
+    address = models.TextField(blank=True, null=True)
+    offer = models.TextField(blank=True, null=True)
     types = {
-        ('men', 'men'),
-        ('women', 'women'),
-        ('men_acc', 'men_acc'),
-        ('beads', 'beads'),
-        ('makeup', 'makeup'),
-        ('makeupArtist', 'makeupArtist'),
-        ('hairstyle', 'hairstyle'),
+        ('Male', 'Male'),
+        ('Female', 'Female'),
     }
-    category = models.CharField(choices=types, max_length=20, blank=True, null=True)
-    image1 = models.FileField(null=True, blank=True)
-    image2 = models.FileField(null=True, blank=True)
-    image3 = models.FileField(null=True, blank=True)
+    gender = models.CharField(choices=types, max_length=20, blank=True, null=True)
+    username = models.CharField(max_length=200,blank=True, null=True)
+    state = models.CharField(blank=True, null=True, max_length=200)
+    occupation = models.CharField(blank=True, null=True, max_length=200)
+    location = models.CharField(blank=True, null=True, max_length=200)
+    password = models.TextField(blank=True, null=True)
     ch_types = {
         ('Free', 'Free'),
         ('Silver', 'Silver'),
@@ -31,12 +71,38 @@ class Product(models.Model):
         ('Platinum', 'Platinum'),
     }
     status = models.CharField(choices=ch_types, max_length=20, blank=True, null=True)
-    supplier = models.CharField(max_length=200, blank=True)
-    username = models.CharField(max_length=200, blank=True)
+    image = models.FileField(null=True, blank=True)
+    prices = models.CharField(max_length=11, blank=True, null=True)
+
+    def __str__(self):
+        return "%s - %s" % (self.name, self.Email)
+
+    def save(self, *args, **kwargs):
+        if self.pk is None:
+            self.password = createHash(self.password)
+        super(Supplier, self).save(*args, **kwargs)
+
+class Product(models.Model):
+    text = models.CharField(max_length=100, blank=True, null=True)
+    price = models.IntegerField()
+    product_name = models.CharField(max_length=300)
+    types = {
+        ('Bags', 'Bags'),
+        ('Beads', 'Beads'),
+        ('Clothing', 'Clothing'),
+        ('Hairstylist', 'Hairstylist'),
+        ('Jewelry', 'Jewelry'),
+        ('MakeupArtist', 'MakeupArtist'),
+        ('Shoes', 'Shoes'),
+        ('Watches', 'Watches'),
+        ('WeddingWears', 'WeddingWears'),
+    }
+    category = models.CharField(choices=types, max_length=20, blank=True, null=True)
+    image1 = models.FileField(null=True, blank=True)
+    image2 = models.FileField(null=True, blank=True)
+    image3 = models.FileField(null=True, blank=True)
     color = models.CharField(max_length=200, blank=True)
-    address = models.TextField(blank=True, null=True)
-    state = models.CharField(blank=True, null=True, max_length=200)
-    location = models.CharField(blank=True, null=True, max_length=200)
+    supp_user = models.ForeignKey(Supplier, on_delete=models.DO_NOTHING, blank=True, null=True)
     descrip = models.TextField(blank=True, null=True)
     size = models.CharField(max_length=200, blank=True)
     date = models.DateTimeField(auto_now_add=True)
@@ -45,8 +111,7 @@ class Product(models.Model):
     #     verbose_name_plural = "Products"
 
     def __str__(self):
-        return "%s - %s - %s" % (self.category, self.product_name, self.supplier)
-
+        return "%s - %s" % (self.category, self.product_name)
 
 class reg(models.Model):
     Name = models.CharField(max_length=90, null=True, blank=True)
@@ -107,33 +172,29 @@ class Contact(models.Model):
         return self.subject
 
 
-class Supplier(models.Model):
-    name = models.CharField(max_length=200, blank=True, null=True)
-    Email = models.EmailField(null=True, blank=True, max_length=254)
-    Phone = models.CharField(max_length=11, blank=True, null=True)
-    company = models.CharField(max_length=200, blank=True, null=True)
-    address = models.TextField(blank=True, null=True)
-    username = models.CharField(max_length=200,blank=True, null=True)
-    state = models.CharField(blank=True, null=True, max_length=200)
-    occupation = models.CharField(blank=True, null=True, max_length=200)
-    location = models.CharField(blank=True, null=True, max_length=200)
-    password = models.TextField(blank=True, null=True)
+# class Supplier(models.Model):
+#     name = models.CharField(max_length=200, blank=True, null=True)
+#     Email = models.EmailField(null=True, blank=True, max_length=254)
+#     Phone = models.CharField(max_length=11, blank=True, null=True)
+#     company = models.CharField(max_length=200, blank=True, null=True)
+#     address = models.TextField(blank=True, null=True)
+#     username = models.CharField(max_length=200,blank=True, null=True)
+#     state = models.CharField(blank=True, null=True, max_length=200)
+#     occupation = models.CharField(blank=True, null=True, max_length=200)
+#     location = models.CharField(blank=True, null=True, max_length=200)
+#     password = models.TextField(blank=True, null=True)
+#
+#
+#     def __str__(self):
+#         return "%s - %s" % (self.name, self.Email)
+#
+#     def save(self, *args, **kwargs):
+#         if self.pk is None:
+#             self.password = createHash(self.password)
+#         super(Supplier, self).save(*args, **kwargs)
 
-    def __str__(self):
-        return "%s - %s" % (self.name, self.Email)
-
-    def save(self, *args, **kwargs):
-        if self.pk is None:
-            self.password = createHash(self.password)
-        super(Supplier, self).save(*args, **kwargs)
 
 
-class supplier_image(models.Model):
-    supp_user = models.ForeignKey(Supplier, on_delete=models.DO_NOTHING, blank=True, null=True)
-    image = models.FileField(null=True, blank=True)
-
-    def __str__(self):
-        return "%s - %s" % (self.supp_user.name, self.supp_user.Email)
 
 
 # class free(models.Model):
@@ -183,19 +244,19 @@ class supplier_image(models.Model):
 #     def __str__(self):
 #         return "%s - %s" % (self.supp_user.name, self.status)
 
-class packages(models.Model):
-    types = {
-        ('Free', 'Free'),
-        ('Silver', 'Silver'),
-        ('Gold', 'Gold'),
-        ('Platinum', 'Platinum'),
-    }
-    status = models.CharField(choices=types, max_length=20, blank=True, null=True)
-    prices = models.CharField(max_length=11, blank=True, null=True)
-    supp_user = models.ForeignKey(Supplier, on_delete=models.DO_NOTHING, blank=True, null=True)
-
-    def __str__(self):
-        return "%s - %s" % (self.supp_user.name, self.status)
+# class packages(models.Model):
+#     types = {
+#         ('Free', 'Free'),
+#         ('Silver', 'Silver'),
+#         ('Gold', 'Gold'),
+#         ('Platinum', 'Platinum'),
+#     }
+#     status = models.CharField(choices=types, max_length=20, blank=True, null=True)
+#     prices = models.CharField(max_length=11, blank=True, null=True)
+#     supp_user = models.ForeignKey(Supplier, on_delete=models.DO_NOTHING, blank=True, null=True)
+#
+#     def __str__(self):
+#         return "%s - %s" % (self.supp_user.name, self.status)
 
 
 class Supp_Ads(models.Model):
