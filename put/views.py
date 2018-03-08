@@ -950,6 +950,7 @@ def supplier_reg(request):
         sup_pack = request.POST.get('package')
         sup_user = request.POST.get('username')
         sup_occ = request.POST.get('occupation')
+        sup_gender = request.POST.get('gender')
 
         if sup_state == "Abuja":
             sup_location = request.POST.get('a')
@@ -1046,6 +1047,7 @@ def supplier_reg(request):
             sup.Email = sup_email
             if not rsp:
                 if not rstp:
+                    sup.gender = sup_gender
                     sup.Phone = sup_phone
                     sup.company = sup_company
                     sup.address = sup_address
