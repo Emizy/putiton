@@ -9,8 +9,6 @@ urlpatterns = [
                   url(r'^admin/', admin.site.urls),
                   url(r'^$', views.index, name="index"),
                   url(r'^det/(?P<d_id>[0-9]+)/$', views.det, name='det'),
-                  url(r'^f_details/(?P<women_id>[0-9]+)/$', views.f_details, name='f_details'),
-                  url(r'^d_stylist/(?P<sty_id>[0-9]+)/$', views.d_stylist, name='d_stylist'),
                   url(r'^store/(?P<user>[\w.@+-]+)/$', views.store, name='store'),
                   url(r'^shop/(?P<user>[\w.@+-]+)/(?P<user_id>[0-9]+)/$', views.shop, name='shop'),
                   url(r'^clothing/', views.clothing, name="clothing"),
