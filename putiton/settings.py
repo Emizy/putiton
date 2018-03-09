@@ -139,7 +139,7 @@ USE_TZ = True
 #
 # MEDIA_URL = '/media/'
 
-# # online setting
+# online setting
 STATIC_URL = '/static/'
 # STATICFILES_DIRS = [os.path.join(BASE_DIR,  'static')
 

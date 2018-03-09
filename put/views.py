@@ -80,7 +80,7 @@ from put.models import *
 #                 templates = 'index.html'
 #                 return render(request, templates, context)
 
-def index(request):
+def coming(request):
     assert isinstance(request, HttpRequest)
     if request.method == 'GET':
         display = Product.objects.all().order_by(
@@ -98,6 +98,39 @@ def index(request):
             templates = 'index.html'
             return render(request, templates, context)
 
+def index(request):
+    assert isinstance(request,HttpRequest)
+    if request.method == 'GET':
+        context = locals()
+        templates = 'comingsoon.html'
+        return render(request,templates,context)
+    elif request.method == 'POST':
+        xpres = XpresSoft()
+        x_name = "XpresSoft"
+        x_email = request.POST.get('email')
+        x_phone = "XpresSoft"
+        x_message = "Subscribe"
+
+        match = re.match("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                         + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$", x_email)
+        if match:
+            xpres.name = x_name
+            xpres.email = x_email
+            xpres.phone = x_phone
+            xpres.message = x_message
+            xpres.save()
+
+            context = {
+                'msg': "Subscription Successful",
+            }
+            templates = 'comingsoon.html'
+            return render(request, templates, context)
+        else:
+            context = {
+                'msg': "Invalid Email",
+            }
+            templates = 'comingsoon.html'
+            return render(request, templates, context)
 
 def det(request, d_id):
     assert isinstance(request, HttpRequest)
@@ -1139,30 +1172,6 @@ def dashboard(request):
                 }
                 template = 'dashboard.html'
                 return render(request, template, context)
-        # else:
-        #     try:
-        #         info = message.objects.all()
-        #     except:
-        #         info = None
-        #     em = request.session['email']
-        #     if info:
-        #         context = {
-        #             'read': info,
-        #             'email': em,
-        #             'msg': "Kindly Update Your package to either free or Paid in order to Submit Ads"
-        #         }
-        #         print('fuk')
-        #         template = 'dashboard.html'
-        #         return render(request, template, context)
-        #     else:
-        #         context = {
-        #             'kit': "lobe",
-        #             'email': em,
-        #             'msg': "Kindly Update Your package to either free or Paid in order to Submit Ads",
-        #         }
-        #         print('kd')
-        #         template = 'dashboard.html'
-        #         return render(request, template, context)
         else:
             return redirect('/supplier_log/')
 
@@ -1547,7 +1556,6 @@ def prod(request, del_id):
         }
         templates = 'views_ads.html'
         return render(request, templates, context)
-
 
 def supplier_prof(request):
     assert isinstance(request, HttpRequest)

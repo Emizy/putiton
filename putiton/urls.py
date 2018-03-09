@@ -8,6 +8,7 @@ from put import views
 urlpatterns = [
                   url(r'^admin/', admin.site.urls),
                   url(r'^$', views.index, name="index"),
+                  url(r'^coming', views.coming, name="coming"),
                   url(r'^det/(?P<d_id>[0-9]+)/$', views.det, name='det'),
                   url(r'^store/(?P<user>[\w.@+-]+)/$', views.store, name='store'),
                   url(r'^shop/(?P<user>[\w.@+-]+)/(?P<user_id>[0-9]+)/$', views.shop, name='shop'),
