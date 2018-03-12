@@ -59,13 +59,20 @@ class Supplier(models.Model):
         ('Female', 'Female'),
     }
     gender = models.CharField(choices=types, max_length=20, blank=True, null=True)
-    username = models.CharField(max_length=200,blank=True, null=True)
+    r_types = {
+        ('APPROVED', 'APPROVED'),
+        ('UNAPPROVED', 'UNAPPROVED'),
+        ('Nil', 'Nil'),
+    }
+    confirm = models.CharField(choices=r_types, max_length=20, blank=True, null=True)
+    username = models.CharField(max_length=200, blank=True, null=True)
     state = models.CharField(blank=True, null=True, max_length=200)
     occupation = models.CharField(blank=True, null=True, max_length=200)
     location = models.CharField(blank=True, null=True, max_length=200)
     password = models.TextField(blank=True, null=True)
     ch_types = {
         ('Free', 'Free'),
+        ('NoSub', 'NoSub'),
         ('Silver', 'Silver'),
         ('Gold', 'Gold'),
         ('Platinum', 'Platinum'),
@@ -73,6 +80,8 @@ class Supplier(models.Model):
     status = models.CharField(choices=ch_types, max_length=20, blank=True, null=True)
     image = models.FileField(null=True, blank=True)
     prices = models.CharField(max_length=11, blank=True, null=True)
+    sub_date = models.DateField(max_length=30, blank=True, null=True)
+    exp_date = models.DateField(max_length=30, blank=True, null=True)
 
     def __str__(self):
         return "%s - %s" % (self.name, self.Email)
@@ -81,6 +90,7 @@ class Supplier(models.Model):
         if self.pk is None:
             self.password = createHash(self.password)
         super(Supplier, self).save(*args, **kwargs)
+
 
 class Product(models.Model):
     text = models.CharField(max_length=100, blank=True, null=True)
@@ -112,6 +122,7 @@ class Product(models.Model):
 
     def __str__(self):
         return "%s - %s" % (self.category, self.product_name)
+
 
 class reg(models.Model):
     Name = models.CharField(max_length=90, null=True, blank=True)

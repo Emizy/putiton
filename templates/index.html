@@ -1,5 +1,6 @@
 {% extends 'inew.html' %}
 {% load static %}
+{% load staticfiles %}
 {% block head %}
     Putiton :: Home
 {% endblock %}
@@ -19,7 +20,8 @@
 
         <!-- Header -->
         <header class="w3-container w3-center w3-padding-48 w3-white">
-            <h1 class="w3-xxxlarge"><b><a href="{% url 'index' %}" class="w3-hover-text-pink"> Putiton<span
+            <h1 class="w3-xxxlarge"><b><a href="{% url 'index' %}" class="w3-hover-text-pink"> PutItOn<span
+                    style="font-size: 13px;"
                     class="w3-tag w3-white w3-text-pink w3-round-xlarge w3-border w3-border-pink">.com.ng</span></a></b>
             </h1>
             <h6>Welcome to the first Virtual <span
@@ -31,7 +33,7 @@
             <img class="w3-image" src="{% static 'images/jane.jpg' %}" alt="Fashion Blog" width="1600" height="1060">
             <div class="w3-display-left w3-padding-large">
                 <h1 class="w3-text-white">Enroll as a Supplier</h1>
-                <h1 class="w3-jumbo w3-text-white w3-hide-small"><b>FASHION BLOG</b></h1>
+                <h1 class="w3-jumbo w3-text-white w3-hide-small"><b>FASHION site</b></h1>
                 <h6>
                     <a href="{% url 'supplier_reg' %}"
                        class="w3-btn w3-pink w3-padding-large w3-large w3-border w3-border-pink w3-text-white w3-hover-text-white w3-opacity"
@@ -51,7 +53,8 @@
                     <div class="w3-row">
                         <div class="w3-col l6 m6 s6">
                             <a href="javascript:void(0)" onclick="openCity(event, 'hot');">
-                                <div class="w3-third tablink w3-bottombar w3-hover-pink w3-text-pink w3-padding" style="text-transform: uppercase">Trending
+                                <div class="w3-third tablink w3-bottombar w3-hover-pink w3-text-pink w3-padding"
+                                     style="text-transform: uppercase">Trending
                                 </div>
                             </a>
                         </div>
@@ -102,8 +105,8 @@
 
                     <div id="hot" class="container h city" style="margin-bottom: 2%;margin-top: 2%;display: block">
                         <div class="row">
-                            {% if dis %}
-                                {% for i in dis %}
+                            {% if list %}
+                                {% for i in list %}
                                     <div class="col-md-3 ">
                                         <div class="panel panel-default w3-card">
                                             <div class="panel-body">
@@ -131,9 +134,12 @@
                                     </div>
                                 {% endfor %}
                             {% endif %}
-                        </div>
-                    </div>
 
+                        </div>
+
+                        <br>
+                    </div>
+                    {% include 'pagination.html' %}
                 </div>
 
                 <!-- END GRID -->
@@ -144,34 +150,23 @@
         <hr>
 
         <div class="w3-row">
-            {#        <div class="w3-col l6 s6">#}
-            {#            <div class="w3-white w3-margin">#}
-            {#                <div class="w3-container w3-padding w3-pink">#}
-            {#                    <h4>Follow Me</h4>#}
-            {#                </div>#}
-            {#                <div class="w3-container w3-xlarge w3-padding w3-text-pink w3-hover-text-pink">#}
-            {#                    <i class="fa fa-facebook-official w3-hover-opacity"></i>#}
-            {#                    <i class="fa fa-instagram w3-hover-opacity"></i>#}
-            {#                    <i class="fa fa-snapchat w3-hover-opacity"></i>#}
-            {#                    <i class="fa fa-pinterest-p w3-hover-opacity"></i>#}
-            {#                    <i class="fa fa-twitter w3-hover-opacity"></i>#}
-            {#                    <i class="fa fa-linkedin w3-hover-opacity"></i>#}
-            {#                </div>#}
-            {#            </div>#}
-            {#        </div>#}
             <div class="w3-col l12 s12">
                 <div class="w3-white w3-margin">
                     <div class="w3-container w3-padding w3-pink w3-text-white">
                         <h4>Search</h4>
                     </div>
                     <div class="w3-container w3-white">
-                        <p>Search By Product name</p>
-                        <p><input class="w3-input w3-border" type="text" placeholder="Enter Keyword" style="width:100%">
-                        </p>
-                        <p>
-                            <input type="submit" value="SEARCH"
-                                   class="w3-btn w3-white w3-border w3-text-pink w3-hover-text-pink w3-border-pink w3-right"/>
-                        </p>
+                        <p>Search By Product name , Catetory , State , Local-Govt</p>
+                        <form action="{% url 'search' %}" method="post">
+
+                            {% csrf_token %}
+
+                            <input class="w3-input w3-border" type="text" placeholder="Enter Keyword"
+                                                   name="search"
+                                                   style="width:100%">
+{#                            <input type="submit" value="SEARCH"#}
+{#                                   class="w3-btn w3-white w3-border w3-text-pink w3-hover-text-pink w3-border-pink w3-right"/>#}
+                        </form>
                     </div>
                 </div>
 

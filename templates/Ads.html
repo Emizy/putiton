@@ -8,23 +8,30 @@
 {% block content %}
     {% if msg %}
         <div class="w3-container">
-            <div class="w3-panel w3-pink w3-card-4">
+            <div class="well w3-pink w3-card-4 w3-round w3-border w3-margin-top">
                 <p class=" w3-text-white"> {{ msg }} <a href="{% url 'subscription' %}"
                                                         class="w3-border-pink w3-text-blue">
                     Subscription </a></p>
             </div>
         </div>
     {% endif %}
+    {% if approval %}
+        <div class="w3-container ">
+            <div class="well w3-pink w3-card-4 w3-border w3-round w3-margin-top">
+                <p class=" w3-text-white"><strong>{{ approval }}</strong></p>
+            </div>
+        </div>
+    {% endif %}
     {% if succes %}
         <div class="w3-container">
-            <div class="w3-panel w3-pink w3-card-4">
+            <div class="well w3-pink w3-border w3-round w3-card-4 w3-margin-top">
                 <p class=" w3-text-white">{{ succes }}</p>
             </div>
         </div>
     {% endif %}
     {% if fail %}
         <div class="w3-container">
-            <div class="w3-panel w3-red w3-card-4">
+            <div class="well w3-red w3-card-4 w3-round w3-border">
                 <p class=" w3-text-white">{{ fail }}</p>
             </div>
         </div>

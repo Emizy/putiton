@@ -76,21 +76,21 @@
                         </div>
                         <div class="clearfix"></div>
                     </div>
-                    <label class="add-to item_price w3-text-green">#{{ del.price }}.00</label>
+                    <label class="add-to item_price w3-text-white w3-green">#{{ del.price }}.00</label>
                     {#                    <button onclick="myFunction()" class="w3-button w3-pink w3-hover-pink w3-hover-text-white"#}
                     {#                            style="margin-bottom: 10px;">More details#}
                     {#                    </button>#}
                     <div id="myDIV" style="margin-top: 7px;margin-bottom: 7px;">
                         <h6 style="margin-bottom: 3px;">
-                            <span><strong>Supplier:</strong> {{ del.supp_user.company }}</span>
+                            <span><strong><i class="fa fa-user-circle"></i></strong> {{ del.supp_user.company }}</span>
                         </h6>
                         <h5 style="margin-bottom: 3px;">
-                            <span><strong>Phone number:</strong> {{ del.supp_user.Phone }}</span>
+                            <span><strong><i class="fa fa-phone"></i></strong> {{ del.supp_user.Phone }}</span>
                         </h5>
                         <h5>
-                            <span><strong>Location:</strong> {{ del.supp_user.location }},{{ del.supp_user.state }}</span>
+                            <span><strong><i class="fa fa-location-arrow"></i></strong>  {{ del.supp_user.location }},{{ del.supp_user.state }}</span>
                         </h5>
-                        <h5><span><strong>Description:</strong>{{ del.descrip }}</span></h5>
+                        <h5><span><strong><i class="fa fa-list-ul"></i></strong> {{ del.descrip }}</span></h5>
                     </div>
                 </div>
                 <script>

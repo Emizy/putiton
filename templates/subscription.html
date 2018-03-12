@@ -47,9 +47,36 @@
         <h5><b><i class="fa fa-dashboard"></i> Subscription </b></h5>
     </header>
     {% if lo %}
-        <div class="w3-panel w3-pink w3-card-4">
-            <p class=" w3-text-white">You are currently on {{ lo }} package</p>
+        <div class="w3-container">
+            <div class="w3-btn w3-pink  w3-card-4 w3-border w3-round">
+                <a class=" w3-text-white" style="font-size: 15px;">Status : <strong> {{ lo }} </strong></a>
+            </div>
+
+            <div class="w3-btn w3-blue-gray w3-card-4 w3-border w3-round">
+                <a href="/del_sub/{{ p }}/" class=" w3-text-white" style="font-size: 15px;"><strong>Reactivate</strong></a>
+            </div>
+            {% if h == "APPROVED" %}
+                <div class="w3-btn w3-green w3-card-4 w3-border w3-round">
+                    <a href="" class=" w3-text-white" style="font-size: 15px;"><strong>Payment Approved</strong></a>
+                </div>
+                <div class="w3-btn w3-orange w3-card-4 w3-border w3-round">
+                    <a href="" class=" w3-text-white" style="font-size: 15px;"><strong>Expiring date : {{ d }}</strong></a>
+                </div>
+            {% endif %}
+            {% if h == "UNAPPROVED" %}
+                <div class="w3-btn w3-green w3-card-4 w3-border w3-round">
+                    <a href="" class=" w3-text-white" style="font-size: 15px;"><strong>Kind contact the office for Good
+                        verification of payment</strong></a>
+                </div>
+            {% endif %}
+            {% if h == "Nil" %}
+                <div class="w3-btn w3-green w3-card-4 w3-border w3-round">
+                    <a href="" class=" w3-text-white" style="font-size: 15px;"><strong>Wait for confirmation of
+                        payment</strong></a>
+                </div>
+            {% endif %}
         </div>
+        <br>
     {% endif %}
     <div class="w3-row-padding w3-margin-bottom">
         <div class="w3-quarter">
@@ -158,148 +185,139 @@
             </div>
         {% endif %}
     </div>
-    {% if not lo %}
-        <div class="panel panel-default" style=" display: block;margin: 0 auto;">
-            <div class="panel-body">
-                <h5 class="w3-center w3-text-green"
-                    style="font-style: normal;font-size: medium; text-align: justify;display: block">
-                    <strong>Packages Subscription </strong></h5>
-                <div class="form-group">
-                    <select class="form-control" name="pack" id="pack" required>
-                        <option value="#">--- Select Packages -----</option>
-                        <option value="Free">Trial</option>
-                        <option value="Silver">Silver</option>
-                        <option value="Gold">Gold</option>
-                        <option value="Platinum">Platinum</option>
-                    </select>
-                </div>
-                <script>
-                    $(function () {
-                        $('#pack').change(function () {
-                            $('.stat').hide();
-                            $('#' + $(this).val()).show();
+    {% if lo == "Free" or lo == "NoSub" %}
+        <div class="w3-container">
+            <div class="panel panel-default" style=" display: block;margin: 0 auto;">
+                <div class="panel-body">
+                    <h5 class="w3-center w3-text-green"
+                        style="font-style: normal;font-size: medium; text-align: justify;display: block">
+                        <strong>Packages Subscription </strong></h5>
+                    <div class="form-group">
+                        <select class="form-control" name="pack" id="pack" required>
+                            <option value="#">--- Select Packages -----</option>
+                            <option value="Silver">Silver</option>
+                            <option value="Gold">Gold</option>
+                            <option value="Platinum">Platinum</option>
+                        </select>
+                    </div>
+                    <script>
+                        $(function () {
+                            $('#pack').change(function () {
+                                $('.stat').hide();
+                                $('#' + $(this).val()).show();
+                            });
                         });
-                    });
-                </script>
+                    </script>
 
-                <div class="stat" id="Free" style="display: none">
-                    <form action="/subscription/" method="post">
-                        {% csrf_token %}
+                    <div class="stat" id="Silver" style="display: none">
                         <div class="w3-center">
-                            <h4 class="w3-orange w3-text-white">Free Package Subscription</h4>
+                            <h4 class="w3-red w3-text-white">Silver Package Subscription #500 </h4>
                         </div>
-                        <input type="hidden" id="pay_mode" name="pack" value="Free">
-                        <input type="hidden" name="free1" value="0">
-                        <input type="hidden" name="free2" value="System">
+                        <div class="w3-container w3-border w3-border-red">
+                            <h5 class="w3-text-black">Account Name : Adenitire Ayomikun </h5>
+                            <h5 class="w3-text-black">Bank Name : Zenith Bank </h5>
+                            <h5 class="w3-text-black">Account No : 2110517542 </h5>
+                        </div>
+                        <form action="/subscription/" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <input type="hidden" id="pay_mode" name="pack" value="Silver">
+                            <div class="form-group">
+                                <input type="text" name="silver1" placeholder="Enter the amount" required
+                                       class="form-control">
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="silver2" placeholder="Enter Bank Name" required
+                                       class="form-control">
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="image">Transaction Screenshot</label>
+                                <input type="file" name="image1" id="image">
+                                <p class="help-block">Please upload original and real transaction details,Fake upload
+                                    will
+                                    lead
+                                    to automatic account suspensions.</p>
+                            </div>
+                            <div class="w3-center">
+                                <input type="submit" value="Opt-In" class="w3-btn w3-button w3-pink w3-hover-pink">
+                            </div>
+                        </form>
+                    </div>
+
+
+                    <div class="stat" id="Gold" style="display: none">
                         <div class="w3-center">
-                            <input type="submit" value="Opt-In" class="w3-btn w3-button w3-pink w3-hover-pink">
+                            <h4 class="w3-blue w3-text-white">Gold Package Subscription #1000 </h4>
                         </div>
-                    </form>
-                </div>
+                        <div class="w3-container w3-border w3-border-blue">
+                            <h5 class="w3-text-black">Account Name : Adenitire Ayomikun </h5>
+                            <h5 class="w3-text-black">Bank Name : Zenith Bank </h5>
+                            <h5 class="w3-text-black">Account No : 2110517542 </h5>
+                        </div>
+                        <form action="/subscription/" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <input type="hidden" id="" name="pack" value="Gold">
+                            <div class="form-group">
+                                <input type="text" name="gold1" placeholder="Enter the amount" required
+                                       class="form-control">
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="gold2" placeholder="Enter Bank Name" required
+                                       class="form-control">
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="image">Transaction Screenshot</label>
+                                <input type="file" name="image2" id="image">
+                                <p class="help-block">Please upload original and real transaction details,Fake upload
+                                    will
+                                    lead
+                                    to automatic account suspensions.</p>
+                            </div>
+                            <div class="w3-center">
+                                <input type="submit" value="Opt-In" class="w3-btn w3-button w3-pink w3-hover-pink">
+                            </div>
+                        </form>
+                    </div>
 
-                <div class="stat" id="Silver" style="display: none">
-                    <div class="w3-center">
-                        <h4 class="w3-red w3-text-white">Silver Package Subscription #500 </h4>
-                    </div>
-                    <div class="w3-container w3-border w3-border-red">
-                        <h5 class="w3-text-black">Account Name : Adenitire Ayomikun </h5>
-                        <h5 class="w3-text-black">Bank Name : Zenith Bank </h5>
-                        <h5 class="w3-text-black">Account No : 2110517542 </h5>
-                    </div>
-                    <form action="/subscription/" method="post" enctype="multipart/form-data">
-                        {% csrf_token %}
-                        <input type="hidden" id="pay_mode" name="pack" value="Silver">
-                        <div class="form-group">
-                            <input type="text" name="silver1" placeholder="Enter the amount" required
-                                   class="form-control">
-                            <div class="clearfix"></div>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" name="silver2" placeholder="Enter Bank Name" required
-                                   class="form-control">
-                            <div class="clearfix"></div>
-                        </div>
-                        <div class="form-group">
-                            <label for="image">Transaction Screenshot</label>
-                            <input type="file" name="image1" id="image">
-                            <p class="help-block">Please upload original and real transaction details,Fake upload will
-                                lead
-                                to automatic account suspensions.</p>
-                        </div>
+
+                    <div class="stat" id="Platinum" style="display: none">
                         <div class="w3-center">
-                            <input type="submit" value="Opt-In" class="w3-btn w3-button w3-pink w3-hover-pink">
+                            <h4 class="w3-teal w3-text-white">Platinum Package Subscription #1500 </h4>
                         </div>
-                    </form>
-                </div>
-
-
-                <div class="stat" id="Gold" style="display: none">
-                    <div class="w3-center">
-                        <h4 class="w3-blue w3-text-white">Gold Package Subscription #1000 </h4>
+                        <div class="w3-container w3-border w3-border-teal">
+                            <h5 class="w3-text-black">Account Name : Adenitire Ayomikun </h5>
+                            <h5 class="w3-text-black">Bank Name : Zenith Bank </h5>
+                            <h5 class="w3-text-black">Account No : 2110517542 </h5>
+                        </div>
+                        <form action="/subscription/" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <input type="hidden" id="pay_mode" name="pack" value="Platinum">
+                            <div class="form-group">
+                                <input type="text" name="plat1" placeholder="Enter the amount" required
+                                       class="form-control">
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="plat2" placeholder="Enter Bank Name" required
+                                       class="form-control">
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="image">Transaction Screenshot</label>
+                                <input type="file" name="image3" id="image">
+                                <p class="help-block">Please upload original and real transaction details,Fake upload
+                                    will
+                                    lead
+                                    to automatic account suspensions.</p>
+                            </div>
+                            <div class="w3-center">
+                                <input type="submit" value="Opt-In" class="w3-btn w3-button w3-pink w3-hover-pink">
+                            </div>
+                        </form>
                     </div>
-                    <div class="w3-container w3-border w3-border-blue">
-                        <h5 class="w3-text-black">Account Name : Adenitire Ayomikun </h5>
-                        <h5 class="w3-text-black">Bank Name : Zenith Bank </h5>
-                        <h5 class="w3-text-black">Account No : 2110517542 </h5>
-                    </div>
-                    <form action="/subscription/" method="post" enctype="multipart/form-data">
-                        {% csrf_token %}
-                        <input type="hidden" id="" name="pack" value="Gold">
-                        <div class="form-group">
-                            <input type="text" name="gold1" placeholder="Enter the amount" required
-                                   class="form-control">
-                            <div class="clearfix"></div>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" name="gold2" placeholder="Enter Bank Name" required class="form-control">
-                            <div class="clearfix"></div>
-                        </div>
-                        <div class="form-group">
-                            <label for="image">Transaction Screenshot</label>
-                            <input type="file" name="image2" id="image">
-                            <p class="help-block">Please upload original and real transaction details,Fake upload will
-                                lead
-                                to automatic account suspensions.</p>
-                        </div>
-                        <div class="w3-center">
-                            <input type="submit" value="Opt-In" class="w3-btn w3-button w3-pink w3-hover-pink">
-                        </div>
-                    </form>
-                </div>
-
-
-                <div class="stat" id="Platinum" style="display: none">
-                    <div class="w3-center">
-                        <h4 class="w3-teal w3-text-white">Platinum Package Subscription #1500 </h4>
-                    </div>
-                    <div class="w3-container w3-border w3-border-teal">
-                        <h5 class="w3-text-black">Account Name : Adenitire Ayomikun </h5>
-                        <h5 class="w3-text-black">Bank Name : Zenith Bank </h5>
-                        <h5 class="w3-text-black">Account No : 2110517542 </h5>
-                    </div>
-                    <form action="/subscription/" method="post" enctype="multipart/form-data">
-                        {% csrf_token %}
-                        <input type="hidden" id="pay_mode" name="pack" value="Platinum">
-                        <div class="form-group">
-                            <input type="text" name="plat1" placeholder="Enter the amount" required
-                                   class="form-control">
-                            <div class="clearfix"></div>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" name="plat2" placeholder="Enter Bank Name" required class="form-control">
-                            <div class="clearfix"></div>
-                        </div>
-                        <div class="form-group">
-                            <label for="image">Transaction Screenshot</label>
-                            <input type="file" name="image3" id="image">
-                            <p class="help-block">Please upload original and real transaction details,Fake upload will
-                                lead
-                                to automatic account suspensions.</p>
-                        </div>
-                        <div class="w3-center">
-                            <input type="submit" value="Opt-In" class="w3-btn w3-button w3-pink w3-hover-pink">
-                        </div>
-                    </form>
                 </div>
             </div>
         </div>

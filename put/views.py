@@ -1,109 +1,35 @@
 import json, traceback, re, random
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage, InvalidPage
+from dateutil.relativedelta import relativedelta
+from datetime import date, datetime
 from django.contrib import messages
 from django.http import HttpRequest, JsonResponse, HttpResponse
 from django.shortcuts import render, redirect, render_to_response
 from put.models import *
 
 
-# Create your views here.
-# def index(request):
-#     assert isinstance(request, HttpRequest)
-#     if request.method == 'GET':
-#         if 'Email' in request.session:
-#             sqlmp = Product.objects.filter(category="men").order_by(
-#                 '-date')[:4]
-#             sqlwp = Product.objects.filter(category="women").order_by(
-#                 '-date')[:4]
-#             sqlmcp = Product.objects.filter(category="men_acc").order_by(
-#                 '-date')[:4]
-#             sqlbp = Product.objects.filter(category="beads").order_by(
-#                 '-date')[:4]
-#             sqlmkp = Product.objects.filter(category="makeup").order_by(
-#                 '-date')[:4]
-#             sqlmka = Product.objects.filter(category="makeupArtist").order_by(
-#                 '-date')[:4]
-#             sqlmkh = Product.objects.filter(category="hairstyle").order_by(
-#                 '-date')[:4]
-#             sup = Supplier.objects.all()
-#             count = sup.count()
-#             context = {
-#                 'mp': sqlmp,
-#                 'wp': sqlwp,
-#                 'mcp': sqlmcp,
-#                 'bp': sqlbp,
-#                 'mkp': sqlmkp,
-#                 'mka': sqlmka,
-#                 "mkh": sqlmkh,
-#             }
-#             templates = 'index.html'
-#             return render(request, templates, context)
-#         else:
-#             try:
-#                 sqlmp = Product.objects.filter(category="men").order_by(
-#                     '-date')[:4]
-#                 sqlwp = Product.objects.filter(category="women").order_by(
-#                     '-date')[:4]
-#                 sqlmcp = Product.objects.filter(category="men_acc").order_by(
-#                     '-date')[:4]
-#                 sqlbp = Product.objects.filter(category="beads").order_by(
-#                     '-date')[:4]
-#                 sqlmka = Product.objects.filter(category="makeupArtist").order_by(
-#                     '-date')[:4]
-#                 sqlmkh = Product.objects.filter(category="hairstyle").order_by(
-#                     '-date')[:4]
-#                 sup = Supplier.objects.all()
-#
-#             except:
-#                 sqlmp = None
-#                 sqlwp = None
-#                 sqlmcp = None
-#                 sqlbp = None
-#                 sqlmka = None
-#                 sqlmkh = None
-#                 sup = None
-#             cout = sup.count()
-#             cout = 20 + cout
-#             if sqlmp or sqlbp or sqlmcp or sqlwp or sqlmka or sqlmkh:
-#                 context = {
-#                     'mp': sqlmp,
-#                     'wp': sqlwp,
-#                     'mcp': sqlmcp,
-#                     'bp': sqlbp,
-#                     'mka': sqlmka,
-#                     'mkh': sqlmkh,
-#                     'ct': cout,
-#                 }
-#                 templates = 'index.html'
-#                 return render(request, templates, context)
-#             else:
-#                 context = locals()
-#                 templates = 'index.html'
-#                 return render(request, templates, context)
+def index(request):
+    sqlbp = Product.objects.filter(supp_user__status="Platinum").order_by(
+        '-date')
+    paginator = Paginator(sqlbp, 20)
+    try:
+        page = int(request.GET.get('page', '1'))
+    except ValueError:
+        page = 1
+    try:
+        list = paginator.page(page)
+    except (EmptyPage, InvalidPage):
+        list = paginator.page(paginator.num_pages)
+
+    return render_to_response('index.html', {"list": list})
+
 
 def coming(request):
     assert isinstance(request, HttpRequest)
     if request.method == 'GET':
-        display = Product.objects.all().order_by(
-            '-date')[:20]
-        if display:
-            context = {
-                'dis': display,
-            }
-            templates = 'index.html'
-            return render(request, templates, context)
-        else:
-            context = {
-                'dat': "No availabe Product",
-            }
-            templates = 'index.html'
-            return render(request, templates, context)
-
-def index(request):
-    assert isinstance(request,HttpRequest)
-    if request.method == 'GET':
         context = locals()
         templates = 'comingsoon.html'
-        return render(request,templates,context)
+        return render(request, templates, context)
     elif request.method == 'POST':
         xpres = XpresSoft()
         x_name = "XpresSoft"
@@ -132,6 +58,7 @@ def index(request):
             templates = 'comingsoon.html'
             return render(request, templates, context)
 
+
 def det(request, d_id):
     assert isinstance(request, HttpRequest)
     if request.method == 'GET':
@@ -153,267 +80,181 @@ def det(request, d_id):
             }
             return redirect('/', context)
 
-def f_details(request, women_id):
-    assert isinstance(request, HttpRequest)
-    if request.method == 'GET':
-        sql = Product.objects.get(id=women_id)
-        name = sql.username
-        sqlwp = Product.objects.filter(username=name).order_by('-date')
-        if sql:
-            context = {
-                'sql1': sql,
-                'rel': sqlwp,
-                'ses': name,
-            }
-            template = 'f_details.html'
-            return render(request, template, context)
-        else:
-            context = {
-                'msg': "No stock available",
-            }
-            template = 'f_details.html'
-            return render(request, template, context)
-
-def women(request):
-    assert isinstance(request, HttpRequest)
-    if request.method == 'GET':
-        if 'Email' in request.session:
-            email = request.session['Email']
-            try:
-                sqlwp = Product.objects.filter(category='women')
-            except:
-                sqlwp = None
-            if sqlwp:
-                context = {
-                    'wp': sqlwp,
-                    'mail': email,
-                }
-                template = 'women.html'
-                return render(request, template, context)
-            else:
-                context = {
-                    'msg': "No stock available",
-                }
-                template = 'women.html'
-                return render(request, template, context)
-        else:
-            try:
-                sqlwp = Product.objects.filter(category='women')
-            except:
-                sqlwp = None
-            if sqlwp:
-                context = {
-                    'wp': sqlwp,
-                }
-                template = 'women.html'
-                return render(request, template, context)
-            else:
-                context = {
-                    'msg': "No stock available",
-                }
-                template = 'women.html'
-                return render(request, template, context)
 
 def beads(request):
-    assert isinstance(request, HttpRequest)
-    if request.method == 'GET':
-        try:
-            sqlbp = Product.objects.filter(category='Beads')
-        except:
-            sqlbp = None
-        if sqlbp:
-            context = {
-                'bp': sqlbp,
-            }
-            template = 'beads.html'
-            return render(request, template, context)
-        else:
-            context = {
-                'msg': "No stock available",
-            }
-            template = 'beads.html'
-            return render(request, template, context)
+    sqlbp = Product.objects.filter(category="Beads").order_by(
+        '-date')
+    paginator = Paginator(sqlbp, 20)
+    try:
+        page = int(request.GET.get('page', '1'))
+    except ValueError:
+        page = 1
+    try:
+        list = paginator.page(page)
+    except (EmptyPage, InvalidPage):
+        list = paginator.page(paginator.num_pages)
+
+    return render_to_response('beads.html', {"list": list})
+
 
 def bags(request):
-    assert isinstance(request, HttpRequest)
-    if request.method == 'GET':
-        try:
-            sqlbp = Product.objects.filter(category='Bags')
-        except:
-            sqlbp = None
-        if sqlbp:
-            context = {
-                'bp': sqlbp,
-            }
-            template = 'Bags.html'
-            return render(request, template, context)
-        else:
-            context = {
-                'msg': "No stock available",
-            }
-            template = 'Bags.html'
-            return render(request, template, context)
+    sqlbp = Product.objects.filter(category="Bags").order_by(
+        '-date')
+    paginator = Paginator(sqlbp, 20)
+    try:
+        page = int(request.GET.get('page', '1'))
+    except ValueError:
+        page = 1
+    try:
+        list = paginator.page(page)
+    except (EmptyPage, InvalidPage):
+        list = paginator.page(paginator.num_pages)
+
+    return render_to_response('Bags.html', {"list": list})
+
 
 def clothing(request):
-    assert isinstance(request, HttpRequest)
-    if request.method == 'GET':
-        try:
-            sqlbp = Product.objects.filter(category='Clothing')
-        except:
-            sqlbp = None
-        if sqlbp:
-            context = {
-                'bp': sqlbp,
-            }
-            template = 'clothing.html'
-            return render(request, template, context)
-        else:
-            context = {
-                'msg': "No stock available",
-            }
-            template = 'clothing.html'
-            return render(request, template, context)
+    sqlbp = Product.objects.filter(category="Clothing").order_by(
+        '-date')
+    paginator = Paginator(sqlbp, 20)
+    try:
+        page = int(request.GET.get('page', '1'))
+    except ValueError:
+        page = 1
+    try:
+        list = paginator.page(page)
+    except (EmptyPage, InvalidPage):
+        list = paginator.page(paginator.num_pages)
+
+    return render_to_response('clothing.html', {"list": list})
+
 
 def hairstylist(request):
-    assert isinstance(request, HttpRequest)
-    if request.method == 'GET':
-        try:
-            sqlbp = Product.objects.filter(category='Hairstylist')
-        except:
-            sqlbp = None
-        if sqlbp:
-            context = {
-                'bp': sqlbp,
-            }
-            template = 'Hairstylist.html'
-            return render(request, template, context)
-        else:
-            context = {
-                'msg': "No stock available",
-            }
-            template = 'Hairstylist.html'
-            return render(request, template, context)
+    sqlbp = Product.objects.filter(category="Hairstylist").order_by(
+        '-date')
+    paginator = Paginator(sqlbp, 20)
+    try:
+        page = int(request.GET.get('page', '1'))
+    except ValueError:
+        page = 1
+    try:
+        list = paginator.page(page)
+    except (EmptyPage, InvalidPage):
+        list = paginator.page(paginator.num_pages)
+
+    return render_to_response('hairstylist.html', {"list": list})
+
 
 def jewelry(request):
-    assert isinstance(request, HttpRequest)
-    if request.method == 'GET':
-        try:
-            sqlbp = Product.objects.filter(category='Hairstylist')
-        except:
-            sqlbp = None
-        if sqlbp:
-            context = {
-                'bp': sqlbp,
-            }
-            template = 'Jewelry.html'
-            return render(request, template, context)
-        else:
-            context = {
-                'msg': "No stock available",
-            }
-            template = 'Jewelry.html'
-            return render(request, template, context)
+    sqlbp = Product.objects.filter(category="Jewelry").order_by(
+        '-date')
+    paginator = Paginator(sqlbp, 20)
+    try:
+        page = int(request.GET.get('page', '1'))
+    except ValueError:
+        page = 1
+    try:
+        list = paginator.page(page)
+    except (EmptyPage, InvalidPage):
+        list = paginator.page(paginator.num_pages)
+
+    return render_to_response('Jewelry.html', {"list": list})
+
 
 def makeupArtist(request):
-    assert isinstance(request, HttpRequest)
-    if request.method == 'GET':
-        try:
-            sqlbp = Product.objects.filter(category='MakeupArtist')
-        except:
-            sqlbp = None
-        if sqlbp:
-            context = {
-                'bp': sqlbp,
-            }
-            template = 'MakeupArtist.html'
-            return render(request, template, context)
-        else:
-            context = {
-                'msg': "No stock available",
-            }
-            template = 'MakeupArtist.html'
-            return render(request, template, context)
+    sqlbp = Product.objects.filter(category="MakeupArtist").order_by(
+        '-date')
+    paginator = Paginator(sqlbp, 20)
+    try:
+        page = int(request.GET.get('page', '1'))
+    except ValueError:
+        page = 1
+    try:
+        list = paginator.page(page)
+    except (EmptyPage, InvalidPage):
+        list = paginator.page(paginator.num_pages)
+
+    return render_to_response('Jewelry.html', {"list": list})
+
 
 def shoes(request):
-    assert isinstance(request, HttpRequest)
-    if request.method == 'GET':
-        try:
-            sqlbp = Product.objects.filter(category='Shoes')
-        except:
-            sqlbp = None
-        if sqlbp:
-            context = {
-                'bp': sqlbp,
-            }
-            template = 'Shoes.html'
-            return render(request, template, context)
-        else:
-            context = {
-                'msg': "No stock available",
-            }
-            template = 'Shoes.html'
-            return render(request, template, context)
+    sqlbp = Product.objects.filter(category="Shoes").order_by(
+        '-date')
+    paginator = Paginator(sqlbp, 20)
+    try:
+        page = int(request.GET.get('page', '1'))
+    except ValueError:
+        page = 1
+    try:
+        list = paginator.page(page)
+    except (EmptyPage, InvalidPage):
+        list = paginator.page(paginator.num_pages)
+
+    return render_to_response('Shoes.html', {"list": list})
+
 
 def watches(request):
-    assert isinstance(request, HttpRequest)
-    if request.method == 'GET':
-        try:
-            sqlbp = Product.objects.filter(category='Watches')
-        except:
-            sqlbp = None
-        if sqlbp:
-            context = {
-                'bp': sqlbp,
-            }
-            template = 'Watches.html'
-            return render(request, template, context)
-        else:
-            context = {
-                'msg': "No stock available",
-            }
-            template = 'Watches.html'
-            return render(request, template, context)
+    sqlbp = Product.objects.filter(category="Watches").order_by(
+        '-date')
+    paginator = Paginator(sqlbp, 20)
+    try:
+        page = int(request.GET.get('page', '1'))
+    except ValueError:
+        page = 1
+    try:
+        list = paginator.page(page)
+    except (EmptyPage, InvalidPage):
+        list = paginator.page(paginator.num_pages)
+
+    return render_to_response('Watches.html', {"list": list})
+
 
 def weddingwears(request):
-    assert isinstance(request, HttpRequest)
-    if request.method == 'GET':
-        try:
-            sqlbp = Product.objects.filter(category='WeddingWears')
-        except:
-            sqlbp = None
-        if sqlbp:
-            context = {
-                'bp': sqlbp,
-            }
-            template = 'WeddingWears.html'
-            return render(request, template, context)
-        else:
-            context = {
-                'msg': "No stock available",
-            }
-            template = 'WeddingWears.html'
-            return render(request, template, context)
+    sqlbp = Product.objects.filter(category="WeddingWears").order_by(
+        '-date')
+    paginator = Paginator(sqlbp, 20)
+    try:
+        page = int(request.GET.get('page', '1'))
+    except ValueError:
+        page = 1
+    try:
+        list = paginator.page(page)
+    except (EmptyPage, InvalidPage):
+        list = paginator.page(paginator.num_pages)
+
+    return render_to_response('WeddingWears.html', {"list": list})
+
 
 def store(request, user):
     assert isinstance(request, HttpRequest)
     if request.method == 'GET':
         try:
-            prof = Product.objects.filter(supp_user__username=user)
+            prof = Product.objects.filter(supp_user__username=user).order_by(
+                '-date')
             aseet = Supplier.objects.get(username=user)
-            supp_name = user
         except:
             prof = None
             aseet = None
             supp_name = None
 
         if prof and aseet:
+            paginator = Paginator(prof, 20)
+            try:
+                page = int(request.GET.get('page', '1'))
+            except ValueError:
+                page = 1
+            try:
+                list = paginator.page(page)
+            except (EmptyPage, InvalidPage):
+                list = paginator.page(paginator.num_pages)
+
             context = {
-                'rst': prof,
-                'name': supp_name,
+                'name': aseet.company,
+                'offer': aseet.offer,
                 'hmm': aseet,
+                "list": list,
             }
-            templates = 'store.html'
-            return render(request, templates, context)
+            return render_to_response('store.html', context)
         else:
             context = {
                 'error': "Store doesn't Exist,Kindly check your username",
@@ -560,52 +401,74 @@ def search(request):
     if request.method == 'POST':
         query = request.POST.get('search')
         result1 = Product.objects.filter(product_name__icontains=query)
-        result2 = Product.objects.filter(state__icontains=query)
-        result3 = Product.objects.filter(color__icontains=query)
-        result5 = Product.objects.filter(location__icontains=query)
-        result6 = Product.objects.filter(price__icontains=query)
-        rel = Product.objects.all().order_by('-date')[:20]
+        result2 = Product.objects.filter(supp_user__state__icontains=query)
+        result3 = Product.objects.filter(supp_user__location__icontains=query)
+        result4 = Product.objects.filter(category__icontains=query)
+        rel = Product.objects.all().order_by('-date')
         if result1:
-            context = {
-                'sch': result1,
-            }
-            templates = 'search.html'
-            return render(request, templates, context)
+            paginator = Paginator(result1, 20)
+            try:
+                page = int(request.GET.get('page', '1'))
+            except ValueError:
+                page = 1
+            try:
+                list = paginator.page(page)
+            except (EmptyPage, InvalidPage):
+                list = paginator.page(paginator.num_pages)
+
+            return render_to_response('search.html', {"list": list})
+
 
         elif result2:
-            context = {
-                'sch': result2,
-            }
-            templates = 'search.html'
-            return render(request, templates, context)
+            paginator = Paginator(result2, 20)
+            try:
+                page = int(request.GET.get('page', '1'))
+            except ValueError:
+                page = 1
+            try:
+                list = paginator.page(page)
+            except (EmptyPage, InvalidPage):
+                list = paginator.page(paginator.num_pages)
+
+            return render_to_response('search.html', {"list": list})
 
         elif result3:
-            context = {
-                'sch': result3,
-            }
-            templates = 'search.html'
-            return render(request, templates, context)
+            paginator = Paginator(result3, 20)
+            try:
+                page = int(request.GET.get('page', '1'))
+            except ValueError:
+                page = 1
+            try:
+                list = paginator.page(page)
+            except (EmptyPage, InvalidPage):
+                list = paginator.page(paginator.num_pages)
 
-        elif result5:
-            context = {
-                'sch': result5,
-            }
-            templates = 'search.html'
-            return render(request, templates, context)
+            return render_to_response('search.html', {"list": list})
+        elif result4:
+            paginator = Paginator(result4, 20)
+            try:
+                page = int(request.GET.get('page', '1'))
+            except ValueError:
+                page = 1
+            try:
+                list = paginator.page(page)
+            except (EmptyPage, InvalidPage):
+                list = paginator.page(paginator.num_pages)
 
-        elif result6:
-            context = {
-                'sch': result6,
-            }
-            templates = 'search.html'
-            return render(request, templates, context)
+            return render_to_response('search.html', {"list": list})
 
         elif rel:
-            context = {
-                'sch': rel,
-            }
-            templates = 'search.html'
-            return render(request, templates, context)
+            paginator = Paginator(rel, 20)
+            try:
+                page = int(request.GET.get('page', '1'))
+            except ValueError:
+                page = 1
+            try:
+                list = paginator.page(page)
+            except (EmptyPage, InvalidPage):
+                list = paginator.page(paginator.num_pages)
+
+            return render_to_response('search.html', {"list": list})
 
 
 def men_search(request):
@@ -976,7 +839,8 @@ def supplier_reg(request):
     elif request.method == 'POST':
         sup_name = request.POST.get('name')
         sup_email = request.POST.get('email')
-        sup_phone = request.POST.get('phone')
+        o = request.POST.get('phone')
+        sup_phone = o[1:11]
         sup_company = request.POST.get('company')
         sup_address = request.POST.get('address')
         sup_state = request.POST.get('state')
@@ -1086,6 +950,7 @@ def supplier_reg(request):
                     sup.address = sup_address
                     sup.state = sup_state
                     sup.username = sup_user
+                    sup.status = sup_pack
                     sup.location = sup_location
                     sup.password = sup_password
                     sup.occupation = sup_occ
@@ -1234,6 +1099,9 @@ def subscription(request):
                 context = {
                     'email': em,
                     'lo': stat.status,
+                    'p': stat.id,
+                    'h': stat.confirm,
+                    'd': stat.exp_date,
                 }
                 templates = 'subscription.html'
                 return render(request, templates, context)
@@ -1250,39 +1118,43 @@ def subscription(request):
             t_pack = request.POST.get('pack')
             pack = Supplier.objects.get(Email=request.session['email'])
             trans = transaction()
+            today = date.today()
             em = request.session['email']
             uem = request.session['user']
-            if t_pack == 'Free':
-                sub_price = 0
-                sub_stat = 'Free'
-                pack.status = sub_stat
-                pack.prices = sub_price
-                pack.save()
-                em = request.session['user']
-                context = {
-                    'email': em,
-                    'msg': "You have successfully subscribe for free package,Your next subscription is in the next 6months",
-                }
-                template = 'subscription.html'
-                return render(request, template, context)
-            elif t_pack == 'Silver':
+            # if t_pack == 'Free':
+            #     sub_price = 0
+            #     sub_stat = 'Free'
+            #     pack.status = sub_stat
+            #     pack.prices = sub_price
+            #     pack.save()
+            #     em = request.session['user']
+            #     context = {
+            #         'email': em,
+            #         'msg': "You have successfully subscribe for free package,Your next subscription is in the next 6months",
+            #     }
+            #     template = 'subscription.html'
+            #     return render(request, template, context)
+            if t_pack == 'Silver':
                 if request.FILES['image1']:
                     sub_bank = request.POST.get('silver2')
                     sub_image = request.FILES['image1']
                     sub_price = request.POST.get('silver1')
                     sub_stat = t_pack
+                    date_after = date.today() + relativedelta(months=1)
                     stat = Supplier.objects.get(Email=em)
                     if sub_price == '500':
                         pack.prices = sub_price
                         pack.status = sub_stat
                         trans.supp_user = stat
+                        pack.sub_date = today
+                        pack.exp_date = date_after
                         trans.bank = sub_bank
                         trans.image = sub_image
                         trans.save()
                         pack.save()
                         context = {
                             'email': uem,
-                            'msg': "You have successfully subscribe for Silver package,You will Recieved an email of Confirmation.Your next subscription is in the next 6months.Thank",
+                            'msg': "You have successfully Submitted Silver Package Subscription, Kindly wait for two working days for Subscription activation",
                         }
                         template = 'subscription.html'
                         return render(request, template, context)
@@ -1306,18 +1178,22 @@ def subscription(request):
                     sub_image = request.FILES['image2']
                     sub_price = request.POST.get('gold1')
                     sub_stat = t_pack
+                    print(t_pack)
+                    date_after = date.today() + relativedelta(months=2)
                     stat = Supplier.objects.get(Email=em)
                     if sub_price == '1000':
                         pack.prices = sub_price
                         pack.status = sub_stat
                         trans.supp_user = stat
+                        pack.sub_date = today
+                        pack.exp_date = date_after
                         trans.bank = sub_bank
                         trans.image = sub_image
                         trans.save()
                         pack.save()
                         context = {
                             'email': uem,
-                            'msg': "You have successfully subscribe for Gold package,You will Recieved an email of Confirmation,Your next subscription is in the next 6months.Thank",
+                            'msg': "You have successfully Submitted Gold Package Subscription, Kindly wait for two working days for Subscription activation",
                         }
                         template = 'subscription.html'
                         return render(request, template, context)
@@ -1341,18 +1217,21 @@ def subscription(request):
                     sub_image = request.FILES['image3']
                     sub_price = request.POST.get('plat1')
                     sub_stat = t_pack
+                    date_after = date.today() + relativedelta(months=3)
                     stat = Supplier.objects.get(Email=em)
                     if sub_price == '1500':
                         pack.prices = sub_price
                         pack.status = sub_stat
                         trans.supp_user = stat
+                        pack.sub_date = today
+                        pack.exp_date = date_after
                         trans.bank = sub_bank
                         trans.image = sub_image
                         trans.save()
                         pack.save()
                         context = {
                             'email': uem,
-                            'msg': "You have successfully subscribe for Platinum package,You will Recieved an email of Confirmation,Your next subscription is in the next 6months.Thank",
+                            'msg': "You have successfully Submitted Silver Package Subscription, Kindly wait for two working days for Subscription activation",
                         }
                         template = 'subscription.html'
                         return render(request, template, context)
@@ -1374,6 +1253,44 @@ def subscription(request):
             return redirect('/supplier_log/')
 
 
+def del_sub(request, del_id):
+    assert isinstance(request, HttpRequest)
+    if request.method == 'GET':
+        if 'email' in request.session:
+            em = request.session['email']
+            try:
+                k = Supplier.objects.get(id=del_id)
+            except:
+                k = None
+            if k:
+                del k.status
+                del k.confirm
+                del k.exp_date
+                del k.sub_date
+                p = "NoSub"
+                t = "Nil"
+                k.status = p
+                k.confirm = t
+                k.save()
+                context = {
+                    'email': em,
+                    'lo': k.status,
+                    'p': k.id,
+                }
+                templates = 'subscription.html'
+                return render(request, templates, context)
+
+            else:
+                context = {
+                    'email': em,
+                    'lo': k.status,
+                    'p': k.id,
+                    'err': "Activation not successful",
+                }
+                templates = 'subscription.html'
+                return render(request, templates, context)
+
+
 def Ads(request):
     if request.method == 'GET':
         if 'email' in request.session:
@@ -1386,6 +1303,7 @@ def Ads(request):
             except:
                 stat = None
                 cout = None
+            remainder = cout.count()
             if stat:
                 if stat.status == "Free":
                     if cout.count() != 5:
@@ -1400,20 +1318,31 @@ def Ads(request):
                     else:
                         context = {
                             'email': user,
-                            'fail': "You have exceeded the maximun number to be submited on Free packages",
+                            'fail': "You have exceeded the maximun number to be submited on Trial packages",
                         }
                         templates = "Ads.html"
                         return render(request, templates, context)
-                elif stat.status == "Silver":
-                    if cout.count() != 15:
-                        remainder = cout.count()
-                        context = {
-                            'email': user,
-                            'val': "Valid",
-                            'srem': remainder,
-                        }
-                        templates = "Ads.html"
-                        return render(request, templates, context)
+                elif stat.status == "Silver" and stat.confirm == "APPROVED":
+                    if cout:
+                        today = datetime.today()
+                        k = stat.exp_date
+                        p = datetime.strptime(k, "%Y-%m-%d")
+                        print(p)
+                        if today <= p:
+                            context = {
+                                'email': user,
+                                'val': "Valid",
+                                'srem': remainder,
+                            }
+                            templates = "Ads.html"
+                            return render(request, templates, context)
+                        else:
+                            context = {
+                                'email': user,
+                                'fail': "Your Subscription has expired,Kindly Re-Subscribe for another 1month",
+                            }
+                            templates = "Ads.html"
+                            return render(request, templates, context)
                     else:
                         context = {
                             'email': user,
@@ -1421,16 +1350,27 @@ def Ads(request):
                         }
                         templates = "Ads.html"
                         return render(request, templates, context)
-                elif stat.status == "Gold":
-                    if cout.count() != 25:
-                        remainder = cout.count()
-                        context = {
-                            'email': user,
-                            'val': "Valid",
-                            'grem': remainder,
-                        }
-                        templates = "Ads.html"
-                        return render(request, templates, context)
+                elif stat.status == "Gold" and stat.confirm == "APPROVED":
+                    if cout:
+                        today = datetime.today()
+                        k = stat.exp_date
+                        p = datetime.strptime(k, "%Y-%m-%d")
+                        print(p)
+                        if today <= p:
+                            context = {
+                                'email': user,
+                                'val': "Valid",
+                                'srem': remainder,
+                            }
+                            templates = "Ads.html"
+                            return render(request, templates, context)
+                        else:
+                            context = {
+                                'email': user,
+                                'fail': "Your Subscription has expired,Kindly Re-Subscribe for another 2month",
+                            }
+                            templates = "Ads.html"
+                            return render(request, templates, context)
                     else:
                         context = {
                             'email': user,
@@ -1438,16 +1378,27 @@ def Ads(request):
                         }
                         templates = "Ads.html"
                         return render(request, templates, context)
-                elif stat.status == "Platinum":
-                    if cout.count() != 35:
-                        remainder = cout.count()
-                        context = {
-                            'email': user,
-                            'val': "Valid",
-                            'prem': remainder,
-                        }
-                        templates = "Ads.html"
-                        return render(request, templates, context)
+                elif stat.status == "Platinum" and stat.confirm == "APPROVED":
+                    if cout:
+                        today = datetime.today()
+                        k = stat.exp_date
+                        p = datetime.strptime(k, "%Y-%m-%d")
+                        print(p)
+                        if today <= p:
+                            context = {
+                                'email': user,
+                                'val': "Valid",
+                                'srem': remainder,
+                            }
+                            templates = "Ads.html"
+                            return render(request, templates, context)
+                        else:
+                            context = {
+                                'email': user,
+                                'fail': "Your Subscription has expired,Kindly Re-Subscribe for another 3month",
+                            }
+                            templates = "Ads.html"
+                            return render(request, templates, context)
                     else:
                         context = {
                             'email': user,
@@ -1455,10 +1406,25 @@ def Ads(request):
                         }
                         templates = "Ads.html"
                         return render(request, templates, context)
+                elif stat.status == 'NoSub' and stat.confirm == 'Nil':
+                    context = {
+                        'email': user,
+                        'msg': "Yet to subscribe to any packages or Waiting for Payment Approval,Click to subscribe",
+                    }
+                    templates = "Ads.html"
+                    return render(request, templates, context)
+                else:
+                    context = {
+                        'email': user,
+                        'msg': "Yet to subscribe to any packages or Waiting for Payment Approval,Click to subscribe",
+                    }
+                    templates = "Ads.html"
+                    return render(request, templates, context)
+
             else:
                 context = {
                     'email': user,
-                    'msg': "Yet to subscribe to any packages ,Click to subscribe",
+                    'msg': "Yet to subscribe to any packages or Waiting for Payment Approval,Click to subscribe",
                 }
                 templates = "Ads.html"
                 return render(request, templates, context)
@@ -1498,6 +1464,49 @@ def Ads(request):
                 return render(request, templates, context)
         else:
             return redirect('/Ads/')
+
+
+def cus_store(request):
+    assert isinstance(request, HttpRequest)
+    if request.method == 'GET':
+        if 'user' in request.session:
+            try:
+                foo = Supplier.objects.get(username=request.session['user'])
+            except:
+                foo = None
+            em = request.session['user']
+            if foo.offer is not None:
+                context = {
+                    'email': em,
+                    'dis': foo,
+                }
+                templates = 'customize.html'
+                return render(request, templates, context)
+            else:
+                context = {
+                    'email': em,
+                    'b': "Empty",
+                }
+                templates = 'customize.html'
+                return render(request, templates, context)
+    elif request.method == 'POST':
+        if 'user' in request.session:
+            try:
+                off = Supplier.objects.get(username=request.session['user'])
+            except:
+                off = None
+            offer = request.POST.get('offer')
+            off.offer = offer
+            off.save()
+            dis = Supplier.objects.get(username=request.session['user'])
+            em = request.session['user']
+            context = {
+                'dis': dis,
+                'email': em,
+
+            }
+            templates = 'customize.html'
+            return render(request, templates, context)
 
 
 def views_ads(request):
@@ -1557,6 +1566,7 @@ def prod(request, del_id):
         templates = 'views_ads.html'
         return render(request, templates, context)
 
+
 def supplier_prof(request):
     assert isinstance(request, HttpRequest)
     if request.method == 'GET':
@@ -1603,7 +1613,8 @@ def supplier_prof(request):
                 doc_fname = request.POST.get('name')
                 doc_email = request.POST.get('email')
                 doc_gender = request.POST.get('gender')
-                doc_phone = request.POST.get('phone')
+                o = request.POST.get('phone')
+                doc_phone = o[1:11]
                 doc_state = request.POST.get('state')
                 doc_local = request.POST.get('local')
                 doc_address = request.POST.get('address')

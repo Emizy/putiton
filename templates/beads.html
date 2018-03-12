@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block content %}
-{% if msg %}
+    {% if msg %}
         <script>
             alert('No stock available');
             window.location.href = "/"
@@ -13,42 +13,52 @@
     {% endif %}
     <br>
     <div class="container w3-center">
-    <div class="w3-bar">
-         <i class="w3-button w3-white w3-hover-white w3-hover-text-pink w3-border-pink w3-border-bottom w3-text-pink"
-           style="margin-right: 2px;font-family: Arial;" disabled>
-            <a href="{% url 'index' %}" class="w3-hover-text-pink w3-text-pink">Home</a> / <strong>BEADS</strong>  </i>
-    </div>
-    </div>
-    <div id="hot" class="container h city" >
-        <div class="panel panel-default" style="margin: 0 auto;">
-            <div class="panel-body">
-                <!-- Posts -->
-                <div class="w3-white w3-margin">
-                    <ul class="w3-ul w3-hoverable w3-white">
-                        {% if bp %}
-                            {% for i in bp %}
-                                <li class="w3-padding-16">
-                                    <a href="{% url 'det' i.id %}" class="w3-hover-text-black">
-                                        <img src="{{ i.image1.url }}" alt="Image"
-                                             class="w3-left w3-margin-right w3-round img-responsive"
-                                             style="display: block;max-width: 75px;max-height: 60px;width: auto;height: auto;">
-                                        <span class="w3-large">{{ i.product_name }} || #<i
-                                                class="w3-text-green"> {{ i.price }}</i>  </span>
-                                        <br>
-                                        <span class="w3-justify">{{ i.supp_user.company }} || {{ i.date }}</span>
-                                    </a></li>
-                            {% endfor %}
-                        {% endif %}
-                        {% if dat %}
-                            <div class="well w3-pink">
-                                {{ dat }}
-                            </div>
-                        {% endif %}
-                    </ul>
-                </div>
-            </div>
+        <div class="w3-bar">
+            <i class="w3-button w3-white w3-hover-white w3-hover-text-pink w3-border-pink w3-border-bottom w3-text-pink"
+               style="margin-right: 2px;font-family: Arial;" disabled>
+                <a href="{% url 'index' %}" class="w3-hover-text-pink w3-text-pink">Home</a> / <strong>BEADS</strong>
+            </i>
         </div>
     </div>
-<br>
+    <div id="hot" class="container h city" style="margin-bottom: 2%;margin-top: 2%;display: block">
+                        <div class="row">
+                            {% if list %}
+                                {% for i in list %}
+                                    <div class="col-md-3 ">
+                                        <div class="panel panel-default w3-card">
+                                            <div class="panel-body">
+                                                <div class="thumbnail">
+                                                    <img src="{{ i.image1.url }}" alt="pics"
+                                                         class="img-responsive img-hover"
+                                                         style="height: 150px;width: 200px;">
+                                                </div>
+                                                <div class="row w3-justify">
+                                                    <h5 id="t"
+                                                        style="width: 110px;margin-left: 20px;">{{ i.product_name }} </h5>
+                                                    <h6 id="t"
+                                                        style="width: 110px;margin-left: 20px;">{{ i.supp_user.company }}</h6>
+                                                    <h5 id="t" class="w3-green" style="width: 110px;margin-left: 20px;">
+                                                        #{{ i.price }}.00 </h5>
+                                                </div>
+                                                <div class="w3-center">
+                                                    <a href="{% url 'det' i.id %}"
+                                                       class="w3-btn  w3-border w3-border-pink w3-round w3-text-pink w3-hover-text-pink w3-white">
+                                                        View
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+
+                        </div>
+
+
+                    </div>
+    <br>
+{% include 'pagination.html' %}
+
+    <br>
 
 {% endblock %}

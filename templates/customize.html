@@ -1,0 +1,73 @@
+{% extends 'ipage.html' %}
+{% load static %}
+
+{% block head %}
+    <title> SUPPLIER || CUSTOMIZE STORE </title>
+
+{% endblock %}
+
+
+{% block content %}
+<br><br>
+    <div class="w3-container">
+        <div class="panel panel-default">
+            <div class="table-responsive">
+                <table class="table con">
+                    <thead>
+                    <tr>
+                        <th class="w3-text-pink">Offer</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td> {{ dis.offer }}</td>
+                        <td>
+                            <a href="#edit_{{ dis.id }}" data-toggle="modal"
+                               class="w3-btn w3-white w3-border w3-border-pink w3-hover-white w3-text-pink w3-hover-text-pink">ADD || EDIT
+                                <i class="fa fa-edit"></i> </a>
+                            <!-- modal-profile -->
+                            <div class="modal bnr-modal fade" id="edit_{{ dis.id }}" tabindex="-1" role="dialog">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body modal-spa">
+                                            <h5 class="w3-center w3-text-pink" style="font-size: 23px;"> Add What You Offer </h5>
+                                            <hr>
+                                            <div class="modal-w3lstext">
+
+                                                <form method="post" action="/cus_store/"
+                                                      enctype="multipart/form-data">
+                                                    {% csrf_token %}
+
+                                                    <div class="form-group">
+                                                        <label for="comment">Offer:</label>
+                                                        <textarea class="form-control" rows="4" id="offer"
+                                                                  name="offer" value="{{ dis.offer }}"
+                                                                  placeholder="Full description of your work to be displayed on your personal store"></textarea>
+                                                    </div>
+
+                                                    <input type="submit" name="submit"
+                                                           class="w3-btn w3-white w3-border w3-border-pink w3-hover-white w3-text-pink w3-hover-text-pink"
+                                                           value="Submit"
+                                                           style="background-color: pink;margin-left: 70%;">
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- //modal-contact-->
+                        </td>
+                    <div>
+                    </div>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
