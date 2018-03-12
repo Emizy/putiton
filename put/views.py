@@ -1322,7 +1322,6 @@ def Ads(request):
                         templates = "Ads.html"
                         return render(request, templates, context)
                 elif stat.status == "Silver" and stat.confirm == "APPROVED":
-                    if cout:
                         today = datetime.today()
                         k = stat.exp_date
                         p = datetime.strptime(k, "%Y-%m-%d")
@@ -1342,15 +1341,7 @@ def Ads(request):
                             }
                             templates = "Ads.html"
                             return render(request, templates, context)
-                    else:
-                        context = {
-                            'email': user,
-                            'fail': "You have exceeded the maximun number to be submited on Silver package,Kindly Upgrade",
-                        }
-                        templates = "Ads.html"
-                        return render(request, templates, context)
                 elif stat.status == "Gold" and stat.confirm == "APPROVED":
-                    if cout:
                         today = datetime.today()
                         k = stat.exp_date
                         p = datetime.strptime(k, "%Y-%m-%d")
@@ -1370,15 +1361,7 @@ def Ads(request):
                             }
                             templates = "Ads.html"
                             return render(request, templates, context)
-                    else:
-                        context = {
-                            'email': user,
-                            'fail': "You have exceeded the maximun number to be submited on Gold package,Kindly Upgrade",
-                        }
-                        templates = "Ads.html"
-                        return render(request, templates, context)
                 elif stat.status == "Platinum" and stat.confirm == "APPROVED":
-                    if cout:
                         today = datetime.today()
                         k = stat.exp_date
                         p = datetime.strptime(k, "%Y-%m-%d")
@@ -1398,13 +1381,6 @@ def Ads(request):
                             }
                             templates = "Ads.html"
                             return render(request, templates, context)
-                    else:
-                        context = {
-                            'email': user,
-                            'fail': "You have exceeded the maximun number to be submited on Platinum package,Kindly Order for package renewal",
-                        }
-                        templates = "Ads.html"
-                        return render(request, templates, context)
                 elif stat.status == 'NoSub' and stat.confirm == 'Nil':
                     context = {
                         'email': user,
