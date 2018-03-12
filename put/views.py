@@ -1,7 +1,6 @@
 import json, traceback, re, random
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage, InvalidPage
-from dateutil.relativedelta import relativedelta
-from datetime import date, datetime
+from datetime import date, datetime,timedelta
 from django.contrib import messages
 from django.http import HttpRequest, JsonResponse, HttpResponse
 from django.shortcuts import render, redirect, render_to_response
@@ -1140,7 +1139,7 @@ def subscription(request):
                     sub_image = request.FILES['image1']
                     sub_price = request.POST.get('silver1')
                     sub_stat = t_pack
-                    date_after = date.today() + relativedelta(months=1)
+                    date_after = today + timedelta(31)
                     stat = Supplier.objects.get(Email=em)
                     if sub_price == '500':
                         pack.prices = sub_price
@@ -1179,7 +1178,7 @@ def subscription(request):
                     sub_price = request.POST.get('gold1')
                     sub_stat = t_pack
                     print(t_pack)
-                    date_after = date.today() + relativedelta(months=2)
+                    date_after = today + timedelta(31)
                     stat = Supplier.objects.get(Email=em)
                     if sub_price == '1000':
                         pack.prices = sub_price
@@ -1217,7 +1216,7 @@ def subscription(request):
                     sub_image = request.FILES['image3']
                     sub_price = request.POST.get('plat1')
                     sub_stat = t_pack
-                    date_after = date.today() + relativedelta(months=3)
+                    date_after = today + timedelta(31)
                     stat = Supplier.objects.get(Email=em)
                     if sub_price == '1500':
                         pack.prices = sub_price
