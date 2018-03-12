@@ -1,6 +1,6 @@
 import json, traceback, re, random
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage, InvalidPage
-from datetime import date, datetime,timedelta
+from datetime import date, datetime, timedelta
 from django.contrib import messages
 from django.http import HttpRequest, JsonResponse, HttpResponse
 from django.shortcuts import render, redirect, render_to_response
@@ -843,11 +843,11 @@ def supplier_reg(request):
         sup_company = request.POST.get('company')
         sup_address = request.POST.get('address')
         sup_state = request.POST.get('state')
-        sup_pack = request.POST.get('package')
+        sup_pack = "Free"
         sup_user = request.POST.get('username')
         sup_occ = request.POST.get('occupation')
         sup_gender = request.POST.get('gender')
-
+        print(sup_pack)
         if sup_state == "Abuja":
             sup_location = request.POST.get('a')
         elif sup_state == "Abia":
