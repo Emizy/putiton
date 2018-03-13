@@ -7,7 +7,7 @@ from django.shortcuts import render, redirect, render_to_response
 from put.models import *
 
 
-def index(request):
+def coming(request):
     sqlbp = Product.objects.filter(supp_user__status="Platinum").order_by(
         '-date')
     paginator = Paginator(sqlbp, 20)
@@ -23,7 +23,7 @@ def index(request):
     return render_to_response('index.html', {"list": list})
 
 
-def coming(request):
+def index(request):
     assert isinstance(request, HttpRequest)
     if request.method == 'GET':
         context = locals()
