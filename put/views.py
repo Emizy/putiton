@@ -1322,65 +1322,65 @@ def Ads(request):
                         templates = "Ads.html"
                         return render(request, templates, context)
                 elif stat.status == "Silver" and stat.confirm == "APPROVED":
-                        today = datetime.today()
-                        k = stat.exp_date
-                        p = datetime.strptime(k, "%Y-%m-%d")
-                        print(p)
-                        if today <= p:
-                            context = {
-                                'email': user,
-                                'val': "Valid",
-                                'srem': remainder,
-                            }
-                            templates = "Ads.html"
-                            return render(request, templates, context)
-                        else:
-                            context = {
-                                'email': user,
-                                'fail': "Your Subscription has expired,Kindly Re-Subscribe for another 1month",
-                            }
-                            templates = "Ads.html"
-                            return render(request, templates, context)
+                    today = datetime.today()
+                    k = stat.exp_date
+                    p = datetime.strptime(k, "%Y-%m-%d")
+                    print(p)
+                    if today <= p:
+                        context = {
+                            'email': user,
+                            'val': "Valid",
+                            'srem': remainder,
+                        }
+                        templates = "Ads.html"
+                        return render(request, templates, context)
+                    else:
+                        context = {
+                            'email': user,
+                            'fail': "Your Subscription has expired,Kindly Re-Subscribe for another 1month",
+                        }
+                        templates = "Ads.html"
+                        return render(request, templates, context)
                 elif stat.status == "Gold" and stat.confirm == "APPROVED":
-                        today = datetime.today()
-                        k = stat.exp_date
-                        p = datetime.strptime(k, "%Y-%m-%d")
-                        print(p)
-                        if today <= p:
-                            context = {
-                                'email': user,
-                                'val': "Valid",
-                                'srem': remainder,
-                            }
-                            templates = "Ads.html"
-                            return render(request, templates, context)
-                        else:
-                            context = {
-                                'email': user,
-                                'fail': "Your Subscription has expired,Kindly Re-Subscribe for another 2month",
-                            }
-                            templates = "Ads.html"
-                            return render(request, templates, context)
+                    today = datetime.today()
+                    k = stat.exp_date
+                    p = datetime.strptime(k, "%Y-%m-%d")
+                    print(p)
+                    if today <= p:
+                        context = {
+                            'email': user,
+                            'val': "Valid",
+                            'srem': remainder,
+                        }
+                        templates = "Ads.html"
+                        return render(request, templates, context)
+                    else:
+                        context = {
+                            'email': user,
+                            'fail': "Your Subscription has expired,Kindly Re-Subscribe for another 2month",
+                        }
+                        templates = "Ads.html"
+                        return render(request, templates, context)
                 elif stat.status == "Platinum" and stat.confirm == "APPROVED":
-                        today = datetime.today()
-                        k = stat.exp_date
-                        p = datetime.strptime(k, "%Y-%m-%d")
-                        print(p)
-                        if today <= p:
-                            context = {
-                                'email': user,
-                                'val': "Valid",
-                                'srem': remainder,
-                            }
-                            templates = "Ads.html"
-                            return render(request, templates, context)
-                        else:
-                            context = {
-                                'email': user,
-                                'fail': "Your Subscription has expired,Kindly Re-Subscribe for another 3month",
-                            }
-                            templates = "Ads.html"
-                            return render(request, templates, context)
+                    today = datetime.today()
+                    k = stat.exp_date
+                    p = datetime.strptime(k, "%Y-%m-%d")
+                    print(p)
+                    if today <= p:
+                        context = {
+                            'email': user,
+                            'val': "Valid",
+                            'srem': remainder,
+                        }
+                        templates = "Ads.html"
+                        return render(request, templates, context)
+                    else:
+                        context = {
+                            'email': user,
+                            'fail': "Your Subscription has expired,Kindly Re-Subscribe for another 3month",
+                        }
+                        templates = "Ads.html"
+                        return render(request, templates, context)
                 elif stat.status == 'NoSub' and stat.confirm == 'Nil':
                     context = {
                         'email': user,
@@ -1584,44 +1584,7 @@ def supplier_prof(request):
                             'profile': prof,
                         }
                         return redirect('/supplier_prof/', context)
-            elif doc_sel == "profile":
-                doc_fname = request.POST.get('name')
-                doc_email = request.POST.get('email')
-                doc_gender = request.POST.get('gender')
-                o = request.POST.get('phone')
-                doc_phone = o[1:11]
-                doc_state = request.POST.get('state')
-                doc_local = request.POST.get('local')
-                doc_address = request.POST.get('address')
-                try:
-                    d = Supplier.objects.get(username=doc_user)
-                except:
-                    d = None
-                if d:
-                    d.name = doc_fname
-                    d.Email = doc_email
-                    d.Phone = doc_phone
-                    d.address = doc_address
-                    d.state = doc_state
-                    d.location = doc_local
-                    d.gender = doc_gender
-                    d.save()
-                    print('am here')
-                    context = {
-                        'msg': "Profile successfully Updated",
-                        'profile': prof,
-                        'email': doc_user,
-                    }
-                    templates = 'supplier_prof.html'
-                    return render(request, templates, context)
-                else:
-                    context = {
-                        'msg': "Profile Update not successful",
-                        'profile': prof,
-                        'email': doc_user,
-                    }
-                    templates = 'supplier_prof.html'
-                    return render(request, templates, context)
+
         else:
             prof = Supplier.objects.get(username=request.session['user'])
             doc_user = request.session['user']
@@ -1632,6 +1595,51 @@ def supplier_prof(request):
             }
             templates = 'supplier_prof.html'
             return render(request, templates, context)
+
+
+def edit_prof(request):
+    assert isinstance(request, HttpRequest)
+    if request.method == 'POST':
+        if 'user' in request.session:
+            doc_user = request.session['user']
+            prof = Supplier.objects.get(Email=request.session['email'])
+            doc_fname = request.POST.get('name')
+            doc_email = request.POST.get('email')
+            doc_gender = request.POST.get('gender')
+            o = request.POST.get('phone')
+            doc_phone = o[1:11]
+            doc_state = request.POST.get('state')
+            doc_local = request.POST.get('local')
+            doc_address = request.POST.get('address')
+            try:
+                d = Supplier.objects.get(username=doc_user)
+            except:
+                d = None
+            if d:
+                d.name = doc_fname
+                d.Email = doc_email
+                d.Phone = doc_phone
+                d.address = doc_address
+                d.state = doc_state
+                d.location = doc_local
+                d.gender = doc_gender
+                d.save()
+                print('am here')
+                context = {
+                    'msg': "Profile successfully Updated",
+                    'profile': prof,
+                    'email': doc_user,
+                }
+                templates = 'supplier_prof.html'
+                return render(request, templates, context)
+            else:
+                context = {
+                    'msg': "Profile Update not successful",
+                    'profile': prof,
+                    'email': doc_user,
+                }
+                templates = 'supplier_prof.html'
+                return render(request, templates, context)
 
 
 def forget_pass(request):

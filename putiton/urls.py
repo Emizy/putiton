@@ -15,6 +15,7 @@ urlpatterns = [
                   url(r'^shop/(?P<user>[\w.@+-]+)/(?P<user_id>[0-9]+)/$', views.shop, name='shop'),
                   url(r'^clothing/', views.clothing, name="clothing"),
                   url(r'^bags/', views.bags, name="bags"),
+                  url(r'^edit_prof/', views.edit_prof, name="edit_prof"),
                   url(r'^hairstylist/', views.hairstylist, name="hairstylist"),
                   url(r'^beads/', views.beads, name="beads"),
                   url(r'^jewelry/', views.jewelry, name="jewelry"),
