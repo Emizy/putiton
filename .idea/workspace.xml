@@ -4,6 +4,18 @@
     <list default="true" id="0cff984e-d09c-4ba5-ba4b-5119033fc8cd" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/put/views.py" afterPath="$PROJECT_DIR$/put/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/putiton/settings.py" afterPath="$PROJECT_DIR$/putiton/settings.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/Bags.html" afterPath="$PROJECT_DIR$/templates/Bags.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/Clothing.html" afterPath="$PROJECT_DIR$/templates/Clothing.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/Jewelry.html" afterPath="$PROJECT_DIR$/templates/Jewelry.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/MakeupArtist.html" afterPath="$PROJECT_DIR$/templates/MakeupArtist.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/Shoes.html" afterPath="$PROJECT_DIR$/templates/Shoes.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/Watches.html" afterPath="$PROJECT_DIR$/templates/Watches.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/WeddingWears.html" afterPath="$PROJECT_DIR$/templates/WeddingWears.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/beads.html" afterPath="$PROJECT_DIR$/templates/beads.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/index.html" afterPath="$PROJECT_DIR$/templates/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/store.html" afterPath="$PROJECT_DIR$/templates/store.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/supplier_prof.html" afterPath="$PROJECT_DIR$/templates/supplier_prof.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.idea/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -29,80 +41,103 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/put/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="7" lean-forward="true" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
+            <state relative-caret-position="-151">
+              <caret line="1621" column="34" lean-forward="true" selection-start-line="1621" selection-start-column="34" selection-end-line="1621" selection-end-column="34" />
               <folding>
                 <element signature="e#0#34#0" expanded="true" />
-                <element signature="e#386#802#0" expanded="false" />
-                <element signature="e#829#1927#0" expanded="false" />
-                <element signature="e#1958#2629#0" expanded="false" />
-                <element signature="e#2656#3060#0" expanded="false" />
-                <element signature="e#3086#3488#0" expanded="false" />
-                <element signature="e#3518#3928#0" expanded="false" />
-                <element signature="e#3961#4377#0" expanded="false" />
-                <element signature="e#4406#4814#0" expanded="false" />
-                <element signature="e#4848#5261#0" expanded="false" />
-                <element signature="e#5288#5692#0" expanded="false" />
-                <element signature="e#5721#6129#0" expanded="false" />
-                <element signature="e#6163#6581#0" expanded="false" />
-                <element signature="e#6614#7774#0" expanded="false" />
-                <element signature="e#7815#8603#0" expanded="false" />
-                <element signature="e#8630#9688#0" expanded="false" />
-                <element signature="e#9718#10399#0" expanded="false" />
-                <element signature="e#10428#11119#0" expanded="false" />
-                <element signature="e#11147#11322#0" expanded="false" />
-                <element signature="e#11351#12640#0" expanded="false" />
-                <element signature="e#12668#15252#0" expanded="false" />
-                <element signature="e#15284#16951#0" expanded="false" />
-                <element signature="e#16985#18664#0" expanded="false" />
-                <element signature="e#18699#20378#0" expanded="false" />
-                <element signature="e#20413#22092#0" expanded="false" />
-                <element signature="e#22125#23804#0" expanded="false" />
-                <element signature="e#23839#25560#0" expanded="false" />
-                <element signature="e#25593#25855#0" expanded="false" />
-                <element signature="e#25890#26800#0" expanded="false" />
-                <element signature="e#26838#27033#0" expanded="false" />
-                <element signature="e#27062#27246#0" expanded="false" />
-                <element signature="e#27280#33440#0" expanded="false" />
-                <element signature="e#32651#32921#0" expanded="false" />
-                <element signature="e#33471#35628#0" expanded="false" />
-                <element signature="e#33735#33757#0" expanded="false" />
-                <element signature="e#35662#37002#0" expanded="false" />
-                <element signature="e#37039#37227#0" expanded="false" />
-                <element signature="e#37261#44830#0" expanded="false" />
-                <element signature="e#38551#38573#0" expanded="false" />
-                <element signature="e#44867#45991#0" expanded="false" />
-                <element signature="e#46016#52859#0" expanded="false" />
-                <element signature="e#46576#47309#0" expanded="false" />
-                <element signature="e#46622#46955#0" expanded="false" />
-                <element signature="e#47407#48253#0" expanded="false" />
-                <element signature="e#48349#49195#0" expanded="false" />
-                <element signature="e#49295#50141#0" expanded="false" />
-                <element signature="e#50233#50529#0" expanded="false" />
-                <element signature="e#52890#54288#0" expanded="false" />
-                <element signature="e#54319#54948#0" expanded="false" />
-                <element signature="e#54986#55869#0" expanded="false" />
-                <element signature="e#55903#56332#0" expanded="false" />
-                <element signature="e#57146#58065#0" expanded="false" />
-                <element signature="e#60181#61054#0" expanded="false" />
-                <element signature="e#61087#61998#0" expanded="false" />
-                <element signature="e#62027#62167#0" expanded="false" />
-                <element signature="e#62198#64147#0" expanded="false" />
-                <element signature="e#64170#64304#0" expanded="false" />
-                <element signature="e#64334#65476#0" expanded="false" />
+                <element signature="e#482#961#0" expanded="false" />
+                <element signature="e#989#2087#0" expanded="false" />
+                <element signature="e#2118#2789#0" expanded="false" />
+                <element signature="e#2816#3220#0" expanded="false" />
+                <element signature="e#3246#3648#0" expanded="false" />
+                <element signature="e#3678#4088#0" expanded="false" />
+                <element signature="e#4121#4537#0" expanded="false" />
+                <element signature="e#4566#4974#0" expanded="false" />
+                <element signature="e#5008#5426#0" expanded="false" />
+                <element signature="e#5453#5857#0" expanded="false" />
+                <element signature="e#5886#6294#0" expanded="false" />
+                <element signature="e#6328#6746#0" expanded="false" />
+                <element signature="e#6779#7939#0" expanded="false" />
+                <element signature="e#7980#8768#0" expanded="false" />
+                <element signature="e#8795#9853#0" expanded="false" />
+                <element signature="e#9883#10564#0" expanded="false" />
+                <element signature="e#10593#11284#0" expanded="false" />
+                <element signature="e#11312#11487#0" expanded="false" />
+                <element signature="e#11516#12805#0" expanded="false" />
+                <element signature="e#12833#15431#0" expanded="false" />
+                <element signature="e#15463#17130#0" expanded="false" />
+                <element signature="e#17164#18843#0" expanded="false" />
+                <element signature="e#18878#20557#0" expanded="false" />
+                <element signature="e#20592#22271#0" expanded="false" />
+                <element signature="e#22304#23983#0" expanded="false" />
+                <element signature="e#24018#25739#0" expanded="false" />
+                <element signature="e#25772#26034#0" expanded="false" />
+                <element signature="e#26069#26979#0" expanded="false" />
+                <element signature="e#27017#27212#0" expanded="false" />
+                <element signature="e#27241#27425#0" expanded="false" />
+                <element signature="e#27459#33619#0" expanded="false" />
+                <element signature="e#32830#33100#0" expanded="false" />
+                <element signature="e#33650#35807#0" expanded="false" />
+                <element signature="e#33914#33936#0" expanded="false" />
+                <element signature="e#35841#37181#0" expanded="false" />
+                <element signature="e#37218#37406#0" expanded="false" />
+                <element signature="e#37440#45009#0" expanded="false" />
+                <element signature="e#38730#38752#0" expanded="false" />
+                <element signature="e#45046#46170#0" expanded="false" />
+                <element signature="e#46195#53038#0" expanded="false" />
+                <element signature="e#46755#47488#0" expanded="false" />
+                <element signature="e#46801#47134#0" expanded="false" />
+                <element signature="e#47586#48432#0" expanded="false" />
+                <element signature="e#48528#49374#0" expanded="false" />
+                <element signature="e#49474#50320#0" expanded="false" />
+                <element signature="e#50412#50708#0" expanded="false" />
+                <element signature="e#53069#54467#0" expanded="false" />
+                <element signature="e#54498#55127#0" expanded="false" />
+                <element signature="e#55165#56048#0" expanded="false" />
+                <element signature="e#56082#56511#0" expanded="false" />
+                <element signature="e#56546#58633#0" expanded="false" />
+                <element signature="e#57325#58244#0" expanded="false" />
+                <element signature="e#60366#61239#0" expanded="false" />
+                <element signature="e#61272#62183#0" expanded="false" />
+                <element signature="e#62212#62352#0" expanded="false" />
+                <element signature="e#62383#64332#0" expanded="false" />
+                <element signature="e#64355#64489#0" expanded="false" />
+                <element signature="e#64519#65661#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="urls.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/putiton/urls.py">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="16" column="58" lean-forward="true" selection-start-line="16" selection-start-column="58" selection-end-line="16" selection-end-column="58" />
+            <state relative-caret-position="2788">
+              <caret line="164" column="84" lean-forward="false" selection-start-line="164" selection-start-column="84" selection-end-line="164" selection-end-column="84" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/put/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="197">
+              <caret line="62" column="18" lean-forward="false" selection-start-line="62" selection-start-column="10" selection-end-line="62" selection-end-column="18" />
+              <folding>
+                <element signature="e#46#72#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MakeupArtist.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/MakeupArtist.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-30">
+              <caret line="33" column="118" lean-forward="false" selection-start-line="33" selection-start-column="118" selection-end-line="33" selection-end-column="118" />
               <folding />
             </state>
           </provider>
@@ -111,8 +146,8 @@
       <file leaf-file-name="supplier_prof.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/supplier_prof.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="156" column="68" lean-forward="false" selection-start-line="156" selection-start-column="68" selection-end-line="156" selection-end-column="68" />
+            <state relative-caret-position="90">
+              <caret line="175" column="0" lean-forward="true" selection-start-line="175" selection-start-column="0" selection-end-line="175" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -121,10 +156,10 @@
       <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/putiton/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="276">
-              <caret line="138" column="1" lean-forward="true" selection-start-line="138" selection-start-column="1" selection-end-line="138" selection-end-column="1" />
+            <state relative-caret-position="106">
+              <caret line="83" column="29" lean-forward="true" selection-start-line="83" selection-start-column="29" selection-end-line="83" selection-end-column="29" />
               <folding>
-                <marker date="1520933497752" expanded="true" signature="2398:2627" ph="..." />
+                <marker date="1521025002510" expanded="true" signature="2408:2625" ph="..." />
               </folding>
             </state>
           </provider>
@@ -217,28 +252,28 @@
         <option value="$PROJECT_DIR$/putiton/calender.py" />
         <option value="$PROJECT_DIR$/templates/Ads.html" />
         <option value="$PROJECT_DIR$/templates/subscription.html" />
-        <option value="$PROJECT_DIR$/templates/beads.html" />
         <option value="$PROJECT_DIR$/templates/pagination.html" />
-        <option value="$PROJECT_DIR$/templates/Clothing.html" />
         <option value="$PROJECT_DIR$/templates/Hairstylist.html" />
-        <option value="$PROJECT_DIR$/templates/Jewelry.html" />
         <option value="$PROJECT_DIR$/put/models.py" />
-        <option value="$PROJECT_DIR$/templates/MakeupArtist.html" />
-        <option value="$PROJECT_DIR$/templates/Bags.html" />
-        <option value="$PROJECT_DIR$/templates/Shoes.html" />
-        <option value="$PROJECT_DIR$/templates/Watches.html" />
-        <option value="$PROJECT_DIR$/templates/WeddingWears.html" />
         <option value="$PROJECT_DIR$/templates/det.html" />
         <option value="$PROJECT_DIR$/templates/ipage.html" />
         <option value="$PROJECT_DIR$/templates/customize.html" />
-        <option value="$PROJECT_DIR$/templates/store.html" />
         <option value="$PROJECT_DIR$/templates/search.html" />
         <option value="$PROJECT_DIR$/templates/inew.html" />
-        <option value="$PROJECT_DIR$/templates/index.html" />
         <option value="$PROJECT_DIR$/templates/details.html" />
-        <option value="$PROJECT_DIR$/templates/supplier_prof.html" />
         <option value="$PROJECT_DIR$/putiton/urls.py" />
+        <option value="$PROJECT_DIR$/templates/beads.html" />
+        <option value="$PROJECT_DIR$/templates/Bags.html" />
+        <option value="$PROJECT_DIR$/templates/Clothing.html" />
+        <option value="$PROJECT_DIR$/templates/Jewelry.html" />
+        <option value="$PROJECT_DIR$/templates/MakeupArtist.html" />
+        <option value="$PROJECT_DIR$/templates/Shoes.html" />
+        <option value="$PROJECT_DIR$/templates/store.html" />
+        <option value="$PROJECT_DIR$/templates/WeddingWears.html" />
+        <option value="$PROJECT_DIR$/templates/Watches.html" />
         <option value="$PROJECT_DIR$/putiton/settings.py" />
+        <option value="$PROJECT_DIR$/templates/index.html" />
+        <option value="$PROJECT_DIR$/templates/supplier_prof.html" />
         <option value="$PROJECT_DIR$/put/views.py" />
       </list>
     </option>
@@ -280,7 +315,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -296,24 +330,7 @@
             <path>
               <item name="putiton" type="b2602c69:ProjectViewProjectNode" />
               <item name="putiton" type="462c0819:PsiDirectoryNode" />
-              <item name="put" type="462c0819:PsiDirectoryNode" />
-              <item name="migrations" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="putiton" type="b2602c69:ProjectViewProjectNode" />
               <item name="putiton" type="462c0819:PsiDirectoryNode" />
-              <item name="putiton" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="putiton" type="b2602c69:ProjectViewProjectNode" />
-              <item name="putiton" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="putiton" type="b2602c69:ProjectViewProjectNode" />
-              <item name="putiton" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="images" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="putiton" type="b2602c69:ProjectViewProjectNode" />
@@ -324,6 +341,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="Scratches" />
     </panes>
   </component>
@@ -711,11 +729,19 @@
       <option name="project" value="LOCAL" />
       <updated>1520933508948</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="first cmment">
+      <created>1520933681035</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1520933681035</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Debug Logs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -725,7 +751,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Execute Anonymous" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3535188" sideWeight="0.49092284" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13993949" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14447807" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.0" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24962178" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -783,13 +809,6 @@
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/templates/r_beads.html" />
-    <entry file="file://$PROJECT_DIR$/templates/makeup_artist.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2125">
-          <caret line="73" column="20" lean-forward="true" selection-start-line="73" selection-start-column="20" selection-end-line="73" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/p_makeup.html" />
     <entry file="file://$PROJECT_DIR$/templates/d_stylist.html" />
     <entry file="file://$PROJECT_DIR$/templates/m_details.html" />
@@ -902,62 +921,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/beads.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="106">
-          <caret line="20" column="14" lean-forward="true" selection-start-line="20" selection-start-column="14" selection-end-line="20" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/Hairstylist.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="60" column="8" lean-forward="false" selection-start-line="60" selection-start-column="8" selection-end-line="60" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/Clothing.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="59" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/Jewelry.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="447">
-          <caret line="60" column="8" lean-forward="false" selection-start-line="60" selection-start-column="8" selection-end-line="60" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/Bags.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="59" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/MakeupArtist.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="424">
-          <caret line="60" column="8" lean-forward="false" selection-start-line="60" selection-start-column="8" selection-end-line="60" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/Watches.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="19" column="16" lean-forward="true" selection-start-line="19" selection-start-column="16" selection-end-line="19" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/WeddingWears.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/Ads.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
@@ -980,13 +943,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/store.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/views_ads.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="174">
@@ -1001,46 +957,15 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/Shoes.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1054">
-          <caret line="62" column="14" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="62" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/static/images/jane.jpg">
       <provider selected="true" editor-type-id="images">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/search.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="117" lean-forward="false" selection-start-line="18" selection-start-column="117" selection-end-line="18" selection-end-column="117" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="20" lean-forward="false" selection-start-line="23" selection-start-column="20" selection-end-line="23" selection-end-column="44" />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/inew.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
           <caret line="13" column="47" lean-forward="false" selection-start-line="13" selection-start-column="47" selection-end-line="13" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/put/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="73" column="12" lean-forward="false" selection-start-line="73" selection-start-column="12" selection-end-line="73" selection-end-column="12" />
-          <folding>
-            <element signature="e#46#72#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1065,96 +990,221 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/supplier_prof.html">
+    <entry file="file://$PROJECT_DIR$/templates/search.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="156" column="68" lean-forward="false" selection-start-line="156" selection-start-column="68" selection-end-line="156" selection-end-column="68" />
+        <state relative-caret-position="1003">
+          <caret line="59" column="32" lean-forward="false" selection-start-line="59" selection-start-column="32" selection-end-line="59" selection-end-column="32" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/putiton/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="138" column="1" lean-forward="true" selection-start-line="138" selection-start-column="1" selection-end-line="138" selection-end-column="1" />
-          <folding>
-            <marker date="1520933497752" expanded="true" signature="2398:2627" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/put/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="7" lean-forward="true" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
-          <folding>
-            <element signature="e#0#34#0" expanded="true" />
-            <element signature="e#386#802#0" expanded="false" />
-            <element signature="e#829#1927#0" expanded="false" />
-            <element signature="e#1958#2629#0" expanded="false" />
-            <element signature="e#2656#3060#0" expanded="false" />
-            <element signature="e#3086#3488#0" expanded="false" />
-            <element signature="e#3518#3928#0" expanded="false" />
-            <element signature="e#3961#4377#0" expanded="false" />
-            <element signature="e#4406#4814#0" expanded="false" />
-            <element signature="e#4848#5261#0" expanded="false" />
-            <element signature="e#5288#5692#0" expanded="false" />
-            <element signature="e#5721#6129#0" expanded="false" />
-            <element signature="e#6163#6581#0" expanded="false" />
-            <element signature="e#6614#7774#0" expanded="false" />
-            <element signature="e#7815#8603#0" expanded="false" />
-            <element signature="e#8630#9688#0" expanded="false" />
-            <element signature="e#9718#10399#0" expanded="false" />
-            <element signature="e#10428#11119#0" expanded="false" />
-            <element signature="e#11147#11322#0" expanded="false" />
-            <element signature="e#11351#12640#0" expanded="false" />
-            <element signature="e#12668#15252#0" expanded="false" />
-            <element signature="e#15284#16951#0" expanded="false" />
-            <element signature="e#16985#18664#0" expanded="false" />
-            <element signature="e#18699#20378#0" expanded="false" />
-            <element signature="e#20413#22092#0" expanded="false" />
-            <element signature="e#22125#23804#0" expanded="false" />
-            <element signature="e#23839#25560#0" expanded="false" />
-            <element signature="e#25593#25855#0" expanded="false" />
-            <element signature="e#25890#26800#0" expanded="false" />
-            <element signature="e#26838#27033#0" expanded="false" />
-            <element signature="e#27062#27246#0" expanded="false" />
-            <element signature="e#27280#33440#0" expanded="false" />
-            <element signature="e#32651#32921#0" expanded="false" />
-            <element signature="e#33471#35628#0" expanded="false" />
-            <element signature="e#33735#33757#0" expanded="false" />
-            <element signature="e#35662#37002#0" expanded="false" />
-            <element signature="e#37039#37227#0" expanded="false" />
-            <element signature="e#37261#44830#0" expanded="false" />
-            <element signature="e#38551#38573#0" expanded="false" />
-            <element signature="e#44867#45991#0" expanded="false" />
-            <element signature="e#46016#52859#0" expanded="false" />
-            <element signature="e#46576#47309#0" expanded="false" />
-            <element signature="e#46622#46955#0" expanded="false" />
-            <element signature="e#47407#48253#0" expanded="false" />
-            <element signature="e#48349#49195#0" expanded="false" />
-            <element signature="e#49295#50141#0" expanded="false" />
-            <element signature="e#50233#50529#0" expanded="false" />
-            <element signature="e#52890#54288#0" expanded="false" />
-            <element signature="e#54319#54948#0" expanded="false" />
-            <element signature="e#54986#55869#0" expanded="false" />
-            <element signature="e#55903#56332#0" expanded="false" />
-            <element signature="e#57146#58065#0" expanded="false" />
-            <element signature="e#60181#61054#0" expanded="false" />
-            <element signature="e#61087#61998#0" expanded="false" />
-            <element signature="e#62027#62167#0" expanded="false" />
-            <element signature="e#62198#64147#0" expanded="false" />
-            <element signature="e#64170#64304#0" expanded="false" />
-            <element signature="e#64334#65476#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/putiton/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="16" column="58" lean-forward="true" selection-start-line="16" selection-start-column="58" selection-end-line="16" selection-end-column="58" />
+        <state relative-caret-position="68">
+          <caret line="25" column="61" lean-forward="false" selection-start-line="25" selection-start-column="61" selection-end-line="25" selection-end-column="61" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/makeup_artist.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="73" column="20" lean-forward="true" selection-start-line="73" selection-start-column="20" selection-end-line="73" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/Shoes.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="33" column="119" lean-forward="false" selection-start-line="33" selection-start-column="119" selection-end-line="33" selection-end-column="119" />
+          <folding>
+            <element signature="e#1455#1505#0#HTML" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/store.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-85">
+          <caret line="55" column="119" lean-forward="false" selection-start-line="55" selection-start-column="119" selection-end-line="55" selection-end-column="119" />
+          <folding>
+            <element signature="n#style#0;n#img#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#div#1;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/WeddingWears.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="61">
+          <caret line="33" column="119" lean-forward="false" selection-start-line="33" selection-start-column="119" selection-end-line="33" selection-end-column="119" />
+          <folding>
+            <element signature="e#1475#1525#0#HTML" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/Watches.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="33" column="119" lean-forward="false" selection-start-line="33" selection-start-column="119" selection-end-line="33" selection-end-column="119" />
+          <folding>
+            <element signature="e#1459#1509#0#HTML" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/Bags.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="32" column="119" lean-forward="false" selection-start-line="32" selection-start-column="119" selection-end-line="32" selection-end-column="119" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/beads.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="30" column="36" lean-forward="false" selection-start-line="30" selection-start-column="36" selection-end-line="30" selection-end-column="36" />
+          <folding>
+            <element signature="e#1481#1531#0#HTML" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/Clothing.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="32" column="135" lean-forward="false" selection-start-line="32" selection-start-column="135" selection-end-line="32" selection-end-column="135" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/Hairstylist.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1020">
+          <caret line="60" column="8" lean-forward="false" selection-start-line="60" selection-start-column="8" selection-end-line="60" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/Jewelry.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="561">
+          <caret line="33" column="119" lean-forward="false" selection-start-line="33" selection-start-column="119" selection-end-line="33" selection-end-column="119" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/put/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="197">
+          <caret line="62" column="18" lean-forward="false" selection-start-line="62" selection-start-column="10" selection-end-line="62" selection-end-column="18" />
+          <folding>
+            <element signature="e#46#72#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/putiton/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="106">
+          <caret line="83" column="29" lean-forward="true" selection-start-line="83" selection-start-column="29" selection-end-line="83" selection-end-column="29" />
+          <folding>
+            <marker date="1521025002510" expanded="true" signature="2408:2625" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2788">
+          <caret line="164" column="84" lean-forward="false" selection-start-line="164" selection-start-column="84" selection-end-line="164" selection-end-column="84" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/MakeupArtist.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-30">
+          <caret line="33" column="118" lean-forward="false" selection-start-line="33" selection-start-column="118" selection-end-line="33" selection-end-column="118" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/supplier_prof.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="175" column="0" lean-forward="true" selection-start-line="175" selection-start-column="0" selection-end-line="175" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/put/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-151">
+          <caret line="1621" column="34" lean-forward="true" selection-start-line="1621" selection-start-column="34" selection-end-line="1621" selection-end-column="34" />
+          <folding>
+            <element signature="e#0#34#0" expanded="true" />
+            <element signature="e#482#961#0" expanded="false" />
+            <element signature="e#989#2087#0" expanded="false" />
+            <element signature="e#2118#2789#0" expanded="false" />
+            <element signature="e#2816#3220#0" expanded="false" />
+            <element signature="e#3246#3648#0" expanded="false" />
+            <element signature="e#3678#4088#0" expanded="false" />
+            <element signature="e#4121#4537#0" expanded="false" />
+            <element signature="e#4566#4974#0" expanded="false" />
+            <element signature="e#5008#5426#0" expanded="false" />
+            <element signature="e#5453#5857#0" expanded="false" />
+            <element signature="e#5886#6294#0" expanded="false" />
+            <element signature="e#6328#6746#0" expanded="false" />
+            <element signature="e#6779#7939#0" expanded="false" />
+            <element signature="e#7980#8768#0" expanded="false" />
+            <element signature="e#8795#9853#0" expanded="false" />
+            <element signature="e#9883#10564#0" expanded="false" />
+            <element signature="e#10593#11284#0" expanded="false" />
+            <element signature="e#11312#11487#0" expanded="false" />
+            <element signature="e#11516#12805#0" expanded="false" />
+            <element signature="e#12833#15431#0" expanded="false" />
+            <element signature="e#15463#17130#0" expanded="false" />
+            <element signature="e#17164#18843#0" expanded="false" />
+            <element signature="e#18878#20557#0" expanded="false" />
+            <element signature="e#20592#22271#0" expanded="false" />
+            <element signature="e#22304#23983#0" expanded="false" />
+            <element signature="e#24018#25739#0" expanded="false" />
+            <element signature="e#25772#26034#0" expanded="false" />
+            <element signature="e#26069#26979#0" expanded="false" />
+            <element signature="e#27017#27212#0" expanded="false" />
+            <element signature="e#27241#27425#0" expanded="false" />
+            <element signature="e#27459#33619#0" expanded="false" />
+            <element signature="e#32830#33100#0" expanded="false" />
+            <element signature="e#33650#35807#0" expanded="false" />
+            <element signature="e#33914#33936#0" expanded="false" />
+            <element signature="e#35841#37181#0" expanded="false" />
+            <element signature="e#37218#37406#0" expanded="false" />
+            <element signature="e#37440#45009#0" expanded="false" />
+            <element signature="e#38730#38752#0" expanded="false" />
+            <element signature="e#45046#46170#0" expanded="false" />
+            <element signature="e#46195#53038#0" expanded="false" />
+            <element signature="e#46755#47488#0" expanded="false" />
+            <element signature="e#46801#47134#0" expanded="false" />
+            <element signature="e#47586#48432#0" expanded="false" />
+            <element signature="e#48528#49374#0" expanded="false" />
+            <element signature="e#49474#50320#0" expanded="false" />
+            <element signature="e#50412#50708#0" expanded="false" />
+            <element signature="e#53069#54467#0" expanded="false" />
+            <element signature="e#54498#55127#0" expanded="false" />
+            <element signature="e#55165#56048#0" expanded="false" />
+            <element signature="e#56082#56511#0" expanded="false" />
+            <element signature="e#56546#58633#0" expanded="false" />
+            <element signature="e#57325#58244#0" expanded="false" />
+            <element signature="e#60366#61239#0" expanded="false" />
+            <element signature="e#61272#62183#0" expanded="false" />
+            <element signature="e#62212#62352#0" expanded="false" />
+            <element signature="e#62383#64332#0" expanded="false" />
+            <element signature="e#64355#64489#0" expanded="false" />
+            <element signature="e#64519#65661#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

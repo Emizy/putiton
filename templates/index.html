@@ -114,6 +114,8 @@
                                                     <img src="{{ i.image1.url }}" alt="pics"
                                                          class="img-responsive img-hover"
                                                          style="height: 150px;width: 200px;">
+                                                    <img src="{% static 'faviconit/favicon-16.png' %}" class="pull-left"
+                                                         style="width: 20px;z-index: 498;;padding-left: 0;">
                                                 </div>
                                                 <div class="row w3-justify">
                                                     <h5 id="t"
@@ -134,12 +136,12 @@
                                     </div>
                                 {% endfor %}
                             {% endif %}
-
+                            {% include 'pagination.html' %}
                         </div>
 
                         <br>
                     </div>
-                    {% include 'pagination.html' %}
+
                 </div>
 
                 <!-- END GRID -->
@@ -149,34 +151,38 @@
         <!-- end category and hot products -->
         <hr>
 
-        <div class="w3-row">
-            <div class="w3-col l12 s12">
-                <div class="w3-white w3-margin">
-                    <div class="w3-container w3-padding w3-pink w3-text-white">
-                        <h4>Search</h4>
-                    </div>
-                    <div class="w3-container w3-white">
-                        <p>Search By Product name , Catetory , State , Local-Govt</p>
-                        <form action="{% url 'search' %}" method="post">
-
-                            {% csrf_token %}
-
-                            <input class="w3-input w3-border" type="text" placeholder="Enter Keyword"
-                                                   name="search"
-                                                   style="width:100%">
-{#                            <input type="submit" value="SEARCH"#}
-{#                                   class="w3-btn w3-white w3-border w3-text-pink w3-hover-text-pink w3-border-pink w3-right"/>#}
-                        </form>
-                    </div>
-                </div>
-
-            </div>
-        </div>
     </div>
 
-    <!-- Subscribe Modal -->
+    <!-- Subscribe -->
+    <div class="w3-white w3-margin">
+        <div class="w3-container w3-padding w3-pink">
+            <h4 class="w3-text-white">SEARCH</h4>
+        </div>
+        <div class="w3-container w3-white">
+            <p><strong>Search by Product name,State,Local-Govt.</strong></p>
+            <form method="post" action="{% url 'search' %}">
+                {% csrf_token %}
+                <input class="w3-input w3-border" name="search" type="text" required
+                       placeholder="Search by Product name,State,Local-Govt," style="width:100%">
+                <input type="submit" value="search"
+                       class="w3-button w3-right w3-hover-white  w3-white w3-border w3-border-pink w3-round w3-text-pink w3-hover-text-pink">
+            </form>
+        </div>
+
+    </div>
 
 
-    <!-- Footer -->
-    <!-- Footer -->
+    {#    <div class="container w3-center">#}
+    {#        <form class="form-inline" method="post" action="{% url 'search' %}">#}
+    {#            #}
+    {#            <div class="form-group">#}
+    {#                <input type="text" class="form-control" name="seach" placeholder="Enter Product name" required>#}
+    {#            </div>#}
+    {#            <button type="submit"#}
+    {#                    class="w3-btn w3-hover-white w3-white w3-border w3-border-pink w3-hover-text-pink w3-text-pink"#}
+    {#            >Search#}
+    {#            </button>#}
+    {#        </form>#}
+    {#    </div>#}
+    <br>
 {% endblock %}

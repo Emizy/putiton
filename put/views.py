@@ -1,16 +1,19 @@
 import json, traceback, re, random
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage, InvalidPage
+from django.views.decorators.csrf import csrf_protect
 from datetime import date, datetime, timedelta
 from django.contrib import messages
+from django.template import RequestContext
 from django.http import HttpRequest, JsonResponse, HttpResponse
 from django.shortcuts import render, redirect, render_to_response
 from put.models import *
 
 
-def coming(request):
-    sqlbp = Product.objects.filter(supp_user__status="Platinum").order_by(
+def index(request):
+    sqlbp = Product.objects.filter(supp_user__status="Platinum", supp_user__confirm="APPROVED").order_by(
         '-date')
-    paginator = Paginator(sqlbp, 20)
+    # sqlbp = Product.objects.all()
+    paginator = Paginator(sqlbp, 2)
     try:
         page = int(request.GET.get('page', '1'))
     except ValueError:
@@ -20,10 +23,10 @@ def coming(request):
     except (EmptyPage, InvalidPage):
         list = paginator.page(paginator.num_pages)
 
-    return render_to_response('index.html', {"list": list})
+    return render(request, 'index.html', {"list": list})
 
 
-def index(request):
+def coming(request):
     assert isinstance(request, HttpRequest)
     if request.method == 'GET':
         context = locals()
@@ -173,7 +176,7 @@ def makeupArtist(request):
     except (EmptyPage, InvalidPage):
         list = paginator.page(paginator.num_pages)
 
-    return render_to_response('Jewelry.html', {"list": list})
+    return render_to_response('MakeupArtist.html', {"list": list})
 
 
 def shoes(request):
@@ -415,7 +418,7 @@ def search(request):
             except (EmptyPage, InvalidPage):
                 list = paginator.page(paginator.num_pages)
 
-            return render_to_response('search.html', {"list": list})
+            return render_to_response('search.html', {"list": list}, )
 
 
         elif result2:
@@ -429,7 +432,7 @@ def search(request):
             except (EmptyPage, InvalidPage):
                 list = paginator.page(paginator.num_pages)
 
-            return render_to_response('search.html', {"list": list})
+            return render_to_response('search.html', {"list": list}, )
 
         elif result3:
             paginator = Paginator(result3, 20)
@@ -442,7 +445,7 @@ def search(request):
             except (EmptyPage, InvalidPage):
                 list = paginator.page(paginator.num_pages)
 
-            return render_to_response('search.html', {"list": list})
+            return render_to_response('search.html', {"list": list}, )
         elif result4:
             paginator = Paginator(result4, 20)
             try:
@@ -454,7 +457,7 @@ def search(request):
             except (EmptyPage, InvalidPage):
                 list = paginator.page(paginator.num_pages)
 
-            return render_to_response('search.html', {"list": list})
+            return render_to_response('search.html', {"list": list}, )
 
         elif rel:
             paginator = Paginator(rel, 20)
@@ -467,7 +470,7 @@ def search(request):
             except (EmptyPage, InvalidPage):
                 list = paginator.page(paginator.num_pages)
 
-            return render_to_response('search.html', {"list": list})
+                return render_to_response('search.html', {"list": list}, )
 
 
 def men_search(request):
@@ -1606,8 +1609,8 @@ def edit_prof(request):
             doc_fname = request.POST.get('name')
             doc_email = request.POST.get('email')
             doc_gender = request.POST.get('gender')
-            o = request.POST.get('phone')
-            doc_phone = o[1:11]
+            # o = request.POST.get('phone')
+            # doc_phone = o[1:11]
             doc_state = request.POST.get('state')
             doc_local = request.POST.get('local')
             doc_address = request.POST.get('address')
@@ -1618,7 +1621,7 @@ def edit_prof(request):
             if d:
                 d.name = doc_fname
                 d.Email = doc_email
-                d.Phone = doc_phone
+                # d.Phone = doc_phone
                 d.address = doc_address
                 d.state = doc_state
                 d.location = doc_local

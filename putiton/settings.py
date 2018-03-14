@@ -78,19 +78,19 @@ WSGI_APPLICATION = 'putiton.wsgi.application'
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'putiton',
-        'USER': 'NevoGold',
-        'PASSWORD': 'ayo2012',
-    }
     # 'default': {
     #     'ENGINE': 'django.db.backends.mysql',
-    #     'NAME': 'putiton$on',
-    #     'USER': 'putiton',
-    #     'PASSWORD': 'ayomikun2012',
-    #     'HOST': 'PutItOn.mysql.pythonanywhere-services.com'
+    #     'NAME': 'putiton',
+    #     'USER': 'NevoGold',
+    #     'PASSWORD': 'ayo2012',
     # }
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'putiton$on',
+        'USER': 'putiton',
+        'PASSWORD': 'ayomikun2012',
+        'HOST': 'PutItOn.mysql.pythonanywhere-services.com'
+    }
 }
 
 
