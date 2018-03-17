@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="0cff984e-d09c-4ba5-ba4b-5119033fc8cd" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/supplier_prof.html" afterPath="$PROJECT_DIR$/templates/supplier_prof.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.idea/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -394,13 +393,6 @@
       <option name="presentableId" value="Default" />
       <updated>1515368525487</updated>
     </task>
-    <task id="LOCAL-00002" summary="first cmment">
-      <created>1518043346991</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1518043346991</updated>
-    </task>
     <task id="LOCAL-00003" summary="first cmment">
       <created>1518043973384</created>
       <option name="number" value="00003" />
@@ -737,7 +729,14 @@
       <option name="project" value="LOCAL" />
       <updated>1521288313479</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL-00051" summary="first cmment">
+      <created>1521288416656</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1521288416656</updated>
+    </task>
+    <option name="localTasksCounter" value="52" />
     <servers />
   </component>
   <component name="ToolWindowManager">
