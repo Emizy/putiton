@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="0cff984e-d09c-4ba5-ba4b-5119033fc8cd" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/supplier_prof.html" afterPath="$PROJECT_DIR$/templates/supplier_prof.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.idea/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -102,7 +103,7 @@
         <entry file="file://$PROJECT_DIR$/templates/supplier_prof.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="78">
-              <caret line="110" column="113" lean-forward="false" selection-start-line="110" selection-start-column="113" selection-end-line="110" selection-end-column="113" />
+              <caret line="110" column="185" lean-forward="false" selection-start-line="110" selection-start-column="185" selection-end-line="110" selection-end-column="185" />
               <folding />
             </state>
           </provider>
@@ -392,13 +393,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1515368525487</updated>
-    </task>
-    <task id="LOCAL-00001" summary="first cmment">
-      <created>1518036780770</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1518036780770</updated>
     </task>
     <task id="LOCAL-00002" summary="first cmment">
       <created>1518043346991</created>
@@ -736,7 +730,14 @@
       <option name="project" value="LOCAL" />
       <updated>1521287704114</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="first cmment">
+      <created>1521288313479</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1521288313479</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1247,7 +1248,7 @@
     <entry file="file://$PROJECT_DIR$/templates/supplier_prof.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="78">
-          <caret line="110" column="113" lean-forward="false" selection-start-line="110" selection-start-column="113" selection-end-line="110" selection-end-column="113" />
+          <caret line="110" column="185" lean-forward="false" selection-start-line="110" selection-start-column="185" selection-end-line="110" selection-end-column="185" />
           <folding />
         </state>
       </provider>
