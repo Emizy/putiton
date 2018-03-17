@@ -51,7 +51,11 @@
 <nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
     <div class="w3-container w3-row">
         <div class="w3-col s4">
-            <img src="{% static 'images/avatar.png' %}" class="w3-circle w3-margin-right" style="width:46px">
+            {% if pics.image.url %}
+                <img src="{{ pics.image.url }}" class="w3-circle w3-margin-right" style="width:46px">
+            {% else %}
+                <img src="{% static 'images/avatar.png' %}" class="w3-circle w3-margin-right" style="width:46px">
+            {% endif %}
         </div>
         <div class="w3-col s8 w3-bar">
             <span>Welcome, <strong class="w3-text-pink">{% if email %}
@@ -80,10 +84,10 @@
                 class="fa fa-plus-square fa-fw"></i> Submit Ads </a>
 
         <a href="{% url 'views_ads' %}" class="w3-bar-item w3-button w3-padding w3-hover-pink w3-hover-text-white"><i
-                class="fa fa-eye fa-fw"></i> Views Ads  </a>
+                class="fa fa-eye fa-fw"></i> Views Ads </a>
 
         <a href="{% url 'cus_store' %}" class="w3-bar-item w3-button w3-padding w3-hover-pink w3-hover-text-white"><i
-                class="fa fa-smile-o fa-fw"></i> Customize Store  </a>
+                class="fa fa-smile-o fa-fw"></i> Customize Store </a>
 
         <a href="{% url 'complains' %}" class="w3-bar-item w3-button w3-padding w3-hover-pink w3-hover-text-white"><i
                 class="fa fa-history fa-fw"></i> Complains </a>

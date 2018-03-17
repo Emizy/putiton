@@ -139,10 +139,17 @@
 
     <!-- Header -->
     <header class="w3-container w3-center w3-padding-48 w3-white w3-border-top w3-border-pink">
-        <h1 class="w3-xxxlarge"><b><a href="{% url 'index' %}" class="w3-hover-text-pink"> PutItOn<span style="font-size: 13px;"
-                class="w3-tag w3-white w3-text-pink w3-round-xlarge w3-border w3-border-pink">.com.ng</span></a></b></h1>
-        <h6>Welcome to the first Virtual <span
-                class="w3-tag w3-pink w3-border w3-round w3-border-pink">Personal Shop</span></h6>
+        <h1 class="w3-xxxlarge"><b><a href="{% url 'index' %}" class="w3-hover-text-pink"> PutItOn<span
+                style="font-size: 13px;"
+                class="w3-tag w3-white w3-text-pink w3-round-xlarge w3-border w3-border-pink">.com.ng</span></a></b>
+        </h1>
+        <h6>Welcome to the first Personnal <span
+                class="w3-tag w3-pink w3-border w3-round w3-border-pink">Virtual Shop</span></h6><br>
+        <div class="w3-bar"><a href="{% url 'supplier_reg' %}"
+                               class="w3-button w3-white w3-hover-white w3-border w3-border-pink w3-text-pink w3-round w3-hover-text-pink">Enroll
+            as Supplier</a> <a href="{% url 'supplier_log' %}"
+                               class="w3-button w3-hover-white w3-white w3-border w3-border-pink w3-text-pink w3-round w3-hover-text-pink">Login
+            as Supplier</a></div>
     </header>
 
     {% block content %}
@@ -153,39 +160,29 @@
 </div>
 
 
-
 <footer class="w3-padding-64 w3-black w3-small w3-center" id="footer">
     <div class="w3-row-padding">
-
         <div class="w3-col s4">
-            <h4>About</h4>
-            <p><a href="#" class="w3-hover-text-pink">About us</a></p>
-            {#        <p><a href="#" class="w3-hover-text-pink">We're hiring</a></p>#}
-            <p><a href="#" class="w3-hover-text-pink">Support</a></p>
-            <p><a href="#" class="w3-hover-text-pink">Find store</a></p>
-            {#        <p><a href="#">Shipment</a></p>#}
-            {#        <p><a href="#">Payment</a></p>#}
-            {#        <p><a href="#">Gift card</a></p>#}
-            <p><a href="#" class="w3-hover-text-pink">Help</a></p>
+            <div class="w3-container" style="text-align: center;">
+                <p><a href="{% url 'about' %}">About Us</a></p>
+                <p><a href="">Policy</a></p>
+                <p><a href="{% url 'faqx' %}">Faqs</a></p>
+            </div>
         </div>
 
         <div class="w3-col s4 ">
-            {#        <h4>Store</h4>#}
-            {#        <p><i class="fa fa-fw fa-map-marker"></i> Company Name</p>#}
-            {#        <p><i class="fa fa-fw fa-phone"></i> 0044123123</p>#}
-            {#        <p><i class="fa fa-fw fa-envelope"></i> ex@mail.com</p>#}
             <h4>Hot Lines</h4>
-            <p><i class="fa fa-fw fa-phone"></i> 08139957224</p>
-            <p><i class="fa fa-fw fa-phone"></i> 07060569963</p>
-            <p><i class="fa fa-fw fa-phone"></i> 08100828813</p>
-            <p><i class="fa fa-fw fa-phone"></i> 09034632053</p>
+            <p>+2348139572244</p>
+            <p> +2347060569963</p>
+            <p> +2348100828813</p>
+            <p>+2349034632053</p>
             <br>
 
         </div>
 
         <div class="w3-col s4 w3-justify">
             <p><a href="#" class="w3-btn w3-border w3-border-pink w3-text-pink w3-hover-text-pink">Go To Top <i
-                class="fa fa-fw fa-arrow-up"></i> </a></p>
+                    class="fa fa-fw fa-arrow-up"></i> </a></p>
             <br>
             <p><i class="fa fa-facebook-official w3-hover-opacity w3-large w3-hover-text-pink"></i>
                 <i class="fa fa-instagram w3-hover-opacity w3-large w3-hover-text-pink"></i>
@@ -198,7 +195,8 @@
     <div class="clearfix"></div>
     <p class="footer-class animated wow fadeInUp animated" data-wow-delay=".5s"
        style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInUp;"> © 2018 putiton . All
-        Rights Reserved | Design by <a href="{% url 'MeetTeam' %}" target="" class="w3-hover-text-pink">XpresSoft_Ng</a></p>
+        Rights Reserved | Design by <a href="{% url 'MeetTeam' %}" target="_blank" class="w3-hover-text-pink">XpresSoft_Ng</a>
+    </p>
 </footer>
 
 <script>

@@ -6,39 +6,65 @@
 {% block content %}
 
     <script>
+
+
         function myFunction() {
             var x = document.getElementById("myDIV");
+            var y = document.getElementById("sil");
+            var z = document.getElementById("gol");
+            var xy = document.getElementById("plat");
             if (x.style.display === "none") {
                 x.style.display = "block";
+                y.style.display = "none";
+                z.style.display = "none";
+                xy.style.display = "none";
             } else {
                 x.style.display = "none";
             }
         }
 
         function silver() {
-            var x = document.getElementById("sil");
-            if (x.style.display === "none") {
-                x.style.display = "block";
-            } else {
+            var x = document.getElementById("myDIV");
+            var y = document.getElementById("sil");
+            var z = document.getElementById("gol");
+            var xy = document.getElementById("plat");
+            if (y.style.display === "none") {
                 x.style.display = "none";
+                y.style.display = "block";
+                z.style.display = "none";
+                xy.style.display = "none";
+            } else {
+                y.style.display = "none";
             }
         }
 
         function gold() {
-            var x = document.getElementById("gol");
-            if (x.style.display === "none") {
-                x.style.display = "block";
-            } else {
+            var x = document.getElementById("myDIV");
+            var y = document.getElementById("sil");
+            var z = document.getElementById("gol");
+            var xy = document.getElementById("plat");
+            if (z.style.display === "none") {
                 x.style.display = "none";
+                y.style.display = "none";
+                z.style.display = "block";
+                xy.style.display = "none";
+            } else {
+                z.style.display = "none";
             }
         }
 
         function platinum() {
-            var x = document.getElementById("plat");
-            if (x.style.display === "none") {
-                x.style.display = "block";
-            } else {
+            var x = document.getElementById("myDIV");
+            var y = document.getElementById("sil");
+            var z = document.getElementById("gol");
+            var xy = document.getElementById("plat");
+            if (xy.style.display === "none") {
                 x.style.display = "none";
+                y.style.display = "none";
+                z.style.display = "none";
+                xy.style.display = "block";
+            } else {
+                xy.style.display = "none";
             }
         }
     </script>
@@ -72,7 +98,7 @@
             {% if h == "Nil" %}
                 <div class="w3-btn w3-green w3-card-4 w3-border w3-round">
                     <a href="" class=" w3-text-white" style="font-size: 15px;"><strong>Wait for confirmation of
-                        payment</strong></a>
+                        payment / No Payment Yet</strong></a>
                 </div>
             {% endif %}
         </div>
@@ -121,9 +147,7 @@
                 <div class="w3-container w3-red" id="sil" style="display:none;">
                     <h6 class="w3-text-white"> Benefit of Silver </h6>
                     <p>Twice in a week online marketing on our platform</p>
-                    <p>You are eligible to upload a maximun number of 15 products,In which after exhaustion you will
-                        write a request for upgrade of Packages</p>
-                    <p>Products review will be on grade level of 2</p>
+                    <p>1month subscription :You are eligible to upload your products for the next 1 month</p>
                 </div>
             </div>
         </div>
@@ -145,9 +169,7 @@
                 <div class="w3-container w3-blue" id="gol" style="display:none;">
                     <h6 class="w3-text-white"> Benefit of Gold </h6>
                     <p>Three times in a week online marketing on our social-platform</p>
-                    <p>You are eligible to upload a maximun number of 25 products,In which after exhaustion you will
-                        write a request for upgrade of Packages</p>
-                    <p>Products review will be on grade level of 3</p>
+                    <p>2month subscription :You are eligible to upload your products for the next 2 month</p>
                 </div>
             </div>
         </div>
@@ -155,7 +177,7 @@
             <div class="w3-container w3-teal w3-padding-16">
                 <div class="w3-left"><i class="fa fa-money w3-xxxlarge"></i></div>
                 <div class="w3-right">
-                    <h3>1500</h3>
+                    <h3>2000</h3>
                 </div>
                 <div class="w3-clear"></div>
                 <h4>PLATINUM</h4>
@@ -169,9 +191,7 @@
                 <div class="w3-container w3-teal" id="plat" style="display:none;">
                     <h6 class="w3-text-white"> Benefit of Platinum </h6>
                     <p>Four times in a week online marketing on our platform</p>
-                    <p>You are eligible to upload a maximun number of 35 products,In which after exhaustion you will
-                        write a request for upgrade of Packages</p>
-                    <p>Products review will be on grade level of 5</p>
+                    <p>3month subscription :You are eligible to upload your products for the next 3 month</p>
                 </div>
             </div>
         </div>

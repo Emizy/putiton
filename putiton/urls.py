@@ -53,4 +53,6 @@ urlpatterns = [
                   url(r'^forget_pass/', views.forget_pass, name="forget_pass"),
                   url(r'^change_pass/', views.change_pass, name="change_pass"),
                   url(r'^success/', views.success, name="success"),
+                  url(r'^about/', views.about, name="about"),
+                  url(r'^faqx/', views.faqx, name="faqx"),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -10,10 +10,10 @@ from put.models import *
 
 
 def index(request):
-    sqlbp = Product.objects.filter(supp_user__status="Platinum", supp_user__confirm="APPROVED").order_by(
+    sqlbp = Product.objects.all().order_by(
         '-date')
     # sqlbp = Product.objects.all()
-    paginator = Paginator(sqlbp, 2)
+    paginator = Paginator(sqlbp, 20)
     try:
         page = int(request.GET.get('page', '1'))
     except ValueError:
@@ -992,9 +992,11 @@ def dashboard(request):
         if 'email' in request.session:
             try:
                 info = message.objects.all()
+                pics = Supplier.objects.get(username=request.session['user'])
             except:
                 info = None
                 val = None
+                pics = None
                 # if stat is not None:
                 #     if stat.status is not None:
                 #         try:
@@ -1027,8 +1029,7 @@ def dashboard(request):
             if info:
                 context = {
                     'read': info,
-                    'email': em,
-                }
+                    'email': em, }
                 print('hre')
                 template = 'dashboard.html'
                 return render(request, template, context)
@@ -1221,7 +1222,7 @@ def subscription(request):
                     sub_stat = t_pack
                     date_after = today + timedelta(31)
                     stat = Supplier.objects.get(Email=em)
-                    if sub_price == '1500':
+                    if sub_price == '2000':
                         pack.prices = sub_price
                         pack.status = sub_stat
                         trans.supp_user = stat
@@ -1240,7 +1241,7 @@ def subscription(request):
                     else:
                         context = {
                             'email': uem,
-                            'msg': "Invalid amount,Kindly input the correct amount e.g 1500",
+                            'msg': "Invalid amount,Kindly input the correct amount e.g 2000",
                         }
                         template = 'subscription.html'
                         return render(request, template, context)
@@ -1801,3 +1802,17 @@ def MeetTeam(request):
             }
             templates = 'MeetTeam.html'
             return render(request, templates, context)
+
+
+def about(request):
+    if request.method == 'GET':
+        context = locals()
+        templates = 'AboutUs.html'
+        return render(request, templates, context)
+
+
+def faqx(request):
+    if request.method == 'GET':
+        context = locals()
+        templates = 'faqx.html'
+        return render(request, templates, context)

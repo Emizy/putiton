@@ -24,25 +24,68 @@
                     style="font-size: 13px;"
                     class="w3-tag w3-white w3-text-pink w3-round-xlarge w3-border w3-border-pink">.com.ng</span></a></b>
             </h1>
-            <h6>Welcome to the first Virtual <span
-                    class="w3-tag w3-pink w3-border w3-round w3-border-pink">Personal Shop</span></h6>
+            <h6>Welcome to the first Personnal <span
+                    class="w3-tag w3-pink w3-border w3-round w3-border-pink">Virtual Shop</span></h6><br>
+            <div class="w3-bar"><a href="{% url 'supplier_reg' %}"
+                                   class="w3-button w3-white w3-hover-white w3-border w3-border-pink w3-text-pink w3-round w3-hover-text-pink">Enroll
+                as Supplier</a> <a href="{% url 'supplier_log' %}"
+                                   class="w3-button w3-hover-white w3-white w3-border w3-border-pink w3-text-pink w3-round w3-hover-text-pink">Login
+                as Supplier</a></div>
         </header>
+        <style>
+            .mySlides {
+                display: none;
+            }
 
-        <!-- Image header -->
-        <header class="w3-display-container w3-wide" id="home">
-            <img class="w3-image" src="{% static 'images/jane.jpg' %}" alt="Fashion Blog" width="1600" height="1060">
-            <div class="w3-display-left w3-padding-large">
-                <h1 class="w3-text-white">Enroll as a Supplier</h1>
-                <h1 class="w3-jumbo w3-text-white w3-hide-small"><b>FASHION site</b></h1>
-                <h6>
-                    <a href="{% url 'supplier_reg' %}"
-                       class="w3-btn w3-pink w3-padding-large w3-large w3-border w3-border-pink w3-text-white w3-hover-text-white w3-opacity"
-                    >Enroll
-                    </a>
-                </h6>
-            </div>
+            .text {
+                color: white;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+        </style>
+        <!-- Image slider -->
+
+        <header class="w3-display-container mySlides w3-wide" id="home">
+            <img class="img-responsive" src="{% static 'images/PUTITON_SLIDES1.jpg' %}" alt="Fashion Blog" width="1600"
+                 height="1050">
+            <p class="text"> <strong>Join Over 100+ Suppliers Today ,To Enjoy your personal Virtual Shop</strong></p>
         </header>
+        <header class="w3-display-container mySlides w3-wide" id="home">
+            <img class="img-responsive" src="{% static 'images/PUTITON_SLIDES_2.jpg' %}" alt="Fashion Blog" width="1600"
+                 height="1050">
+            <a href="{% url 'supplier_reg' %}"
+                                   class="w3-btn w3-hover-white text w3-border w3-border-pink w3-text-pink w3-round w3-hover-text-pink">Enroll as Supplier</a>
+        </header>
+        <header class="w3-display-container mySlides w3-wide" id="home">
+            <img class="img-responsive" src="{% static 'images/PUTITON_SLIDES_3.jpg' %}" alt="Fashion Blog" width="1600"
+                 height="1050">
+            <a href="{% url 'supplier_log' %}"
+                                   class="w3-btn text w3-border w3-border-pink w3-text-pink w3-round w3-hover-text-pink">Login as Supplier</a>
+        </header>
+{#        <header class="w3-display-container mySlides w3-wide" id="home">#}
+{#            <img class="img-responsive" src="{% static 'images/PUTITON_SLIDES_4.jpg' %}" alt="Fashion Blog" width="1600"#}
+{#                 height="1050">#}
+{#        </header>#}
+        <script>
+            var myIndex = 0;
+            carousel();
 
+            function carousel() {
+                var i;
+                var x = document.getElementsByClassName("mySlides");
+                for (i = 0; i < x.length; i++) {
+                    x[i].style.display = "none";
+                }
+                myIndex++;
+                if (myIndex > x.length) {
+                    myIndex = 1
+                }
+                x[myIndex - 1].style.display = "block";
+                setTimeout(carousel, 3000); // Change image every 2 seconds
+            }
+        </script>
         <!-- category and hot products -->
         <div class="w3-row w3-padding w3-border">
 
@@ -108,11 +151,11 @@
                             {% if list %}
                                 {% for i in list %}
                                     <div class="col-md-3 ">
-                                        <div class="panel panel-default w3-card">
+                                        <div class="panel panel-default w3-card w3-animate-right">
                                             <div class="panel-body">
                                                 <div class="thumbnail">
                                                     <img src="{{ i.image1.url }}" alt="pics"
-                                                         class="img-responsive img-hover"
+                                                         class="img-responsive img-hover "
                                                          style="height: 150px;width: 200px;">
                                                     <img src="{% static 'faviconit/favicon-16.png' %}" class="pull-left"
                                                          style="width: 20px;z-index: 498;;padding-left: 0;">
@@ -159,7 +202,7 @@
             <h4 class="w3-text-white">SEARCH</h4>
         </div>
         <div class="w3-container w3-white">
-            <p><strong>Search by Product name,State,Local-Govt.</strong></p>
+            <p><strong style="margin-left: 3px;"> Search by Product name,State,Local-Govt.</strong></p>
             <form method="post" action="{% url 'search' %}">
                 {% csrf_token %}
                 <input class="w3-input w3-border" name="search" type="text" required
