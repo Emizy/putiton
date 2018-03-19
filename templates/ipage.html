@@ -62,7 +62,7 @@
                 <strong style="text-transform: uppercase;">{{ email }}</strong>
             {% endif %}
             </strong></span><br>
-            <a href="{% url 'complains' %}" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i></a>
+            <a href="{% url 'complains' %}" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i> </a>
             <a href="{% url 'supplier_prof' %}" class="w3-bar-item w3-button"><i class="fa fa-user"></i></a>
             <a href="{% url 'subscription' %}" class="w3-bar-item w3-button"><i class="fa fa-cog"></i></a>
         </div>
@@ -90,7 +90,7 @@
                 class="fa fa-smile-o fa-fw"></i> Customize Store </a>
 
         <a href="{% url 'complains' %}" class="w3-bar-item w3-button w3-padding w3-hover-pink w3-hover-text-white"><i
-                class="fa fa-history fa-fw"></i> Complains </a>
+                class="fa fa-history fa-fw"></i> Complains <span class="badge badge-success w3-pink">{{ n }}</span> </a>
 
         <a href="{% url 'supplier_logout' %}"
            class="w3-bar-item w3-button w3-padding w3-hover-pink w3-hover-text-white"><i

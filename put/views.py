@@ -16,14 +16,17 @@ def index(request):
     paginator = Paginator(sqlbp, 20)
     try:
         page = int(request.GET.get('page', '1'))
+        cout = Supplier.objects.all().count()
+        cout = cout + 10
     except ValueError:
         page = 1
+        cout = None
     try:
         list = paginator.page(page)
     except (EmptyPage, InvalidPage):
         list = paginator.page(paginator.num_pages)
 
-    return render(request, 'index.html', {"list": list})
+    return render(request, 'index.html', {"list": list,"cout" : cout,})
 
 
 def coming(request):
@@ -993,10 +996,12 @@ def dashboard(request):
             try:
                 info = message.objects.all()
                 pics = Supplier.objects.get(username=request.session['user'])
+                dm = chat.objects.filter(Email=request.session['email'])
             except:
                 info = None
                 val = None
                 pics = None
+                dm = None
                 # if stat is not None:
                 #     if stat.status is not None:
                 #         try:
@@ -1025,11 +1030,15 @@ def dashboard(request):
                 #             template = 'dashboard.html'
                 #             return render(request, template, context)
                 #     else:
+            cout = dm.count()
+            print(cout)
             em = request.session['user']
             if info:
                 context = {
                     'read': info,
-                    'email': em, }
+                    'email': em,
+                    'n':cout,
+                }
                 print('hre')
                 template = 'dashboard.html'
                 return render(request, template, context)
@@ -1037,6 +1046,7 @@ def dashboard(request):
                 context = {
                     'kit': "lobe",
                     'email': em,
+                    'n': cout,
                 }
                 template = 'dashboard.html'
                 return render(request, template, context)
@@ -1096,8 +1106,10 @@ def subscription(request):
             em = request.session['user']
             try:
                 stat = Supplier.objects.get(Email=request.session['email'])
+                dm = chat.objects.filter(Email=request.session['email']).count()
             except:
                 stat = None
+                dm = None
             if stat.status is not None:
                 context = {
                     'email': em,
@@ -1105,6 +1117,7 @@ def subscription(request):
                     'p': stat.id,
                     'h': stat.confirm,
                     'd': stat.exp_date,
+                    'n':dm
                 }
                 templates = 'subscription.html'
                 return render(request, templates, context)
@@ -1303,9 +1316,11 @@ def Ads(request):
             try:
                 stat = Supplier.objects.get(Email=request.session['email'])
                 cout = Product.objects.filter(supp_user__Email=mail)
+                dm = chat.objects.filter(Email=request.session['email']).count()
             except:
                 stat = None
                 cout = None
+                dm = None
             remainder = cout.count()
             if stat:
                 if stat.status == "Free":
@@ -1315,25 +1330,29 @@ def Ads(request):
                             'email': user,
                             'val': "Valid",
                             'rem': remainder,
+                            'n':dm,
                         }
                         templates = "Ads.html"
                         return render(request, templates, context)
                     else:
                         context = {
                             'email': user,
+                            'n':dm,
                             'fail': "You have exceeded the maximun number to be submited on Trial packages",
                         }
                         templates = "Ads.html"
                         return render(request, templates, context)
                 elif stat.status == "Silver" and stat.confirm == "APPROVED":
                     today = datetime.today()
-                    k = stat.exp_date
+                    k = str(stat.exp_date)
+                    print(remainder)
                     p = datetime.strptime(k, "%Y-%m-%d")
                     print(p)
                     if today <= p:
                         context = {
                             'email': user,
                             'val': "Valid",
+                            'n':dm,
                             'srem': remainder,
                         }
                         templates = "Ads.html"
@@ -1341,13 +1360,14 @@ def Ads(request):
                     else:
                         context = {
                             'email': user,
+                            'n':dm,
                             'fail': "Your Subscription has expired,Kindly Re-Subscribe for another 1month",
                         }
                         templates = "Ads.html"
                         return render(request, templates, context)
                 elif stat.status == "Gold" and stat.confirm == "APPROVED":
                     today = datetime.today()
-                    k = stat.exp_date
+                    k = str(stat.exp_date)
                     p = datetime.strptime(k, "%Y-%m-%d")
                     print(p)
                     if today <= p:
@@ -1355,19 +1375,21 @@ def Ads(request):
                             'email': user,
                             'val': "Valid",
                             'srem': remainder,
+                            'n':dm,
                         }
                         templates = "Ads.html"
                         return render(request, templates, context)
                     else:
                         context = {
                             'email': user,
+                            'n':dm,
                             'fail': "Your Subscription has expired,Kindly Re-Subscribe for another 2month",
                         }
                         templates = "Ads.html"
                         return render(request, templates, context)
                 elif stat.status == "Platinum" and stat.confirm == "APPROVED":
                     today = datetime.today()
-                    k = stat.exp_date
+                    k = str(stat.exp_date)
                     p = datetime.strptime(k, "%Y-%m-%d")
                     print(p)
                     if today <= p:
@@ -1375,12 +1397,14 @@ def Ads(request):
                             'email': user,
                             'val': "Valid",
                             'srem': remainder,
+                            'n':dm,
                         }
                         templates = "Ads.html"
                         return render(request, templates, context)
                     else:
                         context = {
                             'email': user,
+                            'n':dm,
                             'fail': "Your Subscription has expired,Kindly Re-Subscribe for another 3month",
                         }
                         templates = "Ads.html"
@@ -1388,6 +1412,7 @@ def Ads(request):
                 elif stat.status == 'NoSub' and stat.confirm == 'Nil':
                     context = {
                         'email': user,
+                        'n':dm,
                         'msg': "Yet to subscribe to any packages or Waiting for Payment Approval,Click to subscribe",
                     }
                     templates = "Ads.html"
@@ -1395,6 +1420,7 @@ def Ads(request):
                 else:
                     context = {
                         'email': user,
+                        'n':dm,
                         'msg': "Yet to subscribe to any packages or Waiting for Payment Approval,Click to subscribe",
                     }
                     templates = "Ads.html"
@@ -1413,6 +1439,7 @@ def Ads(request):
     elif request.method == 'POST':
         if 'email' in request.session:
             mail = request.session['email']
+            dm = chat.objects.filter(Email=request.session['email']).count()
             if request.FILES['image1'] or request.FILES['image2'] or request.FILES['image3']:
                 stat = Supplier.objects.get(Email=request.session['email'])
                 rst = Product()
@@ -1430,6 +1457,7 @@ def Ads(request):
                 rst.save()
                 context = {
                     'email': mail,
+                    'n':dm,
                     'succes': "You have successfully submitted an Ads ,Kindly wait for the next three working day for verification and publication on our website.Thanks",
                 }
                 templates = "Ads.html"
@@ -1437,6 +1465,7 @@ def Ads(request):
             else:
                 context = {
                     'email': mail,
+                    'n':dm,
                     'succes': "Images can't be empty,Kindly upload an image",
                 }
                 templates = "Ads.html"
@@ -1451,13 +1480,16 @@ def cus_store(request):
         if 'user' in request.session:
             try:
                 foo = Supplier.objects.get(username=request.session['user'])
+                dm = chat.objects.filter(Email=request.session['email']).count()
             except:
                 foo = None
+                dm = None
             em = request.session['user']
             if foo.offer is not None:
                 context = {
                     'email': em,
                     'dis': foo,
+                    'n':dm,
                 }
                 templates = 'customize.html'
                 return render(request, templates, context)
@@ -1465,6 +1497,7 @@ def cus_store(request):
                 context = {
                     'email': em,
                     'b': "Empty",
+                    'n':dm,
                 }
                 templates = 'customize.html'
                 return render(request, templates, context)
@@ -1472,8 +1505,10 @@ def cus_store(request):
         if 'user' in request.session:
             try:
                 off = Supplier.objects.get(username=request.session['user'])
+                dm = chat.objects.filter(Email=request.session['email']).count()
             except:
                 off = None
+                dm = None
             offer = request.POST.get('offer')
             off.offer = offer
             off.save()
@@ -1482,6 +1517,7 @@ def cus_store(request):
             context = {
                 'dis': dis,
                 'email': em,
+                'n':dm,
 
             }
             templates = 'customize.html'
@@ -1492,17 +1528,20 @@ def views_ads(request):
     if request.method == 'GET':
         if 'user' in request.session:
             view = Product.objects.filter(supp_user__username=request.session['user'])
+            dm = chat.objects.filter(Email=request.session['email']).count()
             em = request.session['user']
             if view:
                 context = {
                     'email': em,
                     'v': view,
+                    'n':dm,
                 }
                 templates = 'views_ads.html'
                 return render(request, templates, context)
             else:
                 context = {
                     'email': em,
+                    'n':dm,
                 }
                 templates = 'views_ads.html'
                 return render(request, templates, context)
@@ -1522,9 +1561,11 @@ def editads(request, edit_id):
             rst.descrip = request.POST.get('descrip')
             rst.save()
             vi = Product.objects.filter(supp_user__username=request.session['user'])
+            dm = chat.objects.filter(Email=request.session['email']).count()
             context = {
                 'email': em,
                 'v': vi,
+                'n':dm,
                 'succes': "Products Updated Successfully",
             }
             templates = "views_ads.html"
@@ -1537,8 +1578,10 @@ def prod(request, del_id):
         rst.delete()
         em = request.session['user']
         vi = Product.objects.filter(supp_user__username=request.session['user'])
+        dm = chat.objects.filter(Email=request.session['email']).count()
         context = {
             'v': vi,
+            'n':dm,
             'email': em,
             'succes': "Product Successfully deleted",
         }
@@ -1551,9 +1594,11 @@ def supplier_prof(request):
     if request.method == 'GET':
         if 'email' in request.session:
             prof = Supplier.objects.get(Email=request.session['email'])
+            dm = chat.objects.filter(Email=request.session['email']).count()
             em = request.session['user']
             context = {
                 'profile': prof,
+                'n':dm,
                 'email': em,
             }
             templates = 'supplier_prof.html'
@@ -1564,6 +1609,7 @@ def supplier_prof(request):
         if 'email' in request.session:
             doc_user = request.session['user']
             prof = Supplier.objects.get(Email=request.session['email'])
+            dm = chat.objects.filter(Email=request.session['email']).count()
             doc_sel = request.POST.get('selector')
             if doc_sel == "picture":
                 doc_image = request.FILES['image']
@@ -1579,6 +1625,7 @@ def supplier_prof(request):
                         context = {
                             'msg': "image uploaded successfully",
                             'profile': prof,
+                            'n':dm,
                             'email': doc_user,
                         }
                         return redirect('/supplier_prof/', context)
@@ -1586,16 +1633,19 @@ def supplier_prof(request):
                         context = {
                             'msg': "image uploaded not successful",
                             'profile': prof,
+                            'n':dm,
                         }
                         return redirect('/supplier_prof/', context)
 
         else:
             prof = Supplier.objects.get(username=request.session['user'])
+            dm = chat.objects.filter(Email=request.session['email']).count()
             doc_user = request.session['user']
             context = {
                 'msg': "Image can't be empty",
                 'profile': prof,
                 'email': doc_user,
+                'n':dm,
             }
             templates = 'supplier_prof.html'
             return render(request, templates, context)
@@ -1617,8 +1667,10 @@ def edit_prof(request):
             doc_address = request.POST.get('address')
             try:
                 d = Supplier.objects.get(username=doc_user)
+                dm = chat.objects.filter(Email=request.session['email']).count()
             except:
                 d = None
+                dm = None
             if d:
                 d.name = doc_fname
                 d.Email = doc_email
@@ -1633,6 +1685,7 @@ def edit_prof(request):
                     'msg': "Profile successfully Updated",
                     'profile': prof,
                     'email': doc_user,
+                    'n':dm,
                 }
                 templates = 'supplier_prof.html'
                 return render(request, templates, context)
@@ -1641,6 +1694,7 @@ def edit_prof(request):
                     'msg': "Profile Update not successful",
                     'profile': prof,
                     'email': doc_user,
+                    'n':dm,
                 }
                 templates = 'supplier_prof.html'
                 return render(request, templates, context)
@@ -1713,14 +1767,17 @@ def complains(request):
         if 'email' in request.session:
             try:
                 rst = chat.objects.filter(Email=request.session['email'])
+                dm = chat.objects.filter(Email=request.session['email']).count()
             except:
                 rst = None
+                dm = None
             em = request.session['user']
             if rst:
 
                 context = {
                     'msg': rst,
                     'email': em,
+                    'n':dm,
                 }
                 templates = 'complains.html'
                 return render(request, templates, context)
@@ -1728,6 +1785,7 @@ def complains(request):
                 context = {
                     'email': em,
                     'msgs': "No Message",
+                    'n':dm,
                 }
                 templates = 'complains.html'
                 return render(request, templates, context)
@@ -1738,8 +1796,10 @@ def complains(request):
             com_full = request.POST.get('sub_desp')
             try:
                 em = Supplier.objects.get(Email=request.session['email'])
+                dm = chat.objects.filter(Email=request.session['email']).count()
             except:
                 em = None
+                dm = None
             mail = request.session['user']
             if em:
                 com.supp_user = em
@@ -1749,6 +1809,7 @@ def complains(request):
                 context = {
                     'twp': "Complains / Feedback submitted successfully!! Hope to get back to you Soon.",
                     'email': mail,
+                    'n':dm,
                 }
                 templates = 'complains.html'
                 return render(request, templates, context)
@@ -1756,6 +1817,7 @@ def complains(request):
                 mail = request.session['user']
                 context = {
                     'email': mail,
+                    'n':dm,
                     'twps': "Error in sending Complains / Feedback submitted,Try Again!!!",
                 }
                 templates = 'complains.html'
@@ -1815,4 +1877,30 @@ def faqx(request):
     if request.method == 'GET':
         context = locals()
         templates = 'faqx.html'
+        return render(request, templates, context)
+
+
+def user_complains(request):
+    assert isinstance(request, HttpRequest)
+    if request.method == 'GET':
+        context = locals()
+        templates = 'contact.html'
+        return render(request, templates, context)
+
+    elif request.method == 'POST':
+        name = request.POST.get('name')
+        phone = request.POST.get('phone')
+        email = request.POST.get('email')
+        message = request.POST.get('message')
+
+        user = Users_Complains()
+        user.name = name
+        user.phone = phone
+        user.email = email
+        user.message = message
+        user.save()
+        context = {
+            'msg': "You have Successfully Submitted your Complains!!!",
+        }
+        templates = 'contact.html'
         return render(request, templates, context)

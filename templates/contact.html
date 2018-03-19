@@ -1,52 +1,55 @@
-{% extends 'BABS.html' %}
+{% extends 'details.html' %}
 {% load  static %}
 {% block head %}
-  <title>Contact-Us</title>
+    PutItOn :: Contact-Us
+
 {% endblock %}
 {% block content %}
-   <hr>
-    <div class="login">
 
-        <div class="main-agileits">
-            <div class="form-w3agile">
-                <h3>Login</h3>
-                <form action="#" method="post">
-                    {% csrf_token %}
-                    {% if messages %}
-                        {% for message in messages %}
-                            <div id="alertBox" class="w3-{{ message.tags }}">
-                                <button id="bannerClose" class="w3-right w3-text-white w3-large"
-                                        onclick="closeModal('alertBox')"
-                                        style="background-color: transparent; border: none;">&times;
-                                </button>
-                                <div class="w3-center">
-                                    <label id="alert" class="w3-text-green w3-large"
-                                           style="font-size: 5px;">{{ message }}</label>
-                                </div>
-                            </div>
-                        {% endfor %}
-                    {% endif %}
-                    <div class="key">
-                        <i class="fa fa-envelrope" aria-hidden="true"></i>
-                        <input type="text" name="email" placeholder="Email" required class="form-control">
-                        <div class="clearfix"></div>
+    <!-- Contact Container -->
+    <div class="w3-container w3-padding-64 w3-theme-l5">
+        <div class="w3-row">
+            <div class="w3-col m5">
+                <div class="w3-container w3-padding-16 w3-card-4 w3-white">
+                    <div class="w3-padding-16"><span class="w3-large w3-border-pink w3-bottombar">Contact Us</span>
                     </div>
-                    <div class="key">
-                        <i class="fa fa-lock" aria-hidden="true"></i>
-                        <input type="password" name="password" placeholder="password" required class="form-control">
-                        <div class="clearfix"></div>
-                    </div>
-                    <div class="w3-center">
-                        <input type="submit" value="Login" class="w3-btn w3-button w3-pink w3-hover-pink">
-                    </div>
-                </form>
+                    <p><i class="fa fa-phone w3-text-pink w3-xlarge"></i>  +2348139572244</p>
+                    <p><i class="fa fa-phone w3-text-pink w3-xlarge"></i>  +2347060569963</p>
+                    <p><i class="fa fa-phone w3-text-pink w3-xlarge"></i>  +2348100828813</p>
+                    <p><i class="fa fa-phone w3-text-pink w3-xlarge"></i>  +2349034632053</p>
+                    <p><i class="fa fa-envelope-o w3-text-pink w3-xlarge"></i>  putitoninfo@yahoo.com</p>
+                </div>
             </div>
-            <div class="forg">
-                <a href="#" class="forg-left" class="w3-text-pink w3-hover-text-pink">Forgot Password</a>
-                <a href="{% url 'register' %}" class="forg-right" class="w3-text-pink w3-hover-text-pink">Register</a>
-                <div class="clearfix"></div>
+            <div class="w3-col m7">
+
+                <form class="w3-container w3-card-4 w3-padding-16 w3-white"
+                      action="/user_complains/" method="post">
+                    {% if msg %}
+                        <div class="well w3-pink w3-text-white w3-large w3-border w3-round w3-border-pink">{{ msg }}</div>
+                    {% endif %}
+                    {% csrf_token %}
+                    <span class="w3-bottombar w3-border-pink w3-large">Send Us Complains </span>
+                    <div class="w3-section">
+                        <label>Name</label>
+                        <input class="w3-input" type="text" name="name" required>
+                    </div>
+                    <div class="w3-section">
+                        <label>Email</label>
+                        <input class="w3-input" type="text" name="email" required>
+                    </div>
+                    <div class="w3-section">
+                        <label>Phone</label>
+                        <input class="w3-input" type="text" name="phone" required>
+                    </div>
+                    <div class="w3-section">
+                        <label>Message</label>
+                        <input class="w3-input" type="text" name="message" required>
+                    </div>
+                    <input type="submit" value="Send"
+                           class="w3-button w3-right w3-round w3-border w3-border-pink w3-hover-text-pink w3-text-pink w3-hover-white">
+                </form>
             </div>
         </div>
     </div>
-<!--//content-->
+
 {% endblock %}
