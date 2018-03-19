@@ -25,10 +25,14 @@
                 <form action="#" method="post">
 
                     {% csrf_token %}
-                    <div class="key">
-                        <i class="fa fa-envelrope" aria-hidden="true"></i>
-                        <input type="text" name="pass" placeholder="New Password" required
-                               class="form-control">
+                    <div class="form-group">
+                        <div class="col-md-12 inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-pushpin"></i> </span>
+                                <input type="password" name="password" placeholder="password" required
+                                       class="form-control">
+                            </div>
+                        </div>
                         <div class="clearfix"></div>
                     </div>
                     <div class="w3-center">

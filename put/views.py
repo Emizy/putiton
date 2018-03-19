@@ -26,7 +26,7 @@ def index(request):
     except (EmptyPage, InvalidPage):
         list = paginator.page(paginator.num_pages)
 
-    return render(request, 'index.html', {"list": list,"cout" : cout,})
+    return render(request, 'index.html', {"list": list, "cout": cout, })
 
 
 def coming(request):
@@ -839,8 +839,9 @@ def supplier_reg(request):
     assert isinstance(request, HttpRequest)
     if request.method == 'GET':
         context = locals()
-        templates = "supplier_reg.html"
+        templates = 'supplier_reg.html'
         return render(request, templates, context)
+
     elif request.method == 'POST':
         sup_name = request.POST.get('name')
         sup_email = request.POST.get('email')
@@ -1037,7 +1038,7 @@ def dashboard(request):
                 context = {
                     'read': info,
                     'email': em,
-                    'n':cout,
+                    'n': cout,
                 }
                 print('hre')
                 template = 'dashboard.html'
@@ -1083,12 +1084,18 @@ def supplier_log(request):
                 print(sql.password)
                 return render(request, templates, context)
             else:
-                messages.error(request, 'Sorry! invalid password')
-                return redirect('/supplier_log/')
+                context = {
+                    'errmsg': "Oops !! Invalid Password",
+                }
+                templates = 'supplier_log.html'
+                return render(request, templates, context)
         else:
             print('am here')
-            messages.error(request, 'Sorry! Invalid Email')
-            return redirect('/supplier_log/')
+            context = {
+                'errmsg': "Oops !! Invalid Email",
+            }
+            templates = 'supplier_log.html'
+            return render(request, templates, context)
 
 
 def supplier_logout(request):
@@ -1117,7 +1124,7 @@ def subscription(request):
                     'p': stat.id,
                     'h': stat.confirm,
                     'd': stat.exp_date,
-                    'n':dm
+                    'n': dm
                 }
                 templates = 'subscription.html'
                 return render(request, templates, context)
@@ -1330,14 +1337,14 @@ def Ads(request):
                             'email': user,
                             'val': "Valid",
                             'rem': remainder,
-                            'n':dm,
+                            'n': dm,
                         }
                         templates = "Ads.html"
                         return render(request, templates, context)
                     else:
                         context = {
                             'email': user,
-                            'n':dm,
+                            'n': dm,
                             'fail': "You have exceeded the maximun number to be submited on Trial packages",
                         }
                         templates = "Ads.html"
@@ -1352,7 +1359,7 @@ def Ads(request):
                         context = {
                             'email': user,
                             'val': "Valid",
-                            'n':dm,
+                            'n': dm,
                             'srem': remainder,
                         }
                         templates = "Ads.html"
@@ -1360,7 +1367,7 @@ def Ads(request):
                     else:
                         context = {
                             'email': user,
-                            'n':dm,
+                            'n': dm,
                             'fail': "Your Subscription has expired,Kindly Re-Subscribe for another 1month",
                         }
                         templates = "Ads.html"
@@ -1375,14 +1382,14 @@ def Ads(request):
                             'email': user,
                             'val': "Valid",
                             'srem': remainder,
-                            'n':dm,
+                            'n': dm,
                         }
                         templates = "Ads.html"
                         return render(request, templates, context)
                     else:
                         context = {
                             'email': user,
-                            'n':dm,
+                            'n': dm,
                             'fail': "Your Subscription has expired,Kindly Re-Subscribe for another 2month",
                         }
                         templates = "Ads.html"
@@ -1397,14 +1404,14 @@ def Ads(request):
                             'email': user,
                             'val': "Valid",
                             'srem': remainder,
-                            'n':dm,
+                            'n': dm,
                         }
                         templates = "Ads.html"
                         return render(request, templates, context)
                     else:
                         context = {
                             'email': user,
-                            'n':dm,
+                            'n': dm,
                             'fail': "Your Subscription has expired,Kindly Re-Subscribe for another 3month",
                         }
                         templates = "Ads.html"
@@ -1412,7 +1419,7 @@ def Ads(request):
                 elif stat.status == 'NoSub' and stat.confirm == 'Nil':
                     context = {
                         'email': user,
-                        'n':dm,
+                        'n': dm,
                         'msg': "Yet to subscribe to any packages or Waiting for Payment Approval,Click to subscribe",
                     }
                     templates = "Ads.html"
@@ -1420,7 +1427,7 @@ def Ads(request):
                 else:
                     context = {
                         'email': user,
-                        'n':dm,
+                        'n': dm,
                         'msg': "Yet to subscribe to any packages or Waiting for Payment Approval,Click to subscribe",
                     }
                     templates = "Ads.html"
@@ -1457,7 +1464,7 @@ def Ads(request):
                 rst.save()
                 context = {
                     'email': mail,
-                    'n':dm,
+                    'n': dm,
                     'succes': "You have successfully submitted an Ads ,Kindly wait for the next three working day for verification and publication on our website.Thanks",
                 }
                 templates = "Ads.html"
@@ -1465,7 +1472,7 @@ def Ads(request):
             else:
                 context = {
                     'email': mail,
-                    'n':dm,
+                    'n': dm,
                     'succes': "Images can't be empty,Kindly upload an image",
                 }
                 templates = "Ads.html"
@@ -1489,7 +1496,7 @@ def cus_store(request):
                 context = {
                     'email': em,
                     'dis': foo,
-                    'n':dm,
+                    'n': dm,
                 }
                 templates = 'customize.html'
                 return render(request, templates, context)
@@ -1497,7 +1504,7 @@ def cus_store(request):
                 context = {
                     'email': em,
                     'b': "Empty",
-                    'n':dm,
+                    'n': dm,
                 }
                 templates = 'customize.html'
                 return render(request, templates, context)
@@ -1517,7 +1524,7 @@ def cus_store(request):
             context = {
                 'dis': dis,
                 'email': em,
-                'n':dm,
+                'n': dm,
 
             }
             templates = 'customize.html'
@@ -1534,14 +1541,14 @@ def views_ads(request):
                 context = {
                     'email': em,
                     'v': view,
-                    'n':dm,
+                    'n': dm,
                 }
                 templates = 'views_ads.html'
                 return render(request, templates, context)
             else:
                 context = {
                     'email': em,
-                    'n':dm,
+                    'n': dm,
                 }
                 templates = 'views_ads.html'
                 return render(request, templates, context)
@@ -1565,7 +1572,7 @@ def editads(request, edit_id):
             context = {
                 'email': em,
                 'v': vi,
-                'n':dm,
+                'n': dm,
                 'succes': "Products Updated Successfully",
             }
             templates = "views_ads.html"
@@ -1581,7 +1588,7 @@ def prod(request, del_id):
         dm = chat.objects.filter(Email=request.session['email']).count()
         context = {
             'v': vi,
-            'n':dm,
+            'n': dm,
             'email': em,
             'succes': "Product Successfully deleted",
         }
@@ -1598,57 +1605,55 @@ def supplier_prof(request):
             em = request.session['user']
             context = {
                 'profile': prof,
-                'n':dm,
+                'n': dm,
                 'email': em,
             }
             templates = 'supplier_prof.html'
             return render(request, templates, context)
         else:
             return redirect('/supplier_log/')
-    if request.method == 'POST':
+    elif request.method == 'POST':
         if 'email' in request.session:
             doc_user = request.session['user']
             prof = Supplier.objects.get(Email=request.session['email'])
             dm = chat.objects.filter(Email=request.session['email']).count()
-            doc_sel = request.POST.get('selector')
-            if doc_sel == "picture":
-                doc_image = request.FILES['image']
-                if doc_image:
-                    try:
-                        d = Supplier.objects.get(username=doc_user)
-                    except:
-                        d = None
-                    if d:
-                        d.image = doc_image
-                        d.save()
-                        print('am here')
-                        context = {
-                            'msg': "image uploaded successfully",
-                            'profile': prof,
-                            'n':dm,
-                            'email': doc_user,
-                        }
-                        return redirect('/supplier_prof/', context)
-                    else:
-                        context = {
-                            'msg': "image uploaded not successful",
-                            'profile': prof,
-                            'n':dm,
-                        }
-                        return redirect('/supplier_prof/', context)
+            doc_image = request.FILES['image']
+            if doc_image:
+                try:
+                    d = Supplier.objects.get(username=doc_user)
+                except:
+                    d = None
+                if d:
+                    d.image = doc_image
+                    d.save()
+                    print('am here')
+                    context = {
+                        'msg': "image uploaded successfully",
+                        'profile': prof,
+                        'n': dm,
+                        'email': doc_user,
+                    }
+                    return redirect('/supplier_prof/', context)
+                else:
+                    context = {
+                        'msg': "image uploaded not successful",
+                        'profile': prof,
+                        'n': dm,
+                    }
+                    return redirect('/supplier_prof/', context)
 
-        else:
-            prof = Supplier.objects.get(username=request.session['user'])
-            dm = chat.objects.filter(Email=request.session['email']).count()
-            doc_user = request.session['user']
-            context = {
-                'msg': "Image can't be empty",
-                'profile': prof,
-                'email': doc_user,
-                'n':dm,
-            }
-            templates = 'supplier_prof.html'
-            return render(request, templates, context)
+            else:
+                prof = Supplier.objects.get(username=request.session['user'])
+                dm = chat.objects.filter(Email=request.session['email']).count()
+                doc_user = request.session['user']
+                context = {
+                    'msg': "Image can't be empty",
+                    'profile': prof,
+                    'email': doc_user,
+                    'n': dm,
+                }
+                templates = 'supplier_prof.html'
+                return render(request, templates, context)
 
 
 def edit_prof(request):
@@ -1683,9 +1688,9 @@ def edit_prof(request):
                 print('am here')
                 context = {
                     'msg': "Profile successfully Updated",
-                    'profile': prof,
+                    'profile': Supplier.objects.get(Email=request.session['email']),
                     'email': doc_user,
-                    'n':dm,
+                    'n': dm,
                 }
                 templates = 'supplier_prof.html'
                 return render(request, templates, context)
@@ -1694,7 +1699,7 @@ def edit_prof(request):
                     'msg': "Profile Update not successful",
                     'profile': prof,
                     'email': doc_user,
-                    'n':dm,
+                    'n': dm,
                 }
                 templates = 'supplier_prof.html'
                 return render(request, templates, context)
@@ -1707,7 +1712,7 @@ def forget_pass(request):
         templates = 'forget_pass.html'
         return render(request, templates, context)
     elif request.method == 'POST':
-        user_email = request.POST.get('Email')
+        user_email = request.POST.get('email')
         try:
             user = Supplier.objects.get(Email=user_email)
         except:
@@ -1777,7 +1782,7 @@ def complains(request):
                 context = {
                     'msg': rst,
                     'email': em,
-                    'n':dm,
+                    'n': dm,
                 }
                 templates = 'complains.html'
                 return render(request, templates, context)
@@ -1785,7 +1790,7 @@ def complains(request):
                 context = {
                     'email': em,
                     'msgs': "No Message",
-                    'n':dm,
+                    'n': dm,
                 }
                 templates = 'complains.html'
                 return render(request, templates, context)
@@ -1809,7 +1814,7 @@ def complains(request):
                 context = {
                     'twp': "Complains / Feedback submitted successfully!! Hope to get back to you Soon.",
                     'email': mail,
-                    'n':dm,
+                    'n': dm,
                 }
                 templates = 'complains.html'
                 return render(request, templates, context)
@@ -1817,7 +1822,7 @@ def complains(request):
                 mail = request.session['user']
                 context = {
                     'email': mail,
-                    'n':dm,
+                    'n': dm,
                     'twps': "Error in sending Complains / Feedback submitted,Try Again!!!",
                 }
                 templates = 'complains.html'

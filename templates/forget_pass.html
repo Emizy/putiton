@@ -36,14 +36,17 @@
                 </div>
                 <form action="#" method="post">
                     {% csrf_token %}
-                    <div class="key">
-                        <i class="fa fa-envelrope" aria-hidden="true"></i>
-                        <input type="text" name="Email" placeholder="Enter your Email" required
-                               class="form-control">
+                    <div class="form-group">
+                        <div class="col-md-12 inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i> </span>
+                                <input type="text" name="email" placeholder="Enter your Email" required class="form-control">
+                            </div>
+                        </div>
                         <div class="clearfix"></div>
                     </div>
                     <div class="w3-center">
-                        <input type="submit" value="Verify" class="w3-btn w3-pink w3-center">
+                        <input type="submit" value="Verify" class="w3-btn w3-border w3-round w3-border-pink w3-pink w3-center">
                     </div>
                 </form>
             </div>

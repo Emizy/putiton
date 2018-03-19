@@ -1,0 +1,57 @@
+{% extends 'ms_supp.html' %}
+{% load static %}
+{% block head %}
+    <title> Supplier || Login </title>
+{% endblock %}
+<!--//header-->
+{% block content %}
+    <div class="login">
+
+        <div class="main-agileits">
+            <div class="form-w3agile">
+                <h5 class="w3-center w3-text-pink" style="font-size: 23px;"> Supplier Login </h5>
+                <hr>
+
+                {% if errmsg %}
+                    <div class="well w3-red  w3-text-white">{{ errmsg }}</div>
+                {% endif %}
+
+                <form action="#" method="post" action="/supplier_log/">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <div class="col-md-12 inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i> </span>
+                                <input type="text" name="email" placeholder="Enter your Email" required class="form-control">
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-12 inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-pushpin"></i> </span>
+                                <input type="password" name="password" placeholder="password" required
+                                       class="form-control">
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="w3-center" style="margin-top: 10px;">
+                        <input type="submit" value="Login"
+                               class="w3-pink w3-hover-pink w3-border w3-round w3-border-pink w3-text-white  w3-hover-text-white w3-btn">
+                    </div>
+                </form>
+            </div>
+            <div class="forg">
+                <a href="{% url 'forget_pass' %}"
+                   class="forg-left w3-btn w3-white w3-border w3-round w3-border-pink w3-text-pink w3-hover-text-pink ">Forgot
+                    Password</a>
+                <a href="{% url 'supplier_reg' %}"
+                   class="forg-right w3-btn w3-text-pink w3-round w3-white w3-hover-text-pink w3-border w3-border-pink">Register</a>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
