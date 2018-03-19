@@ -9,7 +9,7 @@ from django.shortcuts import render, redirect, render_to_response
 from put.models import *
 
 
-def index(request):
+def coming(request):
     sqlbp = Product.objects.all().order_by(
         '-date')
     # sqlbp = Product.objects.all()
@@ -29,7 +29,7 @@ def index(request):
     return render(request, 'index.html', {"list": list, "cout": cout, })
 
 
-def coming(request):
+def index(request):
     assert isinstance(request, HttpRequest)
     if request.method == 'GET':
         context = locals()
