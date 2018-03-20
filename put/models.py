@@ -106,8 +106,6 @@ class Contact(models.Model):
     def __str__(self):
         return self.subject
 
-
-
 class Supp_Ads(models.Model):
     supp_user = models.ForeignKey(Supplier, on_delete=models.DO_NOTHING, blank=True, null=True)
     price = models.IntegerField()
@@ -135,7 +133,6 @@ class Supp_Ads(models.Model):
     def __str__(self):
         return "%s - %s" % (self.supp_user.name, self.product_name)
 
-
 class transaction(models.Model):
     supp_user = models.ForeignKey(Supplier, on_delete=models.DO_NOTHING, blank=True, null=True)
     bank = models.CharField(max_length=200, blank=True, null=True)
@@ -143,7 +140,6 @@ class transaction(models.Model):
 
     def __str__(self):
         return "%s - %s" % (self.supp_user.name, self.supp_user.Email)
-
 
 class chat(models.Model):
     Email = models.EmailField(null=True, blank=True, max_length=254)

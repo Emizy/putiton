@@ -1345,7 +1345,7 @@ def Ads(request):
                         context = {
                             'email': user,
                             'n': dm,
-                            'fail': "You have exceeded the maximun number to be submited on Trial packages",
+                            'fail': "You have exceeded the maximun number to be submited on Trial package",
                         }
                         templates = "Ads.html"
                         return render(request, templates, context)
