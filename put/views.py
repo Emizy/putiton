@@ -332,16 +332,7 @@ def register(request):
         context = locals()
         templates = "register.html"
         return render(request, templates, context)
-    elif request.method == 'POST':
-        Register = reg()
-        Register.Name = request.POST.get('fname')
-        Register.Email = request.POST.get('email')
-        Register.Phone = request.POST.get('phone')
-        Register.password = request.POST.get('password')
-        Register.save()
-        context = {'successmsg': "Registration successfull Continue to login", 'user': request.POST.get('email'), }
-        templates = 'register.html'
-        return render(request, templates, context)
+
 
 
 def contact(request):
@@ -1909,3 +1900,5 @@ def user_complains(request):
         }
         templates = 'contact.html'
         return render(request, templates, context)
+
+
