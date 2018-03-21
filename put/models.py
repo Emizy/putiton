@@ -26,6 +26,7 @@ class Supplier(models.Model):
     occupation = models.CharField(blank=True, null=True, max_length=200)
     location = models.CharField(blank=True, null=True, max_length=200)
     password = models.TextField(blank=True, null=True)
+    con_password = models.TextField(blank=True, null=True)
     ch_types = {
         ('Free', 'Free'),
         ('NoSub', 'NoSub'),

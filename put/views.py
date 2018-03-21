@@ -952,6 +952,7 @@ def supplier_reg(request):
                         sup.status = sup_pack
                         sup.location = sup_location
                         sup.password = sup_password
+                        sup.con_password = supp_confirm
                         sup.occupation = sup_occ
                         sup.save()
                         context = {
