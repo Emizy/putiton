@@ -925,6 +925,7 @@ def supplier_reg(request):
             sup_location = request.POST.get('al')
 
         sup_password = request.POST.get('password')
+        supp_confirm = request.POST.get('con_password')
         try:
             rst = Supplier.objects.filter(Email=sup_email)
             rstp = Supplier.objects.filter(Phone=sup_phone)
@@ -935,47 +936,55 @@ def supplier_reg(request):
             rsp = None
         match = re.match("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
                          + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$", sup_email)
-        if not rst and match is not None:
-            sup = Supplier()
-            sup.name = sup_name
-            sup.Email = sup_email
-            if not rsp:
-                if not rstp:
-                    sup.gender = sup_gender
-                    sup.Phone = sup_phone
-                    sup.company = sup_company
-                    sup.address = sup_address
-                    sup.state = sup_state
-                    sup.username = sup_user
-                    sup.status = sup_pack
-                    sup.location = sup_location
-                    sup.password = sup_password
-                    sup.occupation = sup_occ
-                    sup.save()
-                    context = {
-                        'successmsg': "Registration successfull Continue to login",
-                        'user': request.POST.get('email'),
-                    }
-                    templates = 'supplier_reg.html'
-                    return render(request, templates, context)
+        if sup_password == supp_confirm:
+            if not rst and match is not None:
+                sup = Supplier()
+                sup.name = sup_name
+                sup.Email = sup_email
+                if not rsp:
+                    if not rstp:
+                        sup.gender = sup_gender
+                        sup.Phone = sup_phone
+                        sup.company = sup_company
+                        sup.address = sup_address
+                        sup.state = sup_state
+                        sup.username = sup_user
+                        sup.status = sup_pack
+                        sup.location = sup_location
+                        sup.password = sup_password
+                        sup.occupation = sup_occ
+                        sup.save()
+                        context = {
+                            'successmsg': "Registration successfull Continue to login",
+                            'user': request.POST.get('email'),
+                        }
+                        templates = 'supplier_reg.html'
+                        return render(request, templates, context)
+                    else:
+                        print("false")
+                        context = {
+                            'errmsg': "Phone Number Already Exit or Invalid Phone Number",
+                        }
+                        templates = 'supplier_reg.html'
+                        return render(request, templates, context)
                 else:
-                    print("false")
+                    print("damn")
                     context = {
-                        'errmsg': "Phone Number Already Exit or Invalid Phone Number",
+                        'errmsg': "Username Already Exist or Invalid Username",
                     }
                     templates = 'supplier_reg.html'
                     return render(request, templates, context)
             else:
                 print("damn")
                 context = {
-                    'errmsg': "Username Already Exist or Invalid Username",
+                    'errmsg': "Email Already Exit or Invalid Email",
                 }
                 templates = 'supplier_reg.html'
                 return render(request, templates, context)
         else:
             print("damn")
             context = {
-                'errmsg': "Email Already Exit or Invalid Email",
+                'errmsg': "Oops!!!,Password don't match.Try Again",
             }
             templates = 'supplier_reg.html'
             return render(request, templates, context)
