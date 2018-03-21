@@ -1322,7 +1322,7 @@ def Ads(request):
             remainder = cout.count()
             if stat:
                 if stat.status == "Free":
-                    if cout.count() != 5:
+                    if cout.count() != 10:
                         remainder = cout.count()
                         context = {
                             'email': user,
