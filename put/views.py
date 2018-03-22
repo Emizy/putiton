@@ -1579,7 +1579,6 @@ def editads(request, edit_id):
             templates = "views_ads.html"
             return render(request, templates, context)
 
-
 def prod(request, del_id):
     if request.method == 'GET':
         rst = Product.objects.get(id=del_id)
@@ -1595,7 +1594,6 @@ def prod(request, del_id):
         }
         templates = 'views_ads.html'
         return render(request, templates, context)
-
 
 def supplier_prof(request):
     assert isinstance(request, HttpRequest)
@@ -1656,7 +1654,6 @@ def supplier_prof(request):
                 templates = 'supplier_prof.html'
                 return render(request, templates, context)
 
-
 def edit_prof(request):
     assert isinstance(request, HttpRequest)
     if request.method == 'POST':
@@ -1705,7 +1702,6 @@ def edit_prof(request):
                 templates = 'supplier_prof.html'
                 return render(request, templates, context)
 
-
 def forget_pass(request):
     assert isinstance(request, HttpRequest)
     if request.method == 'GET':
@@ -1730,7 +1726,6 @@ def forget_pass(request):
             }
             return redirect('/forget_pass/', context)
 
-
 def change_pass(request):
     if request.method == 'GET':
         context = locals()
@@ -1738,6 +1733,7 @@ def change_pass(request):
         return render(request, templates, context)
     elif request.method == 'POST':
         rest_pass = request.POST.get('pass')
+        con_pass = request.POST.get('pass')
         user = request.session['email']
         userid = request.session['userid']
         try:
@@ -1746,6 +1742,7 @@ def change_pass(request):
             u_pass = None
         if u_pass:
             u_pass.password = createHash(rest_pass)
+            u_pass.con_password = con_pass
             i = u_pass.password
             u_pass.save()
             context = {
@@ -1758,7 +1755,6 @@ def change_pass(request):
                 'errmsg': "Password Reset Not Successfully try Again",
             }
             return redirect('/forget_pass/', context)
-
 
 def success(request):
     if request.method == 'GET':
