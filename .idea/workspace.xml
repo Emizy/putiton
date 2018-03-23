@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="0cff984e-d09c-4ba5-ba4b-5119033fc8cd" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/ipage.html" afterPath="$PROJECT_DIR$/templates/ipage.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/supplier_reg.html" afterPath="$PROJECT_DIR$/templates/supplier_reg.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.idea/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -107,23 +107,33 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/putiton/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-223">
-              <caret line="97" column="47" lean-forward="false" selection-start-line="97" selection-start-column="47" selection-end-line="97" selection-end-column="47" />
+            <state relative-caret-position="185">
+              <caret line="85" column="7" lean-forward="true" selection-start-line="85" selection-start-column="7" selection-end-line="85" selection-end-column="7" />
               <folding>
-                <marker date="1521645268500" expanded="true" signature="2408:2625" ph="..." />
+                <marker date="1521800263986" expanded="true" signature="2408:2625" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ipage.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ipage.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/ipage.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-34">
               <caret line="83" column="68" lean-forward="false" selection-start-line="83" selection-start-column="68" selection-end-line="83" selection-end-column="68" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="supplier_reg.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/supplier_reg.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="221">
+              <caret line="1446" column="0" lean-forward="true" selection-start-line="1446" selection-start-column="0" selection-end-line="1446" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -236,10 +246,10 @@
         <option value="$PROJECT_DIR$/templates/register.html" />
         <option value="$PROJECT_DIR$/templates/subscription.html" />
         <option value="$PROJECT_DIR$/put/models.py" />
-        <option value="$PROJECT_DIR$/putiton/settings.py" />
         <option value="$PROJECT_DIR$/put/views.py" />
-        <option value="$PROJECT_DIR$/templates/supplier_reg.html" />
         <option value="$PROJECT_DIR$/templates/ipage.html" />
+        <option value="$PROJECT_DIR$/templates/supplier_reg.html" />
+        <option value="$PROJECT_DIR$/putiton/settings.py" />
       </list>
     </option>
   </component>
@@ -382,13 +392,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1515368525487</updated>
-    </task>
-    <task id="LOCAL-00019" summary="first cmment">
-      <created>1519496360222</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1519496360222</updated>
     </task>
     <task id="LOCAL-00020" summary="first cmment">
       <created>1519732494701</created>
@@ -726,7 +729,14 @@
       <option name="project" value="LOCAL" />
       <updated>1521798676578</updated>
     </task>
-    <option name="localTasksCounter" value="68" />
+    <task id="LOCAL-00068" summary="first cmment">
+      <created>1521799353938</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1521799353953</updated>
+    </task>
+    <option name="localTasksCounter" value="69" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1108,14 +1118,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/supplier_reg.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="1070" column="59" lean-forward="false" selection-start-line="1070" selection-start-column="59" selection-end-line="1070" selection-end-column="59" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/register.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="52">
@@ -1222,21 +1224,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/putiton/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-223">
-          <caret line="97" column="47" lean-forward="false" selection-start-line="97" selection-start-column="47" selection-end-line="97" selection-end-column="47" />
-          <folding>
-            <marker date="1521645268500" expanded="true" signature="2408:2625" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/ipage.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-34">
           <caret line="83" column="68" lean-forward="false" selection-start-line="83" selection-start-column="68" selection-end-line="83" selection-end-column="68" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/supplier_reg.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="1446" column="0" lean-forward="true" selection-start-line="1446" selection-start-column="0" selection-end-line="1446" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/putiton/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="185">
+          <caret line="85" column="7" lean-forward="true" selection-start-line="85" selection-start-column="7" selection-end-line="85" selection-end-column="7" />
+          <folding>
+            <marker date="1521800263986" expanded="true" signature="2408:2625" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
