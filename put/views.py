@@ -1,4 +1,4 @@
-import json, traceback, re, random
+import json, traceback, re, random, string
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage, InvalidPage
 from django.views.decorators.csrf import csrf_protect
 from datetime import date, datetime, timedelta
@@ -9,7 +9,7 @@ from django.shortcuts import render, redirect, render_to_response
 from put.models import *
 
 
-def coming(request):
+def index(request):
     sqlbp = Product.objects.all().order_by(
         '-date')
     # sqlbp = Product.objects.all()
@@ -29,7 +29,7 @@ def coming(request):
     return render(request, 'index.html', {"list": list, "cout": cout, })
 
 
-def index(request):
+def coming(request):
     assert isinstance(request, HttpRequest)
     if request.method == 'GET':
         context = locals()
@@ -87,7 +87,7 @@ def det(request, d_id):
 
 
 def beads(request):
-    sqlbp = Product.objects.filter(category="Beads").order_by(
+    sqlbp = Product.objects.filter(category="Beads", moderate="Yes").order_by(
         '-date')
     paginator = Paginator(sqlbp, 20)
     try:
@@ -98,12 +98,15 @@ def beads(request):
         list = paginator.page(page)
     except (EmptyPage, InvalidPage):
         list = paginator.page(paginator.num_pages)
-
-    return render_to_response('beads.html', {"list": list})
+    if list:
+        return render_to_response('beads.html', {"list": list})
+    else:
+        err = "No Available stock ,Register to be the first Beads Supplier"
+        return render_to_response('beads.html', {"err": err})
 
 
 def bags(request):
-    sqlbp = Product.objects.filter(category="Bags").order_by(
+    sqlbp = Product.objects.filter(category="Bags", moderate="Yes").order_by(
         '-date')
     paginator = Paginator(sqlbp, 20)
     try:
@@ -114,12 +117,15 @@ def bags(request):
         list = paginator.page(page)
     except (EmptyPage, InvalidPage):
         list = paginator.page(paginator.num_pages)
-
-    return render_to_response('Bags.html', {"list": list})
+    if list:
+        return render_to_response('Bags.html', {"list": list})
+    else:
+        err = "No Available stock ,Register to be the first Bags Supplier"
+        return render_to_response('Bags.html', {"err": err})
 
 
 def clothing(request):
-    sqlbp = Product.objects.filter(category="Clothing").order_by(
+    sqlbp = Product.objects.filter(category="Clothing", moderate="Yes").order_by(
         '-date')
     paginator = Paginator(sqlbp, 20)
     try:
@@ -130,12 +136,15 @@ def clothing(request):
         list = paginator.page(page)
     except (EmptyPage, InvalidPage):
         list = paginator.page(paginator.num_pages)
-
-    return render_to_response('clothing.html', {"list": list})
+    if list:
+        return render_to_response('Clothing.html', {"list": list})
+    else:
+        err = "No Available stock ,Register to be the first Clothing Supplier"
+        return render_to_response('Clothing.html', {"err": err})
 
 
 def hairstylist(request):
-    sqlbp = Product.objects.filter(category="Hairstylist").order_by(
+    sqlbp = Product.objects.filter(category="Hairstylist", moderate="Yes").order_by(
         '-date')
     paginator = Paginator(sqlbp, 20)
     try:
@@ -146,12 +155,15 @@ def hairstylist(request):
         list = paginator.page(page)
     except (EmptyPage, InvalidPage):
         list = paginator.page(paginator.num_pages)
-
-    return render_to_response('hairstylist.html', {"list": list})
+    if list:
+        return render_to_response('Hairstylist.html', {"list": list})
+    else:
+        err = "No Available stock ,Register to be the first Haristylist"
+        return render_to_response('Hairstylist.html', {"err": err})
 
 
 def jewelry(request):
-    sqlbp = Product.objects.filter(category="Jewelry").order_by(
+    sqlbp = Product.objects.filter(category="Jewelry", moderate="Yes").order_by(
         '-date')
     paginator = Paginator(sqlbp, 20)
     try:
@@ -162,12 +174,15 @@ def jewelry(request):
         list = paginator.page(page)
     except (EmptyPage, InvalidPage):
         list = paginator.page(paginator.num_pages)
-
-    return render_to_response('Jewelry.html', {"list": list})
+    if list:
+        return render_to_response('Jewelry.html', {"list": list})
+    else:
+        err = "No Available stock ,Register to be the first jewellry Supplier"
+        return render_to_response('Jewelry.html', {"err": err})
 
 
 def makeupArtist(request):
-    sqlbp = Product.objects.filter(category="MakeupArtist").order_by(
+    sqlbp = Product.objects.filter(category="MakeupArtist", moderate="Yes").order_by(
         '-date')
     paginator = Paginator(sqlbp, 20)
     try:
@@ -178,12 +193,15 @@ def makeupArtist(request):
         list = paginator.page(page)
     except (EmptyPage, InvalidPage):
         list = paginator.page(paginator.num_pages)
-
-    return render_to_response('MakeupArtist.html', {"list": list})
+    if list:
+        return render_to_response('MakeupArtist.html', {"list": list})
+    else:
+        err = "No Available stock ,Register to be the first Makeup-Artist"
+        return render_to_response('MakeupArtist.html', {"err": err})
 
 
 def shoes(request):
-    sqlbp = Product.objects.filter(category="Shoes").order_by(
+    sqlbp = Product.objects.filter(category="Shoes", moderate="Yes").order_by(
         '-date')
     paginator = Paginator(sqlbp, 20)
     try:
@@ -194,12 +212,15 @@ def shoes(request):
         list = paginator.page(page)
     except (EmptyPage, InvalidPage):
         list = paginator.page(paginator.num_pages)
-
-    return render_to_response('Shoes.html', {"list": list})
+    if list:
+        return render_to_response('Shoes.html', {"list": list})
+    else:
+        err = "No Available stock ,Register to be the first Shoes Supplier"
+        return render_to_response('Shoes.html', {"err": err})
 
 
 def watches(request):
-    sqlbp = Product.objects.filter(category="Watches").order_by(
+    sqlbp = Product.objects.filter(category="Watches", moderate="Yes").order_by(
         '-date')
     paginator = Paginator(sqlbp, 20)
     try:
@@ -210,12 +231,15 @@ def watches(request):
         list = paginator.page(page)
     except (EmptyPage, InvalidPage):
         list = paginator.page(paginator.num_pages)
-
-    return render_to_response('Watches.html', {"list": list})
+    if list:
+        return render_to_response('Watches.html', {"list": list})
+    else:
+        err = "No Available stock ,Register to be the first Watches Supplier"
+        return render_to_response('Watches.html', {"err": err})
 
 
 def weddingwears(request):
-    sqlbp = Product.objects.filter(category="WeddingWears").order_by(
+    sqlbp = Product.objects.filter(category="WeddingWears", moderate="Yes").order_by(
         '-date')
     paginator = Paginator(sqlbp, 20)
     try:
@@ -226,15 +250,18 @@ def weddingwears(request):
         list = paginator.page(page)
     except (EmptyPage, InvalidPage):
         list = paginator.page(paginator.num_pages)
-
-    return render_to_response('WeddingWears.html', {"list": list})
+    if list:
+        return render_to_response('WeddingWears.html', {"list": list})
+    else:
+        err = "No Available stock ,Register to be the first Wedding gown Supplier"
+        return render_to_response('WeddingWears.html', {"err": err})
 
 
 def store(request, user):
     assert isinstance(request, HttpRequest)
     if request.method == 'GET':
         try:
-            prof = Product.objects.filter(supp_user__username=user).order_by(
+            prof = Product.objects.filter(supp_user__username=user, moderate="Yes").order_by(
                 '-date')
             aseet = Supplier.objects.get(username=user)
         except:
@@ -252,14 +279,20 @@ def store(request, user):
                 list = paginator.page(page)
             except (EmptyPage, InvalidPage):
                 list = paginator.page(paginator.num_pages)
+            if list:
+                context = {
+                    'name': aseet.company,
+                    'offer': aseet.offer,
+                    'hmm': aseet,
+                    'list': list,
+                }
+                return render_to_response('store.html', context)
+            else:
 
-            context = {
-                'name': aseet.company,
-                'offer': aseet.offer,
-                'hmm': aseet,
-                "list": list,
-            }
-            return render_to_response('store.html', context)
+                context = {
+                    'err': "No Available stock ,Register to be the first Wedding gown Supplier"
+                }
+                return render_to_response('store.html', context)
         else:
             context = {
                 'error': "Store doesn't Exist,Kindly check your username",
@@ -334,7 +367,6 @@ def register(request):
         return render(request, templates, context)
 
 
-
 def contact(request):
     assert isinstance(request, HttpRequest)
     if request.method == "POST":
@@ -396,10 +428,10 @@ def profile(request):
 def search(request):
     if request.method == 'POST':
         query = request.POST.get('search')
-        result1 = Product.objects.filter(product_name__icontains=query)
-        result2 = Product.objects.filter(supp_user__state__icontains=query)
-        result3 = Product.objects.filter(supp_user__location__icontains=query)
-        result4 = Product.objects.filter(category__icontains=query)
+        result1 = Product.objects.filter(product_name__icontains=query, moderate="Yes")
+        result2 = Product.objects.filter(supp_user__state__icontains=query, moderate="Yes")
+        result3 = Product.objects.filter(supp_user__location__icontains=query, moderate="Yes")
+        result4 = Product.objects.filter(category__icontains=query, moderate="Yes")
         rel = Product.objects.all().order_by('-date')
         if result1:
             paginator = Paginator(result1, 20)
@@ -842,7 +874,10 @@ def supplier_reg(request):
         sup_address = request.POST.get('address')
         sup_state = request.POST.get('state')
         sup_pack = "Free"
-        sup_user = request.POST.get('username')
+        a = request.POST.get('username')
+        b = a.replace(' ', '')
+        punct = set(string.punctuation)
+        sup_user = ''.join(x for x in b if x not in punct)
         sup_occ = request.POST.get('occupation')
         sup_gender = request.POST.get('gender')
         print(sup_pack)
@@ -1579,6 +1614,7 @@ def editads(request, edit_id):
             templates = "views_ads.html"
             return render(request, templates, context)
 
+
 def prod(request, del_id):
     if request.method == 'GET':
         rst = Product.objects.get(id=del_id)
@@ -1594,6 +1630,7 @@ def prod(request, del_id):
         }
         templates = 'views_ads.html'
         return render(request, templates, context)
+
 
 def supplier_prof(request):
     assert isinstance(request, HttpRequest)
@@ -1654,6 +1691,7 @@ def supplier_prof(request):
                 templates = 'supplier_prof.html'
                 return render(request, templates, context)
 
+
 def edit_prof(request):
     assert isinstance(request, HttpRequest)
     if request.method == 'POST':
@@ -1702,6 +1740,7 @@ def edit_prof(request):
                 templates = 'supplier_prof.html'
                 return render(request, templates, context)
 
+
 def forget_pass(request):
     assert isinstance(request, HttpRequest)
     if request.method == 'GET':
@@ -1725,6 +1764,7 @@ def forget_pass(request):
                 'msg': "Email not verified",
             }
             return redirect('/forget_pass/', context)
+
 
 def change_pass(request):
     if request.method == 'GET':
@@ -1755,6 +1795,7 @@ def change_pass(request):
                 'errmsg': "Password Reset Not Successfully try Again",
             }
             return redirect('/forget_pass/', context)
+
 
 def success(request):
     if request.method == 'GET':
@@ -1906,5 +1947,3 @@ def user_complains(request):
         }
         templates = 'contact.html'
         return render(request, templates, context)
-
-

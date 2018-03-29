@@ -2,7 +2,6 @@ import hashlib
 from django.db import models
 
 
-
 class Supplier(models.Model):
     name = models.CharField(max_length=200, blank=True, null=True)
     Email = models.EmailField(null=True, blank=True, max_length=254)
@@ -41,7 +40,7 @@ class Supplier(models.Model):
     exp_date = models.DateField(max_length=30, blank=True, null=True)
 
     def __str__(self):
-        return "%s - %s - %s" % (self.name, self.Email,self.status)
+        return "%s - %s - %s" % (self.name, self.Email, self.status)
 
     def save(self, *args, **kwargs):
         if self.pk is None:
@@ -65,6 +64,11 @@ class Product(models.Model):
         ('WeddingWears', 'WeddingWears'),
     }
     category = models.CharField(choices=types, max_length=20, blank=True, null=True)
+    d_types = {
+        ('Yes', 'Yes'),
+        ('No', 'No'),
+    }
+    moderate = models.CharField(choices=d_types, max_length=20, blank=True, null=True)
     image1 = models.FileField(null=True, blank=True)
     image2 = models.FileField(null=True, blank=True)
     image3 = models.FileField(null=True, blank=True)
@@ -107,6 +111,7 @@ class Contact(models.Model):
     def __str__(self):
         return self.subject
 
+
 class Supp_Ads(models.Model):
     supp_user = models.ForeignKey(Supplier, on_delete=models.DO_NOTHING, blank=True, null=True)
     price = models.IntegerField()
@@ -134,6 +139,7 @@ class Supp_Ads(models.Model):
     def __str__(self):
         return "%s - %s" % (self.supp_user.name, self.product_name)
 
+
 class transaction(models.Model):
     supp_user = models.ForeignKey(Supplier, on_delete=models.DO_NOTHING, blank=True, null=True)
     bank = models.CharField(max_length=200, blank=True, null=True)
@@ -141,6 +147,7 @@ class transaction(models.Model):
 
     def __str__(self):
         return "%s - %s" % (self.supp_user.name, self.supp_user.Email)
+
 
 class chat(models.Model):
     Email = models.EmailField(null=True, blank=True, max_length=254)
@@ -181,10 +188,10 @@ class message(models.Model):
 
 
 class Users_Complains(models.Model):
-    message = models.TextField(blank=True,null=True)
-    name = models.CharField(max_length=200,blank=True,null=True)
-    email = models.EmailField(max_length=200,blank=True,null=True)
-    phone = models.CharField(max_length=200,blank=True,null=True)
+    message = models.TextField(blank=True, null=True)
+    name = models.CharField(max_length=200, blank=True, null=True)
+    email = models.EmailField(max_length=200, blank=True, null=True)
+    phone = models.CharField(max_length=200, blank=True, null=True)
 
     def __str__(self):
         return "%s - %s" % (self.name, self.email)

@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block content %}
-{% if msg %}
+{% if err %}
         <script>
             alert('No stock available');
             window.location.href = "/"
@@ -38,7 +38,7 @@
                                     <h6 id="t"
                                         style="width: 110px;margin-left: 20px;">{{ i.supp_user.company }}</h6>
                                     <h5 id="t" class="w3-green" style="width: 110px;margin-left: 20px;">
-                                        #{{ i.price }}.00 </h5>
+                                         &#8358 {{ i.price }}.00 </h5>
                                 </div>
                                 <div class="w3-center">
                                     <a href="{% url 'det' i.id %}"

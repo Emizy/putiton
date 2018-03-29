@@ -10,6 +10,11 @@
             {{ error }}
         </div>
     {% endif %}
+    {% if err %}
+        <div class="well w3-red">
+            {{ err }}
+        </div>
+    {% endif %}
     {% if not error %}
     <div class="w3-content" style="max-width:1100px;margin-top:40px;margin-bottom:80px">
 <div class="w3-container" style="">
@@ -62,7 +67,7 @@
                                     <h6 id="t"
                                         style="width: 110px;margin-left: 20px;">{{ i.supp_user.company }}</h6>
                                     <h5 id="t" class="w3-green" style="width: 110px;margin-left: 20px;">
-                                        #{{ i.price }}.00 </h5>
+                                         &#8358 {{ i.price }}.00 </h5>
                                 </div>
                                 <div class="w3-center">
                                     <a href="{% url 'det' i.id %}"
