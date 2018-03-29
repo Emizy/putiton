@@ -2,25 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0cff984e-d09c-4ba5-ba4b-5119033fc8cd" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/put/migrations/0028_auto_20180328_1736.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/put/migrations/0029_auto_20180328_1738.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/put/models.py" afterPath="$PROJECT_DIR$/put/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/put/views.py" afterPath="$PROJECT_DIR$/put/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/Bags.html" afterPath="$PROJECT_DIR$/templates/Bags.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/Clothing.html" afterPath="$PROJECT_DIR$/templates/Clothing.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/Hairstylist.html" afterPath="$PROJECT_DIR$/templates/Hairstylist.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/Jewelry.html" afterPath="$PROJECT_DIR$/templates/Jewelry.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/MakeupArtist.html" afterPath="$PROJECT_DIR$/templates/MakeupArtist.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/Shoes.html" afterPath="$PROJECT_DIR$/templates/Shoes.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/Watches.html" afterPath="$PROJECT_DIR$/templates/Watches.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/WeddingWears.html" afterPath="$PROJECT_DIR$/templates/WeddingWears.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/beads.html" afterPath="$PROJECT_DIR$/templates/beads.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/det.html" afterPath="$PROJECT_DIR$/templates/det.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/details.html" afterPath="$PROJECT_DIR$/templates/details.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/index.html" afterPath="$PROJECT_DIR$/templates/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/inew.html" afterPath="$PROJECT_DIR$/templates/inew.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/shop.html" afterPath="$PROJECT_DIR$/templates/shop.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/store.html" afterPath="$PROJECT_DIR$/templates/store.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/supplier_reg.html" afterPath="$PROJECT_DIR$/templates/supplier_reg.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.idea/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -50,10 +34,20 @@
         <entry file="file://$PROJECT_DIR$/putiton/settings.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="119">
-              <caret line="85" column="7" lean-forward="true" selection-start-line="85" selection-start-column="7" selection-end-line="85" selection-end-column="7" />
+              <caret line="85" column="7" lean-forward="false" selection-start-line="85" selection-start-column="7" selection-end-line="85" selection-end-column="7" />
               <folding>
                 <marker date="1522316946395" expanded="true" signature="2408:2625" ph="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GITHUB BASH.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/Documents/GITHUB BASH.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-135">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -225,6 +219,12 @@
             <path>
               <item name="putiton" type="b2602c69:ProjectViewProjectNode" />
               <item name="putiton" type="462c0819:PsiDirectoryNode" />
+              <item name="put" type="462c0819:PsiDirectoryNode" />
+              <item name="migrations" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="putiton" type="b2602c69:ProjectViewProjectNode" />
+              <item name="putiton" type="462c0819:PsiDirectoryNode" />
               <item name="putiton" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -300,13 +300,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1515368525487</updated>
-    </task>
-    <task id="LOCAL-00026" summary="first cmment">
-      <created>1520250841523</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1520250841523</updated>
     </task>
     <task id="LOCAL-00027" summary="first cmment">
       <created>1520251366184</created>
@@ -644,7 +637,14 @@
       <option name="project" value="LOCAL" />
       <updated>1521803510556</updated>
     </task>
-    <option name="localTasksCounter" value="75" />
+    <task id="LOCAL-00075" summary="ghjk">
+      <created>1522318202219</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1522318202223</updated>
+    </task>
+    <option name="localTasksCounter" value="76" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -717,27 +717,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/templates/policy.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="21" lean-forward="false" selection-start-line="3" selection-start-column="21" selection-end-line="3" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/css/w3schol.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="419" column="11" lean-forward="false" selection-start-line="419" selection-start-column="11" selection-end-line="419" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/customize.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="16" lean-forward="true" selection-start-line="3" selection-start-column="16" selection-end-line="3" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/MeetTeam.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -1152,10 +1131,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$USER_HOME$/Documents/GITHUB BASH.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-135">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/put/migrations/0029_auto_20180328_1738.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/put/migrations/0028_auto_20180328_1736.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/putiton/settings.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
-          <caret line="85" column="7" lean-forward="true" selection-start-line="85" selection-start-column="7" selection-end-line="85" selection-end-column="7" />
+          <caret line="85" column="7" lean-forward="false" selection-start-line="85" selection-start-column="7" selection-end-line="85" selection-end-column="7" />
           <folding>
             <marker date="1522316946395" expanded="true" signature="2408:2625" ph="..." />
           </folding>
