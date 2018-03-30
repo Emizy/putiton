@@ -3,10 +3,12 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage, Invali
 from django.views.decorators.csrf import csrf_protect
 from datetime import date, datetime, timedelta
 from django.contrib import messages
+from django.core.mail import send_mail, BadHeaderError, EmailMessage, EmailMultiAlternatives
 from django.template import RequestContext
 from django.http import HttpRequest, JsonResponse, HttpResponse
 from django.shortcuts import render, redirect, render_to_response
 from put.models import *
+from putiton import settings
 
 
 def index(request):
@@ -371,17 +373,36 @@ def contact(request):
     assert isinstance(request, HttpRequest)
     if request.method == "POST":
         con = Contact()
-        context = {'cmsg': "Thanks for contacting us hope to get back to you soon", }
-        con.subject = request.POST.get('subject')
-        con.Email = request.POST.get('Email')
-        con.message = request.POST.get('message')
-        con.save()
-        # subject = [con.subject, con.Email]
-        # message = con.message
-        # from_mail = settings.EMAIL_HOST_USER
-        # to_list = [from_mail]
-        # send_mail(subject=subject, message=message, from_email=con.Email, recipient_list=to_list, fail_silently=False)
-        return redirect(request.META.get('HTTP_REFERER'), context)
+        sub = request.POST.get('subject')
+        em = request.POST.get('Email')
+        ms = request.POST.get('message')
+        if sub and em and ms:
+            con.subject = request.POST.get('subject')
+            con.Email = request.POST.get('Email')
+            con.message = request.POST.get('message')
+            con.save()
+            subject = [sub, em]
+            message = ms
+            from_mail = settings.EMAIL_HOST_USER
+            to_list = [from_mail]
+            try:
+                send_mail(subject=subject, message=message, from_email=from_mail, recipient_list=to_list,
+                          fail_silently=False)
+                context = {
+                    'msg': "Response successsfully submitted",
+                }
+                return redirect(request.META.get('HTTP_REFERER'), context)
+            except BadHeaderError:
+                context = {
+                    'msg': "Invalid header found",
+                }
+                return redirect(request.META.get('HTTP_REFERER'), context)
+
+        else:
+            context = {
+                'msg': "Inputs can not be empty",
+            }
+            return redirect(request.META.get('HTTP_REFERER'), context)
 
 
 def logout(request):
@@ -1884,26 +1905,47 @@ def MeetTeam(request):
         xpres = XpresSoft()
         x_name = request.POST.get('name')
         x_email = request.POST.get('email')
+        x_subject = request.POST.get('subject')
         x_phone = request.POST.get('phone')
         x_message = request.POST.get('message')
+        if x_name and x_email and x_subject and x_phone and x_message:
+            match = re.match("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                             + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$", x_email)
+            if match:
+                xpres.name = x_name
+                xpres.email = x_email
+                xpres.phone = x_phone
+                xpres.message = x_message
+                subject = [x_subject, x_email]
+                message = x_message
+                from_mail = settings.EMAIL_HOST_USER
+                to_list = [from_mail]
+                xpres.save()
+                try:
+                    send_mail(subject=subject, message=message, from_email=from_mail, recipient_list=to_list,
+                              fail_silently=False)
+                    context = {
+                        'msg': "Message Successfully Submitted",
+                    }
+                    templates = 'MeetTeam.html'
+                    return render(request, templates, context)
 
-        match = re.match("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
-                         + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$", x_email)
-        if match:
-            xpres.name = x_name
-            xpres.email = x_email
-            xpres.phone = x_phone
-            xpres.message = x_message
-            xpres.save()
+                except BadHeaderError:
+                    context = {
+                        'msg': "Message not successfull",
+                    }
+                    templates = 'MeetTeam.html'
+                    return render(request, templates, context)
+            else:
+                context = {
+                    'msg': "Invalid Email",
+                }
+                templates = 'MeetTeam.html'
+                return render(request, templates, context)
 
-            context = {
-                'msg': "Message Successfully Submitted",
-            }
-            templates = 'MeetTeam.html'
-            return render(request, templates, context)
         else:
             context = {
-                'msg': "Invalid Email",
+                'msg': "Fields can not be empty",
             }
             templates = 'MeetTeam.html'
             return render(request, templates, context)
@@ -1934,16 +1976,69 @@ def user_complains(request):
         name = request.POST.get('name')
         phone = request.POST.get('phone')
         email = request.POST.get('email')
+        subject = request.POST.get('subject')
         message = request.POST.get('message')
 
-        user = Users_Complains()
-        user.name = name
-        user.phone = phone
-        user.email = email
-        user.message = message
-        user.save()
+        if name and email and message and subject:
+            user = Users_Complains()
+            user.phone = phone
+            user.name = name
+            user.Email = email
+            user.message = message
+            user.save()
+            subject = [subject, email, phone]
+            message = message
+            from_mail = settings.EMAIL_HOST_USER
+            to_list = [from_mail]
+            try:
+                send_mail(subject=subject, message=message, from_email=from_mail, recipient_list=to_list,
+                          fail_silently=False)
+                context = {
+                    'msg': "Response successsfully submitted",
+                }
+                return redirect(request.META.get('HTTP_REFERER'), context)
+            except BadHeaderError:
+                context = {
+                    'msg': "Invalid header found",
+                }
+                return redirect(request.META.get('HTTP_REFERER'), context)
+
+        else:
+            context = {
+                'msg': "Inputs can not be empty",
+            }
+            return redirect(request.META.get('HTTP_REFERER'), context)
+
+
+def attachsend(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        phone = request.POST.get('phone')
+        email = request.POST.get('email')
+        subject = request.POST.get('subject')
+        message = request.POST.get('message')
+        content = request.FILES['file']
+        if name and email and subject and message and content:
+            subject = [subject, phone]
+            from_mail = settings.EMAIL_HOST_USER
+            contacat = ['nevogold.official@gmail.com']
+            try:
+                email = EmailMultiAlternatives(
+                    subject,
+                    message,
+                    from_mail,
+                    contacat,
+                    headers={'Reply-To': contacat}
+                )
+                email.attach(content, content.file.read(), content.content_type)
+                email.send()
+            except BadHeaderError:
+                context = {
+                    'msg': "Invalid header found",
+                }
+                return redirect(request.META.get('HTTP_REFERER'), context)
+
         context = {
-            'msg': "You have Successfully Submitted your Complains!!!",
+            'msg': "Inputs can not be empty",
         }
-        templates = 'contact.html'
-        return render(request, templates, context)
+        return redirect(request.META.get('HTTP_REFERER'), context)

@@ -57,4 +57,5 @@ urlpatterns = [
                   url(r'^faqx/', views.faqx, name="faqx"),
                   url(r'^register/', views.register, name="register"),
                   url(r'^user_complains/', views.user_complains, name="user_complains"),
+                  url(r'^attachsend/', views.attachsend, name="attachsend"),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

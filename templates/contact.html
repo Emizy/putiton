@@ -23,7 +23,7 @@
             <div class="w3-col m7">
 
                 <form class="w3-container w3-card-4 w3-padding-16 w3-white"
-                      action="/user_complains/" method="post">
+                      action="/user_complains/" method="post" enctype="multipart/form-data">
                     {% if msg %}
                         <div class="well w3-pink w3-text-white w3-large w3-border w3-round w3-border-pink">{{ msg }}</div>
                     {% endif %}
@@ -42,8 +42,16 @@
                         <input class="w3-input" type="text" name="phone" required>
                     </div>
                     <div class="w3-section">
+                        <label>Subject</label>
+                        <input class="w3-input" type="text" name="subject" required>
+                    </div>
+                    <div class="w3-section">
                         <label>Message</label>
                         <input class="w3-input" type="text" name="message" required>
+                    </div>
+                    <div class="w3-section">
+                        <label>Message</label>
+                        <input class="w3-input" type="file" name="file" required>
                     </div>
                     <input type="submit" value="Send"
                            class="w3-button w3-right w3-round w3-border w3-border-pink w3-hover-text-pink w3-text-pink w3-hover-white">
