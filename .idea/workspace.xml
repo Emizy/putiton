@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0cff984e-d09c-4ba5-ba4b-5119033fc8cd" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/putiton/email.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/put/views.py" afterPath="$PROJECT_DIR$/put/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/putiton/settings.py" afterPath="$PROJECT_DIR$/putiton/settings.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/putiton/urls.py" afterPath="$PROJECT_DIR$/putiton/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/MeetTeam.html" afterPath="$PROJECT_DIR$/templates/MeetTeam.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/contact.html" afterPath="$PROJECT_DIR$/templates/contact.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.idea/" />
@@ -37,8 +32,8 @@
       <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/putiton/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1461">
-              <caret line="89" column="18" lean-forward="true" selection-start-line="89" selection-start-column="18" selection-end-line="89" selection-end-column="18" />
+            <state relative-caret-position="288">
+              <caret line="89" column="18" lean-forward="false" selection-start-line="89" selection-start-column="18" selection-end-line="89" selection-end-column="18" />
               <folding>
                 <marker date="1522435107677" expanded="true" signature="2665:2882" ph="..." />
               </folding>
@@ -50,7 +45,7 @@
         <entry file="file://$PROJECT_DIR$/putiton/email.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="68">
-              <caret line="4" column="16" lean-forward="true" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="16" />
+              <caret line="4" column="16" lean-forward="false" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -59,8 +54,8 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/put/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="1920" column="39" lean-forward="true" selection-start-line="1920" selection-start-column="39" selection-end-line="1920" selection-end-column="39" />
+            <state relative-caret-position="-576">
+              <caret line="1967" column="28" lean-forward="true" selection-start-line="1967" selection-start-column="28" selection-end-line="1967" selection-end-column="28" />
               <folding>
                 <element signature="e#0#42#0" expanded="true" />
                 <element signature="e#61463#63771#0" expanded="false" />
@@ -72,6 +67,7 @@
                 <element signature="e#70123#70257#0" expanded="false" />
                 <element signature="e#72486#72626#0" expanded="false" />
                 <element signature="e#72652#72789#0" expanded="false" />
+                <element signature="e#74426#75630#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -80,8 +76,8 @@
       <file leaf-file-name="contact.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/contact.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="22" column="35" lean-forward="true" selection-start-line="22" selection-start-column="35" selection-end-line="22" selection-end-column="35" />
+            <state relative-caret-position="239">
+              <caret line="50" column="26" lean-forward="true" selection-start-line="50" selection-start-column="26" selection-end-line="50" selection-end-column="26" />
               <folding />
             </state>
           </provider>
@@ -90,7 +86,7 @@
       <file leaf-file-name="MeetTeam.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/MeetTeam.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
+            <state relative-caret-position="32572">
               <caret line="1916" column="56" lean-forward="false" selection-start-line="1916" selection-start-column="49" selection-end-line="1916" selection-end-column="56" />
               <folding />
             </state>
@@ -204,10 +200,10 @@
         <option value="$PROJECT_DIR$/templates/index.html" />
         <option value="$PROJECT_DIR$/putiton/email.py" />
         <option value="$PROJECT_DIR$/putiton/urls.py" />
-        <option value="$PROJECT_DIR$/templates/contact.html" />
         <option value="$PROJECT_DIR$/templates/MeetTeam.html" />
         <option value="$PROJECT_DIR$/put/views.py" />
         <option value="$PROJECT_DIR$/putiton/settings.py" />
+        <option value="$PROJECT_DIR$/templates/contact.html" />
       </list>
     </option>
   </component>
@@ -247,6 +243,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -280,7 +277,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -344,13 +340,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1515368525487</updated>
-    </task>
-    <task id="LOCAL-00028" summary="first cmment">
-      <created>1520251597659</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1520251597659</updated>
     </task>
     <task id="LOCAL-00029" summary="first cmment">
       <created>1520259542616</created>
@@ -688,25 +677,33 @@
       <option name="project" value="LOCAL" />
       <updated>1522326337888</updated>
     </task>
-    <option name="localTasksCounter" value="77" />
+    <task id="LOCAL-00077" summary="ghjk">
+      <created>1522435169815</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1522435169819</updated>
+    </task>
+    <option name="localTasksCounter" value="78" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="11" y="0" width="1378" height="728" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Debug Logs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32851985" sideWeight="0.5030349" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3277311" sideWeight="0.4969651" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Execute Anonymous" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.37310925" sideWeight="0.4757208" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26251897" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2663126" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.0" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24962178" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Salesforce" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1044,7 +1041,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1089,26 +1085,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/contact.html">
+    <entry file="file://$PROJECT_DIR$/templates/MeetTeam.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="22" column="35" lean-forward="true" selection-start-line="22" selection-start-column="35" selection-end-line="22" selection-end-column="35" />
+        <state relative-caret-position="32572">
+          <caret line="1916" column="56" lean-forward="false" selection-start-line="1916" selection-start-column="49" selection-end-line="1916" selection-end-column="56" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/MeetTeam.html">
+    <entry file="file://$PROJECT_DIR$/putiton/email.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="1916" column="56" lean-forward="false" selection-start-line="1916" selection-start-column="49" selection-end-line="1916" selection-end-column="56" />
+        <state relative-caret-position="68">
+          <caret line="4" column="16" lean-forward="false" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="16" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/put/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="1920" column="39" lean-forward="true" selection-start-line="1920" selection-start-column="39" selection-end-line="1920" selection-end-column="39" />
+        <state relative-caret-position="-576">
+          <caret line="1967" column="28" lean-forward="true" selection-start-line="1967" selection-start-column="28" selection-end-line="1967" selection-end-column="28" />
           <folding>
             <element signature="e#0#42#0" expanded="true" />
             <element signature="e#61463#63771#0" expanded="false" />
@@ -1120,22 +1116,23 @@
             <element signature="e#70123#70257#0" expanded="false" />
             <element signature="e#72486#72626#0" expanded="false" />
             <element signature="e#72652#72789#0" expanded="false" />
+            <element signature="e#74426#75630#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/putiton/email.py">
+    <entry file="file://$PROJECT_DIR$/templates/contact.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="16" lean-forward="true" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="16" />
+        <state relative-caret-position="239">
+          <caret line="50" column="26" lean-forward="true" selection-start-line="50" selection-start-column="26" selection-end-line="50" selection-end-column="26" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/putiton/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1461">
-          <caret line="89" column="18" lean-forward="true" selection-start-line="89" selection-start-column="18" selection-end-line="89" selection-end-column="18" />
+        <state relative-caret-position="288">
+          <caret line="89" column="18" lean-forward="false" selection-start-line="89" selection-start-column="18" selection-end-line="89" selection-end-column="18" />
           <folding>
             <marker date="1522435107677" expanded="true" signature="2665:2882" ph="..." />
           </folding>
