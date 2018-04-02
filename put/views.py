@@ -1504,7 +1504,7 @@ def Ads(request):
         if 'email' in request.session:
             mail = request.session['email']
             dm = chat.objects.filter(Email=request.session['email']).count()
-            if request.FILES['image1'] or request.FILES['image2'] or request.FILES['image3']:
+            if request.FILES['image1'] and request.FILES['image2'] and request.FILES['image3']:
                 stat = Supplier.objects.get(Email=request.session['email'])
                 rst = Product()
                 rst.supp_user = stat
@@ -1530,7 +1530,7 @@ def Ads(request):
                 context = {
                     'email': mail,
                     'n': dm,
-                    'succes': "Images can't be empty,Kindly upload an image",
+                    'succes': "One Image slot or All images slot is empty,Kindly upload an image",
                 }
                 templates = "Ads.html"
                 return render(request, templates, context)
