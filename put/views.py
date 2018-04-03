@@ -898,7 +898,9 @@ def supplier_reg(request):
         a = request.POST.get('username')
         b = a.replace(' ', '')
         punct = set(string.punctuation)
-        sup_user = ''.join(x for x in b if x not in punct)
+        f = ''.join(x for x in b if x not in punct)
+        g = f.lower()
+        sup_user = g
         sup_occ = request.POST.get('occupation')
         sup_gender = request.POST.get('gender')
         print(sup_pack)
@@ -2042,3 +2044,10 @@ def attachsend(request):
             'msg': "Inputs can not be empty",
         }
         return redirect(request.META.get('HTTP_REFERER'), context)
+
+
+def handler404(request):
+    return render(request,'404.html',status=404)
+
+def handler500(request):
+    return render(request,'500.html',status=500)

@@ -4,6 +4,9 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 from put import views
+import put
+hander404 = put.views.handler404
+hander500 = put.views.handler500
 
 urlpatterns = [
                   url(r'^admin/', admin.site.urls),

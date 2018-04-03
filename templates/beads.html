@@ -21,45 +21,46 @@
         </div>
     </div>
     <div id="hot" class="container h city" style="margin-bottom: 2%;margin-top: 2%;display: block">
-        <div class="row">
-            {% if list %}
-                {% for i in list %}
-                    <div class="col-md-3 ">
-                        <div class="panel panel-default w3-card w3-animate-left">
-                            <div class="panel-body">
-                                <div class="thumbnail">
+                        <div class="row">
+                            {% if list %}
+                                {% for i in list %}
+                                    <div class="col-md-3">
+                                        <div class="w3-card w3-round"
+                                             style="max-width:250px;padding: 0em;background-color: white;">
+                                            <img class="img-responsive" src="{{ i.image1.url }}"
+                                                 style="width: 250px;height: 250px;">
 
+                                            <div class="w3-row-padding w3-section">
+                                                <div class="w3-col s12">
+                                                    <div class="row w3-justify">
+                                                        <h5 id="t"
+                                                            style="width: 110px;margin-left: 20px;">{{ i.product_name }} </h5>
+                                                        <h6 id="t"
+                                                            style="width: 110px;margin-left: 20px;">{{ i.supp_user.company }}</h6>
+                                                        <h5 id="t" class="w3-green"
+                                                            style="width: 110px;margin-left: 20px;">
+                                                            &#8358 {{ i.price }}.00 </h5>
+                                                    </div>
+                                                    <div class="w3-center" style="padding-bottom: 8px;">
+                                                        <a href="{% url 'det' i.id %}"
+                                                           class="w3-btn  w3-border w3-border-pink w3-round w3-text-pink w3-hover-text-pink w3-white">
+                                                            View
+                                                        </a>
+                                                    </div>
 
-                                    <img src="{{ i.image1.url }}" alt="pics"
-                                         class="img-responsive img-hover"
-                                         style="height: 150px;width: 200px;">
-                                    <img src="{% static 'faviconit/favicon-16.png' %}" class="pull-left"
-                                         style="width: 20px;z-index: 498;;padding-left: 0;">
-                                </div>
-                                <div class="row w3-justify">
-                                    <h5 id="t"
-                                        style="width: 110px;margin-left: 20px;">{{ i.product_name }} </h5>
-                                    <h6 id="t"
-                                        style="width: 110px;margin-left: 20px;">{{ i.supp_user.company }}</h6>
-                                    <h5 id="t" class="w3-green" style="width: 110px;margin-left: 20px;">
-                                         &#8358 {{ i.price }}.00 </h5>
-                                </div>
-                                <div class="w3-center">
-                                    <a href="{% url 'det' i.id %}"
-                                       class="w3-btn  w3-border w3-border-pink w3-round w3-text-pink w3-hover-text-pink w3-white">
-                                        View
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+                        {% include 'pagination.html' %}
                     </div>
-                {% endfor %}
-            {% endif %}
 
-        </div>
-
-
-    </div>
+                    <br>
+                </div>
     <br>
     {% include 'pagination.html' %}
 
