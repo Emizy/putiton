@@ -91,8 +91,10 @@
                         <div class="form-group">
                             <label for="product_name">WhatSapp Pre-Defined Text </label>
                             <input type="text" id="wtext" class="form-control" name="wtext"
-                                   placeholder="Kindly Specify the first text you wish to see when a user chat you up." required>
-                            <small><strong>E.g I want to buy Jean Trouser.(While Jean trouser is your Product name)</strong></small>
+                                   placeholder="Kindly Specify the first text you wish to see when a user chat you up."
+                                   required>
+                            <small><strong>E.g I want to buy Jean Trouser.(While Jean trouser is your Product
+                                name)</strong></small>
                         </div>
 
                         <div class="form-group">
@@ -101,24 +103,28 @@
                                       placeholder="Enter Brief produc description ,specifying the delivery days and delivery fees."></textarea>
                         </div>
                         <hr>
-                        <p><strong>Note: First uploaded picture is the picture the User will see on the page.</strong></p>
+                        <p><strong>Note: First uploaded picture is the picture the User will see on the page.</strong>
+                        </p>
                         <div class="form-group">
                             <label for="image">Product Image</label>
-                            <input type="file" name="image1" id="image" required>
-                            <p class="help-block">Upload products image.</p>
+                            <input type="file" name="image1" id="image1" required onchange="a()">
+                            <p class="help-block" id="help1" style="display: none">Image size too size,kindy upload
+                                image less than 2mb or equal to 2mb</p>
                         </div>
                         <div class="form-group">
-                            <label for="image">Product Image</label>
-                            <input type="file" name="image2" id="image" required>
-                            <p class="help-block">Upload products image.</p>
+                            <input type="file" name="image2" id="image2" required style="display: none" onchange="b()">
+                            <p class="help-block" id="help2" style="display: none">Image size too size,kindy upload
+                                image less than 2mb or equal to 2mb</p>
                         </div>
                         <div class="form-group">
-                            <label for="image">Product Image</label>
-                            <input type="file" name="image3" id="image" required>
-                            <p class="help-block">Upload products image.</p>
+                            <input type="file" name="image3" id="image3" required style="display: none" onchange="c()">
+                            <p class="help-block" id="help3" style="display: none">Image size too size,kindy upload
+                                image less than 2mb or equal to 2mb</p>
                         </div>
-                        <div class="w3-center">
-                            <input type="submit" name="submit" class="w3-btn w3-white w3-round w3-border w3-border-pink w3-hover-white w3-text-pink w3-hover-text-pink" value="Submit"
+                        <div class="w3-center" id="submit" style="display: none">
+                            <input type="submit" name="submit"
+                                   class="w3-btn w3-white w3-round w3-border w3-border-pink w3-hover-white w3-text-pink w3-hover-text-pink"
+                                   value="Submit"
                                    style="background-color: orange;">
                         </div>
 
@@ -126,5 +132,67 @@
                 </div>
             </div>
         </div>
+        <script type="text/javascript">
+            function a() {
+                var image = document.getElementById('image1');
+                var image1 = document.getElementById('image2');
+                var image2 = document.getElementById('image2');
+                if (image.files.length > 0) {
+                    for (var i = 0; i <= image.files.length - 1; i++) {
+                        var filaezixe = image.files.item(i).size;
+                        if (filaezixe < 500000) {
+                            document.getElementById('image2').style.display = "block";
+                            document.getElementById('image3').style.display = "none";
+                            document.getElementById('submit').style.display = "none";
+                            document.getElementById('help1').style.display = "none";
+                        }
+                        else {
+                            document.getElementById('image2').style.display = "none";
+                            document.getElementById('image3').style.display = "none";
+                            document.getElementById('submit').style.display = "none";
+                            document.getElementById('help1').style.display ="block";
+                        }
+                    }
+                }
+            }
+
+
+            function b() {
+                var image1 = document.getElementById('image2');
+                if (image1.files.length > 0) {
+                    for (var i = 0; i <= image1.files.length - 1; i++) {
+                        var filaezixe = image1.files.item(i).size;
+                        if (filaezixe < 500000) {
+                            document.getElementById('image3').style.display = "block";
+                            document.getElementById('submit').style.display = "none";
+                            document.getElementById('help2').style.display = "none";
+                        }
+                        else {
+                            document.getElementById('image3').style.display = "none";
+                            document.getElementById('submit').style.display = "none";
+                            document.getElementById('help2').style.display ="block";
+                        }
+                    }
+                }
+            }
+
+            function c() {
+                var image3= document.getElementById('image3');
+                if (image3.files.length > 0) {
+                    for (var i = 0; i <= image3.files.length - 1; i++) {
+                        var filaezixe = image3.files.item(i).size;
+                        if (filaezixe < 500000) {
+                            document.getElementById('submit').style.display = "block";
+                            document.getElementById('help3').style.display = "none";
+                        }
+                        else {
+                            document.getElementById('submit').style.display = "block";
+                            document.getElementById('help3').style.display ="block";
+                        }
+                    }
+                }
+            }
+
+        </script>
     {% endif %}
 {% endblock %}

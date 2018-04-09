@@ -2047,7 +2047,21 @@ def attachsend(request):
 
 
 def handler404(request):
-    return render(request,'404.html',status=404)
+    response = render_to_response('404.html', context_instance=RequestContext(request))
+    response.status_code = 404
+    return response
 
 def handler500(request):
-    return render(request,'500.html',status=500)
+    response = render_to_response('500.html', context_instance=RequestContext(request))
+    response.status_code = 500
+    return response
+
+def handler403(request):
+    response = render_to_response('403.html', context_instance=RequestContext(request))
+    response.status_code = 403
+    return response
+
+def handler400(request):
+    response = render_to_response('400.html', context_instance=RequestContext(request))
+    response.status_code = 400
+    return response

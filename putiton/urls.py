@@ -1,12 +1,15 @@
-from django.conf.urls import url
+from django.conf.urls import url,handler400,handler403,handler404,handler500
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
+
 
 from put import views
 import put
 hander404 = put.views.handler404
 hander500 = put.views.handler500
+hander403 = put.views.handler403
+hander400 = put.views.handler400
 
 urlpatterns = [
                   url(r'^admin/', admin.site.urls),
