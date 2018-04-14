@@ -108,18 +108,18 @@
                         <div class="form-group">
                             <label for="image">Product Image</label>
                             <input type="file" name="image1" id="image1" required onchange="a()">
-                            <p class="help-block" id="help1" style="display: none">Image size too size,kindy upload
-                                image less than 2mb or equal to 2mb</p>
+                            <p class="help-block" id="help1" style="display: none">Image size too big,kindy upload
+                                image less than 3mb or equal to 3mb</p>
                         </div>
                         <div class="form-group">
                             <input type="file" name="image2" id="image2" required style="display: none" onchange="b()">
-                            <p class="help-block" id="help2" style="display: none">Image size too size,kindy upload
-                                image less than 2mb or equal to 2mb</p>
+                            <p class="help-block" id="help2" style="display: none">Image size too big,kindy upload
+                                image less than 3mb or equal to 3mb</p>
                         </div>
                         <div class="form-group">
                             <input type="file" name="image3" id="image3" required style="display: none" onchange="c()">
-                            <p class="help-block" id="help3" style="display: none">Image size too size,kindy upload
-                                image less than 2mb or equal to 2mb</p>
+                            <p class="help-block" id="help3" style="display: none">Image size too big,kindy upload
+                                image less than 3mb or equal to 3mb</p>
                         </div>
                         <div class="w3-center" id="submit" style="display: none">
                             <input type="submit" name="submit"
@@ -140,17 +140,19 @@
                 if (image.files.length > 0) {
                     for (var i = 0; i <= image.files.length - 1; i++) {
                         var filaezixe = image.files.item(i).size;
-                        if (filaezixe < 500000) {
+                        if (filaezixe < 3000000) {
                             document.getElementById('image2').style.display = "block";
                             document.getElementById('image3').style.display = "none";
                             document.getElementById('submit').style.display = "none";
                             document.getElementById('help1').style.display = "none";
+                            document.getElementById('help3').style.display ="none";
                         }
                         else {
                             document.getElementById('image2').style.display = "none";
                             document.getElementById('image3').style.display = "none";
                             document.getElementById('submit').style.display = "none";
                             document.getElementById('help1').style.display ="block";
+
                         }
                     }
                 }
@@ -162,7 +164,7 @@
                 if (image1.files.length > 0) {
                     for (var i = 0; i <= image1.files.length - 1; i++) {
                         var filaezixe = image1.files.item(i).size;
-                        if (filaezixe < 500000) {
+                        if (filaezixe < 3000000 ) {
                             document.getElementById('image3').style.display = "block";
                             document.getElementById('submit').style.display = "none";
                             document.getElementById('help2').style.display = "none";
@@ -181,7 +183,7 @@
                 if (image3.files.length > 0) {
                     for (var i = 0; i <= image3.files.length - 1; i++) {
                         var filaezixe = image3.files.item(i).size;
-                        if (filaezixe < 500000) {
+                        if (filaezixe < 3000000) {
                             document.getElementById('submit').style.display = "block";
                             document.getElementById('help3').style.display = "none";
                         }

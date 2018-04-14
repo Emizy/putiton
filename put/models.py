@@ -38,6 +38,7 @@ class Supplier(models.Model):
     prices = models.CharField(max_length=11, blank=True, null=True)
     sub_date = models.DateField(max_length=30, blank=True, null=True)
     exp_date = models.DateField(max_length=30, blank=True, null=True)
+    store_visit = models.PositiveSmallIntegerField(blank=True, null=True, default=0)
 
     def __str__(self):
         return "%s - %s - %s" % (self.name, self.Email, self.status)
@@ -77,6 +78,8 @@ class Product(models.Model):
     descrip = models.TextField(blank=True, null=True)
     size = models.CharField(max_length=200, blank=True)
     date = models.DateTimeField(auto_now_add=True)
+    post_view = models.PositiveSmallIntegerField(blank=True, null=True, default=0)
+
 
     def __str__(self):
         return "%s - %s" % (self.category, self.product_name)

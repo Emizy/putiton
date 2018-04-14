@@ -1,34 +1,42 @@
 import json, traceback, re, random, string
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage, InvalidPage
-from django.views.decorators.csrf import csrf_protect
+from ipaddress import ip_address
 from datetime import date, datetime, timedelta
 from django.contrib import messages
 from django.core.mail import send_mail, BadHeaderError, EmailMessage, EmailMultiAlternatives
 from django.template import RequestContext
-from django.http import HttpRequest, JsonResponse, HttpResponse
+from django.http import HttpRequest, JsonResponse, HttpResponse, Http404
 from django.shortcuts import render, redirect, render_to_response
 from put.models import *
 from putiton import settings
 
 
 def index(request):
-    sqlbp = Product.objects.all().order_by(
-        '-date')
-    # sqlbp = Product.objects.all()
-    paginator = Paginator(sqlbp, 20)
     try:
-        page = int(request.GET.get('page', '1'))
-        cout = Supplier.objects.all().count()
-        cout = cout + 10
-    except ValueError:
-        page = 1
-        cout = None
-    try:
-        list = paginator.page(page)
-    except (EmptyPage, InvalidPage):
-        list = paginator.page(paginator.num_pages)
+        client_address = request.META.get('HTTP_X_FORWARDED_FOR')
+        # client_address = request.META.get('REMOTE_ADDR')
+        print(client_address)
+        sqlbp = Product.objects.all().order_by(
+            '-date')
+        # sqlbp = Product.objects.all()
+        paginator = Paginator(sqlbp, 20)
+        try:
+            page = int(request.GET.get('page', '1'))
+            cout = Supplier.objects.all().count()
+            cout = cout + 10
+        except ValueError:
+            page = 1
+            cout = None
+        try:
+            list = paginator.page(page)
+        except (EmptyPage, InvalidPage):
+            list = paginator.page(paginator.num_pages)
 
-    return render(request, 'index.html', {"list": list, "cout": cout, })
+        return render(request, 'index.html', {"list": list, "cout": cout, })
+    except Exception:
+        context = locals()
+        template = '404.html'
+        return render(request, template, context)
 
 
 def coming(request):
@@ -69,210 +77,45 @@ def coming(request):
 def det(request, d_id):
     assert isinstance(request, HttpRequest)
     if request.method == 'GET':
-        details = Product.objects.get(id=d_id)
-        name = details.supp_user.username
-        del_details = Product.objects.filter(supp_user__username=name).order_by('-date')[:2]
-        if details:
+        try:
+            details = Product.objects.get(id=d_id)
             name = details.supp_user.username
-            context = {
-                'del': details,
-                'ses': name,
-                'del2': del_details,
-            }
-            templates = 'det.html'
+            del_details = Product.objects.filter(supp_user__username=name).order_by('-date')[:2]
+            a = details.post_view + 1
+            details.post_view = a
+            details.save()
+            print(a)
+            if details:
+                name = details.supp_user.username
+                context = {
+                    'del': details,
+                    'ses': name,
+                    'del2': del_details,
+                }
+                templates = 'det.html'
+                return render(request, templates, context)
+            else:
+                context = {
+                    'msg': "Error",
+                }
+                return redirect('/', context)
+
+        except Product.DoesNotExist:
+            context = locals()
+            templates = '500.html'
             return render(request, templates, context)
-        else:
-            context = {
-                'msg': "Error",
-            }
-            return redirect('/', context)
+        except Exception:
+            context = locals()
+            templates = 'err.html'
+            return render(request, templates, context)
 
 
 def beads(request):
-    sqlbp = Product.objects.filter(category="Beads", moderate="Yes").order_by(
-        '-date')
-    paginator = Paginator(sqlbp, 20)
-    try:
-        page = int(request.GET.get('page', '1'))
-    except ValueError:
-        page = 1
-    try:
-        list = paginator.page(page)
-    except (EmptyPage, InvalidPage):
-        list = paginator.page(paginator.num_pages)
-    if list:
-        return render_to_response('beads.html', {"list": list})
-    else:
-        err = "No Available stock ,Register to be the first Beads Supplier"
-        return render_to_response('beads.html', {"err": err})
-
-
-def bags(request):
-    sqlbp = Product.objects.filter(category="Bags", moderate="Yes").order_by(
-        '-date')
-    paginator = Paginator(sqlbp, 20)
-    try:
-        page = int(request.GET.get('page', '1'))
-    except ValueError:
-        page = 1
-    try:
-        list = paginator.page(page)
-    except (EmptyPage, InvalidPage):
-        list = paginator.page(paginator.num_pages)
-    if list:
-        return render_to_response('Bags.html', {"list": list})
-    else:
-        err = "No Available stock ,Register to be the first Bags Supplier"
-        return render_to_response('Bags.html', {"err": err})
-
-
-def clothing(request):
-    sqlbp = Product.objects.filter(category="Clothing", moderate="Yes").order_by(
-        '-date')
-    paginator = Paginator(sqlbp, 20)
-    try:
-        page = int(request.GET.get('page', '1'))
-    except ValueError:
-        page = 1
-    try:
-        list = paginator.page(page)
-    except (EmptyPage, InvalidPage):
-        list = paginator.page(paginator.num_pages)
-    if list:
-        return render_to_response('Clothing.html', {"list": list})
-    else:
-        err = "No Available stock ,Register to be the first Clothing Supplier"
-        return render_to_response('Clothing.html', {"err": err})
-
-
-def hairstylist(request):
-    sqlbp = Product.objects.filter(category="Hairstylist", moderate="Yes").order_by(
-        '-date')
-    paginator = Paginator(sqlbp, 20)
-    try:
-        page = int(request.GET.get('page', '1'))
-    except ValueError:
-        page = 1
-    try:
-        list = paginator.page(page)
-    except (EmptyPage, InvalidPage):
-        list = paginator.page(paginator.num_pages)
-    if list:
-        return render_to_response('Hairstylist.html', {"list": list})
-    else:
-        err = "No Available stock ,Register to be the first Haristylist"
-        return render_to_response('Hairstylist.html', {"err": err})
-
-
-def jewelry(request):
-    sqlbp = Product.objects.filter(category="Jewelry", moderate="Yes").order_by(
-        '-date')
-    paginator = Paginator(sqlbp, 20)
-    try:
-        page = int(request.GET.get('page', '1'))
-    except ValueError:
-        page = 1
-    try:
-        list = paginator.page(page)
-    except (EmptyPage, InvalidPage):
-        list = paginator.page(paginator.num_pages)
-    if list:
-        return render_to_response('Jewelry.html', {"list": list})
-    else:
-        err = "No Available stock ,Register to be the first jewellry Supplier"
-        return render_to_response('Jewelry.html', {"err": err})
-
-
-def makeupArtist(request):
-    sqlbp = Product.objects.filter(category="MakeupArtist", moderate="Yes").order_by(
-        '-date')
-    paginator = Paginator(sqlbp, 20)
-    try:
-        page = int(request.GET.get('page', '1'))
-    except ValueError:
-        page = 1
-    try:
-        list = paginator.page(page)
-    except (EmptyPage, InvalidPage):
-        list = paginator.page(paginator.num_pages)
-    if list:
-        return render_to_response('MakeupArtist.html', {"list": list})
-    else:
-        err = "No Available stock ,Register to be the first Makeup-Artist"
-        return render_to_response('MakeupArtist.html', {"err": err})
-
-
-def shoes(request):
-    sqlbp = Product.objects.filter(category="Shoes", moderate="Yes").order_by(
-        '-date')
-    paginator = Paginator(sqlbp, 20)
-    try:
-        page = int(request.GET.get('page', '1'))
-    except ValueError:
-        page = 1
-    try:
-        list = paginator.page(page)
-    except (EmptyPage, InvalidPage):
-        list = paginator.page(paginator.num_pages)
-    if list:
-        return render_to_response('Shoes.html', {"list": list})
-    else:
-        err = "No Available stock ,Register to be the first Shoes Supplier"
-        return render_to_response('Shoes.html', {"err": err})
-
-
-def watches(request):
-    sqlbp = Product.objects.filter(category="Watches", moderate="Yes").order_by(
-        '-date')
-    paginator = Paginator(sqlbp, 20)
-    try:
-        page = int(request.GET.get('page', '1'))
-    except ValueError:
-        page = 1
-    try:
-        list = paginator.page(page)
-    except (EmptyPage, InvalidPage):
-        list = paginator.page(paginator.num_pages)
-    if list:
-        return render_to_response('Watches.html', {"list": list})
-    else:
-        err = "No Available stock ,Register to be the first Watches Supplier"
-        return render_to_response('Watches.html', {"err": err})
-
-
-def weddingwears(request):
-    sqlbp = Product.objects.filter(category="WeddingWears", moderate="Yes").order_by(
-        '-date')
-    paginator = Paginator(sqlbp, 20)
-    try:
-        page = int(request.GET.get('page', '1'))
-    except ValueError:
-        page = 1
-    try:
-        list = paginator.page(page)
-    except (EmptyPage, InvalidPage):
-        list = paginator.page(paginator.num_pages)
-    if list:
-        return render_to_response('WeddingWears.html', {"list": list})
-    else:
-        err = "No Available stock ,Register to be the first Wedding gown Supplier"
-        return render_to_response('WeddingWears.html', {"err": err})
-
-
-def store(request, user):
-    assert isinstance(request, HttpRequest)
     if request.method == 'GET':
         try:
-            prof = Product.objects.filter(supp_user__username=user, moderate="Yes").order_by(
+            sqlbp = Product.objects.filter(category="Beads", moderate="Yes").order_by(
                 '-date')
-            aseet = Supplier.objects.get(username=user)
-        except:
-            prof = None
-            aseet = None
-            supp_name = None
-
-        if prof and aseet:
-            paginator = Paginator(prof, 20)
+            paginator = Paginator(sqlbp, 20)
             try:
                 page = int(request.GET.get('page', '1'))
             except ValueError:
@@ -282,24 +125,262 @@ def store(request, user):
             except (EmptyPage, InvalidPage):
                 list = paginator.page(paginator.num_pages)
             if list:
-                context = {
-                    'name': aseet.company,
-                    'offer': aseet.offer,
-                    'hmm': aseet,
-                    'list': list,
-                }
-                return render_to_response('store.html', context)
+                return render_to_response('beads.html', {"list": list})
+            else:
+                err = "No Available stock ,Register to be the first Beads Supplier"
+                return render_to_response('beads.html', {"err": err})
+        except Exception:
+            context = locals()
+            templates = 'err.html'
+            return render(request, templates, context)
+
+
+def bags(request):
+    if request.method == 'GET':
+        try:
+            sqlbp = Product.objects.filter(category="Bags", moderate="Yes").order_by(
+                '-date')
+            paginator = Paginator(sqlbp, 20)
+            try:
+                page = int(request.GET.get('page', '1'))
+            except ValueError:
+                page = 1
+            try:
+                list = paginator.page(page)
+            except (EmptyPage, InvalidPage):
+                list = paginator.page(paginator.num_pages)
+            if list:
+                return render_to_response('Bags.html', {"list": list})
+            else:
+                err = "No Available stock ,Register to be the first Bags Supplier"
+                return render_to_response('Bags.html', {"err": err})
+        except Exception:
+            context = locals()
+            templates = 'err.html'
+            return render(request, templates, context)
+
+
+def clothing(request):
+    if request.method == 'GET':
+        try:
+            sqlbp = Product.objects.filter(category="Clothing", moderate="Yes").order_by(
+                '-date')
+            paginator = Paginator(sqlbp, 20)
+            try:
+                page = int(request.GET.get('page', '1'))
+            except ValueError:
+                page = 1
+            try:
+                list = paginator.page(page)
+            except (EmptyPage, InvalidPage):
+                list = paginator.page(paginator.num_pages)
+            if list:
+                return render_to_response('Clothing.html', {"list": list})
+            else:
+                err = "No Available stock ,Register to be the first Clothing Supplier"
+                return render_to_response('Clothing.html', {"err": err})
+
+        except Exception:
+            context = locals()
+            templates = 'err.html'
+            return render(request, templates, context)
+
+
+def hairstylist(request):
+    if request.method == 'GET':
+        try:
+            sqlbp = Product.objects.filter(category="Hairstylist", moderate="Yes").order_by(
+                '-date')
+            paginator = Paginator(sqlbp, 20)
+            try:
+                page = int(request.GET.get('page', '1'))
+            except ValueError:
+                page = 1
+            try:
+                list = paginator.page(page)
+            except (EmptyPage, InvalidPage):
+                list = paginator.page(paginator.num_pages)
+            if list:
+                return render_to_response('Hairstylist.html', {"list": list})
+            else:
+                err = "No Available stock ,Register to be the first Haristylist"
+                return render_to_response('Hairstylist.html', {"err": err})
+        except Exception:
+            context = locals()
+            templates = 'err.html'
+            return render(request, templates, context)
+
+
+def jewelry(request):
+    if request.method == 'GET':
+        try:
+            sqlbp = Product.objects.filter(category="Jewelry", moderate="Yes").order_by(
+                '-date')
+            paginator = Paginator(sqlbp, 20)
+            try:
+                page = int(request.GET.get('page', '1'))
+            except ValueError:
+                page = 1
+            try:
+                list = paginator.page(page)
+            except (EmptyPage, InvalidPage):
+                list = paginator.page(paginator.num_pages)
+            if list:
+                return render_to_response('Jewelry.html', {"list": list})
+            else:
+                err = "No Available stock ,Register to be the first jewellry Supplier"
+                return render_to_response('Jewelry.html', {"err": err})
+        except Exception:
+            context = locals()
+            templates = 'err.html'
+            return render(request, templates, context)
+
+
+def makeupArtist(request):
+    if request.method == 'GET':
+        try:
+            sqlbp = Product.objects.filter(category="MakeupArtist", moderate="Yes").order_by(
+                '-date')
+            paginator = Paginator(sqlbp, 20)
+            try:
+                page = int(request.GET.get('page', '1'))
+            except ValueError:
+                page = 1
+            try:
+                list = paginator.page(page)
+            except (EmptyPage, InvalidPage):
+                list = paginator.page(paginator.num_pages)
+            if list:
+                return render_to_response('MakeupArtist.html', {"list": list})
+            else:
+                err = "No Available stock ,Register to be the first Makeup-Artist"
+                return render_to_response('MakeupArtist.html', {"err": err})
+        except Exception:
+            context = locals()
+            templates = 'err.html'
+            return render(request, templates, context)
+
+
+def shoes(request):
+    if request.method == 'GET':
+        try:
+            sqlbp = Product.objects.filter(category="Shoes", moderate="Yes").order_by(
+                '-date')
+            paginator = Paginator(sqlbp, 20)
+            try:
+                page = int(request.GET.get('page', '1'))
+            except ValueError:
+                page = 1
+            try:
+                list = paginator.page(page)
+            except (EmptyPage, InvalidPage):
+                list = paginator.page(paginator.num_pages)
+            if list:
+                return render_to_response('Shoes.html', {"list": list})
+            else:
+                err = "No Available stock ,Register to be the first Shoes Supplier"
+                return render_to_response('Shoes.html', {"err": err})
+        except Exception:
+            context = locals()
+            templates = 'err.html'
+            return render(request, templates, context)
+
+
+def watches(request):
+    if request.method == 'GET':
+        try:
+            sqlbp = Product.objects.filter(category="Watches", moderate="Yes").order_by(
+                '-date')
+            paginator = Paginator(sqlbp, 20)
+            try:
+                page = int(request.GET.get('page', '1'))
+            except ValueError:
+                page = 1
+            try:
+                list = paginator.page(page)
+            except (EmptyPage, InvalidPage):
+                list = paginator.page(paginator.num_pages)
+            if list:
+                return render_to_response('Watches.html', {"list": list})
+            else:
+                err = "No Available stock ,Register to be the first Watches Supplier"
+                return render_to_response('Watches.html', {"err": err})
+        except Exception:
+            context = locals()
+            templates = 'err.html'
+            return render(request, templates, context)
+
+
+def weddingwears(request):
+    if request.method == 'GET':
+        try:
+            sqlbp = Product.objects.filter(category="WeddingWears", moderate="Yes").order_by(
+                '-date')
+            paginator = Paginator(sqlbp, 20)
+            try:
+                page = int(request.GET.get('page', '1'))
+            except ValueError:
+                page = 1
+            try:
+                list = paginator.page(page)
+            except (EmptyPage, InvalidPage):
+                list = paginator.page(paginator.num_pages)
+            if list:
+                return render_to_response('WeddingWears.html', {"list": list})
+            else:
+                err = "No Available stock ,Register to be the first Wedding gown Supplier"
+                return render_to_response('WeddingWears.html', {"err": err})
+        except Exception:
+            context = locals()
+            templates = 'err.html'
+            return render(request, templates, context)
+
+
+def store(request, user):
+    assert isinstance(request, HttpRequest)
+    if request.method == 'GET':
+        try:
+            prof = Product.objects.filter(supp_user__username=user, moderate="Yes").order_by(
+                    '-date')
+            aseet = Supplier.objects.get(username=user)
+            a = aseet.store_visit + 1
+            aseet.store_visit = a
+            aseet.save()
+            print(aseet.store_visit)
+            if prof and aseet:
+                paginator = Paginator(prof, 20)
+                try:
+                    page = int(request.GET.get('page', '1'))
+                except ValueError:
+                    page = 1
+                try:
+                    list = paginator.page(page)
+                except (EmptyPage, InvalidPage):
+                    list = paginator.page(paginator.num_pages)
+                if list:
+                    context = {
+                        'name': aseet.company,
+                        'offer': aseet.offer,
+                        'hmm': aseet,
+                        'list': list,
+                    }
+                    return render_to_response('store.html', context)
+                else:
+
+                    context = {
+                        'err': "No Available stock ,Register to be the first Wedding gown Supplier"
+                    }
+                    return render_to_response('store.html', context)
             else:
 
                 context = {
-                    'err': "No Available stock ,Register to be the first Wedding gown Supplier"
+                    'error': "Store doesn't Exist,Kindly check your username",
                 }
-                return render_to_response('store.html', context)
-        else:
-            context = {
-                'error': "Store doesn't Exist,Kindly check your username",
-            }
-            templates = 'store.html'
+                templates = 'store.html'
+                return render(request, templates, context)
+        except Exception:
+            context = locals()
+            templates = 'err.html'
             return render(request, templates, context)
 
 
@@ -307,27 +388,32 @@ def shop(request, user, user_id):
     assert isinstance(request, HttpRequest)
     if request.method == 'GET':
         try:
-            prof = Product.objects.get(id=user_id)
-            supp_name = user
-            aseet = Supplier.objects.get(username=user)
-        except:
-            prof = None
-            aseet = None
-            supp_name = None
+            try:
+                prof = Product.objects.get(id=user_id)
+                supp_name = user
+                aseet = Supplier.objects.get(username=user)
+            except:
+                prof = None
+                aseet = None
+                supp_name = None
 
-        if prof and aseet:
-            context = {
-                'sql1': prof,
-                'name': supp_name,
-                'hmm': aseet,
-            }
-            templates = 'shop.html'
-            return render(request, templates, context)
-        else:
-            context = {
-                'sql': "Oops Invalid Store name,Kindly Check your store name",
-            }
-            templates = 'shop.html'
+            if prof and aseet:
+                context = {
+                    'sql1': prof,
+                    'name': supp_name,
+                    'hmm': aseet,
+                }
+                templates = 'shop.html'
+                return render(request, templates, context)
+            else:
+                context = {
+                    'sql': "Oops Invalid Store name,Kindly Check your store name",
+                }
+                templates = 'shop.html'
+                return render(request, templates, context)
+        except Exception:
+            context = locals()
+            templates = 'err.html'
             return render(request, templates, context)
 
 
@@ -448,76 +534,81 @@ def profile(request):
 
 def search(request):
     if request.method == 'POST':
-        query = request.POST.get('search')
-        result1 = Product.objects.filter(product_name__icontains=query, moderate="Yes")
-        result2 = Product.objects.filter(supp_user__state__icontains=query, moderate="Yes")
-        result3 = Product.objects.filter(supp_user__location__icontains=query, moderate="Yes")
-        result4 = Product.objects.filter(category__icontains=query, moderate="Yes")
-        rel = Product.objects.all().order_by('-date')
-        if result1:
-            paginator = Paginator(result1, 20)
-            try:
-                page = int(request.GET.get('page', '1'))
-            except ValueError:
-                page = 1
-            try:
-                list = paginator.page(page)
-            except (EmptyPage, InvalidPage):
-                list = paginator.page(paginator.num_pages)
-
-            return render_to_response('search.html', {"list": list}, )
-
-
-        elif result2:
-            paginator = Paginator(result2, 20)
-            try:
-                page = int(request.GET.get('page', '1'))
-            except ValueError:
-                page = 1
-            try:
-                list = paginator.page(page)
-            except (EmptyPage, InvalidPage):
-                list = paginator.page(paginator.num_pages)
-
-            return render_to_response('search.html', {"list": list}, )
-
-        elif result3:
-            paginator = Paginator(result3, 20)
-            try:
-                page = int(request.GET.get('page', '1'))
-            except ValueError:
-                page = 1
-            try:
-                list = paginator.page(page)
-            except (EmptyPage, InvalidPage):
-                list = paginator.page(paginator.num_pages)
-
-            return render_to_response('search.html', {"list": list}, )
-        elif result4:
-            paginator = Paginator(result4, 20)
-            try:
-                page = int(request.GET.get('page', '1'))
-            except ValueError:
-                page = 1
-            try:
-                list = paginator.page(page)
-            except (EmptyPage, InvalidPage):
-                list = paginator.page(paginator.num_pages)
-
-            return render_to_response('search.html', {"list": list}, )
-
-        elif rel:
-            paginator = Paginator(rel, 20)
-            try:
-                page = int(request.GET.get('page', '1'))
-            except ValueError:
-                page = 1
-            try:
-                list = paginator.page(page)
-            except (EmptyPage, InvalidPage):
-                list = paginator.page(paginator.num_pages)
+        try:
+            query = request.POST.get('search')
+            result1 = Product.objects.filter(product_name__icontains=query, moderate="Yes")
+            result2 = Product.objects.filter(supp_user__state__icontains=query, moderate="Yes")
+            result3 = Product.objects.filter(supp_user__location__icontains=query, moderate="Yes")
+            result4 = Product.objects.filter(category__icontains=query, moderate="Yes")
+            rel = Product.objects.all().order_by('-date')
+            if result1:
+                paginator = Paginator(result1, 20)
+                try:
+                    page = int(request.GET.get('page', '1'))
+                except ValueError:
+                    page = 1
+                try:
+                    list = paginator.page(page)
+                except (EmptyPage, InvalidPage):
+                    list = paginator.page(paginator.num_pages)
 
                 return render_to_response('search.html', {"list": list}, )
+
+
+            elif result2:
+                paginator = Paginator(result2, 20)
+                try:
+                    page = int(request.GET.get('page', '1'))
+                except ValueError:
+                    page = 1
+                try:
+                    list = paginator.page(page)
+                except (EmptyPage, InvalidPage):
+                    list = paginator.page(paginator.num_pages)
+
+                return render_to_response('search.html', {"list": list}, )
+
+            elif result3:
+                paginator = Paginator(result3, 20)
+                try:
+                    page = int(request.GET.get('page', '1'))
+                except ValueError:
+                    page = 1
+                try:
+                    list = paginator.page(page)
+                except (EmptyPage, InvalidPage):
+                    list = paginator.page(paginator.num_pages)
+
+                return render_to_response('search.html', {"list": list}, )
+            elif result4:
+                paginator = Paginator(result4, 20)
+                try:
+                    page = int(request.GET.get('page', '1'))
+                except ValueError:
+                    page = 1
+                try:
+                    list = paginator.page(page)
+                except (EmptyPage, InvalidPage):
+                    list = paginator.page(paginator.num_pages)
+
+                return render_to_response('search.html', {"list": list}, )
+
+            elif rel:
+                paginator = Paginator(rel, 20)
+                try:
+                    page = int(request.GET.get('page', '1'))
+                except ValueError:
+                    page = 1
+                try:
+                    list = paginator.page(page)
+                except (EmptyPage, InvalidPage):
+                    list = paginator.page(paginator.num_pages)
+
+                    return render_to_response('search.html', {"list": list}, )
+        except Exception:
+            context = locals()
+            templates = 'err.html'
+            return render(request, templates, context)
 
 
 def men_search(request):
@@ -1007,6 +1098,7 @@ def supplier_reg(request):
                         sup.address = sup_address
                         sup.state = sup_state
                         sup.username = sup_user
+                        sup.store_visit = 0
                         sup.status = sup_pack
                         sup.location = sup_location
                         sup.password = sup_password
@@ -1168,171 +1260,182 @@ def supplier_logout(request):
 def subscription(request):
     assert isinstance(request, HttpRequest)
     if request.method == 'GET':
-        if 'email' in request.session:
-            em = request.session['user']
-            try:
-                stat = Supplier.objects.get(Email=request.session['email'])
-                dm = chat.objects.filter(Email=request.session['email']).count()
-            except:
-                stat = None
-                dm = None
-            if stat.status is not None:
-                context = {
-                    'email': em,
-                    'lo': stat.status,
-                    'p': stat.id,
-                    'h': stat.confirm,
-                    'd': stat.exp_date,
-                    'n': dm
-                }
-                templates = 'subscription.html'
-                return render(request, templates, context)
+        try:
+            if 'email' in request.session:
+                em = request.session['user']
+                try:
+                    stat = Supplier.objects.get(Email=request.session['email'])
+                    dm = chat.objects.filter(Email=request.session['email']).count()
+                except:
+                    stat = None
+                    dm = None
+                if stat.status is not None:
+                    context = {
+                        'email': em,
+                        'lo': stat.status,
+                        'p': stat.id,
+                        'h': stat.confirm,
+                        'd': stat.exp_date,
+                        'n': dm
+                    }
+                    templates = 'subscription.html'
+                    return render(request, templates, context)
+                else:
+                    context = {
+                        'email': em,
+                    }
+                    templates = 'subscription.html'
+                    return render(request, templates, context)
             else:
-                context = {
-                    'email': em,
-                }
-                templates = 'subscription.html'
-                return render(request, templates, context)
-        else:
-            return redirect('/supplier_log/')
+                return redirect('/supplier_log/')
+        except Exception:
+            context = locals()
+            templates = 'err.html'
+            return render(request, templates, context)
+        
     elif request.method == 'POST':
-        if 'email' in request.session:
-            t_pack = request.POST.get('pack')
-            pack = Supplier.objects.get(Email=request.session['email'])
-            trans = transaction()
-            today = date.today()
-            em = request.session['email']
-            uem = request.session['user']
-            # if t_pack == 'Free':
-            #     sub_price = 0
-            #     sub_stat = 'Free'
-            #     pack.status = sub_stat
-            #     pack.prices = sub_price
-            #     pack.save()
-            #     em = request.session['user']
-            #     context = {
-            #         'email': em,
-            #         'msg': "You have successfully subscribe for free package,Your next subscription is in the next 6months",
-            #     }
-            #     template = 'subscription.html'
-            #     return render(request, template, context)
-            if t_pack == 'Silver':
-                if request.FILES['image1']:
-                    sub_bank = request.POST.get('silver2')
-                    sub_image = request.FILES['image1']
-                    sub_price = request.POST.get('silver1')
-                    sub_stat = t_pack
-                    date_after = today + timedelta(31)
-                    stat = Supplier.objects.get(Email=em)
-                    if sub_price == '500':
-                        pack.prices = sub_price
-                        pack.status = sub_stat
-                        trans.supp_user = stat
-                        pack.sub_date = today
-                        pack.exp_date = date_after
-                        trans.bank = sub_bank
-                        trans.image = sub_image
-                        trans.save()
-                        pack.save()
-                        context = {
-                            'email': uem,
-                            'msg': "You have successfully Submitted Silver Package Subscription, Kindly wait for two working days for Subscription activation",
-                        }
-                        template = 'subscription.html'
-                        return render(request, template, context)
+        try:
+            if 'email' in request.session:
+                t_pack = request.POST.get('pack')
+                pack = Supplier.objects.get(Email=request.session['email'])
+                trans = transaction()
+                today = date.today()
+                em = request.session['email']
+                uem = request.session['user']
+                # if t_pack == 'Free':
+                #     sub_price = 0
+                #     sub_stat = 'Free'
+                #     pack.status = sub_stat
+                #     pack.prices = sub_price
+                #     pack.save()
+                #     em = request.session['user']
+                #     context = {
+                #         'email': em,
+                #         'msg': "You have successfully subscribe for free package,Your next subscription is in the next 6months",
+                #     }
+                #     template = 'subscription.html'
+                #     return render(request, template, context)
+                if t_pack == 'Silver':
+                    if request.FILES['image1']:
+                        sub_bank = request.POST.get('silver2')
+                        sub_image = request.FILES['image1']
+                        sub_price = request.POST.get('silver1')
+                        sub_stat = t_pack
+                        date_after = today + timedelta(31)
+                        stat = Supplier.objects.get(Email=em)
+                        if sub_price == '500':
+                            pack.prices = sub_price
+                            pack.status = sub_stat
+                            trans.supp_user = stat
+                            pack.sub_date = today
+                            pack.exp_date = date_after
+                            trans.bank = sub_bank
+                            trans.image = sub_image
+                            trans.save()
+                            pack.save()
+                            context = {
+                                'email': uem,
+                                'msg': "You have successfully Submitted Silver Package Subscription, Kindly wait for two working days for Subscription activation",
+                            }
+                            template = 'subscription.html'
+                            return render(request, template, context)
+                        else:
+                            context = {
+                                'email': uem,
+                                'msg': "Invalid amount,Kindly input the correct amount e.g 500",
+                            }
+                            template = 'subscription.html'
+                            return render(request, template, context)
                     else:
                         context = {
                             'email': uem,
-                            'msg': "Invalid amount,Kindly input the correct amount e.g 500",
+                            'msg': "Kindly Upload A Valid Image",
                         }
                         template = 'subscription.html'
                         return render(request, template, context)
-                else:
-                    context = {
-                        'email': uem,
-                        'msg': "Kindly Upload A Valid Image",
-                    }
-                    template = 'subscription.html'
-                    return render(request, template, context)
-            elif t_pack == 'Gold':
-                if request.FILES['image2']:
-                    sub_bank = request.POST.get('gold2')
-                    sub_image = request.FILES['image2']
-                    sub_price = request.POST.get('gold1')
-                    sub_stat = t_pack
-                    print(t_pack)
-                    date_after = today + timedelta(31)
-                    stat = Supplier.objects.get(Email=em)
-                    if sub_price == '1000':
-                        pack.prices = sub_price
-                        pack.status = sub_stat
-                        trans.supp_user = stat
-                        pack.sub_date = today
-                        pack.exp_date = date_after
-                        trans.bank = sub_bank
-                        trans.image = sub_image
-                        trans.save()
-                        pack.save()
-                        context = {
-                            'email': uem,
-                            'msg': "You have successfully Submitted Gold Package Subscription, Kindly wait for two working days for Subscription activation",
-                        }
-                        template = 'subscription.html'
-                        return render(request, template, context)
+                elif t_pack == 'Gold':
+                    if request.FILES['image2']:
+                        sub_bank = request.POST.get('gold2')
+                        sub_image = request.FILES['image2']
+                        sub_price = request.POST.get('gold1')
+                        sub_stat = t_pack
+                        print(t_pack)
+                        date_after = today + timedelta(31)
+                        stat = Supplier.objects.get(Email=em)
+                        if sub_price == '1000':
+                            pack.prices = sub_price
+                            pack.status = sub_stat
+                            trans.supp_user = stat
+                            pack.sub_date = today
+                            pack.exp_date = date_after
+                            trans.bank = sub_bank
+                            trans.image = sub_image
+                            trans.save()
+                            pack.save()
+                            context = {
+                                'email': uem,
+                                'msg': "You have successfully Submitted Gold Package Subscription, Kindly wait for two working days for Subscription activation",
+                            }
+                            template = 'subscription.html'
+                            return render(request, template, context)
+                        else:
+                            context = {
+                                'email': uem,
+                                'msg': "Invalid amount,Kindly input the correct amount e.g 1000",
+                            }
+                            template = 'subscription.html'
+                            return render(request, template, context)
                     else:
                         context = {
                             'email': uem,
-                            'msg': "Invalid amount,Kindly input the correct amount e.g 1000",
+                            'msg': "Kindly Upload A Valid Image",
                         }
                         template = 'subscription.html'
                         return render(request, template, context)
-                else:
-                    context = {
-                        'email': uem,
-                        'msg': "Kindly Upload A Valid Image",
-                    }
-                    template = 'subscription.html'
-                    return render(request, template, context)
-            elif t_pack == 'Platinum':
-                if request.FILES['image3']:
-                    sub_bank = request.POST.get('plat2')
-                    sub_image = request.FILES['image3']
-                    sub_price = request.POST.get('plat1')
-                    sub_stat = t_pack
-                    date_after = today + timedelta(31)
-                    stat = Supplier.objects.get(Email=em)
-                    if sub_price == '2000':
-                        pack.prices = sub_price
-                        pack.status = sub_stat
-                        trans.supp_user = stat
-                        pack.sub_date = today
-                        pack.exp_date = date_after
-                        trans.bank = sub_bank
-                        trans.image = sub_image
-                        trans.save()
-                        pack.save()
-                        context = {
-                            'email': uem,
-                            'msg': "You have successfully Submitted Silver Package Subscription, Kindly wait for two working days for Subscription activation",
-                        }
-                        template = 'subscription.html'
-                        return render(request, template, context)
+                elif t_pack == 'Platinum':
+                    if request.FILES['image3']:
+                        sub_bank = request.POST.get('plat2')
+                        sub_image = request.FILES['image3']
+                        sub_price = request.POST.get('plat1')
+                        sub_stat = t_pack
+                        date_after = today + timedelta(31)
+                        stat = Supplier.objects.get(Email=em)
+                        if sub_price == '2000':
+                            pack.prices = sub_price
+                            pack.status = sub_stat
+                            trans.supp_user = stat
+                            pack.sub_date = today
+                            pack.exp_date = date_after
+                            trans.bank = sub_bank
+                            trans.image = sub_image
+                            trans.save()
+                            pack.save()
+                            context = {
+                                'email': uem,
+                                'msg': "You have successfully Submitted Silver Package Subscription, Kindly wait for two working days for Subscription activation",
+                            }
+                            template = 'subscription.html'
+                            return render(request, template, context)
+                        else:
+                            context = {
+                                'email': uem,
+                                'msg': "Invalid amount,Kindly input the correct amount e.g 2000",
+                            }
+                            template = 'subscription.html'
+                            return render(request, template, context)
                     else:
                         context = {
                             'email': uem,
-                            'msg': "Invalid amount,Kindly input the correct amount e.g 2000",
+                            'msg': "Kindly Upload A Valid Image",
                         }
                         template = 'subscription.html'
                         return render(request, template, context)
-                else:
-                    context = {
-                        'email': uem,
-                        'msg': "Kindly Upload A Valid Image",
-                    }
-                    template = 'subscription.html'
-                    return render(request, template, context)
-        else:
-            return redirect('/supplier_log/')
+            else:
+                return redirect('/supplier_log/')
+        except Exception:
+            context = locals()
+            templates = 'err.html'
+            return render(request, templates, context)
 
 
 def del_sub(request, del_id):
@@ -1376,27 +1479,111 @@ def del_sub(request, del_id):
 def Ads(request):
     if request.method == 'GET':
         if 'email' in request.session:
-            supp_id = request.session['userid']
-            mail = request.session['email']
-            user = request.session['user']
             try:
-                stat = Supplier.objects.get(Email=request.session['email'])
-                cout = Product.objects.filter(supp_user__Email=mail)
-                dm = chat.objects.filter(Email=request.session['email']).count()
-            except:
-                stat = None
-                cout = None
-                dm = None
-            remainder = cout.count()
-            if stat:
-                if stat.status == "Free":
-                    if cout.count() != 10:
-                        remainder = cout.count()
+                supp_id = request.session['userid']
+                mail = request.session['email']
+                user = request.session['user']
+                try:
+                    stat = Supplier.objects.get(Email=request.session['email'])
+                    cout = Product.objects.filter(supp_user__Email=mail)
+                    dm = chat.objects.filter(Email=request.session['email']).count()
+                except:
+                    stat = None
+                    cout = None
+                    dm = None
+                remainder = cout.count()
+                if stat:
+                    if stat.status == "Free":
+                        if cout.count() != 10:
+                            remainder = cout.count()
+                            context = {
+                                'email': user,
+                                'val': "Valid",
+                                'rem': remainder,
+                                'n': dm,
+                            }
+                            templates = "Ads.html"
+                            return render(request, templates, context)
+                        else:
+                            context = {
+                                'email': user,
+                                'n': dm,
+                                'fail': "You have exceeded the maximun number to be submited on Trial package",
+                            }
+                            templates = "Ads.html"
+                            return render(request, templates, context)
+                    elif stat.status == "Silver" and stat.confirm == "APPROVED":
+                        today = datetime.today()
+                        k = str(stat.exp_date)
+                        print(remainder)
+                        p = datetime.strptime(k, "%Y-%m-%d")
+                        print(p)
+                        if today <= p:
+                            context = {
+                                'email': user,
+                                'val': "Valid",
+                                'n': dm,
+                                'srem': remainder,
+                            }
+                            templates = "Ads.html"
+                            return render(request, templates, context)
+                        else:
+                            context = {
+                                'email': user,
+                                'n': dm,
+                                'fail': "Your Subscription has expired,Kindly Re-Subscribe for another 1month",
+                            }
+                            templates = "Ads.html"
+                            return render(request, templates, context)
+                    elif stat.status == "Gold" and stat.confirm == "APPROVED":
+                        today = datetime.today()
+                        k = str(stat.exp_date)
+                        p = datetime.strptime(k, "%Y-%m-%d")
+                        print(p)
+                        if today <= p:
+                            context = {
+                                'email': user,
+                                'val': "Valid",
+                                'srem': remainder,
+                                'n': dm,
+                            }
+                            templates = "Ads.html"
+                            return render(request, templates, context)
+                        else:
+                            context = {
+                                'email': user,
+                                'n': dm,
+                                'fail': "Your Subscription has expired,Kindly Re-Subscribe for another 2month",
+                            }
+                            templates = "Ads.html"
+                            return render(request, templates, context)
+                    elif stat.status == "Platinum" and stat.confirm == "APPROVED":
+                        today = datetime.today()
+                        k = str(stat.exp_date)
+                        p = datetime.strptime(k, "%Y-%m-%d")
+                        print(p)
+                        if today <= p:
+                            context = {
+                                'email': user,
+                                'val': "Valid",
+                                'srem': remainder,
+                                'n': dm,
+                            }
+                            templates = "Ads.html"
+                            return render(request, templates, context)
+                        else:
+                            context = {
+                                'email': user,
+                                'n': dm,
+                                'fail': "Your Subscription has expired,Kindly Re-Subscribe for another 3month",
+                            }
+                            templates = "Ads.html"
+                            return render(request, templates, context)
+                    elif stat.status == 'NoSub' and stat.confirm == 'Nil':
                         context = {
                             'email': user,
-                            'val': "Valid",
-                            'rem': remainder,
                             'n': dm,
+                            'msg': "Yet to subscribe to any packages or Waiting for Payment Approval,Click to subscribe",
                         }
                         templates = "Ads.html"
                         return render(request, templates, context)
@@ -1404,140 +1591,67 @@ def Ads(request):
                         context = {
                             'email': user,
                             'n': dm,
-                            'fail': "You have exceeded the maximun number to be submited on Trial package",
+                            'msg': "Yet to subscribe to any packages or Waiting for Payment Approval,Click to subscribe",
                         }
                         templates = "Ads.html"
                         return render(request, templates, context)
-                elif stat.status == "Silver" and stat.confirm == "APPROVED":
-                    today = datetime.today()
-                    k = str(stat.exp_date)
-                    print(remainder)
-                    p = datetime.strptime(k, "%Y-%m-%d")
-                    print(p)
-                    if today <= p:
-                        context = {
-                            'email': user,
-                            'val': "Valid",
-                            'n': dm,
-                            'srem': remainder,
-                        }
-                        templates = "Ads.html"
-                        return render(request, templates, context)
-                    else:
-                        context = {
-                            'email': user,
-                            'n': dm,
-                            'fail': "Your Subscription has expired,Kindly Re-Subscribe for another 1month",
-                        }
-                        templates = "Ads.html"
-                        return render(request, templates, context)
-                elif stat.status == "Gold" and stat.confirm == "APPROVED":
-                    today = datetime.today()
-                    k = str(stat.exp_date)
-                    p = datetime.strptime(k, "%Y-%m-%d")
-                    print(p)
-                    if today <= p:
-                        context = {
-                            'email': user,
-                            'val': "Valid",
-                            'srem': remainder,
-                            'n': dm,
-                        }
-                        templates = "Ads.html"
-                        return render(request, templates, context)
-                    else:
-                        context = {
-                            'email': user,
-                            'n': dm,
-                            'fail': "Your Subscription has expired,Kindly Re-Subscribe for another 2month",
-                        }
-                        templates = "Ads.html"
-                        return render(request, templates, context)
-                elif stat.status == "Platinum" and stat.confirm == "APPROVED":
-                    today = datetime.today()
-                    k = str(stat.exp_date)
-                    p = datetime.strptime(k, "%Y-%m-%d")
-                    print(p)
-                    if today <= p:
-                        context = {
-                            'email': user,
-                            'val': "Valid",
-                            'srem': remainder,
-                            'n': dm,
-                        }
-                        templates = "Ads.html"
-                        return render(request, templates, context)
-                    else:
-                        context = {
-                            'email': user,
-                            'n': dm,
-                            'fail': "Your Subscription has expired,Kindly Re-Subscribe for another 3month",
-                        }
-                        templates = "Ads.html"
-                        return render(request, templates, context)
-                elif stat.status == 'NoSub' and stat.confirm == 'Nil':
-                    context = {
-                        'email': user,
-                        'n': dm,
-                        'msg': "Yet to subscribe to any packages or Waiting for Payment Approval,Click to subscribe",
-                    }
-                    templates = "Ads.html"
-                    return render(request, templates, context)
+
                 else:
                     context = {
                         'email': user,
-                        'n': dm,
                         'msg': "Yet to subscribe to any packages or Waiting for Payment Approval,Click to subscribe",
                     }
                     templates = "Ads.html"
                     return render(request, templates, context)
-
-            else:
-                context = {
-                    'email': user,
-                    'msg': "Yet to subscribe to any packages or Waiting for Payment Approval,Click to subscribe",
-                }
-                templates = "Ads.html"
+            except Exception:
+                context = locals()
+                templates = 'err.html'
                 return render(request, templates, context)
         else:
             return redirect('/supplier_log/')
 
     elif request.method == 'POST':
         if 'email' in request.session:
-            mail = request.session['email']
-            dm = chat.objects.filter(Email=request.session['email']).count()
-            if request.FILES['image1'] and request.FILES['image2'] and request.FILES['image3']:
-                stat = Supplier.objects.get(Email=request.session['email'])
-                rst = Product()
-                rst.supp_user = stat
-                rst.price = request.POST.get('price')
-                rst.product_name = request.POST.get('product_name')
-                rst.category = request.POST.get('category')
-                rst.color = request.POST.get('color')
-                rst.text = request.POST.get('wtext')
-                rst.size = request.POST.get('size')
-                rst.descrip = request.POST.get('descrip')
-                rst.image1 = request.FILES['image1']
-                rst.image2 = request.FILES['image2']
-                rst.image3 = request.FILES['image3']
-                rst.save()
-                context = {
-                    'email': mail,
-                    'n': dm,
-                    'succes': "You have successfully submitted an Ads ,Kindly wait for the next three working day for verification and publication on our website.Thanks",
-                }
-                templates = "Ads.html"
-                return render(request, templates, context)
-            else:
-                context = {
-                    'email': mail,
-                    'n': dm,
-                    'succes': "One Image slot or All images slot is empty,Kindly upload an image",
-                }
-                templates = "Ads.html"
+            try:
+                mail = request.session['email']
+                dm = chat.objects.filter(Email=request.session['email']).count()
+                if request.FILES['image1'] and request.FILES['image2'] and request.FILES['image3']:
+                    stat = Supplier.objects.get(Email=request.session['email'])
+                    rst = Product()
+                    rst.supp_user = stat
+                    rst.post_view = 0
+                    rst.price = request.POST.get('price')
+                    rst.product_name = request.POST.get('product_name')
+                    rst.category = request.POST.get('category')
+                    rst.color = request.POST.get('color')
+                    rst.text = request.POST.get('wtext')
+                    rst.size = request.POST.get('size')
+                    rst.descrip = request.POST.get('descrip')
+                    rst.image1 = request.FILES['image1']
+                    rst.image2 = request.FILES['image2']
+                    rst.image3 = request.FILES['image3']
+                    rst.save()
+                    context = {
+                        'email': mail,
+                        'n': dm,
+                        'succes': "You have successfully submitted an Ads ,Kindly wait for the next three working day for verification and publication on our website.Thanks",
+                    }
+                    templates = "Ads.html"
+                    return render(request, templates, context)
+                else:
+                    context = {
+                        'email': mail,
+                        'n': dm,
+                        'succes': "One Image slot or All images slot is empty,Kindly upload an image",
+                    }
+                    templates = "Ads.html"
+                    return render(request, templates, context)
+            except Exception:
+                context = locals()
+                templates = 'err.html'
                 return render(request, templates, context)
         else:
-            return redirect('/Ads/')
+            return redirect('/supplier_log/')
 
 
 def cus_store(request):
@@ -1545,49 +1659,64 @@ def cus_store(request):
     if request.method == 'GET':
         if 'user' in request.session:
             try:
-                foo = Supplier.objects.get(username=request.session['user'])
-                dm = chat.objects.filter(Email=request.session['email']).count()
-            except:
-                foo = None
-                dm = None
-            em = request.session['user']
-            if foo.offer is not None:
-                context = {
-                    'email': em,
-                    'dis': foo,
-                    'n': dm,
-                }
-                templates = 'customize.html'
+                try:
+                    foo = Supplier.objects.get(username=request.session['user'])
+                    dm = chat.objects.filter(Email=request.session['email']).count()
+                except:
+                    foo = None
+                    dm = None
+                em = request.session['user']
+                if foo.offer is not None:
+                    context = {
+                        'email': em,
+                        'dis': foo,
+                        'n': dm,
+                    }
+                    templates = 'customize.html'
+                    return render(request, templates, context)
+                else:
+                    context = {
+                        'email': em,
+                        'b': "Empty",
+                        'n': dm,
+                    }
+                    templates = 'customize.html'
+                    return render(request, templates, context)
+            except Exception:
+                context = locals()
+                templates = 'err.html'
                 return render(request, templates, context)
-            else:
-                context = {
-                    'email': em,
-                    'b': "Empty",
-                    'n': dm,
-                }
-                templates = 'customize.html'
-                return render(request, templates, context)
+        else:
+            return redirect('/supplier_log/')
+
     elif request.method == 'POST':
         if 'user' in request.session:
             try:
-                off = Supplier.objects.get(username=request.session['user'])
-                dm = chat.objects.filter(Email=request.session['email']).count()
-            except:
-                off = None
-                dm = None
-            offer = request.POST.get('offer')
-            off.offer = offer
-            off.save()
-            dis = Supplier.objects.get(username=request.session['user'])
-            em = request.session['user']
-            context = {
-                'dis': dis,
-                'email': em,
-                'n': dm,
+                try:
+                    off = Supplier.objects.get(username=request.session['user'])
+                    dm = chat.objects.filter(Email=request.session['email']).count()
+                except:
+                    off = None
+                    dm = None
+                offer = request.POST.get('offer')
+                off.offer = offer
+                off.save()
+                dis = Supplier.objects.get(username=request.session['user'])
+                em = request.session['user']
+                context = {
+                    'dis': dis,
+                    'email': em,
+                    'n': dm,
 
-            }
-            templates = 'customize.html'
-            return render(request, templates, context)
+                }
+                templates = 'customize.html'
+                return render(request, templates, context)
+            except Exception:
+                context = locals()
+                templates = 'err.html'
+                return render(request, templates, context)
+        else:
+            return redirect('/supplier_log/')
 
 
 def views_ads(request):
@@ -1795,24 +1924,29 @@ def change_pass(request):
         templates = 'change_pass.html'
         return render(request, templates, context)
     elif request.method == 'POST':
-        rest_pass = request.POST.get('pass')
-        con_pass = request.POST.get('pass')
-        user = request.session['email']
-        userid = request.session['userid']
-        try:
-            u_pass = Supplier.objects.get(Email=user)
-        except:
-            u_pass = None
-        if u_pass:
-            u_pass.password = createHash(rest_pass)
-            u_pass.con_password = con_pass
-            i = u_pass.password
-            u_pass.save()
-            context = {
-                'success': "Password Reset Successfully"
-            }
-            templates = 'success.html'
-            return render(request, templates, context)
+        if 'email' in request.session:
+            rest_pass = request.POST.get('password')
+            user = request.session['email']
+            userid = request.session['userid']
+            try:
+                u_pass = Supplier.objects.get(Email=user)
+            except:
+                u_pass = None
+            if u_pass:
+                u_pass.password = createHash(rest_pass)
+                u_pass.con_password = rest_pass
+                i = u_pass.password
+                u_pass.save()
+                context = {
+                    'success': "Password Reset Successfully"
+                }
+                templates = 'success.html'
+                return render(request, templates, context)
+            else:
+                context = {
+                    'errmsg': "Password Reset Not Successfully try Again",
+                }
+                return redirect('/forget_pass/', context)
         else:
             context = {
                 'errmsg': "Password Reset Not Successfully try Again",
@@ -2051,15 +2185,18 @@ def handler404(request):
     response.status_code = 404
     return response
 
+
 def handler500(request):
     response = render_to_response('500.html', context_instance=RequestContext(request))
     response.status_code = 500
     return response
 
+
 def handler403(request):
     response = render_to_response('403.html', context_instance=RequestContext(request))
     response.status_code = 403
     return response
+
 
 def handler400(request):
     response = render_to_response('400.html', context_instance=RequestContext(request))

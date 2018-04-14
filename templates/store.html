@@ -61,18 +61,23 @@
                                             <div class="w3-row-padding w3-section">
                                                 <div class="w3-col s12">
                                                     <div class="row w3-justify">
-                                                        <h5 id="t"
-                                                            style="width: 110px;margin-left: 20px;">{{ i.product_name }} </h5>
-                                                        <h6 id="t"
-                                                            style="width: 110px;margin-left: 20px;">{{ i.supp_user.company }}</h6>
-                                                        <h5 id="t" class="w3-green"
+                                                        <p id="t"
+                                                            style="margin-left: 20px;">{{ i.product_name }} </p>
+                                                        <p id="t"
+                                                            style="margin-left: 20px;">{{ i.supp_user.company }}</p>
+                                                         <p id="t" class="w3-green"
                                                             style="width: 110px;margin-left: 20px;">
-                                                            &#8358 {{ i.price }}.00 </h5>
+                                                            &#8358 {{ i.price }}.00 </p>
                                                     </div>
-                                                    <div class="w3-center" style="padding-bottom: 8px;">
+                                                     <div class="w3-bar" style="padding-bottom: 8px;">
                                                         <a href="{% url 'det' i.id %}"
-                                                           class="w3-btn  w3-border w3-border-pink w3-round w3-text-pink w3-hover-text-pink w3-white">
-                                                            View
+                                                           class="w3-text-pink w3-hover-text-pink w3-white w3-left">
+                                                            Likes <span class="badge badge-success w3-pink"></span>
+                                                        </a>
+
+                                                        <a href="{% url 'det' i.id %}"
+                                                           class="w3-text-pink w3-hover-text-pink w3-white w3-right">
+                                                            View <span class="badge badge-success w3-pink">{{ i.post_view }}</span>
                                                         </a>
                                                     </div>
 
